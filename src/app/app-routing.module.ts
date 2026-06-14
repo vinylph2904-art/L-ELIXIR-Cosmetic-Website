@@ -8,6 +8,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { RecommendationComponent } from './pages/recommendation/recommendation.component';
+import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +21,9 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'survey', component: SurveyComponent },
   { path: 'recommendation', component: RecommendationComponent },
+  { path: 'order-tracking', component: OrderTrackingComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'payment-success', component: PaymentSuccessComponent },
   { path: '**', redirectTo: '' }
 ];
 

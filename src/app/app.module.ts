@@ -12,6 +12,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { RecommendationComponent } from './pages/recommendation/recommendation.component';
+import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { BeautyAssistantComponent } from './beauty-assistant/beauty-assistant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +32,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SignupComponent,
     SurveyComponent,
     RecommendationComponent
+    ,OrderTrackingComponent
+    ,PaymentComponent
+    ,PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,
