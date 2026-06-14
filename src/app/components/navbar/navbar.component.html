@@ -1,0 +1,35 @@
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-sm border-b border-outline-variant">
+  <div class="max-w-container-max mx-auto px-gutter py-3 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <button type="button" class="md:hidden p-2 rounded hover:bg-surface-container transition" (click)="toggleMobileMenu()" aria-label="Toggle menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+      <a class="logo text-display-lg font-headline-lg text-primary tracking-tight" routerLink="/">L'ELIXIR</a>
+    </div>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/">Trang chủ</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/products">Sản phẩm</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/survey">Khảo sát da</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/recommendation">Quy trình của bạn</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a class="hidden md:inline-flex items-center p-2 rounded hover:bg-surface-container transition" routerLink="/products" aria-label="Search">🔍</a>
+      <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition" routerLink="/login" aria-label="Account">👤</a>
+      <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition relative" routerLink="/cart" aria-label="Cart">
+        👜
+        <span class="ml-1 text-sm bg-primary text-white rounded-full px-2">{{ cartCount }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
+    <div class="px-gutter py-4 flex flex-col gap-3 bg-white border-t border-outline-variant">
+      <a class="py-2 px-2 rounded hover:bg-surface-container" routerLink="/">Trang chủ</a>
+      <a class="py-2 px-2 rounded hover:bg-surface-container" routerLink="/products">Sản phẩm</a>
+      <a class="py-2 px-2 rounded hover:bg-surface-container" routerLink="/survey">Khảo sát da</a>
+      <a class="py-2 px-2 rounded hover:bg-surface-container" routerLink="/recommendation">Quy trình của bạn</a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,7 @@
+:host {
+  display: block;
+}
+
+.luxury-shadow {
+  box-shadow: 0 30px 60px -12px rgba(45, 45, 45, 0.1);
+}

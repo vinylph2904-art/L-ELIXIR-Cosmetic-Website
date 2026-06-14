@@ -1,0 +1,48 @@
+<div class="assistant-shell" [class.expanded]="isExpanded">
+  <button
+    *ngIf="!isExpanded"
+    class="assistant-toggle"
+    type="button"
+    aria-label="Mở Beauty Assistant"
+    (click)="toggleExpanded()"
+  >
+    💄
+  </button>
+
+  <div class="assistant-box" *ngIf="isExpanded">
+    <div class="assistant-header">
+      <div class="assistant-title">Beauty Assistant</div>
+      <button
+        class="assistant-close"
+        type="button"
+        aria-label="Đóng"
+        (click)="toggleExpanded()"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="assistant-body">
+      <div class="assistant-messages">
+        <div
+          *ngFor="let message of messages"
+          class="message-item"
+          [ngClass]="{ 'message-user': message.sender === 'user', 'message-bot': message.sender === 'bot' }"
+        >
+          <span class="message-text">{{ message.text }}</span>
+        </div>
+      </div>
+
+      <form class="assistant-form" (ngSubmit)="sendMessage()">
+        <input
+          type="text"
+          name="assistantInput"
+          [(ngModel)]="inputValue"
+          placeholder="Hỏi về da dầu, da mụn hoặc kem chống nắng..."
+          autocomplete="off"
+        />
+        <button type="submit" [disabled]="!inputValue.trim()">Gửi</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<div class="pt-24 pb-section-gap-desktop max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+  <nav class="flex mb-8 items-center gap-2">
+    <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-standard" routerLink="/">Trang chủ</a>
+    <span class="material-symbols-outlined text-[16px] text-outline-variant">chevron_right</span>
+    <span class="font-label-sm text-label-sm text-primary">Giỏ hàng</span>
+  </nav>
+
+  <header class="mb-12">
+    <h1 class="font-display-lg text-headline-lg mb-2">Giỏ hàng của bạn</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant">Kiểm tra lại các sản phẩm trước khi tiến hành thanh toán.</p>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <div class="lg:col-span-8">
+      <div class="border-t border-outline-variant">
+        <div *ngFor="let item of cartItems" class="py-8 border-b border-outline-variant flex flex-col sm:flex-row gap-6">
+          <div class="w-full sm:w-40 aspect-[3/4] overflow-hidden rounded-lg bg-surface-container img-zoom flex-shrink-0">
+            <img [src]="item.image" [alt]="item.name" class="w-full h-full object-cover transition-standard">
+          </div>
+          <div class="flex-grow flex flex-col justify-between py-1">
+            <div class="flex justify-between items-start gap-4">
+              <div>
+                <p class="font-label-sm text-label-sm text-primary uppercase tracking-wider mb-1">{{ item.category }}</p>
+                <h3 class="font-headline-md text-headline-md mb-2">{{ item.name }}</h3>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="text-[10px] font-label-sm text-on-surface-variant uppercase border border-outline-variant px-2 py-0.5 rounded-full">{{ item.tags.join(', ') }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col items-end gap-2">
+                <p class="font-body-md text-body-md font-bold text-on-surface">{{ item.price | currency:'VND':'symbol':'1.0-0' }}</p>
+              </div>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <div class="flex items-center gap-6">
+                <div class="flex items-center border border-outline-variant rounded-full p-1 bg-surface-container-lowest">
+                  <button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-standard" type="button" (click)="changeQuantity(item.id, -1)">-</button>
+                  <span class="w-10 text-center font-label-md text-label-md">{{ item.quantity || 1 }}</span>
+                  <button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-standard" type="button" (click)="changeQuantity(item.id, 1)">+</button>
+                </div>
+                <div class="flex gap-4">
+                  <button class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-standard" type="button">
+                    <span class="material-symbols-outlined text-[20px]">favorite</span>
+                    <span class="hidden sm:inline">Lưu yêu thích</span>
+                  </button>
+                  <button class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant hover:text-error transition-standard" (click)="removeItem(item.id)" type="button">
+                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                    <span class="hidden sm:inline">Xóa</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 flex flex-col sm:flex-row gap-4 items-center">
+        <a class="flex items-center gap-2 font-label-md text-label-md text-on-surface hover:text-primary transition-standard group" routerLink="/products">
+          <span class="material-symbols-outlined transition-standard group-hover:-translate-x-1">west</span>
+          TIẾP TỤC MUA SẮM
+        </a>
+      </div>
+    </div>
+
+    <aside class="lg:col-span-4 sticky top-28">
+      <div class="bg-surface-container-low p-8 rounded-xl border border-surface-container-high custom-shadow">
+        <h2 class="font-headline-md text-headline-md mb-8">Tóm tắt đơn hàng</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex justify-between">
+            <span class="font-body-md text-body-md text-on-surface-variant">Tạm tính</span>
+            <span class="font-body-md text-body-md">{{ total() | currency:'VND':'symbol':'1.0-0' }}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="font-body-md text-body-md text-on-surface-variant">Phí vận chuyển</span>
+            <span class="font-body-md text-body-md">30.000 VNĐ</span>
+          </div>
+          <div class="flex justify-between text-primary">
+            <span class="font-body-md text-body-md">Giảm giá</span>
+            <span class="font-body-md text-body-md">- 100.000 VNĐ</span>
+          </div>
+          <div class="pt-6 mt-2 border-t border-outline-variant flex justify-between items-baseline">
+            <span class="font-label-md text-label-md uppercase tracking-wider">Tổng cộng</span>
+            <div class="text-right flex flex-col items-end">
+              <p class="font-body-md text-[20px] font-bold text-primary">{{ total() - 100000 + 30000 | currency:'VND':'symbol':'1.0-0' }}</p>
+              <p class="text-[10px] text-on-surface-variant italic">Đã bao gồm VAT</p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-8">
+          <label class="font-label-sm text-label-sm text-on-surface-variant uppercase block mb-3 tracking-widest">Mã giảm giá</label>
+          <div class="flex gap-2">
+            <input class="flex-1 rounded-lg border border-outline-variant px-4 py-3 bg-white text-on-surface" placeholder="Nhập mã" type="text">
+            <button class="rounded-lg bg-primary px-4 py-3 text-white hover:opacity-90 transition-all">Áp dụng</button>
+          </div>
+        </div>
+        <button class="w-full bg-primary text-white py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all">Tiến hành thanh toán</button>
+      </div>
+    </aside>
+  </div>
+</div>

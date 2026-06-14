@@ -1,0 +1,13 @@
+# Angular
+node_modules/
+dist/
+.angular/
+
+# Build
+coverage/
+
+# IDE
+.idea/
+
+# Environment
+src/environments/*.local.ts

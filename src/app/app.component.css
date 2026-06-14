@@ -1,0 +1,4 @@
+/* Application-level styles can go here */
+:host {
+  display: block;
+}

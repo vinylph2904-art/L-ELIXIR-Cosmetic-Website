@@ -1,0 +1,120 @@
+<main class="bg-background text-on-background min-h-screen flex overflow-hidden">
+  <section class="hidden lg:flex lg:w-1/2 relative flex-col justify-end p-section-gap-desktop overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img alt="L'ELIXIR Premium Skincare" class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsijOOOFKkd3JKWVRH8KdKnN-O-pJhf6GFDuQ4J74_gbRnBS4NqOPyOzKKsAMDqf_LDZylBmmm5_avQC2j-xTnkesVnmPv1R3isVrCYAD8UveeSp3-FHDiaEtqE8X5I0WCtOtfogmcIxTT3BO2iFRwuohf2d35mu90YHYHS0ZLcDXk80obXrBTazKH0URy7fizas9bGDxYEjyv4GeFFfdeXyY8WCPhMXW--zTGyB961mJHT9v85eI1gAnBDomOzDH5TmRSkIAgpJQ" />
+      <div class="absolute inset-0 luxury-gradient"></div>
+    </div>
+    <div class="relative z-10 text-white max-w-lg">
+      <h1 class="font-display-lg text-display-lg mb-6 leading-tight">Bắt đầu hành trình chăm sóc da của bạn</h1>
+      <p class="font-body-lg text-body-lg text-white/80">Tạo tài khoản để nhận trải nghiệm mua sắm và tư vấn cá nhân hóa từ các chuyên gia hàng đầu của L'ELIXIR.</p>
+      <div class="mt-12 flex gap-8">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-fixed">verified_user</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-white/90">Sản phẩm chính hãng</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-fixed">auto_awesome</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-white/90">Tư vấn chuyên sâu</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full lg:w-1/2 flex flex-col bg-surface overflow-y-auto">
+    <div class="max-w-[540px] w-full mx-auto px-margin-mobile lg:px-gutter py-12 flex flex-col min-h-full">
+      <div class="mb-12 text-center lg:text-left">
+        <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter mb-8 block">L'ELIXIR</h2>
+        <h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Đăng ký tài khoản</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Tạo tài khoản mới chỉ trong vài bước đơn giản.</p>
+      </div>
+
+      <form class="space-y-6 flex-grow" (ngSubmit)="onSubmit($event)">
+        <div class="space-y-1">
+          <label class="font-label-sm text-label-sm uppercase text-outline">Họ và tên</label>
+          <input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md placeholder:text-outline-variant/60" placeholder="Nguyễn Văn A" type="text" />
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-1">
+            <label class="font-label-sm text-label-sm uppercase text-outline">Email</label>
+            <input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="example@email.com" type="email" />
+          </div>
+          <div class="space-y-1">
+            <label class="font-label-sm text-label-sm uppercase text-outline">Số điện thoại</label>
+            <input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="090 123 4567" type="tel" />
+          </div>
+        </div>
+        <div class="space-y-1 relative">
+          <label class="font-label-sm text-label-sm uppercase text-outline">Mật khẩu</label>
+          <input [type]="showPassword ? 'text' : 'password'" class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="••••••••" />
+          <button class="absolute right-0 bottom-3 text-outline hover:text-primary transition-colors" type="button" (click)="togglePassword()">
+            <span class="material-symbols-outlined">{{ showPassword ? 'visibility' : 'visibility_off' }}</span>
+          </button>
+        </div>
+        <div class="space-y-1 relative">
+          <label class="font-label-sm text-label-sm uppercase text-outline">Xác nhận mật khẩu</label>
+          <input [type]="showConfirmPassword ? 'text' : 'password'" class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="••••••••" />
+          <button class="absolute right-0 bottom-3 text-outline hover:text-primary transition-colors" type="button" (click)="toggleConfirmPassword()">
+            <span class="material-symbols-outlined">{{ showConfirmPassword ? 'visibility' : 'visibility_off' }}</span>
+          </button>
+        </div>
+        <div class="flex items-start gap-3 py-2">
+          <input class="mt-1 rounded-sm border-outline text-primary focus:ring-primary ring-offset-2" id="terms" type="checkbox" />
+          <label class="font-body-md text-label-md text-on-surface-variant cursor-pointer" for="terms">
+            Tôi đồng ý với <a class="text-primary hover:underline transition-all" href="#">Điều khoản sử dụng</a> và <a class="text-primary hover:underline transition-all" href="#">Chính sách bảo mật</a>.
+          </label>
+        </div>
+        <button class="w-full bg-primary-container text-on-primary-container py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300 active:scale-[0.98] shadow-sm">Đăng ký</button>
+      </form>
+
+      <div class="mt-10">
+        <div class="relative flex items-center justify-center mb-8">
+          <div class="border-t border-outline-variant w-full absolute"></div>
+          <span class="bg-surface px-4 text-outline font-label-sm text-label-sm relative z-10">HOẶC TIẾP TỤC VỚI</span>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <button class="flex items-center justify-center gap-2 border border-outline-variant py-3 rounded-lg hover:bg-surface-container-low transition-colors group" type="button">
+            <svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+            </svg>
+            <span class="font-label-md text-label-md">Google</span>
+          </button>
+          <button class="flex items-center justify-center gap-2 border border-outline-variant py-3 rounded-lg hover:bg-surface-container-low transition-colors group" type="button">
+            <svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"></path>
+            </svg>
+            <span class="font-label-md text-label-md">Facebook</span>
+          </button>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <p class="font-body-md text-body-md text-on-surface-variant">Đã có tài khoản? <a class="text-primary font-bold hover:underline" routerLink="/login">Đăng nhập ngay</a></p>
+      </div>
+      <div class="mt-16 pt-12 border-t border-outline-variant/30 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+        <div class="space-y-2 group">
+          <div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto group-hover:bg-primary-container transition-colors duration-500">
+            <span class="material-symbols-outlined text-primary">history</span>
+          </div>
+          <h4 class="font-label-sm text-label-sm uppercase text-on-surface">Lịch sử</h4>
+          <p class="text-[11px] leading-relaxed text-outline">Lưu trữ mọi giao dịch</p>
+        </div>
+        <div class="space-y-2 group">
+          <div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto group-hover:bg-primary-container transition-colors duration-500">
+            <span class="material-symbols-outlined text-primary">local_shipping</span>
+          </div>
+          <h4 class="font-label-sm text-label-sm uppercase text-on-surface">Theo dõi</h4>
+          <p class="text-[11px] leading-relaxed text-outline">Cập nhật đơn hàng 24/7</p>
+        </div>
+        <div class="space-y-2 group">
+          <div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto group-hover:bg-primary-container transition-colors duration-500">
+            <span class="material-symbols-outlined text-primary">brush</span>
+          </div>
+          <h4 class="font-label-sm text-label-sm uppercase text-on-surface">Gợi ý</h4>
+          <p class="text-[11px] leading-relaxed text-outline">Cá nhân hóa theo làn da</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

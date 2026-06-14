@@ -1,0 +1,291 @@
+<section class="relative min-h-[614px] flex items-center justify-center overflow-hidden py-section-gap-desktop bg-[#F5F1EB]">
+  <div class="absolute inset-0 z-0 opacity-40">
+    <div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-primary-container/20 rounded-full blur-[100px]"></div>
+    <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-tertiary-fixed/30 rounded-full blur-[100px]"></div>
+  </div>
+  <div class="relative z-10 max-w-container-max mx-auto px-gutter text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 backdrop-blur-sm border border-primary/10 mb-8">
+      <span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+      <span class="font-label-sm text-label-sm text-primary">Chỉ mất khoảng 1 phút</span>
+    </div>
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-6 leading-tight">Khám phá nhu cầu thực sự <br class="hidden md:block"/> của làn da bạn</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10 opacity-80">Hoàn thành khảo sát nhanh để nhận các gợi ý sản phẩm được cá nhân hóa dựa trên tình trạng da hiện tại của bạn.</p>
+    <a class="inline-flex items-center justify-center px-10 py-4 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg survey-card hover:bg-primary hover:text-white" href="#survey-start">Bắt đầu khảo sát</a>
+  </div>
+</section>
+
+<section class="max-w-container-max mx-auto px-gutter py-section-gap-desktop" id="survey-start">
+  <div class="bg-surface-container-low rounded-[2rem] p-10 md:p-16 flex flex-col md:flex-row items-center gap-12 border border-outline-variant/30">
+    <div class="w-full md:w-1/2">
+      <img alt="L'ELIXIR Beauty Assistant" class="w-full h-[400px] object-cover rounded-xl shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC46SZMnpzPv4YYG1DwmZlVkXe4fN2bFLz9cJ5JOimt_k1y5f70eP0znSbdiBhom_WEkuy3P4LO_qJkeveoMJw6TK9RaGQoDPRZNwFDrSLgssO5QmXLOdWxPHOrpIAQwB4qUhzwwj6mdUiSSHa9L173y_XdmYEpdePjGfkmvpEcnSy07kG76cMihdTXbaC28MrW-Qt2wMSFroGfXHALvjGdQQww2JncnRUpFjoZgE_y7UH3raXeO8lgiuprO6WIAJh8h6deGmQNCTg" />
+    </div>
+    <div class="w-full md:w-1/2 space-y-6">
+      <h2 class="font-headline-lg text-headline-lg text-primary">Trợ lý làm đẹp ảo</h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant">Được phát triển bởi các chuyên gia da liễu hàng đầu, hệ thống phân tích của chúng tôi sẽ đánh giá hàng chục yếu tố để tìm ra lộ trình chăm sóc tối ưu nhất cho riêng bạn.</p>
+      <ul class="space-y-4">
+        <li class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          <span class="font-label-md">Độ chính xác cao từ dữ liệu lâm sàng</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          <span class="font-label-md">Đề xuất Routine 3 bước tối giản</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sticky top-20 z-40 bg-white/90 backdrop-blur-md py-6 border-b border-outline-variant/20">
+  <div class="max-w-4xl mx-auto px-gutter">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-label-sm text-primary">Tiến trình</span>
+      <span class="font-label-sm text-on-surface-variant" id="step-text">Bước 1 của 4</span>
+    </div>
+    <div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+      <div class="h-full bg-primary-container progress-indicator" id="progress-bar" style="width: 25%;"></div>
+    </div>
+    <div class="flex justify-between mt-3 px-1">
+      <span class="text-[10px] font-label-sm uppercase tracking-wider text-primary">Bước 1</span>
+      <span class="text-[10px] font-label-sm uppercase tracking-wider text-outline-variant">Bước 2</span>
+      <span class="text-[10px] font-label-sm uppercase tracking-wider text-outline-variant">Bước 3</span>
+      <span class="text-[10px] font-label-sm uppercase tracking-wider text-outline-variant">Kết quả</span>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-4xl mx-auto px-gutter py-section-gap-desktop space-y-32">
+  <div class="space-y-10">
+    <div class="text-center space-y-2">
+      <h3 class="font-headline-lg text-headline-lg text-on-background">Q1: Loại da của bạn là gì?</h3>
+      <p class="text-on-surface-variant">Chọn một lựa chọn phù hợp nhất với cảm giác da sau khi rửa mặt.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <button class="flex items-center p-6 gap-6 bg-white border border-outline-variant/30 rounded-xl hover:border-primary-container group transition-all text-left" type="button">
+        <div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl">water_drop</span>
+        </div>
+        <div>
+          <h4 class="font-headline-md text-headline-md text-on-background mb-1">Da dầu</h4>
+          <p class="text-label-sm text-on-surface-variant">Dầu vùng T, dễ bóng nhờn.</p>
+        </div>
+      </button>
+      <button class="flex items-center p-6 gap-6 bg-white border border-outline-variant/30 rounded-xl hover:border-primary-container group transition-all text-left" type="button">
+        <div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl">opacity</span>
+        </div>
+        <div>
+          <h4 class="font-headline-md text-headline-md text-on-background mb-1">Da khô</h4>
+          <p class="text-label-sm text-on-surface-variant">Cảm giác căng, bong tróc, thiếu độ ẩm.</p>
+        </div>
+      </button>
+      <button class="flex items-center p-6 gap-6 bg-white border border-outline-variant/30 rounded-xl hover:border-primary-container group transition-all text-left" type="button">
+        <div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl">exposure_plus_1</span>
+        </div>
+        <div>
+          <h4 class="font-headline-md text-headline-md text-on-background mb-1">Da hỗn hợp</h4>
+          <p class="text-label-sm text-on-surface-variant">Dầu vùng T, khô ở hai bên má.</p>
+        </div>
+      </button>
+      <button class="flex items-center p-6 gap-6 bg-white border border-outline-variant/30 rounded-xl hover:border-primary-container group transition-all text-left" type="button">
+        <div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+          <span class="material-symbols-outlined text-primary text-3xl">health_and_safety</span>
+        </div>
+        <div>
+          <h4 class="font-headline-md text-headline-md text-on-background mb-1">Da nhạy cảm</h4>
+          <p class="text-label-sm text-on-surface-variant">Dễ đỏ rát, châm chích với sản phẩm mới.</p>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div class="space-y-10">
+    <div class="text-center space-y-2">
+      <h3 class="font-headline-lg text-headline-lg text-on-background">Q2: Bạn đang gặp vấn đề nào?</h3>
+      <p class="text-on-surface-variant">Bạn có thể chọn nhiều đáp án.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <label class="relative cursor-pointer">
+        <input class="peer sr-only" type="checkbox" />
+        <div class="p-8 text-center border border-outline-variant/30 rounded-xl bg-white peer-checked:bg-primary-container/5 peer-checked:border-primary-container peer-checked:ring-1 peer-checked:ring-primary-container transition-all">
+          <span class="material-symbols-outlined text-primary mb-3 block text-3xl">coronavirus</span>
+          <span class="font-label-md">Mụn</span>
+        </div>
+      </label>
+      <label class="relative cursor-pointer">
+        <input class="peer sr-only" type="checkbox" />
+        <div class="p-8 text-center border border-outline-variant/30 rounded-xl bg-white peer-checked:bg-primary-container/5 peer-checked:border-primary-container peer-checked:ring-1 peer-checked:ring-primary-container transition-all">
+          <span class="material-symbols-outlined text-primary mb-3 block text-3xl">grain</span>
+          <span class="font-label-md">Thâm nám</span>
+        </div>
+      </label>
+      <label class="relative cursor-pointer">
+        <input class="peer sr-only" type="checkbox" />
+        <div class="p-8 text-center border border-outline-variant/30 rounded-xl bg-white peer-checked:bg-primary-container/5 peer-checked:border-primary-container peer-checked:ring-1 peer-checked:ring-primary-container transition-all">
+          <span class="material-symbols-outlined text-primary mb-3 block text-3xl">hourglass_empty</span>
+          <span class="font-label-md">Lão hóa</span>
+        </div>
+      </label>
+      <label class="relative cursor-pointer">
+        <input class="peer sr-only" type="checkbox" />
+        <div class="p-8 text-center border border-outline-variant/30 rounded-xl bg-white peer-checked:bg-primary-container/5 peer-checked:border-primary-container peer-checked:ring-1 peer-checked:ring-primary-container transition-all">
+          <span class="material-symbols-outlined text-primary mb-3 block text-3xl">water_damage</span>
+          <span class="font-label-md">Thiếu ẩm</span>
+        </div>
+      </label>
+      <label class="relative cursor-pointer">
+        <input class="peer sr-only" type="checkbox" />
+        <div class="p-8 text-center border border-outline-variant/30 rounded-xl bg-white peer-checked:bg-primary-container/5 peer-checked:border-primary-container peer-checked:ring-1 peer-checked:ring-primary-container transition-all">
+          <span class="material-symbols-outlined text-primary mb-3 block text-3xl">blur_on</span>
+          <span class="font-label-md">Da xỉn màu</span>
+        </div>
+      </label>
+      <label class="relative cursor-pointer">
+        <input class="peer sr-only" type="checkbox" />
+        <div class="p-8 text-center border border-outline-variant/30 rounded-xl bg-white peer-checked:bg-primary-container/5 peer-checked:border-primary-container peer-checked:ring-1 peer-checked:ring-primary-container transition-all">
+          <span class="material-symbols-outlined text-primary mb-3 block text-3xl">grid_view</span>
+          <span class="font-label-md">Lỗ chân lông to</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div class="space-y-10">
+    <div class="text-center space-y-2">
+      <h3 class="font-headline-lg text-headline-lg text-on-background">Q3: Mục tiêu chăm sóc da của bạn?</h3>
+      <p class="text-on-surface-variant">Chọn tối đa 3 mục tiêu ưu tiên.</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-4">
+      <button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary transition-all font-label-md">Kiểm soát dầu</button>
+      <button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary transition-all font-label-md">Giảm mụn</button>
+      <button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary transition-all font-label-md">Dưỡng ẩm</button>
+      <button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary transition-all font-label-md">Làm sáng da</button>
+      <button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary transition-all font-label-md">Chống lão hóa</button>
+      <button class="px-8 py-3 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:text-primary transition-all font-label-md">Phục hồi da</button>
+    </div>
+  </div>
+
+  <div class="space-y-10">
+    <div class="text-center space-y-2">
+      <h3 class="font-headline-lg text-headline-lg text-on-background">Q4: Bạn thường sử dụng sản phẩm nào?</h3>
+      <p class="text-on-surface-variant">Đánh dấu những bước bạn đã có trong quy trình.</p>
+    </div>
+    <div class="max-w-md mx-auto space-y-3">
+      <label class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/30 bg-white cursor-pointer hover:bg-surface-container-low">
+        <input class="w-5 h-5 rounded text-primary-container border-outline focus:ring-primary-container" type="checkbox" />
+        <span class="font-body-md text-on-background">Sữa rửa mặt</span>
+      </label>
+      <label class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/30 bg-white cursor-pointer hover:bg-surface-container-low">
+        <input class="w-5 h-5 rounded text-primary-container border-outline focus:ring-primary-container" type="checkbox" />
+        <span class="font-body-md text-on-background">Toner</span>
+      </label>
+      <label class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/30 bg-white cursor-pointer hover:bg-surface-container-low">
+        <input class="w-5 h-5 rounded text-primary-container border-outline focus:ring-primary-container" type="checkbox" />
+        <span class="font-body-md text-on-background">Serum</span>
+      </label>
+      <label class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/30 bg-white cursor-pointer hover:bg-surface-container-low">
+        <input class="w-5 h-5 rounded text-primary-container border-outline focus:ring-primary-container" type="checkbox" />
+        <span class="font-body-md text-on-background">Kem dưỡng</span>
+      </label>
+      <label class="flex items-center gap-4 p-5 rounded-xl border border-outline-variant/30 bg-white cursor-pointer hover:bg-surface-container-low">
+        <input class="w-5 h-5 rounded text-primary-container border-outline focus:ring-primary-container" type="checkbox" />
+        <span class="font-body-md text-on-background">Kem chống nắng</span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-container-max mx-auto px-gutter py-section-gap-desktop">
+  <div class="bg-tertiary-fixed/30 rounded-[2rem] p-10 md:p-16 border border-primary/5">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+      <div class="space-y-4">
+        <span class="font-label-sm text-primary uppercase tracking-[0.2em]">Tóm tắt hồ sơ</span>
+        <h2 class="font-headline-lg text-headline-lg text-on-background">Dữ liệu của bạn</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-12 flex-1">
+        <div class="space-y-2">
+          <span class="font-label-sm text-on-surface-variant">Loại da</span>
+          <p class="font-headline-md text-headline-md text-primary">Chưa xác định</p>
+        </div>
+        <div class="space-y-2">
+          <span class="font-label-sm text-on-surface-variant">Vấn đề chính</span>
+          <p class="font-headline-md text-headline-md text-primary">0/6 vấn đề</p>
+        </div>
+        <div class="space-y-2">
+          <span class="font-label-sm text-on-surface-variant">Mục tiêu</span>
+          <p class="font-headline-md text-headline-md text-primary">Cải thiện tổng thể</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="text-center py-section-gap-desktop bg-surface-container-lowest">
+  <div class="max-w-2xl mx-auto px-gutter space-y-8">
+    <h3 class="font-headline-lg text-headline-lg text-on-background">Sẵn sàng khám phá Routine dành cho bạn?</h3>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a routerLink="/recommendation" class="px-12 py-5 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg shadow-lg shadow-primary-container/20 hover:bg-primary hover:text-white transition-all transform hover:scale-105">Xem kết quả gợi ý</a>
+      <button class="px-12 py-5 border border-outline text-on-surface-variant font-label-md text-label-md rounded-lg hover:bg-surface-variant transition-all">Làm lại khảo sát</button>
+    </div>
+  </div>
+</section>
+
+<section class="bg-[#F5F1EB] py-16">
+  <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+    <div class="space-y-4">
+      <span class="material-symbols-outlined text-4xl text-primary">diversity_3</span>
+      <h4 class="font-label-md text-label-md text-on-background uppercase tracking-widest">Cá nhân hóa theo loại da</h4>
+      <p class="text-on-surface-variant opacity-70">Thuật toán khớp sản phẩm chính xác theo từng tế bào da.</p>
+    </div>
+    <div class="space-y-4">
+      <span class="material-symbols-outlined text-4xl text-primary">science</span>
+      <h4 class="font-label-md text-label-md text-on-background uppercase tracking-widest">Gợi ý dựa trên thành phần</h4>
+      <p class="text-on-surface-variant opacity-70">Phân tích chuyên sâu về sự tương thích của hoạt chất.</p>
+    </div>
+    <div class="space-y-4">
+      <span class="material-symbols-outlined text-4xl text-primary">verified</span>
+      <h4 class="font-label-md text-label-md text-on-background uppercase tracking-widest">Minh bạch và dễ hiểu</h4>
+      <p class="text-on-surface-variant opacity-70">Giải thích rõ ràng lý do tại sao chúng tôi chọn sản phẩm đó.</p>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-container-max mx-auto px-gutter py-section-gap-desktop">
+  <div class="text-center mb-16 space-y-4">
+    <span class="font-label-sm text-primary uppercase tracking-[0.2em]">Cẩm nang L'ELIXIR</span>
+    <h2 class="font-display-lg text-headline-lg text-on-background">Tại sao khảo sát da lại quan trọng?</h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <article class="group cursor-pointer">
+      <div class="overflow-hidden rounded-xl mb-6 aspect-[4/5]">
+        <img alt="Hiểu loại da" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCet3ft2VnjXEwuvfO4Vz69dsfV2pvumsMVK3WsOLMhTnprl3FyDEd876D1WHnqMRjJpkfJuJmUqw43y5riw0u1NTcQYp5LqMplrF8ieXVwa01c_XATjzD2mMj8wa_9GPQ2aUJUhoz2YVz12F0VDDOrO35plkYiWrlXdWXtw3UJfIxfO81TzAgO9zN1n4UIPDBaaMOrYmOl1NmfDfBFBkEOId0IjnmuwUgVYj2XNQQzjzyzatl2s0MPndvAZ61A-M6w9-Kn0mxBULk" />
+      </div>
+      <div class="space-y-3">
+        <h3 class="font-headline-md text-headline-md text-on-background group-hover:text-primary transition-colors">Hiểu loại da</h3>
+        <p class="text-on-surface-variant leading-relaxed">Loại da thay đổi theo thời tiết, độ tuổi và nội tiết tố. Việc xác định đúng giúp bạn tránh lãng phí vào các sản phẩm không phù hợp.</p>
+        <a class="inline-block font-label-sm text-primary border-b border-primary/30 pb-1 mt-2" href="#">Đọc thêm</a>
+      </div>
+    </article>
+    <article class="group cursor-pointer">
+      <div class="overflow-hidden rounded-xl mb-6 aspect-[4/5]">
+        <img alt="Xác định vấn đề" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCWxPCxr_awfLTTG-Yym3p17QoqIbVPHbGOHQS6Lh0CvWRcBJYY3eu3hSBll_XG8OLuF2UlVtDNIA04RgN-cRyqP1zMgwzkvui25Wo-kr1e2viGXLO3o-zLWJGIVrAeuegd6OaoIArUowS141-9a-J10wZDXQDHyjIOdd8ircTG4Wonf4W2fiKGzObUm6xYk0oz4UjEn9UKGQ6wAEujxfssIJ_N2k_HHrfp64fAA_S6HmA8LFl4or2WbV9dOOUCyDqtvi-QyYcIaY" />
+      </div>
+      <div class="space-y-3">
+        <h3 class="font-headline-md text-headline-md text-on-background group-hover:text-primary transition-colors">Xác định vấn đề</h3>
+        <p class="text-on-surface-variant leading-relaxed">Nhiều người lầm tưởng da khô là lão hóa. Phân tích giúp bóc tách từng lớp tình trạng da để điều trị tận gốc.</p>
+        <a class="inline-block font-label-sm text-primary border-b border-primary/30 pb-1 mt-2" href="#">Đọc thêm</a>
+      </div>
+    </article>
+    <article class="group cursor-pointer">
+      <div class="overflow-hidden rounded-xl mb-6 aspect-[4/5]">
+        <img alt="Lựa chọn sản phẩm" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPpAqSGCnOoe9IXXHWG8kpKAji9QO046GC9I_AweErxpF5gCVIWPD4YOHYgcymgpPIeBu8KwRuM0mFDam5lc4RnwPY-g9CFTlEj83NMQ2U5h-WkrnZVXtn243mUDeCNPa-psdqMEI-0UJqqqKwvTBnCgVwXMpFxy97lN6bSjjbeFRZSr5MQT6wfmwpGIzGLCOGbsKnKFGOulHwg6qj20EHapXYnHKe-uv8ePq3cg5wRsOayyz6ix1fWW8EP1FUaZBAZxdCzlrQ9aU" />
+      </div>
+      <div class="space-y-3">
+        <h3 class="font-headline-md text-headline-md text-on-background group-hover:text-primary transition-colors">Lựa chọn sản phẩm</h3>
+        <p class="text-on-surface-variant leading-relaxed">Đừng mua vì xu hướng. Hãy mua vì hoạt chất mà da bạn đang thực sự khao khát để đạt hiệu quả tối đa.</p>
+        <a class="inline-block font-label-sm text-primary border-b border-primary/30 pb-1 mt-2" href="#">Đọc thêm</a>
+      </div>
+    </article>
+  </div>
+</section>
