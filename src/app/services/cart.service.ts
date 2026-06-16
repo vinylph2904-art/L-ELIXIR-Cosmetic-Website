@@ -38,7 +38,7 @@ export class CartService {
   }
 
   addToCart(product: Product) {
-    const existing = this.cartItems.find(item => item.id === product.id);
+    const existing = this.cartItems.find(item => item.productId === product.productId);
     if (existing) {
       existing.quantity = (existing.quantity || 1) + (product.quantity || 1);
     } else {
@@ -49,13 +49,13 @@ export class CartService {
 
   updateQuantity(productId: string, quantity: number) {
     this.cartItems = this.cartItems
-      .map(item => item.id === productId ? { ...item, quantity } : item)
+      .map(item => item.productId === productId ? { ...item, quantity } : item)
       .filter(item => (item.quantity || 1) > 0);
     this.saveCart();
   }
 
   removeFromCart(productId: string) {
-    this.cartItems = this.cartItems.filter(item => item.id !== productId);
+    this.cartItems = this.cartItems.filter(item => item.productId !== productId);
     this.saveCart();
   }
 

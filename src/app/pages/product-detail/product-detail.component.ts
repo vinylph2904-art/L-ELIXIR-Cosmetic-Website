@@ -13,7 +13,7 @@ export class ProductDetailComponent {
 
   constructor(route: ActivatedRoute, private cartService: CartService) {
     const id = route.snapshot.paramMap.get('id');
-    const found = PRODUCTS.find(item => item.id === id);
+    const found = PRODUCTS.find(item => item.productId === id);
     if (found) {
       this.product = found;
     }

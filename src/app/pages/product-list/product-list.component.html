@@ -46,12 +46,12 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <article *ngFor="let product of products" class="group hover-zoom bg-surface-container-low rounded-xl overflow-hidden">
-          <a [routerLink]="['/products', product.id]" class="block aspect-[3/4]">
-            <img [src]="product.image" [alt]="product.name" class="w-full h-full object-cover">
+          <a [routerLink]="['/products', product.productId]" class="block aspect-[3/4]">
+            <img [src]="product.images[0]" [alt]="product.name" class="w-full h-full object-cover">
           </a>
           <div class="p-4">
-            <div class="text-label-sm text-primary">{{ product.category }}</div>
-            <h3 class="font-headline-md text-[18px] mt-2"><a [routerLink]="['/products', product.id]">{{ product.name }}</a></h3>
+            <div class="text-label-sm text-primary">{{ product.categoryName }}</div>
+            <h3 class="font-headline-md text-[18px] mt-2"><a [routerLink]="['/products', product.productId]">{{ product.name }}</a></h3>
             <div class="mt-3 flex items-center justify-between">
               <div class="font-label-sm">{{ product.price | currency:'VND':'symbol':'1.0-0' }}</div>
               <button (click)="addToCart(product)" class="text-primary hover:text-primary-container">Thêm vào giỏ</button>

@@ -26,7 +26,7 @@ export class CartComponent implements OnInit {
   }
 
   changeQuantity(productId: string, delta: number) {
-    const item = this.cartItems.find(i => i.id === productId);
+    const item = this.cartItems.find(i => i.productId === productId);
     if (!item) {
       return;
     }
