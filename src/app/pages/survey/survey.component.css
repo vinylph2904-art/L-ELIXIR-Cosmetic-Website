@@ -2,6 +2,27 @@
   display: block;
 }
 
+/* Giữ nguyên hiệu ứng đổ bóng sang trọng của nhóm trưởng */
 .luxury-shadow {
   box-shadow: 0 30px 60px -12px rgba(45, 45, 45, 0.1);
+}
+
+/* Hiệu ứng chuyển động mượt mà khi thanh tiến trình tăng/giảm tỷ lệ phần trăm */
+.progress-indicator {
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hiệu ứng bo viền đỏ giật mình nhẹ khi cuộn tới câu hỏi bị bỏ sót (AF1) */
+.form-error-flash {
+  animation: flashError 1.5s ease-in-out;
+}
+
+@keyframes flashError {
+  0%, 100% { border-color: rgba(229, 62, 62, 0.3); }
+  50% { border-color: rgba(229, 62, 62, 1); box-shadow: 0 0 10px rgba(229, 62, 62, 0.2); }
+}
+
+/* Tùy chỉnh thanh cuộn dọc mượt mà hơn cho toàn bộ trang khảo sát */
+html {
+  scroll-behavior: smooth;
 }
