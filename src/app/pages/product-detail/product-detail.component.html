@@ -33,14 +33,14 @@
       <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed">{{ product.description }}</p>
       <div class="grid grid-cols-2 gap-8 mb-10">
         <div>
-          <h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Tình trạng</h4>
+          <h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Loại da</h4>
           <div class="flex flex-wrap gap-2">
             <span *ngFor="let skinType of product.targetSkinTypes" class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm">{{ skinType }}</span>
           </div>
         </div>
       </div>
       <div class="mb-12">
-        <h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Thành phần chính</h4>
+        <h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Tình trạng da</h4>
         <div class="flex flex-wrap gap-4">
           <div *ngFor="let problem of product.targetSkinProblems" class="flex items-center gap-2 text-on-surface">
             <span class="w-2 h-2 rounded-full bg-primary"></span>
