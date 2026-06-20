@@ -17,6 +17,8 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { BeautyAssistantComponent } from './beauty-assistant/beauty-assistant.component';
 import { ToastContainerComponent } from './components/toast-container/toast-container.component';
+import { ReviewListComponent } from './components/review-list/review-list.component';
+import { ReviewFormComponent } from './components/review-form/review-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -36,6 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ,OrderTrackingComponent
     ,PaymentComponent
     ,PaymentSuccessComponent
+    ,ReviewListComponent
+    ,ReviewFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,82 @@
+<div class="space-y-8">
+  <!-- Tóm tắt đánh giá -->
+  <div class="bg-surface-container-low rounded-xl p-6">
+    <div class="flex items-center gap-8 flex-col sm:flex-row">
+      <!-- Điểm trung bình -->
+      <div class="flex-shrink-0 text-center">
+        <div class="font-headline-lg text-headline-lg text-primary mb-2">
+          {{ averageRating }}/5
+        </div>
+        <div class="flex justify-center text-primary mb-2">
+          <span *ngFor="let star of getStarArray(5); let i = index"
+                class="material-symbols-outlined text-[20px]"
+                [style.fontVariationSettings]='isFilled(star, Math.round(averageRating)) ? "\"FILL\" 1" : "\"FILL\" 0"'>
+            star
+          </span>
+        </div>
+        <p class="text-label-sm text-on-surface-variant">{{ totalReviews }} đánh giá</p>
+      </div>
+
+      <!-- Thanh tiến độ rating -->
+      <div class="flex-1 space-y-2">
+        <div *ngFor="let rating of [5, 4, 3, 2, 1]" class="flex items-center gap-3">
+          <span class="text-label-sm text-on-surface-variant w-6">{{ rating }}★</span>
+          <div class="flex-1 h-2 bg-surface rounded-full overflow-hidden">
+              <div class="h-full bg-primary"
+                   [style.width]="getRatingPercentage(rating)">
+              </div>
+          </div>
+          <span class="text-label-sm text-on-surface-variant w-8 text-right">
+              {{ countByRating(rating) }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Danh sách review -->
+  <div class="space-y-4">
+    <div *ngIf="reviews.length === 0" class="text-center py-8">
+      <p class="text-on-surface-variant">Chưa có đánh giá nào cho sản phẩm này</p>
+    </div>
+
+    <div *ngFor="let review of reviews" class="border-b border-outline pb-6 last:border-b-0">
+      <!-- Header review -->
+      <div class="flex items-start justify-between mb-3">
+        <div class="flex-1">
+          <h4 class="font-label-lg text-label-lg font-bold text-on-surface mb-1">
+            {{ review.title }}
+          </h4>
+          <p class="text-label-sm text-on-surface-variant">
+            {{ review.userName }} • {{ formatDate(review.createdAt) }}
+          </p>
+        </div>
+        <div class="flex text-primary ml-4 flex-shrink-0">
+          <span *ngFor="let star of getStarArray(5); let i = index"
+                class="material-symbols-outlined text-[16px]"
+                [style.fontVariationSettings]='isFilled(star, review.rating) ? "\"FILL\" 1" : "\"FILL\" 0"'>
+            star
+          </span>
+        </div>
+      </div>
+
+      <!-- Nội dung bình luận -->
+      <p class="text-body-md text-on-surface mb-4 leading-relaxed">
+        {{ review.comment }}
+      </p>
+
+      <!-- Hình ảnh đi kèm -->
+      <div *ngIf="review.images && review.images.length > 0" class="flex gap-3 mb-3">
+        <img *ngFor="let image of review.images" 
+             [src]="image" 
+             [alt]="review.title"
+             class="w-16 h-16 object-cover rounded-lg border border-outline">
+      </div>
+
+      <!-- Badge đã mua -->
+      <div class="inline-block px-3 py-1 bg-primary/10 rounded-full">
+        <span class="text-label-sm text-primary font-semibold">✓ Đã mua hàng</span>
+      </div>
+    </div>
+  </div>
+</div>
