@@ -106,13 +106,14 @@
       <a routerLink="/products" class="font-label-md text-label-md text-primary hover:underline underline-offset-8">Xem tất cả sản phẩm</a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-      <div *ngFor="let product of products" class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+      <!-- Card 1 (kept static badge/label) -->
+      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
         <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img [alt]="product.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" [src]="product.image">
+          <img alt="{{ products[0].name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" [src]="products[0].image">
         </div>
         <div class="space-y-2">
           <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Sản phẩm</span>
+            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Đoạt giải thưởng</span>
             <div class="flex text-primary text-xs">
               <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
               <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
@@ -121,9 +122,75 @@
               <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
             </div>
           </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">{{ product.name }}</h3>
-          <p class="text-on-surface-variant font-label-md">{{ product.price | currency:'VND':'symbol':'1.0-0' }}</p>
-          <button (click)="addToCart(product)" class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
+          <h3 class="font-display-lg text-headline-md leading-tight">{{ products[0].name }}</h3>
+          <p class="text-on-surface-variant font-label-md">{{ products[0].price | currency:'VND':'symbol':'1.0-0' }}</p>
+          <button (click)="addToCart(products[0])" class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
+          <img alt="{{ products[1].name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" [src]="products[1].image">
+        </div>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Bán chạy nhất</span>
+            <div class="flex text-primary text-xs">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </div>
+          </div>
+          <h3 class="font-display-lg text-headline-md leading-tight">{{ products[1].name }}</h3>
+          <p class="text-on-surface-variant font-label-md">{{ products[1].price | currency:'VND':'symbol':'1.0-0' }}</p>
+          <button (click)="addToCart(products[1])" class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
+          <img alt="{{ products[2].name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" [src]="products[2].image">
+        </div>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Mới</span>
+            <div class="flex text-primary text-xs">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+          </div>
+          <h3 class="font-display-lg text-headline-md leading-tight">{{ products[2].name }}</h3>
+          <p class="text-on-surface-variant font-label-md">{{ products[2].price | currency:'VND':'symbol':'1.0-0' }}</p>
+          <button (click)="addToCart(products[2])" class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
+          <img alt="{{ products[3].name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" [src]="products[3].image">
+        </div>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Hữu cơ</span>
+            <div class="flex text-primary text-xs">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">star</span>
+            </div>
+          </div>
+          <h3 class="font-display-lg text-headline-md leading-tight">{{ products[3].name }}</h3>
+          <p class="text-on-surface-variant font-label-md">{{ products[3].price | currency:'VND':'symbol':'1.0-0' }}</p>
+          <button (click)="addToCart(products[3])" class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
         </div>
       </div>
     </div>
