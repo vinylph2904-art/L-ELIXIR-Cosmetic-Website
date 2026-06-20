@@ -19,3 +19,10 @@ describe('SignupComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+import { RouterTestingModule } from '@angular/router/testing';
+
+await TestBed.configureTestingModule({
+  declarations: [SignupComponent],
+  imports: [RouterTestingModule, FormsModule]
+}).compileComponents();
