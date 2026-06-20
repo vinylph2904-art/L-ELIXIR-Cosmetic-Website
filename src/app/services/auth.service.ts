@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
 import { User } from '../data/user.model';
 
-const USERS_KEY = 'users';
+const API_BASE = 'http://localhost:3001/api';
 const SESSION_KEY = 'currentUser';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private getUsers(): User[] {
-    const raw = localStorage.getItem(USERS_KEY);
-    return raw ? JSON.parse(raw) : [];
+  private async getUsers(): Promise<User[]> {
+    const response = await fetch(`${API_BASE}/users`);
+    if (!response.ok) {
+      throw new Error('Không thể đọc dữ liệu users.');
+    }
+    return response.json();
   }
 
-  private saveUsers(users: User[]): void {
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  private async saveUsers(users: User[]): Promise<void> {
+    const response = await fetch(`${API_BASE}/users`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(users)
+    });
+
+    if (!response.ok) {
+      throw new Error('Không thể lưu dữ liệu users.');
+    }
   }
 
   isValidEmail(email: string): boolean {
@@ -24,15 +35,15 @@ export class AuthService {
     return /^\d{10}$/.test(phone.trim());
   }
 
-  emailExists(email: string): boolean {
-    return this.getUsers().some(u => u.email.toLowerCase() === email.trim().toLowerCase());
+  async emailExists(email: string): Promise<boolean> {
+    return (await this.getUsers()).some(u => u.email.toLowerCase() === email.trim().toLowerCase());
   }
 
-  phoneExists(phone: string): boolean {
-    return this.getUsers().some(u => u.phoneNumber === phone.trim());
+  async phoneExists(phone: string): Promise<boolean> {
+    return (await this.getUsers()).some(u => u.phoneNumber === phone.trim());
   }
 
-  signup(data: { email: string; password: string; fullName: string; phoneNumber: string }): { success: boolean; message: string } {
+  async signup(data: { email: string; password: string; fullName: string; phoneNumber: string }): Promise<{ success: boolean; message: string }> {
     if (!this.isValidEmail(data.email)) {
       return { success: false, message: 'Email không đúng định dạng.' };
     }
@@ -41,7 +52,7 @@ export class AuthService {
       return { success: false, message: 'Số điện thoại phải gồm đúng 10 chữ số.' };
     }
 
-    const users = this.getUsers();
+    const users = await this.getUsers();
     const emailExists = users.some(u => u.email.toLowerCase() === data.email.toLowerCase());
     if (emailExists) {
       return { success: false, message: 'Email đã tồn tại, vui lòng nhập email khác.' };
@@ -58,16 +69,17 @@ export class AuthService {
       password: data.password,
       fullName: data.fullName,
       phoneNumber: data.phoneNumber.trim(),
-      role: 'customer'
+      role: 'customer',
+      createdAt: new Date().toISOString()
     };
 
     users.push(newUser);
-    this.saveUsers(users);
+    await this.saveUsers(users);
     return { success: true, message: 'Đăng ký thành công.' };
   }
 
-  login(email: string, password: string): { success: boolean; message: string } {
-    const users = this.getUsers();
+  async login(email: string, password: string): Promise<{ success: boolean; message: string }> {
+    const users = await this.getUsers();
     const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
     if (!user) {
@@ -94,5 +106,58 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.getCurrentUser() !== null;
+  }
+
+  /** Cập nhật thông tin cá nhân (không gồm email/password) và đồng bộ lại session hiện tại */
+  async updateProfile(userId: string, data: Partial<Pick<User, 'fullName' | 'phoneNumber' | 'dateOfBirth' | 'gender' | 'avatarUrl'>>): Promise<{ success: boolean; message: string }> {
+    const users = await this.getUsers();
+    const idx = users.findIndex(u => u.userId === userId);
+    if (idx === -1) {
+      return { success: false, message: 'Không tìm thấy người dùng.' };
+    }
+
+    if (data.phoneNumber && !this.isValidPhone(data.phoneNumber)) {
+      return { success: false, message: 'Số điện thoại phải gồm đúng 10 chữ số.' };
+    }
+
+    users[idx] = { ...users[idx], ...data };
+    await this.saveUsers(users);
+
+    const current = this.getCurrentUser();
+    if (current && current.userId === userId) {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ ...users[idx], token: current.token }));
+    }
+
+    return { success: true, message: 'Cập nhật thông tin thành công.' };
+  }
+
+  async changePassword(userId: string, currentPassword: string, newPassword: string): Promise<{ success: boolean; message: string }> {
+    if (!currentPassword.trim() || !newPassword.trim()) {
+      return { success: false, message: 'Vui lòng nhập đầy đủ mật khẩu hiện tại và mật khẩu mới.' };
+    }
+
+    if (newPassword.trim().length < 6) {
+      return { success: false, message: 'Mật khẩu mới phải có ít nhất 6 ký tự.' };
+    }
+
+    const users = await this.getUsers();
+    const idx = users.findIndex(u => u.userId === userId);
+    if (idx === -1) {
+      return { success: false, message: 'Không tìm thấy người dùng.' };
+    }
+
+    if (users[idx].password !== currentPassword) {
+      return { success: false, message: 'Mật khẩu hiện tại không đúng.' };
+    }
+
+    users[idx] = { ...users[idx], password: newPassword };
+    await this.saveUsers(users);
+
+    const current = this.getCurrentUser();
+    if (current && current.userId === userId) {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ ...users[idx], token: current.token }));
+    }
+
+    return { success: true, message: 'Đổi mật khẩu thành công.' };
   }
 }

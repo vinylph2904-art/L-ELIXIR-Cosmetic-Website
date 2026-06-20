@@ -43,7 +43,7 @@ export class SignupComponent {
   }
 
   /** Validate từng ô riêng biệt: trống -> sai định dạng -> đã tồn tại */
-  private validateAll(): boolean {
+  private async validateAll(): Promise<boolean> {
     const errors: SignupFieldErrors = {
       fullName: '', email: '', phoneNumber: '', password: '', confirmPassword: '', agreeTerms: ''
     };
@@ -56,7 +56,7 @@ export class SignupComponent {
       errors.email = 'Email không được để trống.';
     } else if (!this.authService.isValidEmail(this.email.trim())) {
       errors.email = 'Email không đúng định dạng.';
-    } else if (this.authService.emailExists(this.email)) {
+    } else if (await this.authService.emailExists(this.email)) {
       errors.email = 'Email đã tồn tại, vui lòng nhập email khác.';
     }
 
@@ -64,7 +64,7 @@ export class SignupComponent {
       errors.phoneNumber = 'Số điện thoại không được để trống.';
     } else if (!this.authService.isValidPhone(this.phoneNumber)) {
       errors.phoneNumber = 'Số điện thoại phải gồm đúng 10 chữ số.';
-    } else if (this.authService.phoneExists(this.phoneNumber)) {
+    } else if (await this.authService.phoneExists(this.phoneNumber)) {
       errors.phoneNumber = 'Số điện thoại đã tồn tại, vui lòng nhập số khác.';
     }
 
@@ -86,15 +86,15 @@ export class SignupComponent {
     return Object.values(errors).every(e => !e);
   }
 
-  onSubmit(event: Event) {
+  async onSubmit(event: Event) {
     event.preventDefault();
     this.successMessage = '';
 
-    if (!this.validateAll()) {
+    if (!(await this.validateAll())) {
       return;
     }
 
-    const result = this.authService.signup({
+    const result = await this.authService.signup({
       email: this.email.trim(),
       password: this.password,
       fullName: this.fullName.trim(),

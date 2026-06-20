@@ -16,7 +16,7 @@
 
     <div class="flex items-center gap-4">
       <a class="hidden md:inline-flex items-center p-2 rounded hover:bg-surface-container transition" routerLink="/products" aria-label="Search">🔍</a>
-      <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition" routerLink="/login" aria-label="Account">👤</a>
+      <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition" [routerLink]="accountLink" aria-label="Account">👤</a>
       <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition relative" routerLink="/cart" aria-label="Cart">
         👜
         <span class="ml-1 text-sm bg-primary text-white rounded-full px-2">{{ cartCount }}</span>

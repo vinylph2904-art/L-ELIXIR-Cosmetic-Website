@@ -20,10 +20,10 @@ export class LoginComponent {
     this.showPassword = !this.showPassword;
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.errorMessage = '';
     this.successMessage = '';
-    const result = this.authService.login(this.email, this.password);
+    const result = await this.authService.login(this.email, this.password);
 
     if (result.success) {
       this.successMessage = result.message;

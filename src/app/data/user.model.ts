@@ -5,4 +5,8 @@ export interface User {
   fullName: string;
   phoneNumber: string;
   role: 'customer';
+  dateOfBirth?: string;   // dd/mm/yyyy
+  gender?: 'Nam' | 'Nữ' | 'Khác';
+  avatarUrl?: string;
+  createdAt?: string;
 }
