@@ -1,12 +1,19 @@
 export interface Product {
-  id: string;
+  productId: string;
   name: string;
-  category: string;
-  price: number;
-  image: string;
-  tags: string[];
-  rating: number;
-  reviews: number;
+  brand: string;
+  categoryName: string;
   description: string;
+  ingredients: string[];
+  images: string[];
+  volume: string;
+  routineStep: string;
+  price: number;
   quantity?: number;
+  stockQuantity: number;
+  targetSkinTypes: string[];
+  targetSkinProblems: string[];
+  averageRating: number;
+  reviewCount: number;
+  collection?: string;
 }
