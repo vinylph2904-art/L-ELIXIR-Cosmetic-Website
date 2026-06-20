@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PRODUCTS } from '../../data/mock-products';
 import { CartService } from '../../services/cart.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,7 +12,11 @@ import { CartService } from '../../services/cart.service';
 export class ProductDetailComponent {
   product = PRODUCTS[0];
 
-  constructor(route: ActivatedRoute, private cartService: CartService) {
+  constructor(
+    route: ActivatedRoute,
+    private cartService: CartService,
+    private toastService: ToastService
+  ) {
     const id = route.snapshot.paramMap.get('id');
     const found = PRODUCTS.find(item => item.id === id);
     if (found) {
@@ -21,5 +26,6 @@ export class ProductDetailComponent {
 
   addToCart() {
     this.cartService.addToCart({ ...this.product, quantity: 1 });
+    this.toastService.success('Đã thêm vào giỏ hàng thành công', 3000);
   }
 }

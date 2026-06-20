@@ -16,6 +16,7 @@ import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.co
 import { PaymentComponent } from './pages/payment/payment.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { BeautyAssistantComponent } from './beauty-assistant/beauty-assistant.component';
+import { ToastContainerComponent } from './components/toast-container/toast-container.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -41,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    BeautyAssistantComponent
+    BeautyAssistantComponent,
+    ToastContainerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
