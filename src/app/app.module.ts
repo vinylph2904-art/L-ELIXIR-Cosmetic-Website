@@ -41,7 +41,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    BeautyAssistantComponent
+    BeautyAssistantComponent,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

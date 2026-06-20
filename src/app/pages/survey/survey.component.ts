@@ -44,7 +44,7 @@ export class SurveyComponent implements OnInit {
     if (this.surveyForm.get('selectedProblems')?.value?.length > 0) score += 25;
     if (this.surveyForm.get('selectedTargets')?.value?.length > 0) score += 25;
     if (this.surveyForm.get('selectedCurrentProducts')?.value?.length > 0) score += 25;
-    return score === 0 ? 10 : score; // Mặc định để 10% cho đẹp form
+    return score; // Trả về đúng giá trị thực tế (chưa chọn gì sẽ là 0)
   }
 
   onCheckboxChange(e: any) {
