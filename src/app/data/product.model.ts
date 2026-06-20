@@ -4,6 +4,7 @@ export interface Product {
   brand: string;
   categoryName: string;
   description: string;
+  ingredients: string[];
   images: string[];
   volume: string;
   routineStep: string;
@@ -14,4 +15,6 @@ export interface Product {
   targetSkinProblems: string[];
   averageRating: number;
   reviewCount: number;
+  collection?: string;
 }
+

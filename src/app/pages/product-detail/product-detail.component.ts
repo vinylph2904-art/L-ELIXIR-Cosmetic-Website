@@ -10,13 +10,17 @@ import { CartService } from '../../services/cart.service';
 })
 export class ProductDetailComponent {
   product = PRODUCTS[0];
+  selectedImage = '';
 
   constructor(route: ActivatedRoute, private cartService: CartService) {
     const id = route.snapshot.paramMap.get('id');
     const found = PRODUCTS.find(item => item.productId === id);
+
     if (found) {
       this.product = found;
     }
+
+    this.selectedImage = this.product.images[0];
   }
 
   addToCart() {
