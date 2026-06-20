@@ -106,13 +106,13 @@
       <a routerLink="/products" class="font-label-md text-label-md text-primary hover:underline underline-offset-8">Xem tất cả sản phẩm</a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+      <div *ngFor="let product of products" class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
         <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img alt="Tinh chất rạng ngời Radiance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPGVV2pAxoxnlGcRNLqYYiQivs5nxrp3NcdnOELNIuEuO42WpDVAsiienfBm7AkKZ2uycNCV5TjvUpou7MIiGtTP1ZK63S-YEDJPtyZO8zsM5RaGgYpfeFFtK6Gw4BD32gSqog0WqJ6Frtha_PFm8YOdEA-cEuAOBlmrqNS1yZIbjJKuZwicH9MVCGrIV88aw9xF8HMv5KBYOqzTefL3ss1E0zdbS9pu1uXL2vxG_B7_Hfnhjgiblhn18C_dIV1VqLDosz2aRqhPk">
+          <img [alt]="product.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" [src]="product.image">
         </div>
         <div class="space-y-2">
           <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Đoạt giải thưởng</span>
+            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Sản phẩm</span>
             <div class="flex text-primary text-xs">
               <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
               <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
@@ -121,69 +121,9 @@
               <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
             </div>
           </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">Tinh chất rạng ngời Radiance</h3>
-          <p class="text-on-surface-variant font-label-md">1.300.000 VNĐ</p>
-          <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
-        </div>
-      </div>
-      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img alt="Kem phục hồi ban đêm Nocturnal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD41WKqjiq1nI-9I48s26qYOduSdPGOs4d33VJs0H-3Tw4D8z5w7gLdRFXZYMwv-eibi14rSoQNhuZUPvhdDM41_uG40bGSUpvkbfChsbthqTcxxkuxMHLHekU2VBQCkaVV3sg3NS00xXUknqyrYll9QCW3YvdHLSWbTL5gKYhCELWMMJQl4SYVFkTDojDcUmKlrccOJuNWE49TmLwxWqSpmxqAOAT941ZEctRwya6dfjCFxC1BBjNLkmWDyXxQf3YiuTzOz6dX9AA">
-        </div>
-        <div class="space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Bán chạy nhất</span>
-            <div class="flex text-primary text-xs">
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">star</span>
-            </div>
-          </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">Kem phục hồi ban đêm Nocturnal</h3>
-          <p class="text-on-surface-variant font-label-md">180.000 VNĐ</p>
-          <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
-        </div>
-      </div>
-      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img alt="Tinh chất trẻ hóa vùng mắt Eternal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrWOI57Liq9zLYbzdgSCULww5DDxeZ1WMO2cAZuS9ZfTomQK4Aij41PbxO4FouplA-YH4C6bcbRzhYBG5f_MoHmK4UYZUWysWnDe7OGWld9zBovDX4uuRBFMJruBHfrA59KR8xFm8MkZmu1SGFONpq2HZAWRz5UhB7ZP3GBvdtFhwSu8v0RW_tPhcAeTcXNcjpjgTjZcjbFuAUdIhVMaW331JI55jfqUFhY4-H_LkMyouAB5CLJTED5TSNuKsaw-96N558dPpd-1A">
-        </div>
-        <div class="space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Mới</span>
-            <div class="flex text-primary text-xs">
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-            </div>
-          </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">Tinh chất trẻ hóa vùng mắt Eternal</h3>
-          <p class="text-on-surface-variant font-label-md">500.000 VNĐ</p>
-          <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
-        </div>
-      </div>
-      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img alt="Sữa rửa mặt thảo mộc Botanical" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG8N4nmDcmT85ywe3drBVGTAdm-oL-59Z8AXI7hzxiiOsnobifO3MrF0vXwm6sWHRvGmaa_PjoLRIDeIOp45CYNXGfMcNaKmwHD8wdMuWZYO0aF7abfefxL_eiWCb0wyaPiXn_crp0Q2GEF9eGC3MaipgPmEciN-aQR4fEyp5IH5X55p6XV79Tqin4Dzn5xKnqNSzed_tQNB9bj9haHtG_2FdXPnpME3a4Da63AJJu86BKNHBWMiPzeuONHYja3hTuiA8R4qgeVRI">
-        </div>
-        <div class="space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Hữu cơ</span>
-            <div class="flex text-primary text-xs">
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">star</span>
-            </div>
-          </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">Sữa rửa mặt thảo mộc Botanical</h3>
-          <p class="text-on-surface-variant font-label-md">200.000VNĐ</p>
-          <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
+          <h3 class="font-display-lg text-headline-md leading-tight">{{ product.name }}</h3>
+          <p class="text-on-surface-variant font-label-md">{{ product.price | currency:'VND':'symbol':'1.0-0' }}</p>
+          <button (click)="addToCart(product)" class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
         </div>
       </div>
     </div>
