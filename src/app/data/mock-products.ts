@@ -1,6 +1,8 @@
 import { Product } from './product.model';
 
-export const PRODUCTS: Product[] = [
+type RawProduct = Omit<Product, 'id' | 'image' | 'category' | 'tags' | 'rating' | 'reviews'>;
+
+const RAW_PRODUCTS: RawProduct[] = [
   // --- NHÓM SỮA RỬA MẶT (5 sản phẩm) ---
   {
     productId: 'SP01',
@@ -532,4 +534,14 @@ export const PRODUCTS: Product[] = [
     reviewCount: 245,
     collection: 'Aurora'
   }
-  ];
+];
+
+export const PRODUCTS: Product[] = RAW_PRODUCTS.map(item => ({
+  ...item,
+  id: item.productId,
+  image: item.images?.[0] ?? 'assets/images/default-product.png',
+  category: item.categoryName,
+  tags: [item.categoryName, ...item.targetSkinTypes, ...item.targetSkinProblems].slice(0, 5),
+  rating: item.averageRating,
+  reviews: item.reviewCount
+}));
