@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Order, ShippingInfo, OrderItem, PaymentSandboxResponse } from '../data/order.model';
 import { Product } from '../data/product.model';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
@@ -18,7 +19,7 @@ export class OrderService {
   // API endpoints (simulation)
   private readonly API_BASE = 'https://api.sandbox.lelixir.vn';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.loadOrder();
   }
 
@@ -43,6 +44,7 @@ export class OrderService {
   private saveOrder(order: Order): void {
     sessionStorage.setItem('lelixir_current_order', JSON.stringify(order));
     this.orderSubject.next(order);
+    this.upsertStoredOrder(order);
   }
 
   /**
@@ -101,6 +103,15 @@ export class OrderService {
       updatedAt: new Date(),
       orderStatus: 'Pending'
     };
+
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser) {
+      order.userId = currentUser.userId;
+    }
+
+    order.totalAmount = order.total;
+    order.guestName = shippingInfo.fullName;
+    order.guestEmail = shippingInfo.email;
 
     this.saveOrder(order);
 
@@ -170,11 +181,13 @@ export class OrderService {
 
       // Update order status to "processing" (Đang xử lý)
       currentOrder.status = 'processing';
+      currentOrder.orderStatus = 'Processing';
       currentOrder.paymentDetails = {
         transactionId,
         paidAt: new Date()
       };
       currentOrder.updatedAt = new Date();
+      currentOrder.totalAmount = currentOrder.total;
 
       this.saveOrder(currentOrder);
 
@@ -203,7 +216,11 @@ export class OrderService {
       const currentOrder = this.orderSubject.value;
 
       if (currentOrder && currentOrder.orderId === orderId) {
-        // Cancel order and clear from session
+        currentOrder.status = 'cancelled';
+        currentOrder.orderStatus = 'Cancelled';
+        currentOrder.updatedAt = new Date();
+        currentOrder.totalAmount = currentOrder.total;
+        this.upsertStoredOrder(currentOrder);
         this.clearOrder();
       }
 
@@ -326,10 +343,40 @@ export class OrderService {
     }
   }
 
+  private upsertStoredOrder(order: Order): void {
+    const orders = this.readStoredOrders();
+    const serializedOrder = {
+      ...order,
+      createdAt: order.createdAt instanceof Date ? order.createdAt.toISOString() : order.createdAt,
+      updatedAt: order.updatedAt instanceof Date ? order.updatedAt.toISOString() : order.updatedAt,
+      paymentDetails: order.paymentDetails
+        ? {
+            ...order.paymentDetails,
+            paidAt: order.paymentDetails.paidAt instanceof Date
+              ? order.paymentDetails.paidAt.toISOString()
+              : order.paymentDetails.paidAt
+          }
+        : undefined,
+      totalAmount: order.totalAmount ?? order.total,
+      userId: order.userId ?? null,
+      guestName: order.guestName ?? order.shippingInfo.fullName,
+      guestEmail: order.guestEmail ?? order.shippingInfo.email
+    };
+
+    const idx = orders.findIndex((item: any) => String(item.orderId).toLowerCase() === String(order.orderId).toLowerCase());
+    if (idx === -1) {
+      orders.push(serializedOrder);
+    } else {
+      orders[idx] = { ...orders[idx], ...serializedOrder };
+    }
+
+    this.writeStoredOrders(orders);
+  }
+
   // Return orders for a specific userId (legacy API)
   getByUserId(userId: string): any[] {
     const orders = this.readStoredOrders();
-    return orders.filter(o => o.userId === userId);
+    return orders.filter(o => o.userId === userId || o.guestId === userId);
   }
 
   // Return a single order by id (legacy API)

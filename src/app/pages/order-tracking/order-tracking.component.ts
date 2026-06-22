@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { OrderService } from '../../services/order.service';
 import { Order } from '../../data/order.model';
@@ -37,19 +38,40 @@ export class OrderTrackingComponent implements OnInit {
     { label: 'Hoàn tất', icon: 'check' }
   ];
 
-  constructor(private authService: AuthService, private orderService: OrderService) {}
+  constructor(
+    private authService: AuthService,
+    private orderService: OrderService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
+    const routeOrderId = this.route.snapshot.queryParamMap.get('orderId')?.trim() || '';
 
     if (this.isLoggedIn) {
       const user = this.authService.getCurrentUser();
       if (user) {
         this.myOrders = this.orderService.getByUserId(user.userId);
-        if (this.myOrders.length > 0) {
+        if (routeOrderId) {
+          const fromList = this.myOrders.find(order => String(order.orderId).toLowerCase() === routeOrderId.toLowerCase());
+          const fallback = fromList || this.orderService.getByOrderId(routeOrderId);
+
+          if (fallback) {
+            this.selectOrder(fallback as Order);
+            return;
+          }
+
+          this.searchError = 'Không tìm thấy đơn hàng với mã này.';
+        } else if (this.myOrders.length > 0) {
           this.selectOrder(this.myOrders[0]);
         }
       }
+      return;
+    }
+
+    if (routeOrderId) {
+      this.searchOrderId = routeOrderId;
+      this.searchGuestOrder();
     }
   }
 
