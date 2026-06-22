@@ -51,6 +51,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
   // Current user
   private currentUserId: string | null = null;
 
+  // Terms acceptance
+  termsAccepted = false;
+
   // Simulator
   public showSimulator: boolean = false;
   currentOrder: Order | null = null;
@@ -212,12 +215,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   private validateForm(): boolean {
     const { fullName, phone, email, city, district, address } = this.shippingInfo;
+    const normalizedPhone = phone.replace(/[\s-]+/g, '');
 
     if (!fullName?.trim()) {
       this.errorMessage = 'Vui lòng nhập họ và tên.';
       return false;
     }
-    if (!phone?.trim() || !/^\d{10}$/.test(phone.trim())) {
+    if (!phone?.trim() || !/^(\d{10}|0\d{9,10}|\+84\d{9,10})$/.test(normalizedPhone)) {
       this.errorMessage = 'Số điện thoại phải gồm 10 chữ số.';
       return false;
     }
@@ -235,6 +239,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
     }
     if (!address?.trim()) {
       this.errorMessage = 'Vui lòng nhập địa chỉ chi tiết.';
+      return false;
+    }
+
+    if (!this.termsAccepted) {
+      this.errorMessage = 'Vui lòng đồng ý với điều khoản dịch vụ trước khi thanh toán.';
       return false;
     }
 
@@ -285,8 +294,30 @@ export class PaymentComponent implements OnInit, OnDestroy {
           this.orderService.initiatePayment(order).pipe(takeUntil(this.destroy$)).subscribe({
             next: (resp) => {
               this.isSubmitting = false;
-              if (resp.redirectUrl) {
-                window.location.href = resp.redirectUrl;
+              const redirectUrl = resp.redirectUrl;
+
+              if (redirectUrl) {
+                if (redirectUrl.startsWith('/')) {
+                  if (order.paymentMethod === 'cod') {
+                    const transactionId = `COD-${Date.now()}`;
+                    this.orderService.confirmPaymentSuccess(order.orderId, transactionId)
+                      .pipe(takeUntil(this.destroy$))
+                      .subscribe({
+                        next: () => {
+                          this.cartService.clearCart();
+                          this.router.navigateByUrl(redirectUrl);
+                        },
+                        error: () => {
+                          this.cartService.clearCart();
+                          this.router.navigateByUrl(redirectUrl);
+                        }
+                      });
+                  } else {
+                    this.router.navigateByUrl(redirectUrl);
+                  }
+                } else {
+                  window.location.href = redirectUrl;
+                }
               } else {
                 const ok = window.confirm('Mô phỏng: chọn OK thành công, Cancel thất bại');
                 if (ok) {

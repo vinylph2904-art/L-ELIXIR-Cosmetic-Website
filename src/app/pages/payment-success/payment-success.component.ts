@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OrderService } from '../../services/order.service';
+import { CartService } from '../../services/cart.service';
 import { Order } from '../../data/order.model';
 
 @Component({
@@ -16,6 +17,7 @@ export class PaymentSuccessComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
+    private cartService: CartService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -34,6 +36,7 @@ export class PaymentSuccessComponent implements OnInit {
 
     if (this.currentOrder) {
       this.orderId = this.currentOrder.orderId;
+      this.cartService.clearCart();
       this.isLoading = false;
       return;
     }
@@ -44,6 +47,7 @@ export class PaymentSuccessComponent implements OnInit {
       
       if (orderId) {
         this.orderId = orderId;
+        this.cartService.clearCart();
         // In real scenario, would fetch order details from backend
         this.isLoading = false;
       } else {

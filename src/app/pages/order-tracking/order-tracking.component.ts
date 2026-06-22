@@ -124,6 +124,24 @@ export class OrderTrackingComponent implements OnInit {
     return map[status];
   }
 
+  getPaymentMethodLabel(method: Order['paymentMethod']): string {
+    const map: Record<Order['paymentMethod'], string> = {
+      cod: 'Tiền mặt (COD)',
+      bank_transfer: 'Chuyển khoản',
+      e_wallet: 'Ví điện tử',
+      credit_card: 'Thẻ quốc tế'
+    };
+    return map[method];
+  }
+
+  getShippingMethodLabel(method: Order['shippingMethod']): string {
+    return method === 'standard' ? 'Giao hàng tiêu chuẩn' : 'Giao hàng nhanh';
+  }
+
+  getItemTotal(quantity: number, price: number): string {
+    return this.formatCurrency(quantity * price);
+  }
+
   formatCurrency(value: number | undefined): string {
     const amount = value ?? 0;
     return amount.toLocaleString('vi-VN') + ' VNĐ';

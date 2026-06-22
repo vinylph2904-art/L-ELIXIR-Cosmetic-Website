@@ -273,7 +273,7 @@
 <!-- Confirmations -->
 <div class="space-y-3 mb-8">
 <label class="flex items-start gap-3 cursor-pointer group">
-<input class="mt-1 rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" type="checkbox">
+<input [(ngModel)]="termsAccepted" class="mt-1 rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" name="termsAccepted" type="checkbox">
 <span class="text-label-md text-on-surface-variant group-hover:text-on-surface transition-slow leading-relaxed">Tôi đồng ý với các Điều khoản dịch vụ và Chính sách bảo mật của L'ELIXIR.</span>
 </label>
 <label class="flex items-start gap-3 cursor-pointer group">

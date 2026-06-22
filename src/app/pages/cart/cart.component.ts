@@ -39,4 +39,16 @@ export class CartComponent implements OnInit {
   total() {
     return this.cartItems.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
   }
+
+  shippingFee() {
+    return this.cartItems.length > 0 ? 30000 : 0;
+  }
+
+  discount() {
+    return this.cartItems.length > 0 ? 100000 : 0;
+  }
+
+  grandTotal() {
+    return Math.max(0, this.total() + this.shippingFee() - this.discount());
+  }
 }

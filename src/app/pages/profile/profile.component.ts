@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
 
   orders: Order[] = [];
   defaultAddress = '';
+  selectedOrder: Order | null = null;
 
   isEditing = false;
   editError = '';
@@ -222,12 +223,37 @@ export class ProfileComponent implements OnInit {
     return map[status];
   }
 
+  getPaymentMethodLabel(method: Order['paymentMethod']): string {
+    const map: Record<Order['paymentMethod'], string> = {
+      cod: 'Tiền mặt (COD)',
+      bank_transfer: 'Chuyển khoản',
+      e_wallet: 'Ví điện tử',
+      credit_card: 'Thẻ quốc tế'
+    };
+    return map[method];
+  }
+
+  getShippingMethodLabel(method: Order['shippingMethod']): string {
+    return method === 'standard' ? 'Giao hàng tiêu chuẩn' : 'Giao hàng nhanh';
+  }
+
+  viewOrderDetails(order: Order): void {
+    this.selectedOrder = order;
+  }
+
+  closeOrderDetails(): void {
+    this.selectedOrder = null;
+  }
+
+  trackSelectedOrder(): void {
+    if (!this.selectedOrder) return;
+    this.router.navigate(['/order-tracking'], {
+      queryParams: { orderId: this.selectedOrder.orderId }
+    });
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
-  }
-
-  goToOrderTracking(): void {
-    this.router.navigate(['/order-tracking']);
   }
 }

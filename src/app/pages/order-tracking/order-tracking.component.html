@@ -15,7 +15,7 @@
   <h2 class="font-headline-md text-headline-md text-primary mb-4">Tra cứu đơn hàng</h2>
   <p class="font-body-md text-body-md text-on-surface-variant mb-6">Nhập mã đơn hàng để xem trạng thái (không cần đăng nhập).</p>
   <div class="flex flex-col sm:flex-row gap-3">
-    <input [(ngModel)]="searchOrderId" name="searchOrderId" placeholder="VD: ORD1718000000000"
+    <input [(ngModel)]="searchOrderId" name="searchOrderId" placeholder="VD: ORD-0001"
            class="flex-grow bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md focus:ring-0" />
     <button type="button" (click)="searchGuestOrder()"
             class="px-8 py-3 bg-primary text-white font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition">
@@ -36,7 +36,7 @@
             class="text-left bg-surface-container-lowest border rounded-xl p-5 transition hover:border-primary"
             [class.border-primary]="selectedOrder?.orderId === o.orderId"
             [class.border-outline-variant]="selectedOrder?.orderId !== o.orderId">
-      <p class="font-label-sm text-label-sm text-on-surface-variant">#{{ o.orderId }}</p>
+      <p class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap font-mono tabular-nums">#{{ o.orderId }}</p>
       <p class="font-body-md font-bold text-primary">{{ formatCurrency(o.totalAmount) }}</p>
       <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-primary-container text-on-primary-container">
         {{ getStatusLabel(o.orderStatus) }}
@@ -59,9 +59,85 @@
       </div>
     </div>
     <div class="bg-primary-container px-6 py-3 rounded-full">
-      <span class="font-label-md text-label-md text-on-primary-container">{{ getStatusLabel(order.orderStatus) }}</span>
     </div>
   </div>
+
+  <section class="mb-12 bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/30">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6 pb-4 border-b border-outline-variant">
+      <div>
+        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Thông tin chi tiết đơn hàng</p>
+        <h2 class="font-headline-md text-headline-md text-on-surface">Xem thông tin giao nhận</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div class="space-y-4">
+        <div class="space-y-1">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Tên người nhận</p>
+          <p class="font-body-md text-on-surface">{{ order.shippingInfo.fullName }}</p>
+        </div>
+        <div class="space-y-1">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Số điện thoại</p>
+          <p class="font-body-md text-on-surface">{{ order.shippingInfo.phone }}</p>
+        </div>
+        <div class="space-y-1">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Email</p>
+          <p class="font-body-md text-on-surface">{{ order.shippingInfo.email }}</p>
+        </div>
+        <div class="space-y-1">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Địa chỉ</p>
+          <p class="font-body-md text-on-surface">{{ order.shippingInfo.address }}, {{ order.shippingInfo.district }}, {{ order.shippingInfo.city }}</p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="space-y-1">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Phương thức thanh toán</p>
+          <p class="font-body-md text-on-surface">{{ getPaymentMethodLabel(order.paymentMethod) }}</p>
+        </div>
+        <div class="space-y-1">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Phương thức giao hàng</p>
+          <p class="font-body-md text-on-surface">{{ getShippingMethodLabel(order.shippingMethod) }}</p>
+        </div>
+        <div class="space-y-1">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Ngày đặt</p>
+          <p class="font-body-md text-on-surface">{{ order.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+        <div class="space-y-1">
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Trạng thái</p>
+          <p class="font-body-md text-on-surface">{{ getStatusLabel(order.orderStatus) }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-4">Sản phẩm trong đơn</p>
+      <div class="divide-y divide-outline-variant border border-outline-variant rounded-lg overflow-hidden">
+        <div *ngFor="let item of order.items" class="flex flex-wrap items-center justify-between gap-4 p-4 bg-white/40">
+          <div>
+            <p class="font-body-md font-semibold text-on-surface">{{ item.product.name }}</p>
+            <p class="font-body-sm text-on-surface-variant">Số lượng: {{ item.quantity }}</p>
+          </div>
+          <p class="font-body-md text-primary font-semibold">{{ getItemTotal(item.quantity, item.price) }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant">
+        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Tạm tính</p>
+        <p class="font-body-md text-on-surface">{{ formatCurrency(order.subtotal) }}</p>
+      </div>
+      <div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant">
+        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Phí vận chuyển</p>
+        <p class="font-body-md text-on-surface">{{ formatCurrency(order.shippingFee) }}</p>
+      </div>
+      <div class="p-4 rounded-lg bg-primary-container/20 border border-primary/20">
+        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Tổng cộng</p>
+        <p class="font-body-md font-semibold text-primary">{{ formatCurrency(order.totalAmount) }}</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Progress Tracker -->
   <div class="mb-12 px-4" *ngIf="order.orderStatus !== 'Cancelled'">

@@ -22,7 +22,7 @@ export type ShippingMethod = 'standard' | 'express';
 
 export interface Order {
   orderId: string;
-  guestId: string;
+  guestId?: string;
   items: OrderItem[];
   shippingInfo: ShippingInfo;
   shippingMethod: ShippingMethod;

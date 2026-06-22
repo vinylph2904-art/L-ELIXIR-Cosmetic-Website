@@ -70,16 +70,16 @@
           </div>
           <div class="flex justify-between">
             <span class="font-body-md text-body-md text-on-surface-variant">Phí vận chuyển</span>
-            <span class="font-body-md text-body-md">30.000 VNĐ</span>
+            <span class="font-body-md text-body-md">{{ shippingFee() | currency:'VND':'symbol':'1.0-0' }}</span>
           </div>
           <div class="flex justify-between text-primary">
             <span class="font-body-md text-body-md">Giảm giá</span>
-            <span class="font-body-md text-body-md">- 100.000 VNĐ</span>
+            <span class="font-body-md text-body-md">- {{ discount() | currency:'VND':'symbol':'1.0-0' }}</span>
           </div>
           <div class="pt-6 mt-2 border-t border-outline-variant flex justify-between items-baseline">
             <span class="font-label-md text-label-md uppercase tracking-wider">Tổng cộng</span>
             <div class="text-right flex flex-col items-end">
-              <p class="font-body-md text-[20px] font-bold text-primary">{{ total() - 100000 + 30000 | currency:'VND':'symbol':'1.0-0' }}</p>
+              <p class="font-body-md text-[20px] font-bold text-primary">{{ grandTotal() | currency:'VND':'symbol':'1.0-0' }}</p>
               <p class="text-[10px] text-on-surface-variant italic">Đã bao gồm VAT</p>
             </div>
           </div>

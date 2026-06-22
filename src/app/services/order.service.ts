@@ -18,6 +18,7 @@ export class OrderService {
 
   // API endpoints (simulation)
   private readonly API_BASE = 'https://api.sandbox.lelixir.vn';
+  private readonly ORDER_SEQUENCE_KEY = 'lelixir_order_sequence';
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.loadOrder();
@@ -89,7 +90,6 @@ export class OrderService {
     // Create order object with "pending_payment" status (Chờ thanh toán)
     const order: Order = {
       orderId: this.generateOrderId(),
-      guestId: this.generateGuestId(),
       items: orderItems,
       shippingInfo,
       shippingMethod,
@@ -107,6 +107,8 @@ export class OrderService {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       order.userId = currentUser.userId;
+    } else {
+      order.guestId = this.generateGuestId();
     }
 
     order.totalAmount = order.total;
@@ -276,9 +278,16 @@ export class OrderService {
    * Generate unique order ID
    */
   private generateOrderId(): string {
-    const timestamp = Date.now();
-    const random = Math.floor(Math.random() * 1000);
-    return `ORD${timestamp}${random}`;
+    const orders = this.readStoredOrders();
+    const storedMax = orders.reduce((max: number, item: any) => {
+      const match = String(item.orderId || '').match(/^ORD-(\d+)$/i);
+      if (!match) return max;
+      return Math.max(max, Number(match[1]) || 0);
+    }, 0);
+
+    const nextSequence = Math.max(this.readOrderSequence(), storedMax) + 1;
+    this.writeOrderSequence(nextSequence);
+    return `ORD-${String(nextSequence).padStart(4, '0')}`;
   }
 
   /**
@@ -343,6 +352,23 @@ export class OrderService {
     }
   }
 
+  private readOrderSequence(): number {
+    try {
+      const raw = localStorage.getItem(this.ORDER_SEQUENCE_KEY);
+      return raw ? Number.parseInt(raw, 10) || 0 : 0;
+    } catch {
+      return 0;
+    }
+  }
+
+  private writeOrderSequence(sequence: number): void {
+    try {
+      localStorage.setItem(this.ORDER_SEQUENCE_KEY, String(sequence));
+    } catch {
+      // ignore
+    }
+  }
+
   private upsertStoredOrder(order: Order): void {
     const orders = this.readStoredOrders();
     const serializedOrder = {
@@ -376,7 +402,7 @@ export class OrderService {
   // Return orders for a specific userId (legacy API)
   getByUserId(userId: string): any[] {
     const orders = this.readStoredOrders();
-    return orders.filter(o => o.userId === userId || o.guestId === userId);
+    return orders.filter(o => o.userId === userId || (o.guestId && o.guestId === userId));
   }
 
   // Return a single order by id (legacy API)
