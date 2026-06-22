@@ -8,11 +8,11 @@ interface ChatMessage {
 }
 
 @Component({
-  standalone: true,
   selector: 'app-beauty-assistant',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './beauty-assistant.component.html',
   styleUrls: ['./beauty-assistant.component.css'],
-  imports: [CommonModule, FormsModule]
 })
 export class BeautyAssistantComponent {
   isExpanded = false;

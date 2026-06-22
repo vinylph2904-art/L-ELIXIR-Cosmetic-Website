@@ -1,0 +1,23 @@
+[
+  {
+    "userId": "U1718000000000",
+    "email": "nguyenvana@gmail.com",
+    "password": "1234567",
+    "fullName": "Nguyễn Văn A",
+    "phoneNumber": "0901234567",
+    "role": "customer",
+    "dateOfBirth": "15/05/1990",
+    "gender": "Nam",
+    "avatarUrl": "",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
+    "userId": "U1781977136020",
+    "email": "aybixi@gmail.com",
+    "password": "aaa",
+    "fullName": "Ây bi xi",
+    "phoneNumber": "1234567989",
+    "role": "customer",
+    "createdAt": "2026-06-20T17:38:56.020Z"
+  }
+]

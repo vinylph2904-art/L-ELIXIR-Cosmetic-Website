@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Order, ShippingInfo, OrderItem } from '../data/order.model';
+import { Order, ShippingInfo, OrderItem, PaymentSandboxResponse } from '../data/order.model';
 import { Product } from '../data/product.model';
 
 @Injectable({ providedIn: 'root' })
@@ -76,8 +76,8 @@ export class OrderService {
     // Calculate order totals
     const orderItems: OrderItem[] = items.map(item => ({
       product: item,
-      quantity: item.quantity || 1,
-      price: item.price
+      quantity: (item as any).quantity || 1,
+      price: (item as any).price
     }));
 
     const subtotal = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -98,7 +98,8 @@ export class OrderService {
       total,
       status: 'pending_payment',
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      orderStatus: 'Pending'
     };
 
     this.saveOrder(order);
@@ -116,29 +117,40 @@ export class OrderService {
    * UC09: Redirect to sandbox payment gateway
    * Bước 5: Hệ thống tự động chuyển hướng giao diện sang cổng Sandbox
    */
-  /**
-   * UC09: Xác nhận đơn hàng tác vụ thanh toán nội bộ
-   * Chuyển trạng thái đơn hàng sang processing mà không dùng sandbox
-   */
-  completeOrder(orderId: string): Observable<Order> {
+  initiatePayment(order: Order): Observable<PaymentSandboxResponse> {
+    const paymentRequest = {
+      orderId: order.orderId,
+      amount: order.total,
+      currency: 'VND',
+      description: `Thanh toán đơn hàng ${order.orderId}`,
+      returnUrl: `${window.location.origin}/payment-result`
+    };
+
+    // Simulate payment initiation.
+    // For COD we immediately return a success redirect to payment-success page.
+    if (order.paymentMethod === 'cod') {
+      return new Observable(observer => {
+        setTimeout(() => {
+          observer.next({
+            success: true,
+            redirectUrl: `/payment-success?orderId=${order.orderId}`,
+            message: 'Thanh toán khi nhận hàng (COD)'
+          });
+          observer.complete();
+        }, 300);
+      });
+    }
+
+    // For online payment methods we no longer redirect to an external sandbox.
+    // Instead, the app will simulate the payment flow in-app (success/failure).
     return new Observable(observer => {
-      const currentOrder = this.orderSubject.value;
-
-      if (!currentOrder || currentOrder.orderId !== orderId) {
-        observer.error(new Error('Đơn hàng không được tìm thấy'));
-        return;
-      }
-
-      currentOrder.status = 'processing';
-      currentOrder.paymentDetails = {
-        transactionId: `TXN${Date.now()}`,
-        paidAt: new Date()
-      };
-      currentOrder.updatedAt = new Date();
-
-      this.saveOrder(currentOrder);
-      observer.next(currentOrder);
-      observer.complete();
+      setTimeout(() => {
+        observer.next({
+          success: true,
+          message: 'Simulate in-app payment (choose success or failure)'
+        });
+        observer.complete();
+      }, 300);
     });
   }
 
@@ -262,6 +274,24 @@ export class OrderService {
   }
 
   /**
+   * Build sandbox payment URL (simulation)
+   * In real scenario, this would be actual payment gateway URL
+   */
+  private buildSandboxPaymentUrl(order: Order): string {
+    const params = new URLSearchParams({
+      orderId: order.orderId,
+      amount: order.total.toString(),
+      currency: 'VND',
+      method: order.paymentMethod,
+      timestamp: Date.now().toString()
+    });
+
+    // Simulate sandbox gateway URL
+    // In real implementation: use actual payment provider URL
+    return `/payment-sandbox?${params.toString()}`;
+  }
+
+  /**
    * Send confirmation email (simulation)
    * In real scenario, this would call backend API to send email
    */
@@ -274,5 +304,65 @@ export class OrderService {
         observer.complete();
       }, 500);
     });
+  }
+
+  // --- Compatibility helpers for feature branch APIs ---
+  private STORAGE_ORDERS_KEY = 'orders';
+
+  private readStoredOrders(): any[] {
+    try {
+      const raw = localStorage.getItem(this.STORAGE_ORDERS_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  private writeStoredOrders(orders: any[]): void {
+    try {
+      localStorage.setItem(this.STORAGE_ORDERS_KEY, JSON.stringify(orders));
+    } catch {
+      // ignore
+    }
+  }
+
+  // Return orders for a specific userId (legacy API)
+  getByUserId(userId: string): any[] {
+    const orders = this.readStoredOrders();
+    return orders.filter(o => o.userId === userId);
+  }
+
+  // Return a single order by id (legacy API)
+  getByOrderId(orderId: string): any | null {
+    const orders = this.readStoredOrders();
+    return orders.find(o => String(o.orderId).toLowerCase() === String(orderId).toLowerCase()) || null;
+  }
+
+  // Update order status (legacy API)
+  completeOrder(orderId: string): Observable<Order> {
+    return new Observable(observer => {
+      const orders = this.readStoredOrders();
+      const idx = orders.findIndex(o => o.orderId === orderId);
+      if (idx === -1) {
+        observer.error(new Error('Order not found'));
+        return;
+      }
+      orders[idx].orderStatus = 'Processing';
+      this.writeStoredOrders(orders);
+      observer.next(orders[idx]);
+      observer.complete();
+    });
+  }
+
+  // Map legacy orderStatus to step index
+  getStepIndex(status: any): number {
+    const map: Record<string, number> = {
+      'Pending': 0,
+      'Processing': 1,
+      'Shipping': 3,
+      'Completed': 4,
+      'Cancelled': -1
+    };
+    return map[status] ?? 0;
   }
 }

@@ -17,6 +17,7 @@ import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.co
 import { PaymentComponent } from './pages/payment/payment.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { PaymentFailureComponent } from './pages/payment-failure/payment-failure.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { BeautyAssistantComponent } from './beauty-assistant/beauty-assistant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OrderTrackingComponent,
     PaymentComponent,
     PaymentSuccessComponent,
-    PaymentFailureComponent
+    PaymentFailureComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

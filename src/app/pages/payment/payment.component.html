@@ -27,7 +27,7 @@
 </div>
 <div class="mb-12 text-left">
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Thanh toán đơn hàng</h2>
-<p class="font-body-md text-on-surface-variant">Hoàn thiện các thông tin bên dưới để trải nghiệm tinh hoa dưỡng da đỉnh cao.</p>
+<p class="font-body-sm text-on-surface-variant">Vui lòng kiểm tra chính xác thông tin đặt hàng</p>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 <!-- Left Column: Shipping & Info -->
@@ -300,6 +300,8 @@
   class="w-full bg-primary text-white py-5 rounded-lg font-label-md text-label-md font-bold tracking-widest uppercase hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-standard shadow-lg">
   {{ isSubmitting ? 'Đang xử lý...' : 'Hoàn tất đặt hàng' }}
 </button>
+
+<!-- Payment simulation is handled in-code via a confirm dialog -->
 
 <p class="text-center mt-6 text-label-sm text-on-surface-variant/60 flex items-center justify-center gap-2">
 <span class="material-symbols-outlined text-[16px]">lock</span>

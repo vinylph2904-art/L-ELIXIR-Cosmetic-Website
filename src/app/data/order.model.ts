@@ -38,5 +38,26 @@ export interface Order {
     transactionId?: string;
     paidAt?: Date;
   };
+  // Compatibility / legacy fields used by older components
+  userId?: string | null;
+  guestName?: string;
+  guestEmail?: string;
+  totalAmount?: number;
+  orderStatus: 'Pending' | 'Processing' | 'Shipping' | 'Completed' | 'Cancelled';
+  createdAtStr?: string;
 }
 
+export interface PaymentSandboxRequest {
+  orderId: string;
+  amount: number;
+  currency: string;
+  description: string;
+  returnUrl: string;
+}
+
+export interface PaymentSandboxResponse {
+  success: boolean;
+  transactionId?: string;
+  message: string;
+  redirectUrl?: string;
+}
