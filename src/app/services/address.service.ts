@@ -1,56 +1,59 @@
-// address.service.ts
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Address } from '../data/address.model';
+import seedAddresses from '../data/addresses.json';
+
+const ADDRESSES_KEY = 'addresses';
+const INITIAL_ADDRESSES = seedAddresses as Address[];
 
 @Injectable({ providedIn: 'root' })
 export class AddressService {
-  // In-memory store with mock data
-  private addresses: Address[] = [
-    {
-      addressId: 'A1718000000000',
-      userId: 'U1718000000000',
-      receiverName: 'Nguyễn Văn A',
-      receiverPhone: '0901234567',
-      addressDetails: '123 Đường Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh',
-      isDefault: true
-    },
-    {
-      addressId: 'A1718000000001',
-      userId: 'U1718000000000',
-      receiverName: 'Nguyễn Văn A',
-      receiverPhone: '0901234567',
-      addressDetails: '456 Đường Lê Lợi, Quận 3, TP. Hồ Chí Minh',
-      isDefault: false
-    },
-    {
-      addressId: 'A1781977136020',
-      userId: 'U1781977136020',
-      receiverName: 'Ây bi xi',
-      receiverPhone: '1234567989',
-      addressDetails: '789 Đường Trần Hưng Đạo, Quận Hoàn Kiếm, TP. Hà Nội',
-      isDefault: true
-    }
-  ];
-
   constructor() {
-    console.log('[AddressService] initialized with addresses:', this.addresses);
+    this.syncSeedAddresses();
+  }
+
+  private syncSeedAddresses(): Address[] {
+    const raw = localStorage.getItem(ADDRESSES_KEY);
+    const storedAddresses = raw ? (JSON.parse(raw) as Address[]) : [];
+    const mergedAddresses = [...storedAddresses];
+
+    for (const seedAddress of INITIAL_ADDRESSES) {
+      const exists = mergedAddresses.some(address => address.addressId === seedAddress.addressId);
+      if (!exists) {
+        mergedAddresses.push(seedAddress);
+      }
+    }
+
+    localStorage.setItem(ADDRESSES_KEY, JSON.stringify(mergedAddresses));
+    return mergedAddresses;
+  }
+
+  private get addresses(): Address[] {
+    const raw = localStorage.getItem(ADDRESSES_KEY);
+    if (raw) {
+      return JSON.parse(raw) as Address[];
+    }
+
+    return this.syncSeedAddresses();
+  }
+
+  private saveAddresses(addresses: Address[]): void {
+    localStorage.setItem(ADDRESSES_KEY, JSON.stringify(addresses));
   }
 
   getUserAddresses(userId: string): Observable<Address[]> {
     const userAddresses = this.addresses.filter(addr => addr.userId === userId);
-    console.log(`[AddressService] getUserAddresses for ${userId}:`, userAddresses);
     return of(userAddresses);
   }
 
   getDefault(userId: string): Promise<Address | undefined> {
     const defaultAddr = this.addresses.find(addr => addr.userId === userId && addr.isDefault);
-    console.log(`[AddressService] getDefault for ${userId}:`, defaultAddr);
     return Promise.resolve(defaultAddr);
   }
 
   upsertDefault(userId: string, addressDetails: string): Promise<Address> {
-    let addr = this.addresses.find(a => a.userId === userId && a.isDefault);
+    const addresses = this.addresses;
+    let addr = addresses.find(a => a.userId === userId && a.isDefault);
     
     if (addr) {
       addr.addressDetails = addressDetails;
@@ -63,49 +66,53 @@ export class AddressService {
         addressDetails,
         isDefault: true
       };
-      this.addresses.push(addr);
+      addresses.push(addr);
     }
     
-    console.log('[AddressService] upsertDefault:', addr);
+    this.saveAddresses(addresses);
     return Promise.resolve(addr);
   }
 
   createAddress(address: Omit<Address, 'addressId'>): Observable<Address> {
+    const addresses = this.addresses;
     const newAddress: Address = {
       ...address,
       addressId: 'A' + Date.now().toString()
     };
-    this.addresses.push(newAddress);
-    console.log('[AddressService] createAddress:', newAddress);
+    addresses.push(newAddress);
+    this.saveAddresses(addresses);
     return of(newAddress);
   }
 
   updateAddress(addressId: string, address: Partial<Address>): Observable<Address> {
-    const idx = this.addresses.findIndex(a => a.addressId === addressId);
+    const addresses = this.addresses;
+    const idx = addresses.findIndex(a => a.addressId === addressId);
     if (idx >= 0) {
-      this.addresses[idx] = { ...this.addresses[idx], ...address };
-      console.log('[AddressService] updateAddress:', this.addresses[idx]);
-      return of(this.addresses[idx]);
+      addresses[idx] = { ...addresses[idx], ...address };
+      this.saveAddresses(addresses);
+      return of(addresses[idx]);
     }
     return of({} as Address);
   }
 
   deleteAddress(addressId: string): Observable<void> {
-    const idx = this.addresses.findIndex(a => a.addressId === addressId);
+    const addresses = this.addresses;
+    const idx = addresses.findIndex(a => a.addressId === addressId);
     if (idx >= 0) {
-      this.addresses.splice(idx, 1);
-      console.log('[AddressService] deleteAddress:', addressId);
+      addresses.splice(idx, 1);
+      this.saveAddresses(addresses);
     }
     return of();
   }
 
   setDefaultAddress(addressId: string, userId: string): Observable<void> {
-    this.addresses.forEach(addr => {
+    const addresses = this.addresses;
+    addresses.forEach(addr => {
       if (addr.userId === userId) {
         addr.isDefault = addr.addressId === addressId;
       }
     });
-    console.log('[AddressService] setDefaultAddress:', addressId);
+    this.saveAddresses(addresses);
     return of();
   }
 }

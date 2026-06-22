@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "ng": "ng",
-    "start": "node start.mjs",
-    "server": "node server.mjs",
+    "start": "ng serve --open",
     "build": "ng build",
     "test": "ng test"
   },
@@ -19,9 +18,6 @@
     "@angular/platform-browser": "^17.2.0",
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
-    "concurrently": "^9.2.1",
-    "cors": "^2.8.6",
-    "express": "^4.22.2",
     "rxjs": "^7.8.0",
     "tslib": "^2.6.0",
     "zone.js": "^0.14.10"

@@ -1,33 +1,48 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../data/user.model';
+import seedUsers from '../data/users.json';
 
-const API_BASE = 'http://localhost:3001/api';
+const USERS_KEY = 'users';
 const SESSION_KEY = 'currentUser';
+const INITIAL_USERS = seedUsers as User[];
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<(User & { token: string }) | null>(this.getCurrentUser());
   currentUser$ = this.currentUserSubject.asObservable();
 
-  private async getUsers(): Promise<User[]> {
-    const response = await fetch(`${API_BASE}/users`);
-    if (!response.ok) {
-      throw new Error('Không thể đọc dữ liệu users.');
-    }
-    return response.json();
+  constructor() {
+    this.syncSeedUsers();
   }
 
-  private async saveUsers(users: User[]): Promise<void> {
-    const response = await fetch(`${API_BASE}/users`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(users)
-    });
+  private syncSeedUsers(): User[] {
+    const raw = localStorage.getItem(USERS_KEY);
+    const storedUsers = raw ? (JSON.parse(raw) as User[]) : [];
+    const mergedUsers = [...storedUsers];
 
-    if (!response.ok) {
-      throw new Error('Không thể lưu dữ liệu users.');
+    for (const seedUser of INITIAL_USERS) {
+      const exists = mergedUsers.some(user => user.userId === seedUser.userId || user.email.toLowerCase() === seedUser.email.toLowerCase());
+      if (!exists) {
+        mergedUsers.push(seedUser);
+      }
     }
+
+    localStorage.setItem(USERS_KEY, JSON.stringify(mergedUsers));
+    return mergedUsers;
+  }
+
+  private getUsers(): User[] {
+    const raw = localStorage.getItem(USERS_KEY);
+    if (raw) {
+      return JSON.parse(raw) as User[];
+    }
+
+    return this.syncSeedUsers();
+  }
+
+  private saveUsers(users: User[]): void {
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
   }
 
   isValidEmail(email: string): boolean {
@@ -39,11 +54,11 @@ export class AuthService {
   }
 
   async emailExists(email: string): Promise<boolean> {
-    return (await this.getUsers()).some(u => u.email.toLowerCase() === email.trim().toLowerCase());
+    return this.getUsers().some(u => u.email.toLowerCase() === email.trim().toLowerCase());
   }
 
   async phoneExists(phone: string): Promise<boolean> {
-    return (await this.getUsers()).some(u => u.phoneNumber === phone.trim());
+    return this.getUsers().some(u => u.phoneNumber === phone.trim());
   }
 
   async signup(data: { email: string; password: string; fullName: string; phoneNumber: string }): Promise<{ success: boolean; message: string }> {
@@ -55,7 +70,7 @@ export class AuthService {
       return { success: false, message: 'Số điện thoại phải gồm đúng 10 chữ số.' };
     }
 
-    const users = await this.getUsers();
+    const users = this.getUsers();
     const emailExists = users.some(u => u.email.toLowerCase() === data.email.toLowerCase());
     if (emailExists) {
       return { success: false, message: 'Email đã tồn tại, vui lòng nhập email khác.' };
@@ -82,7 +97,7 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<{ success: boolean; message: string }> {
-    const users = await this.getUsers();
+    const users = this.getUsers();
     const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
     if (!user) {
@@ -115,7 +130,7 @@ export class AuthService {
   }
 
   async updateProfile(userId: string, data: Partial<Pick<User, 'fullName' | 'phoneNumber' | 'dateOfBirth' | 'gender' | 'avatarUrl'>>): Promise<{ success: boolean; message: string }> {
-    const users = await this.getUsers();
+    const users = this.getUsers();
     const idx = users.findIndex(u => u.userId === userId);
     if (idx === -1) {
       return { success: false, message: 'Không tìm thấy người dùng.' };
@@ -147,7 +162,7 @@ export class AuthService {
       return { success: false, message: 'Mật khẩu mới phải có ít nhất 6 ký tự.' };
     }
 
-    const users = await this.getUsers();
+    const users = this.getUsers();
     const idx = users.findIndex(u => u.userId === userId);
     if (idx === -1) {
       return { success: false, message: 'Không tìm thấy người dùng.' };
