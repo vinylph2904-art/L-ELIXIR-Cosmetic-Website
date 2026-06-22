@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Product } from '../data/product.model';
-import { PRODUCTS } from '../data/mock-products'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  constructor() { }
+
+  constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return of(PRODUCTS);
+    return this.http.get<Product[]>('assets/data/products.json');
   }
 }

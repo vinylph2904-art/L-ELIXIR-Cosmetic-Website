@@ -1,29 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PRODUCTS } from '../../data/mock-products';
 import { CartService } from '../../services/cart.service';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../data/product.model';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent {
-  product = PRODUCTS[0];
+export class ProductDetailComponent implements OnInit {
+
+  product!: Product;
   selectedImage = '';
 
-  constructor(route: ActivatedRoute, private cartService: CartService) {
-    const id = route.snapshot.paramMap.get('id');
-    const found = PRODUCTS.find(item => item.productId === id);
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private productService: ProductService
+  ) {}
 
-    if (found) {
-      this.product = found;
-    }
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
 
-    this.selectedImage = this.product.images[0];
+    this.productService.getProducts().subscribe(products => {
+      const found = products.find(item => item.productId === id);
+
+      if (found) {
+        this.product = found;
+        this.selectedImage = found.images[0];
+      }
+    });
   }
 
   addToCart() {
-    this.cartService.addToCart({ ...this.product, quantity: 1 });
+    this.cartService.addToCart({
+      ...this.product,
+      quantity: 1
+    });
   }
 }
