@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CartService } from '../../services/cart.service';
+import { CheckoutService, User, Address } from '../../services/checkout.service';
 import { OrderService } from '../../services/order.service';
 import { Order, ShippingInfo } from '../../data/order.model';
 import { Product } from '../../data/product.model';
@@ -24,7 +25,21 @@ export class PaymentComponent implements OnInit, OnDestroy {
   subtotal = 0;
   shippingFee = 30000; // Default standard shipping
 
-  // Form data
+  // Member checkout state
+  currentUser: User | null = null;
+  shippingFullName = '';
+  shippingPhone = '';
+  shippingAddress = '';
+  isEditingAddress = false;
+  addressForm = {
+    fullName: '',
+    phone: '',
+    address: '',
+    makeDefault: false
+  };
+  errors: { fullName?: string; phone?: string; address?: string } = {};
+
+  // Form data for guest checkout
   shippingInfo: ShippingInfo = {
     fullName: '',
     phone: '',
@@ -44,17 +59,59 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartService: CartService,
+    private checkoutService: CheckoutService,
     private orderService: OrderService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loadCart();
+
+    this.currentUser = this.checkoutService.getCurrentUser();
+    if (!this.currentUser) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    this.loadMemberCheckout();
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  /**
+   * Load member checkout state from session
+   */
+  private loadMemberCheckout(): void {
+    this.currentUser = this.checkoutService.getCurrentUser();
+
+    if (this.currentUser) {
+      this.isGuest = false;
+      this.useCurrentUserAddress();
+    }
+  }
+
+  /**
+   * Apply current user and default address to shipping fields
+   */
+  private useCurrentUserAddress(): void {
+    if (!this.currentUser) {
+      return;
+    }
+
+    const defaultAddress = this.checkoutService.getDefaultAddress(this.currentUser.userId);
+    this.shippingFullName = this.currentUser.fullName;
+    this.shippingPhone = this.currentUser.phoneNumber;
+    this.shippingAddress = defaultAddress?.fullAddress ?? '';
+
+    this.addressForm.fullName = this.shippingFullName;
+    this.addressForm.phone = this.shippingPhone;
+    this.addressForm.address = this.shippingAddress;
+    this.addressForm.makeDefault = false;
+    this.errors = {};
+    this.isEditingAddress = false;
   }
 
   /**
@@ -82,7 +139,16 @@ export class PaymentComponent implements OnInit, OnDestroy {
    * Toggle between guest and account checkout
    */
   toggleAuthMode(isLogin: boolean): void {
+    if (isLogin && !this.currentUser) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.isGuest = !isLogin;
+
+    if (!this.isGuest) {
+      this.useCurrentUserAddress();
+    }
   }
 
   /**
@@ -124,6 +190,145 @@ export class PaymentComponent implements OnInit, OnDestroy {
    */
   getTotal(): number {
     return this.subtotal + this.shippingFee - this.discount;
+  }
+
+  /**
+   * Open the address edit form for member checkout
+   */
+  openEditAddress(): void {
+    this.isEditingAddress = true;
+    this.addressForm.fullName = this.shippingFullName;
+    this.addressForm.phone = this.shippingPhone;
+    this.addressForm.address = this.shippingAddress;
+    this.addressForm.makeDefault = false;
+    this.errors = {};
+  }
+
+  /**
+   * Apply new shipping address values from edit form
+   */
+  applyNewAddress(): void {
+    this.errors = {};
+
+    if (!this.validateAddressForm()) {
+      return;
+    }
+
+    this.shippingFullName = this.addressForm.fullName.trim();
+    this.shippingPhone = this.addressForm.phone.trim();
+    this.shippingAddress = this.addressForm.address.trim();
+    this.isEditingAddress = false;
+
+    if (this.addressForm.makeDefault && this.currentUser) {
+      const address: Address = {
+        addressId: `ADDR-${Date.now()}`,
+        userId: this.currentUser.userId,
+        fullAddress: this.shippingAddress,
+        isDefault: true
+      };
+      this.checkoutService.addOrUpdateAddress(address);
+    }
+  }
+
+  /**
+   * Validate member checkout shipping fields
+   */
+  private validateAddressForm(): boolean {
+    const fullName = this.addressForm.fullName?.trim();
+    const phone = this.addressForm.phone?.trim();
+    const address = this.addressForm.address?.trim();
+
+    if (!fullName) {
+      this.errors.fullName = 'Họ tên không được để trống';
+    }
+
+    if (!phone) {
+      this.errors.phone = 'Số điện thoại không được để trống';
+    } else if (!/^0\d{9}$/.test(phone)) {
+      this.errors.phone = 'Số điện thoại phải là 10 chữ số và bắt đầu bằng 0';
+    }
+
+    if (!address) {
+      this.errors.address = 'Địa chỉ giao hàng không được để trống';
+    } else if (address.length < 10) {
+      this.errors.address = 'Địa chỉ phải có ít nhất 10 ký tự';
+    }
+
+    return Object.keys(this.errors).length === 0;
+  }
+
+  /**
+   * Validate member checkout shipping fields before confirmation
+   */
+  private validateShippingFields(): boolean {
+    this.errors = {};
+    const fullName = this.shippingFullName?.trim();
+    const phone = this.shippingPhone?.trim();
+    const address = this.shippingAddress?.trim();
+
+    if (!fullName) {
+      this.errors.fullName = 'Họ tên không được để trống';
+    }
+
+    if (!phone) {
+      this.errors.phone = 'Số điện thoại không được để trống';
+    } else if (!/^0\d{9}$/.test(phone)) {
+      this.errors.phone = 'Số điện thoại phải là 10 chữ số và bắt đầu bằng 0';
+    }
+
+    if (!address) {
+      this.errors.address = 'Địa chỉ giao hàng không được để trống';
+    } else if (address.length < 10) {
+      this.errors.address = 'Địa chỉ phải có ít nhất 10 ký tự';
+    }
+
+    return Object.keys(this.errors).length === 0;
+  }
+
+  /**
+   * Determine if member checkout can submit
+   */
+  canSubmitMemberCheckout(): boolean {
+    return !!(
+      this.shippingFullName?.trim() &&
+      this.shippingPhone?.trim() &&
+      this.shippingAddress?.trim() &&
+      !this.errors.fullName &&
+      !this.errors.phone &&
+      !this.errors.address
+    );
+  }
+
+  /**
+   * Confirm order for logged in member
+   */
+  confirmOrder(): void {
+    if (!this.currentUser) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    if (!this.validateShippingFields()) {
+      return;
+    }
+
+    try {
+      const order = this.checkoutService.createOrder({
+        userId: this.currentUser.userId,
+        totalAmount: this.getTotal(),
+        shippingFullName: this.shippingFullName.trim(),
+        shippingPhone: this.shippingPhone.trim(),
+        shippingAddress: this.shippingAddress.trim(),
+        orderStatus: 'Pending'
+      });
+
+      sessionStorage.setItem('pendingOrderId', order.orderId);
+      this.router.navigate(['/payment-success'], {
+        queryParams: { orderId: order.orderId }
+      });
+    } catch (error: any) {
+      this.errorMessage = error?.message || 'Không thể tạo đơn hàng';
+    }
   }
 
   /**

@@ -53,7 +53,96 @@
 <span class="material-symbols-outlined text-primary">location_on</span>
   Thông tin nhận hàng
 </h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div *ngIf="!isGuest" class="space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="space-y-2">
+      <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Họ và tên</label>
+      <input
+        class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md"
+        [value]="shippingFullName"
+        readonly>
+      <p *ngIf="errors.fullName" class="text-error text-sm mt-2">{{ errors.fullName }}</p>
+    </div>
+    <div class="space-y-2">
+      <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Số điện thoại</label>
+      <input
+        class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md"
+        [value]="shippingPhone"
+        readonly>
+      <p *ngIf="errors.phone" class="text-error text-sm mt-2">{{ errors.phone }}</p>
+    </div>
+    <div class="md:col-span-2 space-y-2">
+      <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Địa chỉ giao hàng</label>
+      <input
+        class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md"
+        [value]="shippingAddress"
+        readonly>
+      <p *ngIf="errors.address" class="text-error text-sm mt-2">{{ errors.address }}</p>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="rounded-lg bg-secondary px-4 py-3 text-white hover:opacity-90 transition-all"
+    (click)="openEditAddress()">
+    Thay đổi thông tin
+  </button>
+
+  <div *ngIf="isEditingAddress" class="grid grid-cols-1 gap-6 p-6 bg-surface-container-low rounded-xl border border-outline-variant">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Họ và tên *</label>
+        <input
+          [(ngModel)]="addressForm.fullName"
+          class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md"
+          type="text"
+          placeholder="Nguyễn Văn A">
+        <p *ngIf="errors.fullName" class="text-error text-sm mt-2">{{ errors.fullName }}</p>
+      </div>
+      <div class="space-y-2">
+        <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Số điện thoại *</label>
+        <input
+          [(ngModel)]="addressForm.phone"
+          class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md"
+          type="tel"
+          placeholder="0901234567">
+        <p *ngIf="errors.phone" class="text-error text-sm mt-2">{{ errors.phone }}</p>
+      </div>
+      <div class="md:col-span-2 space-y-2">
+        <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Địa chỉ giao hàng *</label>
+        <input
+          [(ngModel)]="addressForm.address"
+          class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md"
+          type="text"
+          placeholder="123 Đường Luxury, Quận 1, TP. HCM">
+        <p *ngIf="errors.address" class="text-error text-sm mt-2">{{ errors.address }}</p>
+      </div>
+    </div>
+    <label class="flex items-center gap-3 text-label-md">
+      <input
+        type="checkbox"
+        [(ngModel)]="addressForm.makeDefault"
+        class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer">
+      <span>Đặt làm địa chỉ mặc định</span>
+    </label>
+    <div class="flex gap-3">
+      <button
+        type="button"
+        class="rounded-lg bg-primary text-white px-4 py-3 hover:opacity-90 transition-all"
+        (click)="applyNewAddress()">
+        Áp dụng
+      </button>
+      <button
+        type="button"
+        class="rounded-lg border border-outline-variant px-4 py-3 text-on-surface-variant hover:border-primary transition-all"
+        (click)="isEditingAddress = false">
+        Hủy
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isGuest" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <!-- Full Name -->
 <div class="space-y-2">
 <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Họ và tên *</label>
@@ -295,10 +384,10 @@
 <!-- CTA -->
 <button 
   type="button"
-  (click)="onSubmitOrder()"
-  [disabled]="isSubmitting || cartItems.length === 0"
+  (click)="isGuest ? onSubmitOrder() : confirmOrder()"
+  [disabled]="isSubmitting || cartItems.length === 0 || (!isGuest && !canSubmitMemberCheckout())"
   class="w-full bg-primary text-white py-5 rounded-lg font-label-md text-label-md font-bold tracking-widest uppercase hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-standard shadow-lg">
-  {{ isSubmitting ? 'Đang xử lý...' : 'Hoàn tất đặt hàng' }}
+  {{ isSubmitting ? 'Đang xử lý...' : (isGuest ? 'Hoàn tất đặt hàng' : 'Xác nhận đặt đơn') }}
 </button>
 
 <p class="text-center mt-6 text-label-sm text-on-surface-variant/60 flex items-center justify-center gap-2">
