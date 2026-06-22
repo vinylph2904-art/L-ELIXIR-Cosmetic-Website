@@ -227,11 +227,11 @@
 </div>
 <div *ngFor="let item of cartItems" class="flex items-center gap-4">
 <div class="w-20 h-20 bg-surface rounded-lg overflow-hidden flex-shrink-0">
-<img class="w-full h-full object-cover" [src]="item.image" [alt]="item.name">
+<img class="w-full h-full object-cover" [src]="item.images[0]" [alt]="item.name">
 </div>
 <div class="flex-1">
 <h4 class="font-body-lg font-medium text-on-surface leading-tight">{{ item.name }}</h4>
-<p class="text-label-sm text-on-surface-variant mt-1">Danh mục: {{ item.category || 'Không xác định' }}</p>
+<p class="text-label-sm text-on-surface-variant mt-1">Danh mục: {{ item.categoryName || 'Không xác định' }}</p>
 <div class="flex justify-between items-center mt-2">
 <span class="text-label-md text-on-surface-variant">Số lượng: {{ item.quantity || 1 }}</span>
 <span class="font-body-md font-semibold font-Inter">{{ (item.price * (item.quantity || 1)) | number }}</span>

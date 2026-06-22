@@ -2,13 +2,10 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
     <div class="space-y-8">
       <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em]">Vẻ đẹp Khoa học</span>
-      <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">
-        Khám phá quy trình dưỡng da <br>
+      <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">Khám phá quy trình dưỡng da <br>
         <i class="font-normal italic">hoàn hảo dành riêng cho bạn</i>
       </h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-        Những công thức tinh túy được thiết kế riêng cho làn da bạn. Trải nghiệm đỉnh cao của sự cá nhân hóa thông qua công nghệ chẩn đoán tiên tiến.
-      </p>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Những công thức tinh túy được thiết kế riêng cho làn da bạn. Trải nghiệm đỉnh cao của sự cá nhân hóa thông qua công nghệ chẩn đoán tiên tiến.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-4">
         <a routerLink="/survey" class="px-10 py-4 bg-primary text-white font-label-md text-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition-all active:scale-95 inline-flex items-center justify-center">
           Bắt đầu khảo sát da
@@ -76,28 +73,9 @@
       </div>
       <a routerLink="/products" class="font-label-md text-label-md text-primary hover:underline underline-offset-8">Xem tất cả sản phẩm</a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-      <div *ngFor="let product of featuredProducts" class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img [src]="product.images[0]" [alt]="product.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">        </div>
-        <div class="space-y-2">
-          <div class="flex justify-between items-center">
-              <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest"> {{ product.categoryName }}</span>            
-              <div class="flex items-center gap-1 text-xs">
-                <ng-container *ngFor="let _ of [].constructor(getFullStars(product.averageRating))"><span class="material-symbols-outlined text-[14px] text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span></ng-container>
-                <span *ngIf="hasHalfStar(product.averageRating)" class="material-symbols-outlined text-[14px] text-yellow-500">star_half</span>
-                <ng-container *ngFor="let _ of [].constructor(getEmptyStars(product.averageRating))"><span class="material-symbols-outlined text-[14px] text-gray-300">star</span></ng-container>
-                <span class="ml-1">{{ product.averageRating | number:'1.1-1' }}</span>
-                <span class="text-on-surface-variant">({{ product.reviewCount }})</span>
-              </div>              
-          </div>
-            <h3 class="font-display-lg text-headline-md leading-tight">{{ product.name }}</h3>
-            <p class="text-on-surface-variant font-label-md">{{ product.price | number:'1.0-0' }} VNĐ</p>          
-            <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
-        </div>
-      </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter items-stretch">      
+      <app-product-card *ngFor="let product of featuredProducts" [product]="product"></app-product-card>
     </div>
-    
   </div>
 </section>
 

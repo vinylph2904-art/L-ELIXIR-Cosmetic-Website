@@ -10,11 +10,11 @@
     <nav class="hidden md:flex items-center gap-8">
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/">Trang chủ</a>
       <div class="relative group">
-        <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Sản phẩm</a>
+        <a routerLink="/products" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"> Sản phẩm
+        </a>        
         <div class="absolute left-0 top-full hidden group-hover:block bg-white shadow-lg rounded-lg min-w-[220px] z-50">
           <a *ngFor="let category of categories" [routerLink]="['/products']" [queryParams]="{ category: category }" class="block px-4 py-3 hover:bg-surface-container">{{ category }}</a>
         </div>
-
       </div>      
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/survey">Khảo sát da</a>
       <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/recommendation">Quy trình của bạn</a>

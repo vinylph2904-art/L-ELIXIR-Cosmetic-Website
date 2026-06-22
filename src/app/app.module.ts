@@ -21,6 +21,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { BeautyAssistantComponent } from './beauty-assistant/beauty-assistant.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PaymentComponent,
     PaymentSuccessComponent,
     PaymentFailureComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
