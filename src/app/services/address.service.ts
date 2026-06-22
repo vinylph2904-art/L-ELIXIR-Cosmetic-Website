@@ -1,33 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Address } from '../data/address.model';
-
-const API_BASE = 'http://localhost:3001/api';
+const ADDRESSES_KEY = 'addresses';
+const INITIAL_ADDRESSES: Address[] = [
+  {
+    addressId: 'A1718000000000',
+    userId: 'U1718000000000',
+    fullAddress: '123 Đường Luxury, Quận 2, TP. HCM',
+    isDefault: true
+  }
+];
 
 @Injectable({ providedIn: 'root' })
 export class AddressService {
 
-  private async getAll(): Promise<Address[]> {
-    const response = await fetch(`${API_BASE}/addresses`);
-    if (!response.ok) {
-      throw new Error('Không thể đọc dữ liệu addresses.');
+  private getAll(): Address[] {
+    const raw = localStorage.getItem(ADDRESSES_KEY);
+    if (raw) {
+      return JSON.parse(raw) as Address[];
     }
-    return response.json();
+
+    localStorage.setItem(ADDRESSES_KEY, JSON.stringify(INITIAL_ADDRESSES));
+    return [...INITIAL_ADDRESSES];
   }
 
-  private async saveAll(addresses: Address[]): Promise<void> {
-    const response = await fetch(`${API_BASE}/addresses`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(addresses)
-    });
-
-    if (!response.ok) {
-      throw new Error('Không thể lưu dữ liệu addresses.');
-    }
+  private saveAll(addresses: Address[]): void {
+    localStorage.setItem(ADDRESSES_KEY, JSON.stringify(addresses));
   }
 
   async getByUserId(userId: string): Promise<Address[]> {
-    return (await this.getAll()).filter(a => a.userId === userId);
+    return this.getAll().filter(a => a.userId === userId);
   }
 
   async getDefault(userId: string): Promise<Address | null> {
@@ -37,12 +38,12 @@ export class AddressService {
 
   /** Tạo mới hoặc cập nhật địa chỉ mặc định của user (giữ đơn giản: mỗi user 1 địa chỉ mặc định) */
   async upsertDefault(userId: string, fullAddress: string): Promise<Address> {
-    const addresses = await this.getAll();
+    const addresses = this.getAll();
     const idx = addresses.findIndex(a => a.userId === userId && a.isDefault);
 
     if (idx > -1) {
       addresses[idx] = { ...addresses[idx], fullAddress };
-      this.saveAll(addresses);
+      await this.saveAll(addresses);
       return addresses[idx];
     }
 
