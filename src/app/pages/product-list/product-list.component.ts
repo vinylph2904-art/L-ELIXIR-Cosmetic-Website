@@ -4,13 +4,15 @@ import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
 
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {  allProducts: Product[] = [];
+export class ProductListComponent implements OnInit {
+  allProducts: Product[] = [];
   filteredProducts: Product[] = [];
   searchTerm: string = '';
   selectedCategories: string[] = [];
@@ -39,7 +41,8 @@ export class ProductListComponent implements OnInit {  allProducts: Product[] = 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -127,6 +130,7 @@ export class ProductListComponent implements OnInit {  allProducts: Product[] = 
 
   addToCart(product: Product) {
     this.cartService.addToCart({ ...product, quantity: 1 });
+    this.toastService.success(`Đã thêm "${product.name}" vào giỏ hàng`, 3000);
   }
   getFullStars(rating: number): number {
     return Math.floor(rating);

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../data/product.model';
 import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,9 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   featuredProducts: Product[] = [];
   categories: string[] = [];
+  products: Product[] = [];
   collections = [
     {
       name: 'Lumina',
@@ -26,19 +28,29 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(data => {
-    this.featuredProducts = [...data]
-      .sort((a, b) => b.averageRating - a.averageRating)
-      .slice(0, 4);
+      this.products = data.slice(0, 4);
+      this.featuredProducts = [...data]
+        .sort((a, b) => b.averageRating - a.averageRating)
+        .slice(0, 4);
 
-    this.categories = [...new Set(
-      data.map(product => product.categoryName)
-    )];
-  });
-}
+      this.categories = [...new Set(
+        data.map(product => product.categoryName)
+      )];
+    });
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart({ ...product, quantity: 1 });
+    this.toastService.success(`Đã thêm "${product.name}" vào giỏ hàng`, 3000);
+  }
 
   getFullStars(rating: number): number {
     return Math.floor(rating);

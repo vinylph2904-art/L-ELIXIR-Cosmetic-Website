@@ -1,0 +1,100 @@
+<div class="bg-surface-container-low rounded-xl p-6">
+  <!-- Eligibility Check -->
+  <div *ngIf="!isEligibleToReview" class="text-center py-8">
+    <p class="text-on-surface-variant text-label-md">{{ eligibilityError }}</p>
+  </div>
+
+  <!-- Review Form -->
+  <form *ngIf="isEligibleToReview" [formGroup]="reviewForm" (ngSubmit)="submit()" class="space-y-6">
+    <!-- Title -->
+    <div>
+      <label class="block font-label-md text-label-md text-on-surface mb-2">
+        Tiêu đề đánh giá <span class="text-error">*</span>
+      </label>
+      <input 
+        type="text" 
+        formControlName="title"
+        placeholder="Ví dụ: Sản phẩm tuyệt vời, đúng như mô tả"
+        class="w-full px-4 py-2 border border-outline rounded-lg font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary"
+        [class.border-error]="reviewForm.get('title')?.invalid && reviewForm.get('title')?.touched">
+      <div *ngIf="reviewForm.get('title')?.invalid && reviewForm.get('title')?.touched" class="text-error text-label-sm mt-1">
+        Tiêu đề phải có ít nhất 5 ký tự
+      </div>
+    </div>
+
+    <!-- Rating Stars -->
+    <div>
+      <label class="block font-label-md text-label-md text-on-surface mb-2">
+        Đánh giá <span class="text-error">*</span>
+      </label>
+      <div class="flex gap-4">
+        <div class="flex gap-2">
+          <button 
+            *ngFor="let i of [1, 2, 3, 4, 5]"
+            type="button"
+            (click)="selectRating(i)"
+            (mouseenter)="hoverRatingEffect(i)"
+            (mouseleave)="resetHover()"
+            class="cursor-pointer transition-colors">
+            <span class="material-symbols-outlined text-[32px] text-primary"
+                  [style.fontVariationSettings]='isStarFilled(i) ? "\"FILL\" 1" : "\"FILL\" 0"'>
+              star
+            </span>
+          </button>
+        </div>
+        <div class="flex items-center">
+          <span *ngIf="selectedRating > 0" class="text-label-md text-on-surface-variant">
+            {{ selectedRating }} / 5 sao
+          </span>
+          <span *ngIf="selectedRating === 0" class="text-label-md text-on-surface-variant text-opacity-50">
+            Chọn đánh giá
+          </span>
+        </div>
+      </div>
+      <div *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched" class="text-error text-label-sm mt-2">
+        Vui lòng chọn số sao
+      </div>
+    </div>
+
+    <!-- Comment -->
+    <div>
+      <label class="block font-label-md text-label-md text-on-surface mb-2">
+        Bình luận chi tiết <span class="text-error">*</span>
+      </label>
+      <textarea 
+        formControlName="comment"
+        placeholder="Chia sẻ trải nghiệm của bạn với sản phẩm này (tối thiểu 20 ký tự)"
+        rows="5"
+        class="w-full px-4 py-2 border border-outline rounded-lg font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+        [class.border-error]="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched">
+      </textarea>
+      <div class="flex justify-between mt-2">
+        <div *ngIf="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched" class="text-error text-label-sm">
+          Bình luận phải có ít nhất 20 ký tự
+        </div>
+        <span class="text-label-sm text-on-surface-variant">
+          {{ (reviewForm.get('comment')?.value || '').length }} / 500
+        </span>
+      </div>
+    </div>
+
+    <!-- Error / Success Messages -->
+    <div *ngIf="errorMessage" class="p-4 bg-error/10 border border-error rounded-lg">
+      <p class="text-error text-label-md">{{ errorMessage }}</p>
+    </div>
+    <div *ngIf="successMessage" class="p-4 bg-primary/10 border border-primary rounded-lg">
+      <p class="text-primary text-label-md">{{ successMessage }}</p>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex gap-4">
+      <button 
+        type="submit"
+        [disabled]="!reviewForm.valid || isSubmitting"
+        class="flex-1 px-6 py-3 bg-primary text-white rounded-lg font-label-md text-label-md font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity">
+        <span *ngIf="!isSubmitting">Gửi đánh giá</span>
+        <span *ngIf="isSubmitting">Đang gửi...</span>
+      </button>
+    </div>
+  </form>
+</div>

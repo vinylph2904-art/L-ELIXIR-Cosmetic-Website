@@ -19,6 +19,9 @@ import { PaymentSuccessComponent } from './pages/payment-success/payment-success
 import { PaymentFailureComponent } from './pages/payment-failure/payment-failure.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { BeautyAssistantComponent } from './beauty-assistant/beauty-assistant.component';
+import { ToastContainerComponent } from './components/toast-container/toast-container.component';
+import { ReviewListComponent } from './components/review-list/review-list.component';
+import { ReviewFormComponent } from './components/review-form/review-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -42,6 +45,11 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     PaymentFailureComponent,
     ProfileComponent,
     ProductCardComponent
+    ,OrderTrackingComponent
+    ,PaymentComponent
+    ,PaymentSuccessComponent
+    ,ReviewListComponent
+    ,ReviewFormComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +57,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    BeautyAssistantComponent
+    BeautyAssistantComponent,
+    ToastContainerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

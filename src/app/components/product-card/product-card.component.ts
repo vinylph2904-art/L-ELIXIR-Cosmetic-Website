@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../../data/product.model';
 import { CartService } from '../../services/cart.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-product-card',
@@ -12,7 +13,8 @@ export class ProductCardComponent {
 
   constructor(
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastService: ToastService
   ) {}
 
   @Input() product!: Product;
@@ -21,9 +23,17 @@ export class ProductCardComponent {
     this.router.navigate(['/products', this.product.productId]);
   }
 
+  /**
+   * Thêm sản phẩm vào giỏ hàng từ product card.
+   * Gọi toastService để hiện thông báo sau khi thêm thành công.
+   * NGUYÊN NHÂN LỖI: Trước đây component này chỉ gọi cartService mà không gọi toastService,
+   * dẫn đến toast không hiện dù sản phẩm được thêm vào localStorage.
+   */
   addToCart(event: Event) {
     event.stopPropagation();
-    this.cartService.addToCart(this.product);
+    this.cartService.addToCart({ ...this.product, quantity: 1 });
+    // Sau khi thêm thành công, hiện toast (lần này từ product-card, không phải từ component cha)
+    this.toastService.success(`Đã thêm "${this.product.name}" vào giỏ hàng`, 3000);
   }
 
   getFullStars(rating: number): number {

@@ -1,0 +1,22 @@
+/* Review Form Component Styles */
+
+:host ::ng-deep {
+  /* Input focus styles */
+  input:focus,
+  textarea:focus {
+    transition: all 0.2s ease;
+  }
+
+  /* Star rating interaction */
+  button {
+    transition: transform 0.2s ease;
+
+    &:hover:not(:disabled) {
+      transform: scale(1.1);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}

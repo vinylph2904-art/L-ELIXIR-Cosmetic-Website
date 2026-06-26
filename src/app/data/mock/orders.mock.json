@@ -1,0 +1,68 @@
+[
+  {
+    "orderId": "ORD001",
+    "userId": "user_001",
+    "orderStatus": "Completed",
+    "items": [
+      {
+        "productId": "PROD001",
+        "productName": "Serum Vitamin C 10%",
+        "quantity": 1,
+        "priceAtPurchase": 450000
+      },
+      {
+        "productId": "PROD002",
+        "productName": "Nước hoa hồng Toner Premium",
+        "quantity": 1,
+        "priceAtPurchase": 320000
+      }
+    ],
+    "totalAmount": 1090000,
+    "deliveryAddress": "123 Đường Nguyễn Huệ, Quận 1, TP.HCM",
+    "shippingMethod": "Standard",
+    "shippingFee": 30000,
+    "createdAt": "2026-05-10T14:30:00Z"
+  },
+  {
+    "orderId": "ORD002",
+    "userId": "user_001",
+    "orderStatus": "Completed",
+    "items": [
+      {
+        "productId": "PROD003",
+        "productName": "Kem dưỡng da ban đêm Renewal",
+        "quantity": 1,
+        "priceAtPurchase": 550000
+      },
+      {
+        "productId": "PROD004",
+        "productName": "Mặt nạ sheet Collagen",
+        "quantity": 3,
+        "priceAtPurchase": 85000
+      }
+    ],
+    "totalAmount": 1105000,
+    "deliveryAddress": "123 Đường Nguyễn Huệ, Quận 1, TP.HCM",
+    "shippingMethod": "Express",
+    "shippingFee": 50000,
+    "createdAt": "2026-05-18T09:15:00Z"
+  },
+  {
+    "orderId": "ORD003",
+    "userId": "user_001",
+    "orderStatus": "Completed",
+    "items": [
+      {
+        "productId": "PROD005",
+        "productName": "Sữa rửa mặt Foam Gentle",
+        "quantity": 2,
+        "priceAtPurchase": 280000
+      }
+    ],
+    "totalAmount": 640000,
+    "deliveryAddress": "123 Đường Nguyễn Huệ, Quận 1, TP.HCM",
+    "shippingMethod": "Standard",
+    "shippingFee": 30000,
+    "createdAt": "2026-05-25T16:45:00Z"
+  }
+]

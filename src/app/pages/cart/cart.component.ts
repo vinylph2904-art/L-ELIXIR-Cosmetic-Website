@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart.service';
 import { Product } from '../../data/product.model';
+import { CartService } from '../../services/cart.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];
+  productPendingDelete: Product | null = null;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private toastService: ToastService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.refreshCart();
   }
 
@@ -20,20 +25,38 @@ export class CartComponent implements OnInit {
     this.cartItems = this.cartService.getCart();
   }
 
-  removeItem(id: string) {
-    this.cartService.removeFromCart(id);
-    this.refreshCart();
+  changeQuantity(productId: string, delta: number): void {
+    const item = this.cartItems.find((item) => item.productId === productId);
+    if (!item) return;
+
+    const newQuantity = (item.quantity || 1) + delta;
+
+    if (newQuantity <= 0) {
+      this.askDeleteConfirm(item);
+    } else {
+      this.cartService.updateQuantity(productId, newQuantity);
+      this.refreshCart();
+    }
   }
 
-  changeQuantity(productId: string, delta: number) {
-    const item = this.cartItems.find(i => i.productId === productId);
-    if (!item) {
-      return;
-    }
+  askDeleteConfirm(item: Product) {
+    this.productPendingDelete = item;
+  }
 
-    const nextQuantity = Math.max(0, (item.quantity || 1) + delta);
-    this.cartService.updateQuantity(productId, nextQuantity);
+  confirmDelete() {
+    if (!this.productPendingDelete) return;
+    this.cartService.removeFromCart(this.productPendingDelete.productId);
+    this.productPendingDelete = null;
     this.refreshCart();
+    this.toastService.show('Đã xóa sản phẩm khỏi giỏ hàng', 'success');
+  }
+
+  cancelDelete() {
+    this.productPendingDelete = null;
+  }
+
+  get isCartEmpty(): boolean {
+    return this.cartItems.length === 0;
   }
 
   total() {
@@ -49,6 +72,6 @@ export class CartComponent implements OnInit {
   }
 
   grandTotal() {
-    return Math.max(0, this.total() + this.shippingFee() - this.discount());
+    return this.total() + this.shippingFee() - this.discount();
   }
 }

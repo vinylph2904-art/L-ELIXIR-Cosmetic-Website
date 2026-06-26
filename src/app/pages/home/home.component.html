@@ -73,7 +73,7 @@
       </div>
       <a routerLink="/products" class="font-label-md text-label-md text-primary hover:underline underline-offset-8">Xem tất cả sản phẩm</a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter items-stretch">      
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter items-stretch">
       <app-product-card *ngFor="let product of featuredProducts" [product]="product"></app-product-card>
     </div>
   </div>
