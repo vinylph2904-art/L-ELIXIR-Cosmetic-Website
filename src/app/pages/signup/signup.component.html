@@ -29,39 +29,52 @@
       </div>
 
       <form class="space-y-6 flex-grow" (ngSubmit)="onSubmit($event)">
+        <p *ngIf="successMessage" class="font-body-sm text-body-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3">{{ successMessage }}</p>
         <div class="space-y-1">
           <label class="font-label-sm text-label-sm uppercase text-outline">Họ và tên</label>
-          <input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md placeholder:text-outline-variant/60" placeholder="Nguyễn Văn A" type="text" />
+          <input [(ngModel)]="fullName" name="fullName" class="w-full bg-transparent border rounded-lg py-3 px-3 focus:ring-0 transition-all font-body-md text-body-md placeholder:text-outline-variant/60" [class.border-red-400]="fieldErrors.fullName" [class.border-outline-variant]="!fieldErrors.fullName" placeholder="Nguyễn Văn A" type="text" />
+          <p *ngIf="fieldErrors.fullName" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.fullName }}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-1">
             <label class="font-label-sm text-label-sm uppercase text-outline">Email</label>
-            <input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="example@email.com" type="email" />
+            <input [(ngModel)]="email" name="email" class="w-full bg-transparent border rounded-lg py-3 px-3 focus:ring-0 transition-all font-body-md text-body-md" [class.border-red-400]="fieldErrors.email" [class.border-outline-variant]="!fieldErrors.email" placeholder="example@email.com" type="email" />
+            <p *ngIf="fieldErrors.email" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.email }}</p>
           </div>
           <div class="space-y-1">
             <label class="font-label-sm text-label-sm uppercase text-outline">Số điện thoại</label>
-            <input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="090 123 4567" type="tel" />
+            <input [(ngModel)]="phoneNumber" name="phoneNumber" class="w-full bg-transparent border rounded-lg py-3 px-3 focus:ring-0 transition-all font-body-md text-body-md" [class.border-red-400]="fieldErrors.phoneNumber" [class.border-outline-variant]="!fieldErrors.phoneNumber" placeholder="0901234567" type="tel" />
+            <p *ngIf="fieldErrors.phoneNumber" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.phoneNumber }}</p>
           </div>
         </div>
-        <div class="space-y-1 relative">
+        <div class="space-y-1">
           <label class="font-label-sm text-label-sm uppercase text-outline">Mật khẩu</label>
-          <input [type]="showPassword ? 'text' : 'password'" class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="••••••••" />
-          <button class="absolute right-0 bottom-3 text-outline hover:text-primary transition-colors" type="button" (click)="togglePassword()">
-            <span class="material-symbols-outlined">{{ showPassword ? 'visibility' : 'visibility_off' }}</span>
-          </button>
+          <div class="relative">
+            <input [(ngModel)]="password" name="password" [type]="showPassword ? 'text' : 'password'" class="w-full bg-transparent border rounded-lg py-3 px-3 pr-10 focus:ring-0 transition-all font-body-md text-body-md" [class.border-red-400]="fieldErrors.password" [class.border-outline-variant]="!fieldErrors.password" placeholder="••••••••" />
+            <button class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-outline hover:text-primary transition-colors" type="button" (click)="togglePassword()">
+              <span class="material-symbols-outlined leading-none">{{ showPassword ? 'visibility' : 'visibility_off' }}</span>
+            </button>
+          </div>
+          <p *ngIf="fieldErrors.password" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.password }}</p>
         </div>
-        <div class="space-y-1 relative">
+        <div class="space-y-1">
           <label class="font-label-sm text-label-sm uppercase text-outline">Xác nhận mật khẩu</label>
-          <input [type]="showConfirmPassword ? 'text' : 'password'" class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="••••••••" />
-          <button class="absolute right-0 bottom-3 text-outline hover:text-primary transition-colors" type="button" (click)="toggleConfirmPassword()">
-            <span class="material-symbols-outlined">{{ showConfirmPassword ? 'visibility' : 'visibility_off' }}</span>
-          </button>
+          <div class="relative">
+            <input [(ngModel)]="confirmPassword" name="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" class="w-full bg-transparent border rounded-lg py-3 px-3 pr-10 focus:ring-0 transition-all font-body-md text-body-md" [class.border-red-400]="fieldErrors.confirmPassword" [class.border-outline-variant]="!fieldErrors.confirmPassword" placeholder="••••••••" />
+            <button class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-outline hover:text-primary transition-colors" type="button" (click)="toggleConfirmPassword()">
+              <span class="material-symbols-outlined leading-none">{{ showConfirmPassword ? 'visibility' : 'visibility_off' }}</span>
+            </button>
+          </div>
+          <p *ngIf="fieldErrors.confirmPassword" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.confirmPassword }}</p>
         </div>
-        <div class="flex items-start gap-3 py-2">
-          <input class="mt-1 rounded-sm border-outline text-primary focus:ring-primary ring-offset-2" id="terms" type="checkbox" />
-          <label class="font-body-md text-label-md text-on-surface-variant cursor-pointer" for="terms">
-            Tôi đồng ý với <a class="text-primary hover:underline transition-all" href="#">Điều khoản sử dụng</a> và <a class="text-primary hover:underline transition-all" href="#">Chính sách bảo mật</a>.
-          </label>
+        <div class="space-y-1">
+          <div class="flex items-start gap-3 py-2">
+            <input [(ngModel)]="agreeTerms" name="agreeTerms" class="mt-1 rounded-sm border-outline text-primary focus:ring-primary ring-offset-2" id="terms" type="checkbox" />
+            <label class="font-body-md text-label-md text-on-surface-variant cursor-pointer" for="terms">
+              Tôi đồng ý với <a class="text-primary hover:underline transition-all" href="#">Điều khoản sử dụng</a> và <a class="text-primary hover:underline transition-all" href="#">Chính sách bảo mật</a>.
+            </label>
+          </div>
+          <p *ngIf="fieldErrors.agreeTerms" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.agreeTerms }}</p>
         </div>
         <button class="w-full bg-primary-container text-on-primary-container py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300 active:scale-[0.98] shadow-sm">Đăng ký</button>
       </form>

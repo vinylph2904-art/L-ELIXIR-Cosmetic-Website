@@ -1,0 +1,356 @@
+<main *ngIf="user" class="pt-20 pb-section-gap-desktop">
+  <section class="relative h-[400px] flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img alt="Luxury Background" class="w-full h-full object-cover opacity-30" [src]="heroImage" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+    <div class="relative z-10 max-w-container-max mx-auto px-gutter w-full">
+      <div class="max-w-2xl">
+        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-4">
+          Trang cá nhân
+        </p>
+        <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-4 text-primary">Tài khoản của tôi</h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Quản lý thông tin cá nhân, đơn hàng và hành trình chăm sóc da của bạn. L'ELIXIR đồng hành cùng bạn trên con đường tìm thấy vẻ đẹp thuần khiết nhất.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-container-max mx-auto px-gutter -mt-20 relative z-20 pb-section-gap-desktop">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <aside class="lg:col-span-4 space-y-8">
+        <div class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-outline-variant flex flex-col items-center text-center">
+          <div class="relative mb-6">
+            <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-primary-container p-1 bg-surface-container-low">
+              <span class="material-symbols-outlined text-primary text-[120px] leading-none">account_circle</span>
+            </div>
+          </div>
+          <h2 class="font-headline-md text-headline-md text-on-surface mb-1">{{ user.fullName }}</h2>
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-6">Thành viên từ năm {{ memberSince }}</p>
+
+          <div class="w-full space-y-3 mb-8 text-left">
+            <div class="flex items-center gap-3 text-on-surface-variant">
+              <span class="material-symbols-outlined">mail</span>
+              <span class="font-body-md break-all">{{ user.email }}</span>
+            </div>
+            <div class="flex items-center gap-3 text-on-surface-variant">
+              <span class="material-symbols-outlined">call</span>
+              <span class="font-body-md">{{ user.phoneNumber || 'Chưa cập nhật' }}</span>
+            </div>
+            <div class="flex items-center gap-3 text-on-surface-variant">
+              <span class="material-symbols-outlined">location_on</span>
+              <span class="font-body-md line-clamp-2">{{ defaultAddress || 'Chưa cập nhật' }}</span>
+            </div>
+          </div>
+
+          <button type="button" (click)="startEdit()" class="w-full py-4 px-6 border border-primary text-primary font-label-md uppercase tracking-widest rounded-lg hover:bg-primary hover:text-on-primary transition-all duration-300">
+            Chỉnh sửa thông tin
+          </button>
+        </div>
+
+        <nav class="bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant overflow-hidden">
+          <div class="p-6 border-b border-outline-variant bg-surface-container-low">
+            <h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Cài đặt tài khoản</h3>
+          </div>
+          <div class="divide-y divide-outline-variant">
+            <button type="button" class="w-full flex items-center justify-between p-5 hover:bg-surface-container transition-colors group" (click)="startChangePassword()">
+              <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-outline group-hover:text-primary">lock_reset</span>
+                <span class="font-body-md">Đổi mật khẩu</span>
+              </div>
+              <span class="material-symbols-outlined text-outline">chevron_right</span>
+            </button>
+            <button type="button" class="w-full flex items-center justify-between p-5 hover:bg-surface-container transition-colors group" (click)="startManageAddress()">
+              <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-outline group-hover:text-primary">location_on</span>
+                <span class="font-body-md">Quản lý địa chỉ</span>
+              </div>
+              <span class="material-symbols-outlined text-outline">chevron_right</span>
+            </button>
+            <a routerLink="/order-tracking" class="flex items-center justify-between p-5 hover:bg-surface-container transition-colors group">
+              <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-outline group-hover:text-primary">local_shipping</span>
+                <span class="font-body-md">Theo dõi đơn hàng</span>
+              </div>
+              <span class="material-symbols-outlined text-outline">chevron_right</span>
+            </a>
+            <button type="button" (click)="logout()" class="w-full flex items-center justify-between p-5 text-error hover:bg-error-container/20 transition-colors group">
+              <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined">logout</span>
+                <span class="font-body-md font-medium">Đăng xuất</span>
+              </div>
+            </button>
+          </div>
+        </nav>
+      </aside>
+
+      <div class="lg:col-span-8 space-y-10">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
+            <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Đơn hàng</p>
+            <p class="font-headline-lg text-headline-lg font-bold text-primary">{{ orders.length }}</p>
+          </div>
+          <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
+            <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Yêu thích</p>
+            <p class="font-headline-lg text-headline-lg font-bold text-primary">—</p>
+          </div>
+          <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
+            <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Đánh giá</p>
+            <p class="font-headline-lg text-headline-lg font-bold text-primary">—</p>
+          </div>
+        </div>
+
+        <section class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-outline-variant">
+          <h3 class="font-headline-md text-headline-md mb-8 pb-4 border-b border-outline-variant">Thông tin cá nhân</h3>
+
+          <p *ngIf="editSuccess" class="font-body-sm text-body-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3 mb-4">{{ editSuccess }}</p>
+          <p *ngIf="editError" class="font-body-sm text-body-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mb-4">{{ editError }}</p>
+
+          <div *ngIf="!isEditing" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            <div class="space-y-1">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Họ và tên</label>
+              <p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">{{ user.fullName }}</p>
+            </div>
+            <div class="space-y-1">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Email</label>
+              <p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">{{ user.email }}</p>
+            </div>
+            <div class="space-y-1">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Số điện thoại</label>
+              <p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">{{ user.phoneNumber || 'Chưa cập nhật' }}</p>
+            </div>
+            <div class="space-y-1">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Ngày sinh</label>
+              <p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">{{ user.dateOfBirth || 'Chưa cập nhật' }}</p>
+            </div>
+            <div class="space-y-1">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Giới tính</label>
+              <p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">{{ user.gender || 'Chưa cập nhật' }}</p>
+            </div>
+            <div class="space-y-1">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Địa chỉ</label>
+              <p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">{{ defaultAddress || 'Chưa cập nhật' }}</p>
+            </div>
+          </div>
+
+          <form *ngIf="isEditing" (ngSubmit)="saveProfile()" class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+              <div class="space-y-1">
+                <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Họ và tên</label>
+                <input [(ngModel)]="form.fullName" name="fullName" type="text" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0" />
+              </div>
+              <div class="space-y-1">
+                <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Email</label>
+                <input [value]="user.email" disabled type="email" class="w-full bg-surface-container border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md text-on-surface-variant cursor-not-allowed" />
+              </div>
+              <div class="space-y-1">
+                <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Số điện thoại</label>
+                <input [(ngModel)]="form.phoneNumber" name="phoneNumber" type="tel" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0" placeholder="0901234567" />
+              </div>
+              <div class="space-y-1">
+                <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Ngày sinh</label>
+                <input [(ngModel)]="form.dateOfBirth" name="dateOfBirth" type="text" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0" placeholder="dd/mm/yyyy" />
+              </div>
+              <div class="space-y-1">
+                <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Giới tính</label>
+                <select [(ngModel)]="form.gender" name="gender" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0">
+                  <option value="">Chưa chọn</option>
+                  <option value="Nam">Nam</option>
+                  <option value="Nữ">Nữ</option>
+                  <option value="Khác">Khác</option>
+                </select>
+              </div>
+              <div class="space-y-1 md:col-span-2">
+                <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Địa chỉ</label>
+                <input [(ngModel)]="form.address" name="address" type="text" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0" placeholder="Số nhà, đường, quận/huyện, tỉnh/thành" />
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-3 justify-end">
+              <button type="submit" class="bg-primary text-on-primary py-4 px-10 font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition-opacity">
+                Cập nhật thông tin
+              </button>
+              <button type="button" (click)="cancelEdit()" class="py-4 px-10 border border-outline-variant text-on-surface-variant font-label-md uppercase tracking-widest rounded-lg hover:bg-surface-container transition-all">
+                Hủy
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section *ngIf="isChangingPassword" class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-outline-variant">
+          <h3 class="font-headline-md text-headline-md mb-8 pb-4 border-b border-outline-variant">Đổi mật khẩu</h3>
+
+          <p *ngIf="passwordSuccess" class="font-body-sm text-body-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3 mb-4">{{ passwordSuccess }}</p>
+          <p *ngIf="passwordError" class="font-body-sm text-body-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mb-4">{{ passwordError }}</p>
+
+          <form (ngSubmit)="savePassword()" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            <div class="space-y-1 md:col-span-2">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Mật khẩu hiện tại</label>
+              <input [(ngModel)]="passwordForm.currentPassword" name="currentPassword" type="password" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0" placeholder="Nhập mật khẩu hiện tại" />
+            </div>
+            <div class="space-y-1">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Mật khẩu mới</label>
+              <input [(ngModel)]="passwordForm.newPassword" name="newPassword" type="password" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0" placeholder="Nhập mật khẩu mới" />
+            </div>
+            <div class="space-y-1">
+              <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Xác nhận mật khẩu mới</label>
+              <input [(ngModel)]="passwordForm.confirmPassword" name="confirmPassword" type="password" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0" placeholder="Nhập lại mật khẩu mới" />
+            </div>
+
+            <div class="md:col-span-2 flex flex-wrap gap-3 justify-end pt-2">
+              <button type="submit" class="bg-primary text-on-primary py-4 px-10 font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition-opacity">
+                Lưu mật khẩu
+              </button>
+              <button type="button" (click)="cancelChangePassword()" class="py-4 px-10 border border-outline-variant text-on-surface-variant font-label-md uppercase tracking-widest rounded-lg hover:bg-surface-container transition-all">
+                Hủy
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <div *ngIf="hasSurveyData" class="bg-surface-container-lowest p-8 rounded-lg border border-outline-variant flex flex-col">
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="font-headline-md text-headline-md">Kết quả khảo sát da</h3>
+            <span class="text-label-sm text-outline">Vừa thực hiện</span>
+          </div>
+  
+          <div class="flex-grow space-y-4 mb-8">
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-surface-container-high rounded text-label-sm font-medium">
+                {{ displaySkinType }}
+              </span>
+              
+              <span *ngFor="let prob of displayProblems" class="px-3 py-1 bg-surface-container-high rounded text-label-sm font-medium">
+                {{ prob }}
+              </span>
+            </div>
+            
+            <p *ngIf="displayTargets && displayTargets.length > 0" class="font-body-md text-on-surface-variant italic">
+              "Mục tiêu: {{ displayTargets.join(', ') }}."
+            </p>
+          </div>
+          
+          <button routerLink="/recommendation" type="button" class="w-full py-4 bg-primary text-on-primary font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition-opacity text-center">
+            Xem kết quả gợi ý
+          </button>
+        </div>
+        <section>
+          <div class="flex justify-between items-end mb-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Đơn hàng gần đây</h3>
+            <a class="font-label-sm text-label-sm uppercase tracking-widest text-primary border-b border-primary hover:opacity-70" routerLink="/order-tracking">Xem tất cả</a>
+          </div>
+
+          <p *ngIf="orders.length === 0" class="font-body-md text-on-surface-variant">Bạn chưa có đơn hàng nào.</p>
+
+          <div *ngIf="orders.length > 0" class="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden divide-y divide-outline-variant">
+            <div *ngFor="let o of orders.slice(0, 3)" class="p-6 flex flex-wrap items-center justify-between gap-6 hover:bg-surface transition-colors">
+              <div class="flex items-center gap-6">
+                <div class="bg-secondary-container w-16 h-16 rounded flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined">inventory_2</span>
+                </div>
+                <div>
+                  <p class="font-body-md font-semibold text-primary">{{ formatCurrency(o.totalAmount) }}</p>
+                  <p class="text-label-sm text-outline">Mã đơn: #{{ o.orderId }}</p>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1 bg-tertiary-fixed text-on-tertiary-container rounded-full">
+                  <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                  <span class="text-label-sm uppercase tracking-widest font-semibold">{{ getStatusLabel(o.orderStatus) }}</span>
+                </div>
+              </div>
+              <button type="button" class="py-3 px-6 border border-outline text-on-surface-variant font-label-sm uppercase tracking-widest rounded-lg hover:bg-on-surface hover:text-surface transition-all" (click)="viewOrderDetails(o)">
+                Xem chi tiết
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="selectedOrder" class="mt-6 border border-outline-variant rounded-lg bg-surface-container-lowest p-6 md:p-8 shadow-sm">
+            <div class="flex flex-wrap items-start justify-between gap-4 mb-6 pb-4 border-b border-outline-variant">
+              <div>
+                <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Chi tiết đơn hàng</p>
+                <h4 class="font-headline-md text-headline-md text-on-surface">#{{ selectedOrder.orderId }}</h4>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <button type="button" (click)="trackSelectedOrder()" class="py-3 px-5 border border-primary text-primary font-label-sm uppercase tracking-widest rounded-lg hover:bg-primary hover:text-on-primary transition-all">
+                  Theo dõi đơn
+                </button>
+                <button type="button" (click)="closeOrderDetails()" class="py-3 px-5 border border-outline text-on-surface-variant font-label-sm uppercase tracking-widest rounded-lg hover:bg-surface-container transition-all">
+                  Đóng
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              <div class="space-y-4">
+                <div class="space-y-1">
+                  <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Tên người nhận</p>
+                  <p class="font-body-md text-on-surface">{{ selectedOrder.shippingInfo.fullName }}</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Số điện thoại</p>
+                  <p class="font-body-md text-on-surface">{{ selectedOrder.shippingInfo.phone }}</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Địa chỉ</p>
+                  <p class="font-body-md text-on-surface">{{ selectedOrder.shippingInfo.address }}, {{ selectedOrder.shippingInfo.district }}, {{ selectedOrder.shippingInfo.city }}</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Email</p>
+                  <p class="font-body-md text-on-surface">{{ selectedOrder.shippingInfo.email }}</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="space-y-1">
+                  <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Trạng thái</p>
+                  <p class="font-body-md text-on-surface">{{ getStatusLabel(selectedOrder.orderStatus) }}</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Thanh toán</p>
+                  <p class="font-body-md text-on-surface">{{ getPaymentMethodLabel(selectedOrder.paymentMethod) }}</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Giao hàng</p>
+                  <p class="font-body-md text-on-surface">{{ getShippingMethodLabel(selectedOrder.shippingMethod) }}</p>
+                </div>
+                <div class="space-y-1">
+                  <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Ngày đặt</p>
+                  <p class="font-body-md text-on-surface">{{ selectedOrder.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-8">
+              <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-4">Sản phẩm trong đơn</p>
+              <div class="divide-y divide-outline-variant border border-outline-variant rounded-lg overflow-hidden">
+                <div *ngFor="let item of selectedOrder.items" class="flex flex-wrap items-center justify-between gap-4 p-4 bg-white/40">
+                  <div>
+                    <p class="font-body-md font-semibold text-on-surface">{{ item.product.name }}</p>
+                    <p class="font-body-sm text-on-surface-variant">Số lượng: {{ item.quantity }}</p>
+                  </div>
+                  <p class="font-body-md text-primary font-semibold">{{ formatCurrency(item.price * item.quantity) }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant">
+                <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Tạm tính</p>
+                <p class="font-body-md text-on-surface">{{ formatCurrency(selectedOrder.subtotal) }}</p>
+              </div>
+              <div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant">
+                <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Phí vận chuyển</p>
+                <p class="font-body-md text-on-surface">{{ formatCurrency(selectedOrder.shippingFee) }}</p>
+              </div>
+              <div class="p-4 rounded-lg bg-primary-container/20 border border-primary/20">
+                <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Tổng cộng</p>
+                <p class="font-body-md font-semibold text-primary">{{ formatCurrency(selectedOrder.totalAmount) }}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>

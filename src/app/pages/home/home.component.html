@@ -2,13 +2,10 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
     <div class="space-y-8">
       <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em]">Vẻ đẹp Khoa học</span>
-      <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">
-        Khám phá quy trình dưỡng da <br>
+      <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">Khám phá quy trình dưỡng da <br>
         <i class="font-normal italic">hoàn hảo dành riêng cho bạn</i>
       </h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-        Những công thức tinh túy được thiết kế riêng cho làn da bạn. Trải nghiệm đỉnh cao của sự cá nhân hóa thông qua công nghệ chẩn đoán tiên tiến.
-      </p>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Những công thức tinh túy được thiết kế riêng cho làn da bạn. Trải nghiệm đỉnh cao của sự cá nhân hóa thông qua công nghệ chẩn đoán tiên tiến.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-4">
         <a routerLink="/survey" class="px-10 py-4 bg-primary text-white font-label-md text-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition-all active:scale-95 inline-flex items-center justify-center">
           Bắt đầu khảo sát da
@@ -56,42 +53,12 @@
 
 <section class="py-section-gap-desktop max-w-container-max mx-auto px-gutter">
   <h2 class="font-display-lg text-headline-lg text-center mb-16">Mua sắm theo Nhu cầu</h2>
-  <div class="flex gap-gutter overflow-x-auto pb-8 hide-scrollbar snap-x">
-    <div class="flex-none w-48 snap-start group cursor-pointer">
-      <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
-        <img alt="Sữa rửa mặt" class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnrobkCRn4fnVExr7zjOxQ7mMBr57Vp59lhS2Cl2a_N3xQfAaq7apff-lR6XhjEMxUSJqpkVg10dlmuBdEGLuRxpffPT2RC0HYtsZnPXVLMQzxv7lQxPdu8WpOT8fpoH9-T4SjuS9MztnjM4VwnCPLPgOZKmHewDlg-k-hjIz-Fksnkp0A3gy23_q7eKfwtlA0vG3tU0aVngNq3ozkdrEwUTUP28xKsmdgW4twfVaT9aN5oGShNsj6_zqqSYP5A9RWM3zVxNsJo7g">
+  <div class="flex justify-center gap-gutter pb-8">
+    <div *ngFor="let category of categories" class="flex-none w-48 snap-start group cursor-pointer" [routerLink]="['/products']" [queryParams]="{ category: category }">
+      <div class="aspect-square bg-surface-container-high rounded-full flex items-center justify-center mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
+        <span class="material-symbols-outlined text-5xl text-primary">spa</span>
       </div>
-      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">Sữa rửa mặt</p>
-    </div>
-    <div class="flex-none w-48 snap-start group cursor-pointer">
-      <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
-        <img alt="Nước cân bằng" class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWQ8swjVLF16irMYAr9IMRhWij-jlduoXXAPjpf419K5AzOYV2lXZMs8uxLJscC3gdoIxzzdWiSTOM-CcK0otnp-7-GEZ0AYDNcC4E67tHu3u4zbytc-v2UvRqh1p2xuit0EIdy0B6aZpX1iaZJEc7dMdvCJ1UFPta1AX5XJO370YeGpa5a8dQSWSLYRWTvNx9dcoeYvaCQ-_Stq2rs7ho0LcLHoMDsjzUwewtu3ZcLewufX2VDo2ZYPnPbD4goIM915ZgMXulxxg">
-      </div>
-      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">Nước cân bằng</p>
-    </div>
-    <div class="flex-none w-48 snap-start group cursor-pointer">
-      <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
-        <img alt="Tinh chất" class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHmy8WO72fFzpYd3zDC3CooSJZzJ0jCCAtSwZIBLPitxqjWifRjT4eyysd4RSf7KoRN3cG_HMphHrWsirqtidAMXxYbG63RqrPr1aD1gZEWZVYJSfosApqRX_YdEwmLL8HVtASgwi-CTZl6miZskSnVqfKqDIIZ8AZRekCFzY2Q-XYeqKRc26qXFrb9dz3NKLpOA7wHAz7S_mr90_u9F38qttq-jWzrMOFuNURJp6QjjRpkHhAtKuPzHJtrAM2gBUgVir71kOaDw4">
-      </div>
-      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">Tinh chất</p>
-    </div>
-    <div class="flex-none w-48 snap-start group cursor-pointer">
-      <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
-        <img alt="Kem dưỡng ẩm" class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFujGNHeJcxqWRwPRXO_nAzHOWJFNBqia2A6UNkxIYe9lYnHGDTNC6SP8kpctoSv6yzjFZtEsKEKUiRBYiSDIaI60CQOahhAeizhgVgpeFiNHSYmozwxT_0tgMBxLOY4_LPnIthbJq6NY9qkzwAb2owD_109Z4v8kx5z9cR1eqIIzgwydDXZiRPI15vlb3k1f4IhTf5u3Lexf-qCXFUTFELUdTgykFOSPiU8BiSJn7CcffwtUTBhzCib9km4VOtFfiKx3oLcfsaPc">
-      </div>
-      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">Kem dưỡng ẩm</p>
-    </div>
-    <div class="flex-none w-48 snap-start group cursor-pointer">
-      <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
-        <img alt="Chăm sóc vùng mắt" class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbyWxlr09Y2fFMYRgYVvE3V7XCAYwTb4TCmT6TepF7nSEbl0Yb-TwckCxtt_Kr_BI5seexp7f-1e9K5112t7UcX5Y_gJtVILQ215V93vfZ6J-R1Rvnq6y-g7YAqSnWKOI9ts4SsMj03177MuoSLjnscc4On5GbwAUqD-5Mbfkhf4FmqUwzbxfkrlWn9SVnagD05gKE9Ihftkc3MlEWhTlcNo1YV0Mx2GejmV1CxC60XXKsL0GTzuQfaDarVdCw4J79wGw1-94bFS0">
-      </div>
-      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">Chăm sóc vùng mắt</p>
-    </div>
-    <div class="flex-none w-48 snap-start group cursor-pointer">
-      <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
-        <img alt="Chống nắng" class="w-full h-full object-cover group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUWX-kkCHGtG_j7jlqfMDwZ6lrUXc_k74Mu57qj6Bv7JJq361jY2bhdRjEIXmdv9U0WM95bK7GEsRTDl3Ss4EO4kons7BFcFlZp3erUxWOOddUPJ9PgEjYvupox-UvygdQpfrL40_Yqaw00owXiUvGV-YJHN06EFko2exCYDv-HSpr2ELgrhyBZxAdEEyPKrLpM8VrHEBB7dAbdvTtB7TK8Fq_b6NoGr8w9CvDL6Kl1Fpql4fqK3Ik5Rgwr6uhAeHZR2IN2nv5YJo">
-      </div>
-      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">Chống nắng</p>
+      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">{{ category }}</p>
     </div>
   </div>
 </section>
@@ -105,127 +72,9 @@
       </div>
       <a routerLink="/products" class="font-label-md text-label-md text-primary hover:underline underline-offset-8">Xem tất cả sản phẩm</a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img alt="Tinh chất rạng ngời Radiance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPGVV2pAxoxnlGcRNLqYYiQivs5nxrp3NcdnOELNIuEuO42WpDVAsiienfBm7AkKZ2uycNCV5TjvUpou7MIiGtTP1ZK63S-YEDJPtyZO8zsM5RaGgYpfeFFtK6Gw4BD32gSqog0WqJ6Frtha_PFm8YOdEA-cEuAOBlmrqNS1yZIbjJKuZwicH9MVCGrIV88aw9xF8HMv5KBYOqzTefL3ss1E0zdbS9pu1uXL2vxG_B7_Hfnhjgiblhn18C_dIV1VqLDosz2aRqhPk">
-        </div>
-        <div class="space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Đoạt giải thưởng</span>
-            <div class="flex text-primary text-xs">
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-            </div>
-          </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">Tinh chất rạng ngời Radiance</h3>
-          <p class="text-on-surface-variant font-label-md">1.300.000 VNĐ</p>
-          <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
-        </div>
-      </div>
-      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img alt="Kem phục hồi ban đêm Nocturnal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD41WKqjiq1nI-9I48s26qYOduSdPGOs4d33VJs0H-3Tw4D8z5w7gLdRFXZYMwv-eibi14rSoQNhuZUPvhdDM41_uG40bGSUpvkbfChsbthqTcxxkuxMHLHekU2VBQCkaVV3sg3NS00xXUknqyrYll9QCW3YvdHLSWbTL5gKYhCELWMMJQl4SYVFkTDojDcUmKlrccOJuNWE49TmLwxWqSpmxqAOAT941ZEctRwya6dfjCFxC1BBjNLkmWDyXxQf3YiuTzOz6dX9AA">
-        </div>
-        <div class="space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Bán chạy nhất</span>
-            <div class="flex text-primary text-xs">
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">star</span>
-            </div>
-          </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">Kem phục hồi ban đêm Nocturnal</h3>
-          <p class="text-on-surface-variant font-label-md">180.000 VNĐ</p>
-          <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
-        </div>
-      </div>
-      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img alt="Tinh chất trẻ hóa vùng mắt Eternal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrWOI57Liq9zLYbzdgSCULww5DDxeZ1WMO2cAZuS9ZfTomQK4Aij41PbxO4FouplA-YH4C6bcbRzhYBG5f_MoHmK4UYZUWysWnDe7OGWld9zBovDX4uuRBFMJruBHfrA59KR8xFm8MkZmu1SGFONpq2HZAWRz5UhB7ZP3GBvdtFhwSu8v0RW_tPhcAeTcXNcjpjgTjZcjbFuAUdIhVMaW331JI55jfqUFhY4-H_LkMyouAB5CLJTED5TSNuKsaw-96N558dPpd-1A">
-        </div>
-        <div class="space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Mới</span>
-            <div class="flex text-primary text-xs">
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-            </div>
-          </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">Tinh chất trẻ hóa vùng mắt Eternal</h3>
-          <p class="text-on-surface-variant font-label-md">500.000 VNĐ</p>
-          <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
-        </div>
-      </div>
-      <div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-        <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
-          <img alt="Sữa rửa mặt thảo mộc Botanical" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG8N4nmDcmT85ywe3drBVGTAdm-oL-59Z8AXI7hzxiiOsnobifO3MrF0vXwm6sWHRvGmaa_PjoLRIDeIOp45CYNXGfMcNaKmwHD8wdMuWZYO0aF7abfefxL_eiWCb0wyaPiXn_crp0Q2GEF9eGC3MaipgPmEciN-aQR4fEyp5IH5X55p6XV79Tqin4Dzn5xKnqNSzed_tQNB9bj9haHtG_2FdXPnpME3a4Da63AJJu86BKNHBWMiPzeuONHYja3hTuiA8R4qgeVRI">
-        </div>
-        <div class="space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">Hữu cơ</span>
-            <div class="flex text-primary text-xs">
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 0;">star</span>
-            </div>
-          </div>
-          <h3 class="font-display-lg text-headline-md leading-tight">Sữa rửa mặt thảo mộc Botanical</h3>
-          <p class="text-on-surface-variant font-label-md">200.000VNĐ</p>
-          <button class="w-full py-3 mt-4 border border-outline rounded-lg font-label-md uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Thêm vào giỏ hàng</button>
-        </div>
-      </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter items-stretch">
+      <app-product-card *ngFor="let product of featuredProducts" [product]="product"></app-product-card>
     </div>
-  </div>
-</section>
-
-<section class="py-section-gap-desktop max-w-container-max mx-auto px-gutter">
-  <div class="text-center mb-20">
-    <h2 class="font-display-lg text-display-lg-mobile md:text-headline-lg">Hành trình chạm đến làn da không tì vết</h2>
-    <p class="font-body-lg text-on-surface-variant mt-4">Các bước được thiết kế chuẩn xác cho một kiệt tác cá nhân hóa.</p>
-  </div>
-  <div class="relative flex flex-col md:flex-row justify-between items-center gap-12 max-w-4xl mx-auto">
-    <div class="hidden md:block absolute top-10 left-0 w-full h-0.5 border-t-2 border-dashed border-primary-container z-0"></div>
-    <div class="relative z-10 flex flex-col items-center group">
-      <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-6 shadow-lg transition-transform group-hover:scale-110">
-        <span class="material-symbols-outlined text-3xl">edit_note</span>
-      </div>
-      <h3 class="font-label-md uppercase tracking-widest">Khảo sát</h3>
-    </div>
-    <div class="relative z-10 flex flex-col items-center group">
-      <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-6 shadow-lg transition-transform group-hover:scale-110">
-        <span class="material-symbols-outlined text-3xl">biotech</span>
-      </div>
-      <h3 class="font-label-md uppercase tracking-widest">Phân tích</h3>
-    </div>
-    <div class="relative z-10 flex flex-col items-center group">
-      <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-6 shadow-lg transition-transform group-hover:scale-110">
-        <span class="material-symbols-outlined text-3xl">verified</span>
-      </div>
-      <h3 class="font-label-md uppercase tracking-widest">Đề xuất</h3>
-    </div>
-    <div class="relative z-10 flex flex-col items-center group">
-      <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white mb-6 shadow-lg transition-transform group-hover:scale-110">
-        <span class="material-symbols-outlined text-3xl">architecture</span>
-      </div>
-      <h3 class="font-label-md uppercase tracking-widest">Thiết lập quy trình</h3>
-    </div>
-  </div>
-  <div class="mt-20 text-center">
-    <a routerLink="/survey" class="inline-flex px-12 py-5 bg-primary text-white font-label-md text-label-md uppercase tracking-[0.2em] rounded-lg shadow-xl hover:translate-y-[-2px] transition-all">
-      Bắt đầu Phân tích
-    </a>
   </div>
 </section>
 
@@ -247,9 +96,9 @@
         <div class="relative aspect-[16/9] rounded-xl overflow-hidden group">
           <img alt="Golden Hour Mist" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-UjfXpH8jZRl5xGTU8wHdQy3XolbTBNM9W3XYyKchcx5XCOOzf-705ZbDIcU7P9q7-jmrN0EvCqE3Wu0JUM2ev71ZmmayuLdlEGDC_G1G5PCGKu0KEU8b_wujjSJFB705UHKG3wr8kKbl1xTtPWF58AoezRPapRUgA-NnNHc_WGjmcXVRhTkymubzCs4Bub-Mp_3E4oW_1zwmx1Rfr1RPXUqAGEJnNofO36z9llE4sZiA4UIM6NMnyyS1t7JFcDFvUyhMKlvAnMI">
           <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex flex-col justify-end p-8 text-white">
-            <span class="font-label-sm uppercase tracking-widest mb-2">Phiên bản Giới hạn Mùa hè</span>
-            <h3 class="font-display-lg text-headline-lg">Xịt khoáng Ánh dương Golden Hour</h3>
-            <a routerLink="/products" class="mt-4 font-label-md uppercase underline underline-offset-8 inline-block">Khám phá bộ sưu tập</a>
+            <span class="font-label-sm uppercase tracking-widest mb-2">Tinh hoa dưỡng sáng</span>
+            <h3 class="font-display-lg text-headline-lg">Bộ sưu tập Lumina</h3>
+            <a [routerLink]="['/products']" [queryParams]="{ collection: 'Lumina' }" class="mt-4 font-label-md uppercase underline underline-offset-8 inline-block"> Khám phá bộ sưu tập</a>          
           </div>
         </div>
       </div>
@@ -257,30 +106,11 @@
         <div class="relative aspect-[16/9] rounded-xl overflow-hidden group">
           <img alt="Charcoal Infusion" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUY4OJKso_GDjXGr0X0zm_mmwZucbrTAhtAnhUYbcFINRKmKn3sg4D-3M8xCZViwRFLqOlpbRAc1rwBpPbC-E5VEjQFbx-9xqevXRb9UoVVckkSZ39HhUY8X_TbfsD_hVea8G8Gk-P4vRwlINrnZMuJ7sLpV33aZdEJlkZh6fMoMqEiP_-r4YHH0yfJVzKdj9V2GdeauHgigNHZvwsVkmxJjmJhDnwrICwXSSjKuZbrty0jSF3d5TZ2pdkjjT3fcBNuIHq-FJ6AmA">
           <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex flex-col justify-end p-8 text-white">
-            <span class="font-label-sm uppercase tracking-widest mb-2">Dòng sản phẩm Thải độc</span>
-            <h3 class="font-display-lg text-headline-lg">Mặt nạ thải độc Charcoal</h3>
-            <a routerLink="/products" class="mt-4 font-label-md uppercase underline underline-offset-8 inline-block">Khám phá bộ sưu tập</a>
+            <span class="font-label-sm uppercase tracking-widest mb-2">Vẻ đẹp rạng đông</span>
+            <h3 class="font-display-lg text-headline-lg">Bộ sưu tập Aurora</h3>
+            <a [routerLink]="['/products']" [queryParams]="{ collection: 'Aurora' }" class="mt-4 font-label-md uppercase underline underline-offset-8 inline-block">Khám phá bộ sưu tập</a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="max-w-container-max mx-auto px-gutter py-section-gap-desktop">
-  <div class="bg-tertiary-container/20 rounded-xl overflow-hidden">
-    <div class="grid grid-cols-1 md:grid-cols-2">
-      <div class="p-12 md:p-20 space-y-8">
-        <span class="font-label-sm text-primary uppercase tracking-widest">Đột phá AI</span>
-        <h2 class="font-display-lg text-display-lg-mobile md:text-headline-lg">Trợ lý chăm sóc da <br><i>riêng biệt</i></h2>
-        <p class="font-body-lg text-on-surface-variant">Trợ lý AI của chúng tôi phân tích ảnh chân dung và dữ liệu môi trường để điều chỉnh quy trình của bạn theo thời gian thực, thích ứng với những thay đổi hàng ngày của làn da.</p>
-        <a routerLink="/recommendation" class="px-10 py-4 bg-on-surface text-white font-label-md uppercase tracking-widest rounded-lg flex items-center gap-3 hover:bg-primary transition-colors inline-flex">
-          <span class="material-symbols-outlined">smart_toy</span>
-          Trải nghiệm Trợ lý ảo
-        </a>
-      </div>
-      <div class="relative h-[400px] md:h-auto">
-        <img alt="AI Beauty" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRnvv1_KCEcBEFG7Z8zykfNnYWi498muuiJs-qc_421CM5bsAQyjvv5PQk9eK32eQVDEioO4phqJyrRgaa8Hm20xdSAYD-a2OQNOBcAZA9K4i3NmF-P94s2gkM-iqzOyoYWvY4DaVG7DivglhFyNikek_J319KVPuGbvfI0L3mOz9DS4L8oiFxQqcKpc-y9VM-9Bf9AM-Mg3OCH8khQumdJ5XNyivG41RRZEC6pdcACt9HsP-Jo0npwcOP_5qgrxjTybSmK35UYms">
       </div>
     </div>
   </div>
@@ -348,16 +178,5 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="bg-primary-container/10 py-section-gap-desktop">
-  <div class="max-w-2xl mx-auto px-gutter text-center space-y-8">
-    <h2 class="font-display-lg text-headline-lg">Gia nhập Cộng đồng Thượng lưu</h2>
-    <p class="font-body-lg text-on-surface-variant">Nhận quyền truy cập độc quyền vào các đợt ra mắt sản phẩm mới, bí quyết chăm sóc da và những lời mời riêng tư.</p>
-    <form class="flex flex-col sm:flex-row gap-0 border-b border-on-surface pb-2">
-      <input class="bg-transparent border-none focus:ring-0 flex-1 font-label-md uppercase tracking-widest text-on-surface placeholder:text-outline/50" placeholder="NHẬP ĐỊA CHỈ EMAIL CỦA BẠN" type="email">
-      <button class="px-8 py-2 font-label-md text-primary uppercase tracking-[0.2em] hover:opacity-70 transition-opacity" type="submit">Đăng ký ngay</button>
-    </form>
   </div>
 </section>

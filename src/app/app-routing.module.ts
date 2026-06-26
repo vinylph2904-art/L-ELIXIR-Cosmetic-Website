@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
@@ -11,19 +11,25 @@ import { RecommendationComponent } from './pages/recommendation/recommendation.c
 import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
+import { PaymentFailureComponent } from './pages/payment-failure/payment-failure.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { authGuard } from './guards/auth.guard';
+import { guestGuard } from './guards/guest.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [guestGuard] },
   { path: 'survey', component: SurveyComponent },
   { path: 'recommendation', component: RecommendationComponent },
   { path: 'order-tracking', component: OrderTrackingComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'payment', component: PaymentComponent },
   { path: 'payment-success', component: PaymentSuccessComponent },
+  { path: 'payment-failure', component: PaymentFailureComponent },
   { path: '**', redirectTo: '' }
 ];
 

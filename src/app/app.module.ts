@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -15,9 +16,15 @@ import { RecommendationComponent } from './pages/recommendation/recommendation.c
 import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
+import { PaymentFailureComponent } from './pages/payment-failure/payment-failure.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { BeautyAssistantComponent } from './beauty-assistant/beauty-assistant.component';
+import { ToastContainerComponent } from './components/toast-container/toast-container.component';
+import { ReviewListComponent } from './components/review-list/review-list.component';
+import { ReviewFormComponent } from './components/review-form/review-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -31,17 +38,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     SurveyComponent,
-    RecommendationComponent
-    ,OrderTrackingComponent
-    ,PaymentComponent
-    ,PaymentSuccessComponent
+    RecommendationComponent,
+    OrderTrackingComponent,
+    PaymentComponent,
+    PaymentSuccessComponent,
+    PaymentFailureComponent,
+    ProfileComponent,
+    ProductCardComponent,
+    ReviewListComponent,
+    ReviewFormComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     BeautyAssistantComponent,
+    ToastContainerComponent,
     RouterModule
   ],
   providers: [],

@@ -1,0 +1,18 @@
+[
+  {
+    "addressId": "A1718000000000",
+    "userId": "U1718000000000",
+    "receiverName": "Nguyễn Văn A",
+    "receiverPhone": "0901234567",
+    "addressDetails": "123 Đường Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1781977136020",
+    "userId": "U1781977136020",
+    "receiverName": "Ây bi xi",
+    "receiverPhone": "1234567989",
+    "addressDetails": "789 Đường Trần Hưng Đạo, Quận Hoàn Kiếm, TP. Hà Nội",
+    "isDefault": true
+  }
+]

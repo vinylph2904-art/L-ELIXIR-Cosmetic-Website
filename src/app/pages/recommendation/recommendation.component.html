@@ -365,7 +365,14 @@
       Xem giỏ hàng hiện tại
     </button>
     <div class="block">
-      <button routerLink="/survey" class="border border-outline px-8 py-3 rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-container-low transition-all duration-300">Làm lại khảo sát</button>
+      <button (click)="reDoSurvey()" 
+        type="button"
+        class="px-6 py-2.5 bg-white border-2 border-[#8A6F4E] text-[#8A6F4E] font-label-md tracking-wider rounded-full font-medium relative overflow-hidden transition-all duration-300 hover:shadow-md active:scale-95 group inline-flex items-center justify-center">
+  
+        <span class="absolute inset-0 w-full h-full bg-[#8A6F4E] opacity-0 group-hover:opacity-10 transition-opacity duration-300 ease-in-out"></span>
+        
+        <span class="relative z-10">Làm lại khảo sát</span>
+      </button>
     </div>
   </section>
 

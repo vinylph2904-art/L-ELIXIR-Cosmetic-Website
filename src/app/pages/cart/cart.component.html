@@ -12,7 +12,18 @@
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
     <div class="lg:col-span-8">
-      <div class="border-t border-outline-variant">
+      <!-- Giỏ hàng trống -->
+      <div *ngIf="isCartEmpty" class="py-16 text-center">
+        <p class="font-headline-md text-headline-md mb-4">Giỏ hàng của bạn đang trống</p>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-8">Hãy thêm sản phẩm vào giỏ để tiếp tục mua sắm.</p>
+        <a class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-white font-label-md text-label-md hover:bg-primary-600 transition-colors" routerLink="/products">
+          <span class="material-symbols-outlined">shopping_bag</span>
+          Tiếp tục mua sắm
+        </a>
+      </div>
+
+      <!-- Danh sách sản phẩm -->
+      <div *ngIf="!isCartEmpty" class="border-t border-outline-variant">
         <div *ngFor="let item of cartItems" class="py-8 border-b border-outline-variant flex flex-col sm:flex-row gap-6">
           <div class="w-full sm:w-40 aspect-[3/4] overflow-hidden rounded-lg bg-surface-container img-zoom flex-shrink-0">
             <img [src]="item.images[0]" [alt]="item.name" class="w-full h-full object-cover transition-standard">
@@ -42,25 +53,24 @@
                     <span class="material-symbols-outlined text-[20px]">favorite</span>
                     <span class="hidden sm:inline">Lưu yêu thích</span>
                   </button>
-                  <button class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant hover:text-error transition-standard" (click)="removeItem(item.productId)" type="button">
+                  <button class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant hover:text-error transition-standard" (click)="askDeleteConfirm(item)" type="button">
                     <span class="material-symbols-outlined text-[20px]">delete</span>
                     <span class="hidden sm:inline">Xóa</span>
                   </button>
                 </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="mt-12 flex flex-col sm:flex-row gap-4 items-center">
+
+      <div *ngIf="!isCartEmpty" class="mt-12 flex flex-col sm:flex-row gap-4 items-center">
         <a class="flex items-center gap-2 font-label-md text-label-md text-on-surface hover:text-primary transition-standard group" routerLink="/products">
-          <span class="material-symbols-outlined transition-standard group-hover:-translate-x-1">west</span>
-          TIẾP TỤC MUA SẮM
+          <span class="material-symbols-outlined transition-standard group-hover:-translate-x-1">west</span>TIẾP TỤC MUA SẮM
         </a>
       </div>
     </div>
 
-    <aside class="lg:col-span-4 sticky top-28">
+    <aside *ngIf="!isCartEmpty" class="lg:col-span-4 sticky top-28">
       <div class="bg-surface-container-low p-8 rounded-xl border border-surface-container-high custom-shadow">
         <h2 class="font-headline-md text-headline-md mb-8">Tóm tắt đơn hàng</h2>
         <div class="space-y-4 mb-8">
@@ -70,16 +80,16 @@
           </div>
           <div class="flex justify-between">
             <span class="font-body-md text-body-md text-on-surface-variant">Phí vận chuyển</span>
-            <span class="font-body-md text-body-md">30.000 VNĐ</span>
+            <span class="font-body-md text-body-md">{{ shippingFee() | currency:'VND':'symbol':'1.0-0' }}</span>
           </div>
           <div class="flex justify-between text-primary">
             <span class="font-body-md text-body-md">Giảm giá</span>
-            <span class="font-body-md text-body-md">- 100.000 VNĐ</span>
+            <span class="font-body-md text-body-md">- {{ discount() | currency:'VND':'symbol':'1.0-0' }}</span>
           </div>
           <div class="pt-6 mt-2 border-t border-outline-variant flex justify-between items-baseline">
             <span class="font-label-md text-label-md uppercase tracking-wider">Tổng cộng</span>
             <div class="text-right flex flex-col items-end">
-              <p class="font-body-md text-[20px] font-bold text-primary">{{ total() - 100000 + 30000 | currency:'VND':'symbol':'1.0-0' }}</p>
+              <p class="font-body-md text-[20px] font-bold text-primary">{{ grandTotal() | currency:'VND':'symbol':'1.0-0' }}</p>
               <p class="text-[10px] text-on-surface-variant italic">Đã bao gồm VAT</p>
             </div>
           </div>
@@ -91,8 +101,31 @@
             <button class="rounded-lg bg-primary px-4 py-3 text-white hover:opacity-90 transition-all">Áp dụng</button>
           </div>
         </div>
-        <button class="w-full bg-primary text-white py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all">Tiến hành thanh toán</button>
+        <button routerLink="/payment" class="w-full bg-primary text-white py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all">Tiến hành thanh toán</button>
       </div>
     </aside>
+  </div>
+
+  <!-- Popup xác nhận xóa -->
+  <div *ngIf="productPendingDelete" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+    <div class="w-full max-w-lg rounded-3xl bg-white p-8 shadow-2xl">
+      <h2 class="font-headline-md text-headline-md mb-4">Xác nhận xóa sản phẩm</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-6">Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?</p>
+      <div class="rounded-3xl border border-outline-variant bg-surface-container p-4 mb-6">
+        <div class="flex gap-4 items-center">
+          <div class="w-16 h-16 overflow-hidden rounded-xl bg-surface-container">
+            <img [src]="productPendingDelete.images[0]" [alt]="productPendingDelete.name" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <p class="font-label-md text-label-md font-semibold">{{ productPendingDelete.name }}</p>
+            <p class="text-on-surface-variant">Số lượng hiện tại: {{ productPendingDelete.quantity || 1 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button class="w-full rounded-full bg-primary px-6 py-4 text-white font-label-md text-label-md hover:bg-primary-600 transition-colors" type="button" (click)="confirmDelete()">Đồng ý</button>
+        <button class="w-full rounded-full border border-outline-variant bg-white px-6 py-4 font-label-md text-label-md text-on-surface hover:bg-surface-container transition-colors" type="button" (click)="cancelDelete()">Hủy</button>
+      </div>
+    </div>
   </div>
 </div>

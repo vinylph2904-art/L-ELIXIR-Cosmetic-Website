@@ -1,0 +1,59 @@
+<div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col h-full cursor-pointer" (click)="goToDetail()">  
+    <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
+    <img
+      [src]="product.images[0]"
+      [alt]="product.name"
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+  </div>
+
+  <div class="space-y-2">
+
+    <div class="flex justify-between items-center">
+
+      <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">
+        {{ product.categoryName }}
+      </span>
+
+      <!-- rating -->
+    </div>
+
+    <h3 class="font-display-lg text-headline-md leading-tight line-clamp-2 min-h-[3.5rem]">      
+        {{ product.name }}
+    </h3>
+
+    <div class="flex items-center gap-2 mt-1">
+
+    <div class="flex text-yellow-500">
+        <ng-container *ngFor="let _ of [].constructor(getFullStars(product.averageRating))">
+        <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">
+            star
+        </span>
+        </ng-container>
+
+        <span *ngIf="hasHalfStar(product.averageRating)"
+        class="material-symbols-outlined text-[14px]">
+        star_half
+        </span>
+
+        <ng-container *ngFor="let _ of [].constructor(getEmptyStars(product.averageRating))">
+        <span class="material-symbols-outlined text-[14px] text-gray-300">
+            star
+        </span>
+        </ng-container>
+    </div>
+
+    <span class="text-xs text-on-surface-variant">
+        {{ product.averageRating | number:'1.1-1' }}
+        ({{ product.reviewCount }})
+    </span>
+
+    </div>    
+
+    <p class="text-on-surface-variant font-label-md">
+      {{ product.price | number:'1.0-0' }} VNĐ
+    </p>
+    <div (click)="addToCart($event)">
+        <button class="w-full py-3 border border-outline rounded-lg"> Thêm vào giỏ hàng </button>
+    </div>
+    </div>
+</div>

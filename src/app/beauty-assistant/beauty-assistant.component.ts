@@ -23,11 +23,11 @@ interface QuestionNode {
 }
 
 @Component({
-  standalone: true,
   selector: 'app-beauty-assistant',
+  standalone: true,
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './beauty-assistant.component.html',
-  styleUrls: ['./beauty-assistant.component.css'],
-  imports: [CommonModule, RouterModule, FormsModule]
+  styleUrls: ['./beauty-assistant.component.css']
 })
 export class BeautyAssistantComponent implements OnInit {
   isExpanded = false;

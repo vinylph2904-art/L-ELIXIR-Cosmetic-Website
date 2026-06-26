@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PRODUCTS } from '../../data/mock-products';
+import PRODUCTS from '../../data/mock-products.json';
 import { Product } from '../../data/product.model';
 
 interface Ingredient {
@@ -130,7 +130,7 @@ export class RecommendationService {
     const problemMap: { [key: string]: any } = {
       'Mụn': { title: 'Bẫy sừng hóa cổ nang lông và sự bùng phát của khuẩn viêm C.acnes', desc: 'Tình trạng mụn hiện tại hình thành từ chu kỳ thay da bị lỗi. Tế bào chết không tự bong ra mà dính chặt với bã nhờn dẻo tạo thành nút bít tắt (Comedone). Trong môi trường yếm khí này, vi khuẩn Cutibacterium acnes tiêu thụ bã nhờn, giải phóng acid béo tự do gây kích ứng và kích hoạt ổ sưng sần.' },
       'Thâm nám': { title: 'Sự tăng sản Melanin quá khích do tế bào Melanocytes bị kích động', desc: 'Dưới tác động của tia UV hoặc thay đổi nội tiết, nhà máy Melanocytes ở đáy thượng bì liên tục sản sinh hắc sắc tố Melanin rồi đẩy chúng lên bề mặt như một cơ chế "bảo vệ da". Tuy nhiên, việc phân bổ không đều tạo nên các cụm đốm nâu sậm, vết thâm mụn dai dẳng khó mờ.' },
-      'Lỗ chân lông to': { title: 'Cơ chế giãn nở cơ học do áp lực dầu thừa và đứt gãy sợi đàn hồi', desc: 'Lỗ chân lông bị phình to ra do hai nguyên nhân bám đuổi: Một là lượng dầu liên tục đẩy qua thành nang lông buộc nó phải giãn rộng để thoát dịch; Hai là cấu trúc Collagen bao quanh thành nang lông bị suy yếu theo thời gian, khiến "miệng" lỗ chân homes mất khả năng đàn hồi co lại.' },
+      'Lỗ chân lông to': { title: 'Cơ chế giãn nở cơ học do áp lực dầu thừa và đứt gãy sợi đàn hồi', desc: 'Lỗ chân lông bị phình to ra do hai nguyên nhân bám đuổi: One là lượng dầu liên tục đẩy qua thành nang lông buộc nó phải giãn rộng để thoát dịch; Two là cấu trúc Collagen bao quanh thành nang lông bị suy yếu theo thời gian, khiến "miệng" lỗ chân homes mất khả năng đàn hồi co lại.' },
       'Da xỉn màu': { title: 'Chu kỳ sừng hóa bị đình trệ và hiệu ứng tán xạ ánh sáng kém trên lớp sừng', desc: 'Làn da mất đi độ bóng khỏe tự nhiên do lớp tế bào già cỗi không được dọn dẹp, tích tụ thành mảng dày trên bề mặt. Khi ánh sáng chiếu vào, thay vì phản chiếu đồng đều tạo độ căng mướt (Glowy), nó bị tán xạ hỗn loạn qua lớp tế bào thô ráp, tạo cảm giác xám xịt, mệt mỏi.' },
       'Lão hóa': { title: 'Sự suy thoái mạng lưới cấu trúc sợi Collagen và Elastin nội tại', desc: 'Ở cấp độ tế bào, tốc độ sụt giảm nguyên bào sợi diễn ra mạnh mẽ từ tuổi 25 khiến hệ nâng đỡ trung bì lỏng lax, tạo rãnh sâu và hiện tượng chảy xệ mô cơ mặt dưới áp lực của các gốc tự do.' },
       'Thiếu ẩm': { title: 'Sự đứt gãy mạng lưới kênh dẫn nước Aquaporin-3 và các nhân tố giữ ẩm NMFs', desc: 'Hệ thống phân bổ nước tự nhiên dưới da đang gặp sự cố. Dù bạn có thể bổ sung nước từ bên ngoài, nhưng các nhân tố giữ ẩm tự nhiên (NMFs) bên trong tế bào bị thiếu hụt nghiêm trọng khiến các phân tử nước không có điểm bám giữ, nhanh chóng bốc hơi để lại bề mặt thô sần, thiếu sức sống.' }
@@ -190,7 +190,7 @@ export class RecommendationService {
       'Da xỉn màu': {
         title: 'Kích thích chu kỳ thay da sinh học và tối ưu độ phản xạ ánh sáng',
         shouldEat: ['Nước ép bưởi, cam, ổi dồi dào Vitamin C', 'Các loại rau xanh giàu sắt giúp tuần hoàn máu tốt'],
-        shouldAvoid: ['Hút thuốc lá thụ động, đồ chiên rán bị oxy hóa nặng'],
+        shouldAvoid: ['Hút smoke lá thụ động, đồ chiên rán bị oxy hóa nặng'],
         supplements: ['Vitamin C đường uống mờ thâm sáng da', 'Vitamin E tự nhiên tạo độ glow cho biểu bì'],
         habits: ['Tẩy tế bào chết đều đặn dọn dẹp lớp sừng già', 'Xịt khoáng cấp ẩm ngay khi làm việc lâu trước máy tính']
       },
@@ -230,13 +230,11 @@ export class RecommendationService {
       }
     });
 
-    
     combinedShouldEat = [...new Set(combinedShouldEat)];
     combinedShouldAvoid = [...new Set(combinedShouldAvoid)];
     combinedSupplements = [...new Set(combinedSupplements)];
     combinedHabits = [...new Set(combinedHabits)];
 
-    
     const structuredContent = 
       `🥦 CHẾ ĐỘ DINH DƯỠNG NÊN ĂN:\n• ${combinedShouldEat.slice(0, 5).join('\n• ')}\n\n` +
       `❌ THỰC PHẨM CẦN KIÊNG KỴ:\n• ${combinedShouldAvoid.slice(0, 5).join('\n• ')}\n\n` +
@@ -283,20 +281,20 @@ export class RecommendationService {
   getRecommendations(skinType: string, problems: string[]): { products: Product[], isRelaxed: boolean } {
     let isRelaxed = false;
     
-    let filtered = PRODUCTS.filter(product => {
+    let filtered = PRODUCTS.filter((product: any) => {
       const isSkinTypeMatch = product.targetSkinTypes.includes(skinType);
-      const isProblemMatch = product.targetSkinProblems.some(prob => problems.includes(prob));
+      const isProblemMatch = product.targetSkinProblems.some((prob: any) => problems.includes(prob));
       return isSkinTypeMatch && (isProblemMatch || product.targetSkinProblems.length === 0);
     });
 
     if (filtered.length === 0) {
       isRelaxed = true;
-      filtered = PRODUCTS.filter(product => product.targetSkinTypes.includes(skinType));
+      filtered = PRODUCTS.filter((product: any) => product.targetSkinTypes.includes(skinType));
     }
 
-    filtered = filtered.map(product => {
+    filtered = filtered.map((product: any) => {
       let reason = `Phù hợp tối ưu cho nền ${skinType}.`;
-      const matchingProblems = product.targetSkinProblems.filter(prob => problems.includes(prob));
+      const matchingProblems = product.targetSkinProblems.filter((prob: any) => problems.includes(prob));
       
       if (matchingProblems.length > 0) {
         reason = `Được chọn lọc đặc biệt vì giúp cải thiện trực tiếp tình trạng: ${matchingProblems.join(', ')}.`;

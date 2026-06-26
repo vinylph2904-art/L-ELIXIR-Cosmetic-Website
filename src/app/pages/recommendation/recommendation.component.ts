@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RecommendationService } from './recommendation.service';
+import { ProductService } from '../../services/product.service';
 import { Product } from '../../data/product.model';
+import { AuthService } from '../../services/auth.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recommendation',
@@ -25,18 +28,35 @@ export class RecommendationComponent implements OnInit {
   customArticles: any[] = []; 
   isModalOpen = false;
   selectedArticle: any = null;
+  recommended: Product[] = []; 
 
-  constructor(private recommendationService: RecommendationService) {}
+  constructor(
+    private recommendationService: RecommendationService,
+    private productService: ProductService,
+    private authService: AuthService,
+    private router: Router 
+  ) {}
+
+  
+  private getAccountSuffix(): string {
+    const user = this.authService.getCurrentUser();
+    return user ? `_${user.userId}` : '_guest';
+  }
 
   ngOnInit(): void {
+    this.productService.getProducts().subscribe(products => {
+      this.recommended = products.slice(0, 3);
+    });
     
-    this.userSkinType = sessionStorage.getItem('user_skin_type') || '';
-    const savedProblems = sessionStorage.getItem('user_skin_problems');
+    const suffix = this.getAccountSuffix(); 
+    this.userSkinType = sessionStorage.getItem('user_skin_type' + suffix) || '';
+    
+    const savedProblems = sessionStorage.getItem('user_skin_problems' + suffix);
     if (savedProblems) {
       try { this.userProblems = JSON.parse(savedProblems); } catch(e) {}
     }
 
-    const savedTargets = sessionStorage.getItem('user_skin_targets');
+    const savedTargets = sessionStorage.getItem('user_skin_targets' + suffix);
     if (savedTargets) {
       try { this.userTargets = JSON.parse(savedTargets); } catch(e) {}
     }
@@ -85,5 +105,10 @@ export class RecommendationComponent implements OnInit {
     this.isModalOpen = false;
     this.selectedArticle = null;
     document.body.style.overflow = 'auto';
+  }
+
+  reDoSurvey(): void {
+    sessionStorage.setItem('re_do_survey', 'true');
+    this.router.navigate(['/survey']);
   }
 }

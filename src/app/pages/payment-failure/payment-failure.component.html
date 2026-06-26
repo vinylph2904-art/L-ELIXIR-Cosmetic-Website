@@ -1,0 +1,114 @@
+<main class="pt-24 pb-section-gap-desktop">
+<div class="max-w-2xl mx-auto px-gutter">
+<!-- Header -->
+<div class="text-center mb-12">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-error-container mb-6">
+<span class="material-symbols-outlined text-[32px] text-error">error</span>
+</div>
+<h1 class="font-display-sm text-display-sm text-on-surface mb-2">Thanh toán không thành công</h1>
+<p class="text-body-lg text-on-surface-variant max-w-lg mx-auto">{{ failureReason }}</p>
+</div>
+
+<!-- Error Details -->
+<div class="bg-error-container/10 p-6 rounded-xl border border-error/30 mb-8">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-error">warning</span>
+Thông tin đơn hàng
+</h3>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-body-md text-on-surface-variant">Mã đơn hàng:</span>
+<span class="font-medium text-on-surface">#{{ orderId }}</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md text-on-surface-variant">Trạng thái:</span>
+<span class="inline-flex items-center gap-1 text-error font-medium">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+Giao dịch thất bại
+</span>
+</div>
+</div>
+</div>
+
+<!-- Reasons & Solutions -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/30 mb-8">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Nguyên nhân có thể là:</h3>
+<ul class="space-y-3">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">check_circle</span>
+<span class="text-body-md text-on-surface-variant">Kết nối mạng bị gián đoạn</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">check_circle</span>
+<span class="text-body-md text-on-surface-variant">Số tiền trong tài khoản không đủ</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">check_circle</span>
+<span class="text-body-md text-on-surface-variant">Thẻ/tài khoản đã hết hạn hoặc bị khóa</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] flex-shrink-0">check_circle</span>
+<span class="text-body-md text-on-surface-variant">Bạn đã chủ động hủy giao dịch</span>
+</li>
+</ul>
+</div>
+
+<!-- Next Steps -->
+<div class="bg-secondary-container/10 p-6 rounded-xl border border-secondary/20 mb-8">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">lightbulb</span>
+Bạn có thể thử:
+</h3>
+<ol class="space-y-3 text-body-md text-on-surface-variant">
+<li class="flex gap-3">
+<span class="font-bold text-on-surface min-w-fit">1.</span>
+<span>Kiểm tra kết nối internet của bạn</span>
+</li>
+<li class="flex gap-3">
+<span class="font-bold text-on-surface min-w-fit">2.</span>
+<span>Kiểm tra số dư tài khoản/thẻ</span>
+</li>
+<li class="flex gap-3">
+<span class="font-bold text-on-surface min-w-fit">3.</span>
+<span>Sử dụng phương thức thanh toán khác</span>
+</li>
+<li class="flex gap-3">
+<span class="font-bold text-on-surface min-w-fit">4.</span>
+<span>Liên hệ với ngân hàng của bạn nếu vấn đề vẫn tiếp tục</span>
+</li>
+</ol>
+</div>
+
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row gap-4">
+<button 
+  (click)="retryPayment()"
+  class="flex-1 bg-primary text-white py-4 px-6 rounded-lg font-label-md font-bold hover:opacity-90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+Thử lại
+</button>
+<button 
+  (click)="cancelOrder()"
+  class="flex-1 border border-error text-error py-4 px-6 rounded-lg font-label-md font-bold hover:bg-error/5 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">close</span>
+Hủy đơn hàng
+</button>
+<button 
+  (click)="goHome()"
+  class="flex-1 border border-outline text-on-surface py-4 px-6 rounded-lg font-label-md font-bold hover:bg-surface-container-low transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">home</span>
+Về trang chủ
+</button>
+</div>
+
+<!-- Support Info -->
+<div class="mt-8 text-center">
+<p class="text-body-md text-on-surface-variant mb-2">Cần trợ giúp?</p>
+<p class="text-label-sm text-on-surface-variant">
+Liên hệ với chúng tôi qua
+<a [href]="'mailto:support@lelixir.vn'" class="text-primary hover:underline">support&#64;lelixir.vn</a>
+hoặc gọi <a href="tel:+84123456789" class="text-primary hover:underline">0123 456 789</a>
+</p>
+</div>
+</div>
+</main>

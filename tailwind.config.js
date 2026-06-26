@@ -1,0 +1,96 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts}", // Ép extension quét toàn bộ file HTML và TS trong Angular
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'tertiary-fixed-dim': '#d4c4b1',
+        'outline': '#7f766a',
+        'tertiary': '#685d4d',
+        'surface-dim': '#dcd9d9',
+        'error-container': '#ffdad6',
+        'primary-container': '#c8a97e',
+        'on-background': '#1b1c1c',
+        'on-primary-fixed-variant': '#594320',
+        'surface-bright': '#fcf9f8',
+        'inverse-surface': '#303030',
+        'on-primary-fixed': '#281800',
+        'on-secondary-fixed-variant': '#484743',
+        'on-error': '#ffffff',
+        'surface-container-high': '#eae7e7',
+        'inverse-on-surface': '#f3f0f0',
+        'secondary-container': '#e6e2dc',
+        'inverse-primary': '#e2c195',
+        'background': '#fcf9f8',
+        'on-secondary': '#ffffff',
+        'surface-container-lowest': '#ffffff',
+        'on-tertiary-container': '#4a4031',
+        'on-surface-variant': '#4e453b',
+        'on-secondary-container': '#666460',
+        'surface-variant': '#e4e2e1',
+        'on-secondary-fixed': '#1c1c18',
+        'surface': '#fcf9f8',
+        'on-error-container': '#93000a',
+        'primary-fixed': '#ffddb0',
+        'primary-fixed-dim': '#e2c195',
+        'on-primary-container': '#533e1c',
+        'on-surface': '#1b1c1c',
+        'tertiary-container': '#baac99',
+        'tertiary-fixed': '#f0e0cc',
+        'on-primary': '#ffffff',
+        'surface-tint': '#735a36',
+        'surface-container': '#f0eded',
+        'error': '#ba1a1a',
+        'secondary': '#605e5a',
+        'secondary-fixed-dim': '#c9c6c0',
+        'surface-container-highest': '#e4e2e1',
+        'on-tertiary-fixed': '#221a0e',
+        'primary': '#735a36',
+        'secondary-fixed': '#e6e2dc',
+        'on-tertiary': '#ffffff',
+        'on-tertiary-fixed-variant': '#504536',
+        'surface-container-low': '#f6f3f2',
+        'outline-variant': '#d1c5b7'
+      },
+      borderRadius: {
+        DEFAULT: '0.25rem',
+        lg: '0.5rem',
+        xl: '0.75rem',
+        full: '9999px'
+      },
+      spacing: {
+        'section-gap-desktop': '120px',
+        'margin-mobile': '20px',
+        'section-gap-mobile': '64px',
+        'container-max': '1280px',
+        base: '8px',
+        gutter: '24px'
+      },
+      fontFamily: {
+        'display-lg': ['Playfair Display'],
+        'display-lg-mobile': ['Playfair Display'],
+        'headline-lg-mobile': ['Playfair Display'],
+        'body-lg': ['Inter'],
+        'body-md': ['Inter'],
+        'label-sm': ['Inter'],
+        'label-md': ['Inter'],
+        'headline-md': ['Playfair Display'],
+        'headline-lg': ['Playfair Display']
+      },
+      fontSize: {
+        'display-lg': ['64px', { lineHeight: '72px', letterSpacing: '-0.02em', fontWeight: '600' }],
+        'display-lg-mobile': ['40px', { lineHeight: '48px', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'headline-lg-mobile': ['32px', { lineHeight: '40px', fontWeight: '500' }],
+        'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+        'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.1em', fontWeight: '600' }],
+        'headline-lg': ['40px', { lineHeight: '48px', fontWeight: '500' }],
+        'label-md': ['14px', { lineHeight: '20px', letterSpacing: '0.05em', fontWeight: '500' }],
+        'headline-md': ['24px', { lineHeight: '32px', fontWeight: '500' }]
+      }
+    }
+  },
+  plugins: [],
+}

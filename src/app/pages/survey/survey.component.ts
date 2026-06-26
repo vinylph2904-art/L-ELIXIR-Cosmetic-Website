@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service'; 
 
 @Component({
   selector: 'app-survey',
@@ -26,7 +27,11 @@ export class SurveyComponent implements OnInit {
   
   currentProductsOptions = ['Sữa rửa mặt', 'Toner', 'Serum', 'Kem dưỡng', 'Kem chống nắng'];
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.surveyForm = this.fb.group({
@@ -35,9 +40,42 @@ export class SurveyComponent implements OnInit {
       selectedTargets: [[]],
       selectedCurrentProducts: [[]]
     });
+
+    const suffix = this.getAccountSuffix();
+    const isReDo = sessionStorage.getItem('re_do_survey');
+
+    if (isReDo === 'true') {
+      sessionStorage.removeItem('user_skin_type' + suffix);
+      sessionStorage.removeItem('user_skin_problems' + suffix);
+      sessionStorage.removeItem('user_skin_targets' + suffix);
+      sessionStorage.removeItem('re_do_survey'); // Dọn dẹp cờ kích hoạt
+    } else {
+      this.loadExistingSurvey();
+    }
   }
 
-  // Hàm tính toán phần trăm thanh tiến trình tăng dần 25% - 50% - 75% - 100%
+  private getAccountSuffix(): string {
+    const user = this.authService.getCurrentUser();
+    return user ? `_${user.userId}` : '_guest';
+  }
+
+  loadExistingSurvey(): void {
+    const suffix = this.getAccountSuffix();
+    const savedType = sessionStorage.getItem('user_skin_type' + suffix);
+    const savedProblems = sessionStorage.getItem('user_skin_problems' + suffix);
+    const savedTargets = sessionStorage.getItem('user_skin_targets' + suffix);
+
+    if (savedType) {
+      this.surveyForm.get('selectedSkinType')?.setValue(savedType);
+    }
+    if (savedProblems) {
+      try { this.surveyForm.get('selectedProblems')?.setValue(JSON.parse(savedProblems)); } catch(e) {}
+    }
+    if (savedTargets) {
+      try { this.surveyForm.get('selectedTargets')?.setValue(JSON.parse(savedTargets)); } catch(e) {}
+    }
+  }
+
   get progressPercentage(): number {
     let score = 0;
     if (this.surveyForm.get('selectedSkinType')?.value) score += 25;
@@ -50,7 +88,9 @@ export class SurveyComponent implements OnInit {
   onCheckboxChange(e: any) {
     let selectedProblems: string[] = this.surveyForm.get('selectedProblems')?.value || [];
     if (e.target.checked) {
-      selectedProblems.push(e.target.value);
+      if (!selectedProblems.includes(e.target.value)) {
+        selectedProblems.push(e.target.value);
+      }
     } else {
       selectedProblems = selectedProblems.filter(item => item !== e.target.value);
     }
@@ -96,14 +136,13 @@ export class SurveyComponent implements OnInit {
     }
 
     const formData = this.surveyForm.value;
-    sessionStorage.setItem('user_skin_type', formData.selectedSkinType);
-    sessionStorage.setItem('user_skin_problems', JSON.stringify(formData.selectedProblems));
-    sessionStorage.setItem('user_skin_targets', JSON.stringify(formData.selectedTargets));
-
+    const suffix = this.getAccountSuffix(); 
+    sessionStorage.setItem('user_skin_type' + suffix, formData.selectedSkinType);
+    sessionStorage.setItem('user_skin_problems' + suffix, JSON.stringify(formData.selectedProblems));
+    sessionStorage.setItem('user_skin_targets' + suffix, JSON.stringify(formData.selectedTargets));
     this.router.navigate(['/recommendation']);
   }
 
-  // Hàm cuộn màn hình dùng chung cho cả nút Bắt đầu khảo sát và Trường hợp lỗi Khi không chọn các câu bắt buộc 
   scrollToElement(elementId: string): void {
     const element = document.getElementById(elementId);
     if (element) {

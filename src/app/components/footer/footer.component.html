@@ -1,27 +1,115 @@
-<footer class="site-footer bg-surface-container-low py-12">
-  <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-4 gap-8">
-    <div>
-      <a routerLink="/" class="logo text-display-lg font-headline-lg text-primary tracking-tight">L'ELIXIR</a>
-      <p class="mt-4 text-sm text-on-surface-variant">Nâng tầm nghệ thuật chăm sóc da.</p>
+<footer class="bg-surface-container-low pt-16 pb-6">
+  <div class="max-w-container-max mx-auto px-gutter">
+
+    <!-- Phần trên -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+      <!-- Bên trái -->
+      <div>
+        <a
+          routerLink="/"
+          class="text-display-lg font-headline-lg text-primary tracking-tight"
+        >
+          L'ELIXIR
+        </a>
+
+        <p class="mt-6 text-on-surface-variant leading-relaxed max-w-md">
+          Nâng tầm nghệ thuật làm đẹp cá nhân hóa thông qua khoa học và tâm hồn.
+          Trải nghiệm sự sang trọng đích thực dành riêng cho làn da bạn.
+        </p>
+
+        <div class="flex items-center gap-5 mt-8 text-2xl">
+          <span class="cursor-pointer hover:text-primary transition">
+            🌐
+          </span>
+
+          <span class="cursor-pointer hover:text-primary transition">
+            📷
+          </span>
+
+          <span class="cursor-pointer hover:text-primary transition">
+            ▶️
+          </span>
+        </div>
+      </div>
+
+      <!-- Bên phải -->
+      <div class="grid grid-cols-3 gap-8">
+
+        <!-- Cột 1 -->
+        <div>
+          <h4 class="font-semibold uppercase mb-4">
+            Bộ sưu tập
+          </h4>
+
+          <ul class="space-y-3 text-on-surface-variant">
+            <li>
+              <a [routerLink]="['/products']" [queryParams]="{ collection: 'Lumina' }" class="hover:text-primary">
+                Tinh Hoa Dưỡng Sáng Lumina
+              </a>
+            </li>
+
+            <li>
+              <a [routerLink]="['/products']" [queryParams]="{ collection: 'Aurora' }" class="hover:text-primary">
+                Vẻ Đẹp Rạng Đông Aurora
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Cột 2 -->
+        <div>
+          <h4 class="font-semibold uppercase mb-4">
+            Hỗ trợ
+          </h4>
+
+          <ul class="space-y-3 text-on-surface-variant">
+            <li>Giao hàng & Đổi trả</li>
+            <li>Liên hệ</li>
+            <li>Câu hỏi thường gặp</li>
+            <li>Tài khoản của tôi</li>
+          </ul>
+        </div>
+
+        <!-- Cột 3 -->
+        <div>
+          <h4 class="font-semibold uppercase mb-4">
+            Về chúng tôi
+          </h4>
+
+          <ul class="space-y-3 text-on-surface-variant">
+            <li>Câu chuyện thương hiệu</li>
+            <li>Khoa học & DNA</li>
+            <li>Phát triển bền vững</li>
+            <li>Cơ hội nghề nghiệp</li>
+          </ul>
+        </div>
+
+      </div>
+
     </div>
-    <div>
-      <h4 class="font-label-md text-label-md text-on-surface mb-3">Bộ sưu tập</h4>
-      <ul class="space-y-2 text-on-surface-variant">
-        <li><a routerLink="/products" class="hover:text-primary">Sản phẩm</a></li>
-      </ul>
+
+    <!-- Đường kẻ -->
+    <hr class="my-10 border-outline-variant">
+
+    <!-- Phần dưới -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
+
+      <p>
+        © 2024 L'ELIXIR. TẤT CẢ QUYỀN ĐƯỢC BẢO LƯU.
+      </p>
+
+      <div class="flex items-center gap-8">
+        <a href="#" class="hover:text-primary">
+          CHÍNH SÁCH BẢO MẬT
+        </a>
+
+        <a href="#" class="hover:text-primary">
+          ĐIỀU KHOẢN DỊCH VỤ
+        </a>
+      </div>
+
     </div>
-    <div>
-      <h4 class="font-label-md text-label-md text-on-surface mb-3">Hỗ trợ</h4>
-      <ul class="space-y-2 text-on-surface-variant">
-        <li><a href="#" class="hover:text-primary">Liên hệ</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="font-label-md text-label-md text-on-surface mb-3">Đăng ký</h4>
-      <form class="mt-2 flex flex-col sm:flex-row gap-2">
-        <input class="w-full rounded-lg border border-outline-variant px-4 py-3 bg-white text-on-surface" placeholder="Email của bạn" type="email" />
-        <button class="rounded-lg bg-primary px-4 py-3 text-white hover:opacity-90 transition-all">Đăng ký</button>
-      </form>
-    </div>
+
   </div>
 </footer>
