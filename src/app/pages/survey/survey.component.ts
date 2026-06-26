@@ -44,7 +44,7 @@ export class SurveyComponent implements OnInit {
     if (this.surveyForm.get('selectedProblems')?.value?.length > 0) score += 25;
     if (this.surveyForm.get('selectedTargets')?.value?.length > 0) score += 25;
     if (this.surveyForm.get('selectedCurrentProducts')?.value?.length > 0) score += 25;
-    return score; // Trả về đúng giá trị thực tế (chưa chọn gì sẽ là 0)
+    return score; 
   }
 
   onCheckboxChange(e: any) {
@@ -103,7 +103,7 @@ export class SurveyComponent implements OnInit {
     this.router.navigate(['/recommendation']);
   }
 
-  // Hàm cuộn màn hình dùng chung cho cả nút Bắt đầu khảo sát và AF1
+  // Hàm cuộn màn hình dùng chung cho cả nút Bắt đầu khảo sát và Trường hợp lỗi Khi không chọn các câu bắt buộc 
   scrollToElement(elementId: string): void {
     const element = document.getElementById(elementId);
     if (element) {

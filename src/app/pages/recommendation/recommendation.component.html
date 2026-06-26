@@ -1,6 +1,4 @@
-<!-- ========================================== -->
 <!-- 1. KHÔNG CÓ DATA (HỒ SƠ KHẢO SÁT TRỐNG)    -->
-<!-- ========================================== -->
 <div *ngIf="!hasData" class="pt-32 pb-32 text-center max-w-md mx-auto space-y-6 px-gutter">
   <span class="material-symbols-outlined text-6xl text-primary/40">assignment_late</span>
   <h2 class="text-2xl font-bold text-on-background">Hồ sơ khảo sát trống</h2>
@@ -10,11 +8,8 @@
   </button>
 </div>
 
-<!-- ========================================== -->
-<!-- 2. CÓ DATA (GIAO DIỆN KẾT QUẢ CHÍNH)        -->
-<!-- ========================================== -->
+<!-- 2. CÓ DATA (GIAO DIỆN KẾT QUẢ CHÍNH) -->
 <div *ngIf="hasData" class="pt-24 pb-section-gap-desktop max-w-container-max mx-auto px-gutter">
-  
   <!-- Header tiêu đề -->
   <section class="relative text-center mb-16">
     <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">Cá nhân hóa cho bạn</span>
@@ -22,7 +17,7 @@
     <p class="max-w-2xl mx-auto font-body-lg text-body-lg text-on-surface-variant opacity-80">Dựa trên các thuật toán AI và kiến thức chuyên gia, chúng tôi đã xây dựng một chu trình dưỡng da tối ưu dành riêng cho tình trạng da hiện tại của bạn.</p>
   </section>
 
-  <!-- Thông báo Luật nới lỏng (Relaxed Rule) -->
+  <!-- Thông báo -->
   <div *ngIf="isRelaxedRule" class="mb-10 p-5 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-4 text-amber-800">
     <span class="material-symbols-outlined text-amber-600">info</span>
     <p class="text-sm font-medium">Hiện tại hệ thống đề xuất các sản phẩm cơ bản tốt nhất cho loại da của bạn (Do tổ hợp vấn đề da của bạn không có sản phẩm nào khớp 100%).</p>
@@ -152,7 +147,6 @@
   <!-- Khối Lộ trình 5 bước mỗi ngày -->
   <section class="px-gutter max-w-container-max mx-auto mb-section-gap-desktop overflow-x-auto pb-8 mt-16">
     <h2 class="font-display-lg text-headline-lg text-on-background mb-12 text-center">Lộ trình 5 bước mỗi ngày</h2>
-    
     <!-- Thanh điều hướng các bước (Step Navigation) -->
     <div class="flex min-w-[800px] justify-between relative mb-12 max-w-4xl mx-auto">
       <div class="absolute top-8 left-0 w-full h-[1px] bg-outline-variant/30 -z-10"></div>
@@ -209,8 +203,7 @@
     </div>
 
     <!-- Chi tiết từng bước chuyển đổi theo tab active -->
-    <div class="max-w-2xl mx-auto bg-surface-container-low rounded-2xl p-6 border border-outline-variant/30 shadow-sm transition-all duration-300">
-      
+    <div class="max-w-2xl mx-auto bg-surface-container-low rounded-2xl p-6 border border-outline-variant/30 shadow-sm transition-all duration-300"> 
       <!-- Chi tiết Bước 1 -->
       <div *ngIf="activeStep === 1">
         <div *ngIf="cleansers.length > 0; else noCleanser" class="flex flex-col sm:flex-row items-center gap-6">
@@ -344,7 +337,6 @@
           </div>
         </ng-template>
       </div>
-
     </div>
   </section>
 
@@ -367,7 +359,6 @@
     </div>
   </section>
 
-  <!-- Khối nút chuyển hướng cuối trang -->
   <section class="px-gutter max-w-container-max mx-auto mb-section-gap-desktop text-center space-y-6">
     <button [routerLink]="['/cart']" class="bg-primary-container text-on-primary-container px-12 py-5 rounded-full font-label-md text-label-md uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300 shadow-lg inline-flex items-center gap-3">
       <span class="material-symbols-outlined">shopping_basket</span>
@@ -378,9 +369,7 @@
     </div>
   </section>
 
-  <!-- ========================================== -->
-  <!-- 3. PHÂN TÍCH CHUYÊN SÂU TỪ TRỢ LÝ ẢO       -->
-  <!-- ========================================== -->
+  <!-- 3. PHÂN TÍCH CHUYÊN SÂU TỪ TRỢ LÝ ẢO-->
   <section id="analysis-section" class="max-w-container-max mx-auto px-gutter py-12 border-t border-outline-variant/20 mt-16 scroll-mt-24">
     <div class="mb-10 text-center md:text-left">
       <h2 class="font-display-lg text-headline-lg text-on-background font-semibold">Phân tích chuyên sâu từ trợ lý ảo</h2>
@@ -403,12 +392,9 @@
     </div>
   </section>
 
-  <!-- ========================================== -->
-  <!-- 4. MODAL DETAIL POPUP                      -->
-  <!-- ========================================== -->
+  <!-- 4. MODAL DETAIL POPUP -->
   <div *ngIf="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-outline-variant/20 flex flex-col transform transition-all scale-100">
-      
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-outline-variant/20 flex flex-col transform transition-all scale-100">  
       <div class="h-60 w-full relative flex-shrink-0 bg-gray-100">
         <img [src]="selectedArticle?.img" [alt]="selectedArticle?.title" class="w-full h-full object-cover">
         <button (click)="closeArticleModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-md">
@@ -419,12 +405,10 @@
       <div class="p-8 space-y-5 text-left">
         <span class="text-[11px] font-bold tracking-widest text-primary uppercase bg-primary/10 px-2.5 py-1 rounded-md">{{ selectedArticle?.tag }}</span>
         <h3 class="font-headline-lg text-headline-lg text-on-background font-bold text-2xl leading-snug text-primary">{{ selectedArticle?.title }}</h3>
-        <div class="w-16 h-0.5 bg-primary/30 my-2"></div>
-        
+        <div class="w-16 h-0.5 bg-primary/30 my-2"></div> 
         <p class="text-body-md text-on-surface-variant leading-relaxed text-gray-600 text-justify whitespace-pre-line">
           {{ selectedArticle?.content }}
-        </p>
-        
+        </p> 
         <div class="text-body-md text-on-surface-variant leading-relaxed p-4 rounded-xl border-l-4 border-primary bg-primary/5 font-medium text-gray-700">
           {{ selectedArticle?.highlight }}
         </div>
@@ -435,8 +419,6 @@
           Tôi đã hiểu
         </button>
       </div>
-
     </div>
   </div>
-
 </div>

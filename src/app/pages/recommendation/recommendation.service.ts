@@ -14,9 +14,7 @@ export class RecommendationService {
 
   constructor() { }
 
-  // ==========================================
   // 1. LẤY HOẠT CHẤT THEO TRẠNG THÁI DA
-  // ==========================================
   // Trích xuất đúng 2 hoạt chất theo loại da + 2 hoạt chất theo tình trạng da
   // Filter trùng và chèn B5/EGF làm backup nếu mảng bị trống
   getDynamicIngredients(skinType: string, problems: string[]): Ingredient[] {
@@ -89,9 +87,7 @@ export class RecommendationService {
     return finalIngredients;
   }
 
-  // ==========================================
   // 2. BIÊN SOẠN 3 Ô NỘI DUNG CHẨN ĐOÁN
-  // ==========================================
   // Render data cho 3 block chính hiển thị trên giao diện Result
   // Ô 1: Sức khỏe nền (theo loại da)
   // Ô 2: Cơ chế bệnh lý (gộp chuỗi text liền mạch từ các vấn đề da)
@@ -140,7 +136,7 @@ export class RecommendationService {
       'Thiếu ẩm': { title: 'Sự đứt gãy mạng lưới kênh dẫn nước Aquaporin-3 và các nhân tố giữ ẩm NMFs', desc: 'Hệ thống phân bổ nước tự nhiên dưới da đang gặp sự cố. Dù bạn có thể bổ sung nước từ bên ngoài, nhưng các nhân tố giữ ẩm tự nhiên (NMFs) bên trong tế bào bị thiếu hụt nghiêm trọng khiến các phân tử nước không có điểm bám giữ, nhanh chóng bốc hơi để lại bề mặt thô sần, thiếu sức sống.' }
     };
 
-    // Data Ô 3: Kho cẩm nang bổ trợ chi tiết đầy đủ 100% cho mọi trường hợp da
+    // Data Ô 3: Biện pháp bổ trợ 
     const lifestyleMap: { [key: string]: any } = {
       'Da dầu': {
         title: 'Cân bằng độ ẩm bằng nguồn nước nội sinh và thói quen tiết giảm nhờn',
@@ -216,7 +212,6 @@ export class RecommendationService {
 
     const selectedProblems = problems.length > 0 ? problems : [];
     
-    // 🔥 BIẾN ĐỔI ĐỘNG: Đưa cả loại da VÀ tất cả các vấn đề da vào mảng quét để gộp dữ liệu
     let combinedShouldEat: string[] = [];
     let combinedShouldAvoid: string[] = [];
     let combinedSupplements: string[] = [];
@@ -235,13 +230,13 @@ export class RecommendationService {
       }
     });
 
-    // Clear trùng lặp bằng Set giúp data gọn sạch
+    
     combinedShouldEat = [...new Set(combinedShouldEat)];
     combinedShouldAvoid = [...new Set(combinedShouldAvoid)];
     combinedSupplements = [...new Set(combinedSupplements)];
     combinedHabits = [...new Set(combinedHabits)];
 
-    // Format text và giới hạn tối đa 5 gạch đầu dòng đắt giá nhất
+    
     const structuredContent = 
       `🥦 CHẾ ĐỘ DINH DƯỠNG NÊN ĂN:\n• ${combinedShouldEat.slice(0, 5).join('\n• ')}\n\n` +
       `❌ THỰC PHẨM CẦN KIÊNG KỴ:\n• ${combinedShouldAvoid.slice(0, 5).join('\n• ')}\n\n` +
@@ -284,9 +279,7 @@ export class RecommendationService {
     return [article1, article2, article3];
   }
 
-  // ==========================================
   // 3. THUẬT TOÁN LỌC SẢN PHẨM KHUYẾN DÙNG
-  // ==========================================
   getRecommendations(skinType: string, problems: string[]): { products: Product[], isRelaxed: boolean } {
     let isRelaxed = false;
     
