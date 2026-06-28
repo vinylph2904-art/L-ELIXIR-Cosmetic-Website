@@ -394,8 +394,8 @@
     "stockQuantity": 50,
     "targetSkinTypes": ["Da thường", "Da hỗn hợp", "Da dầu"],
     "targetSkinProblems": ["Thâm nám", "Da xỉn màu"],
-    "averageRating": 5.0,
-    "reviewCount": 267,
+    "averageRating": 4.5,
+    "reviewCount": 6,
     "collection": "Lumina"
   },
   {
@@ -412,8 +412,8 @@
     "stockQuantity": 60,
     "targetSkinTypes": ["Da khô", "Da thường"],
     "targetSkinProblems": ["Da mất nước", "Nếp nhăn"],
-    "averageRating": 4.8,
-    "reviewCount": 155,
+    "averageRating": 4.5,
+    "reviewCount": 6,
     "collection": "Lumina"
   },
   {
@@ -430,8 +430,8 @@
     "stockQuantity": 120,
     "targetSkinTypes": ["Da thường", "Da hỗn hợp", "Da dầu"],
     "targetSkinProblems": ["Thâm nám", "Da xỉn màu"],
-    "averageRating": 4.9,
-    "reviewCount": 312,
+    "averageRating": 4.5,
+    "reviewCount": 6,
     "collection": "Lumina"
   },
   {
@@ -448,8 +448,8 @@
     "stockQuantity": 90,
     "targetSkinTypes": ["Da nhạy cảm", "Da khô"],
     "targetSkinProblems": ["Da kích ứng", "Da mất nước"],
-    "averageRating": 4.9,
-    "reviewCount": 198,
+    "averageRating": 4.5,
+    "reviewCount": 6,
     "collection": "Aurora"
   },
   {
@@ -466,8 +466,8 @@
     "stockQuantity": 85,
     "targetSkinTypes": ["Da khô", "Da nhạy cảm", "Da thường"],
     "targetSkinProblems": ["Da mất nước", "Da kích ứng"],
-    "averageRating": 4.8,
-    "reviewCount": 167,
+    "averageRating": 4.5,
+    "reviewCount": 6,
     "collection": "Aurora"
   },
   {
@@ -502,8 +502,8 @@
     "stockQuantity": 55,
     "targetSkinTypes": ["Da khô", "Da nhạy cảm"],
     "targetSkinProblems": ["Da mất nước", "Nếp nhăn"],
-    "averageRating": 4.9,
-    "reviewCount": 214,
+    "averageRating": 4.5,
+    "reviewCount": 6,
     "collection": "Aurora"
   },
   {
@@ -520,8 +520,8 @@
     "stockQuantity": 140,
     "targetSkinTypes": ["Da nhạy cảm", "Da khô", "Da thường"],
     "targetSkinProblems": ["Da kích ứng", "Da mất nước"],
-    "averageRating": 4.8,
-    "reviewCount": 245,
+    "averageRating": 4.5,
+    "reviewCount": 6,
     "collection": "Aurora"
   }
 ]

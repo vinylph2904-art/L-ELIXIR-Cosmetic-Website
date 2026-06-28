@@ -25,6 +25,7 @@ import { ReviewFormComponent } from './components/review-form/review-form.compon
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductReviewsComponent } from './pages/product-reviews/product-reviews.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     ProfileComponent,
     ProductCardComponent,
     ReviewListComponent,
-    ReviewFormComponent
+    ReviewFormComponent,
+    ProductReviewsComponent
   ],
   imports: [
     BrowserModule,

@@ -8,10 +8,45 @@ import productsData from '../data/mock-products.json';
   providedIn: 'root'
 })
 export class ProductService {
+  private readonly STORAGE_KEY = 'lelixir_products';
+  private products: Product[];
 
-  private products = productsData as Product[];
+  constructor() {
+    this.products = this.loadProducts();
+  }
 
   getProducts(): Observable<Product[]> {
     return of(this.products);
+  }
+
+  syncProductStats(productId: string, averageRating: number, reviewCount: number): void {
+    this.products = this.products.map(product => {
+      if (product.productId !== productId) {
+        return product;
+      }
+
+      return {
+        ...product,
+        averageRating,
+        reviewCount
+      };
+    });
+
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.products));
+  }
+
+  private loadProducts(): Product[] {
+    try {
+      const raw = localStorage.getItem(this.STORAGE_KEY);
+      if (raw) {
+        return JSON.parse(raw) as Product[];
+      }
+    } catch {
+      // ignore and fall back to seed data
+    }
+
+    const initialProducts = productsData as Product[];
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(initialProducts));
+    return initialProducts;
   }
 }
