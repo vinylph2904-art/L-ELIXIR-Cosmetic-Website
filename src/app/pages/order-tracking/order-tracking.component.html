@@ -71,26 +71,6 @@
       </div>
     </div>
 
-    <div class="mb-24 px-4">
-      <div class="relative flex justify-between items-center w-full">
-        <div class="absolute top-5 left-0 w-full h-[2px] bg-outline-variant -z-10"></div>
-        <div class="absolute top-5 left-0 h-[2px] bg-primary -z-10" [style.width]="getProgressPercent(order.orderStatus)"></div>
-        <div class="flex flex-col items-center gap-4 bg-surface px-2" *ngFor="let step of trackingSteps">
-          <div class="w-10 h-10 rounded-full flex items-center justify-center"
-               [class.bg-primary]="step.state === 'done'"
-               [class.text-white]="step.state === 'done' || step.state === 'current'"
-               [class.bg-primary-container]="step.state === 'current'"
-               [class.bg-outline-variant]="step.state === 'pending'">
-            <span class="material-symbols-outlined text-[20px]">{{ step.icon }}</span>
-          </div>
-          <p class="font-label-sm text-label-sm text-center"
-             [class.text-primary]="step.state !== 'pending'"
-             [class.font-bold]="step.state === 'current'"
-             [class.text-on-surface-variant]="step.state === 'pending'">{{ step.label }}</p>
-        </div>
-      </div>
-    </div>
-
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
       <div class="lg:col-span-7 space-y-12">
         <section>
@@ -130,44 +110,17 @@
             Lịch sử vận chuyển
           </h2>
           <div class="relative pl-8 space-y-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant">
-            <div class="relative">
-              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20"></div>
-              <div class="flex flex-col sm:flex-row sm:justify-between items-start">
+            <div class="relative" *ngFor="let item of getShipmentHistory(order)">
+              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full"
+                   [class.bg-primary]="item.state === 'current'"
+                   [class.bg-outline-variant]="item.state === 'done'"
+                   [ngClass]="item.state === 'current' ? 'ring-4 ring-primary/20' : ''"></div>
+              <div class="flex flex-col sm:flex-row sm:justify-between items-start" [class.opacity-70]="item.state === 'done'">
                 <div>
-                  <p class="font-body-md text-body-md font-bold text-primary">Đơn hàng đang được giao</p>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Shipper đang trên đường giao đến bạn.</p>
+                  <p class="font-body-md text-body-md" [class.font-bold]="item.state === 'current'" [class.text-primary]="item.state === 'current'">{{ item.title }}</p>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">{{ item.description }}</p>
                 </div>
-                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">Hôm nay, 09:30</p>
-              </div>
-            </div>
-            <div class="relative">
-              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full bg-outline-variant"></div>
-              <div class="flex flex-col sm:flex-row sm:justify-between items-start opacity-70">
-                <div>
-                  <p class="font-body-md text-body-md font-medium">Đã đến kho phân loại TP.HCM</p>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Kiện hàng đã được xử lý tại trung tâm trung chuyển.</p>
-                </div>
-                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">21/06/2025, 14:15</p>
-              </div>
-            </div>
-            <div class="relative">
-              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full bg-outline-variant"></div>
-              <div class="flex flex-col sm:flex-row sm:justify-between items-start opacity-70">
-                <div>
-                  <p class="font-body-md text-body-md font-medium">Đã bàn giao đơn vị vận chuyển</p>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Người bán đã gửi hàng thành công.</p>
-                </div>
-                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">20/06/2025, 18:00</p>
-              </div>
-            </div>
-            <div class="relative">
-              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full bg-outline-variant"></div>
-              <div class="flex flex-col sm:flex-row sm:justify-between items-start opacity-70">
-                <div>
-                  <p class="font-body-md text-body-md font-medium">Đơn hàng đã được tạo</p>
-                  <p class="font-body-sm text-body-sm text-on-surface-variant">Hệ thống đã ghi nhận đơn đặt hàng của bạn.</p>
-                </div>
-                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">20/06/2025, 10:25</p>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">{{ item.time }}</p>
               </div>
             </div>
           </div>
@@ -208,26 +161,11 @@
           </div>
 
           <div class="flex flex-col gap-4">
-            <button class="w-full py-4 bg-primary text-white font-label-md text-label-md rounded-full hover:bg-primary/90 transition-all active:scale-[0.98]">
-              LIÊN HỆ HỖ TRỢ
-            </button>
-            <a routerLink="/" class="w-full inline-block text-center py-4 border border-primary text-primary font-label-md text-label-md rounded-full hover:bg-primary/5 transition-all active:scale-[0.98]">TIẾP TỤC MUA SẮM</a>
+            <a routerLink="/" class="w-full inline-block text-center py-4 bg-primary text-white font-label-md text-label-md rounded-full hover:bg-primary/90 transition-all active:scale-[0.98]">TIẾP TỤC MUA SẮM</a>
           </div>
         </div>
       </div>
     </div>
   </ng-container>
 
-  <section class="mt-24 relative rounded-2xl overflow-hidden bg-primary text-white luxury-shadow h-[400px]">
-    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1200&q=80"
-         alt="Beauty recommendation"
-         class="absolute inset-0 w-full h-full object-cover opacity-50" />
-    <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent flex flex-col justify-center px-12 md:px-20 max-w-2xl">
-      <h3 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6">Sản phẩm cho riêng bạn</h3>
-      <p class="font-body-lg text-body-lg mb-8 opacity-90">Khám phá thêm các sản phẩm chăm sóc da được tinh chỉnh để hoàn hảo nhất cho làn da của bạn.</p>
-      <button class="w-fit px-10 py-4 bg-white text-primary font-label-md text-label-md rounded-full hover:bg-surface-bright transition-all">
-        KHẢO SÁT DA NGAY
-      </button>
-    </div>
-  </section>
 </div>

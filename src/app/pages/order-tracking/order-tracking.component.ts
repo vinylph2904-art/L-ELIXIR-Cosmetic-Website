@@ -133,6 +133,67 @@ export class OrderTrackingComponent implements OnInit {
     return `${(stepIndex / 4) * 100}%`;
   }
 
+  getShipmentHistory(order: Order): Array<{ title: string; description: string; time: string; state: 'done' | 'current' }> {
+    const createdTime = this.formatTimelineDate(order.createdAt);
+    const events: Array<{ title: string; description: string; time: string; state: 'done' | 'current' }> = [
+      {
+        title: 'Đơn hàng đã được tạo',
+        description: 'Hệ thống đã ghi nhận đơn đặt hàng của bạn.',
+        time: createdTime,
+        state: 'done'
+      },
+      {
+        title: 'Đã xác nhận',
+        description: 'Đơn hàng đã được xác nhận và chuẩn bị xử lý.',
+        time: 'Đang xử lý',
+        state: 'done'
+      },
+      {
+        title: 'Đang chuẩn bị',
+        description: 'Kho hàng đang đóng gói và sắp xếp đơn của bạn.',
+        time: 'Sắp tới',
+        state: 'done'
+      },
+      {
+        title: 'Đang giao hàng',
+        description: 'Shipper đang trên đường giao đến bạn.',
+        time: 'Đang vận chuyển',
+        state: 'done'
+      },
+      {
+        title: 'Đã giao hàng',
+        description: 'Đơn hàng đã được giao thành công.',
+        time: 'Hoàn tất',
+        state: 'done'
+      }
+    ];
+
+    if (order.orderStatus === 'Cancelled') {
+      return [events[0]];
+    }
+
+    const visibleCount = Math.min(this.orderService.getStepIndex(order.orderStatus) + 1, events.length);
+    const visibleEvents = events.slice(0, visibleCount);
+
+    if (visibleEvents.length > 0) {
+      visibleEvents[visibleEvents.length - 1] = {
+        ...visibleEvents[visibleEvents.length - 1],
+        state: 'current'
+      };
+    }
+
+    return visibleEvents;
+  }
+
+  private formatTimelineDate(value: Date | string | undefined): string {
+    if (!value) {
+      return 'Đã tạo';
+    }
+
+    const date = value instanceof Date ? value : new Date(value);
+    return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}, ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+  }
+
   getPaymentMethodLabel(method: Order['paymentMethod']): string {
     const map: Record<Order['paymentMethod'], string> = {
       cod: 'Tiền mặt (COD)',

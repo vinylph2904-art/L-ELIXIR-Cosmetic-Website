@@ -5,3 +5,30 @@
 .luxury-shadow {
   box-shadow: 0 30px 60px -12px rgba(45, 45, 45, 0.08);
 }
+
+/* Tracking Steps Styling */
+.step-done,
+.step-current {
+  opacity: 1;
+}
+
+.step-pending {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+/* Animate pulse for pending steps' arrow */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+}
+
+.animate-bounce {
+  animation: bounce-subtle 2s infinite;
+}
