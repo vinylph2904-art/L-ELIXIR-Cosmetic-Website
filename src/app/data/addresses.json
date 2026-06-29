@@ -10,9 +10,73 @@
   {
     "addressId": "A1781977136020",
     "userId": "U1781977136020",
-    "receiverName": "Ây bi xi",
+    "receiverName": "Ây Bi Xi",
     "receiverPhone": "1234567989",
     "addressDetails": "789 Đường Trần Hưng Đạo, Quận Hoàn Kiếm, TP. Hà Nội",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1782000000000",
+    "userId": "U1782000000000",
+    "receiverName": "Hiti Di",
+    "receiverPhone": "0909876543",
+    "addressDetails": "15 Lê Lợi, Quận 1, TP. Hồ Chí Minh",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1782100000001",
+    "userId": "U1782100000001",
+    "receiverName": "Ngô Thanh Trúc",
+    "receiverPhone": "0901111111",
+    "addressDetails": "22 Nguyễn Thị Minh Khai, Quận 1, TP. Hồ Chí Minh",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1782100000002",
+    "userId": "U1782100000002",
+    "receiverName": "Phạm Gia Hân",
+    "receiverPhone": "0901111112",
+    "addressDetails": "78 Lê Văn Sỹ, Quận 3, TP. Hồ Chí Minh",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1782100000003",
+    "userId": "U1782100000003",
+    "receiverName": "Nguyễn Minh Khánh",
+    "receiverPhone": "0901111113",
+    "addressDetails": "35 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1782100000004",
+    "userId": "U1782100000004",
+    "receiverName": "Trần Thị Hòa",
+    "receiverPhone": "0901111114",
+    "addressDetails": "101 Cách Mạng Tháng 8, Quận 10, TP. Hồ Chí Minh",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1782100000005",
+    "userId": "U1782100000005",
+    "receiverName": "Lê Quang Duy",
+    "receiverPhone": "0901111115",
+    "addressDetails": "59 Phạm Ngũ Lão, Quận 1, TP. Hồ Chí Minh",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1782100000006",
+    "userId": "U1782100000006",
+    "receiverName": "Võ Bảo Trân",
+    "receiverPhone": "0901111116",
+    "addressDetails": "47 Nguyễn Công Trứ, Quận 1, TP. Hồ Chí Minh",
+    "isDefault": true
+  },
+  {
+    "addressId": "A1782100000007",
+    "userId": "U1782100000007",
+    "receiverName": "Đặng Thảo Nhi",
+    "receiverPhone": "0901111117",
+    "addressDetails": "33 Hoàng Sa, Quận 3, TP. Hồ Chí Minh",
     "isDefault": true
   }
 ]

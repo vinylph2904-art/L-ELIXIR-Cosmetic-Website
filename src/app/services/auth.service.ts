@@ -184,4 +184,28 @@ export class AuthService {
 
     return { success: true, message: 'Đổi mật khẩu thành công.' };
   }
+
+  async resetPassword(email: string, newPassword: string): Promise<{ success: boolean; message: string }> {
+    const users = this.getUsers();
+    const idx = users.findIndex(u => u.email.toLowerCase() === email.trim().toLowerCase());
+    if (idx === -1) {
+      return { success: false, message: 'Không tìm thấy tài khoản với email này.' };
+    }
+
+    if (newPassword.trim().length < 6) {
+      return { success: false, message: 'Mật khẩu mới phải có ít nhất 6 ký tự.' };
+    }
+
+    users[idx] = { ...users[idx], password: newPassword };
+    await this.saveUsers(users);
+
+    const current = this.getCurrentUser();
+    if (current && current.userId === users[idx].userId) {
+      const updatedUser = { ...users[idx], token: current.token };
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify(updatedUser));
+      this.currentUserSubject.next(updatedUser);
+    }
+
+    return { success: true, message: 'Mật khẩu đã được đặt lại. Vui lòng đăng nhập lại.' };
+  }
 }

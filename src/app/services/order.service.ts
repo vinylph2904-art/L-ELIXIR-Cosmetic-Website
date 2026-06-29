@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Order, ShippingInfo, OrderItem, PaymentSandboxResponse } from '../data/order.model';
 import { Product } from '../data/product.model';
+import mockOrders from '../data/mock/orders.mock.json';
+import PRODUCTS from '../data/mock-products.json';
+import seedUsers from '../data/users.json';
 import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
@@ -336,12 +339,199 @@ export class OrderService {
   private STORAGE_ORDERS_KEY = 'orders';
 
   private readStoredOrders(): any[] {
+    this.ensureMockOrdersLoaded();
+    return this.readStoredOrdersInternal();
+  }
+
+  private readStoredOrdersInternal(): any[] {
     try {
       const raw = localStorage.getItem(this.STORAGE_ORDERS_KEY);
-      return raw ? JSON.parse(raw) : [];
+      if (!raw) {
+        return [];
+      }
+
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed.map((order: any) => this.normalizeOrder(order)) : [];
     } catch {
       return [];
     }
+  }
+
+  private ensureMockOrdersLoaded(): void {
+    const existingOrders = this.readStoredOrdersInternal();
+    const hasMockOrderData = existingOrders.some((item: any) => /^ORD-(\d+)$/.test(String(item?.orderId || '')));
+
+    if (existingOrders.length === 0 || !hasMockOrderData) {
+      const seededOrders = Array.isArray(mockOrders) ? mockOrders.map((order: any) => this.normalizeOrder(order)) : [];
+      const mergedOrders = [...seededOrders];
+      const existingIds = new Set(mergedOrders.map((item: any) => String(item?.orderId || '').toLowerCase()));
+
+      for (const order of existingOrders) {
+        if (!order || !order.orderId) {
+          continue;
+        }
+
+        const id = String(order.orderId).toLowerCase();
+        if (!existingIds.has(id)) {
+          mergedOrders.push(order);
+          existingIds.add(id);
+        }
+      }
+
+      localStorage.setItem(this.STORAGE_ORDERS_KEY, JSON.stringify(mergedOrders));
+    }
+  }
+
+  private normalizeOrder(order: any): any {
+    if (!order) {
+      return order;
+    }
+
+    const normalizedItems = Array.isArray(order.items)
+      ? order.items.map((item: any) => this.normalizeOrderItem(item))
+      : [];
+    const subtotal = Number(order.subtotal ?? order.totalAmount ?? 0);
+    const shippingFee = Number(order.shippingFee ?? 0);
+    const totalAmount = Number(order.totalAmount ?? order.total ?? subtotal + shippingFee);
+    const shippingInfo = this.normalizeShippingInfo(order);
+    const normalizedOrderStatus = this.normalizeOrderStatus(order.orderStatus);
+
+    return {
+      ...order,
+      orderId: String(order.orderId || '').trim(),
+      items: normalizedItems,
+      shippingInfo,
+      shippingMethod: this.normalizeShippingMethod(order.shippingMethod),
+      paymentMethod: this.normalizePaymentMethod(order.paymentMethod),
+      subtotal: Number.isFinite(subtotal) ? subtotal : normalizedItems.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0),
+      shippingFee: Number.isFinite(shippingFee) ? shippingFee : 0,
+      discount: Number(order.discount ?? 0),
+      total: Number(order.total ?? totalAmount),
+      totalAmount: Number.isFinite(totalAmount) ? totalAmount : subtotal + shippingFee,
+      status: this.normalizeOrderState(normalizedOrderStatus),
+      orderStatus: normalizedOrderStatus,
+      createdAt: this.parseDate(order.createdAt),
+      updatedAt: this.parseDate(order.updatedAt ?? order.createdAt),
+      userId: order.userId ?? null,
+      guestName: order.guestName ?? shippingInfo.fullName,
+      guestEmail: order.guestEmail ?? shippingInfo.email,
+      guestPhone: order.guestPhone ?? shippingInfo.phone
+    };
+  }
+
+  private normalizeOrderItem(item: any): any {
+    const productId = item?.productId || item?.product?.productId;
+    const product = item?.product || (productId ? PRODUCTS.find((p: any) => p.productId === productId) : null) || null;
+    const quantity = Number(item?.quantity || 1);
+    const price = Number(item?.priceAtPurchase ?? item?.price ?? product?.price ?? 0);
+
+    return {
+      ...item,
+      product: product ? { ...product } : {
+        productId: productId || 'UNKNOWN',
+        name: item?.productName || 'Sản phẩm',
+        brand: '',
+        categoryName: '',
+        description: '',
+        ingredients: [],
+        images: [],
+        volume: '',
+        routineStep: '',
+        price,
+        stockQuantity: 0,
+        targetSkinTypes: [],
+        targetSkinProblems: [],
+        averageRating: 0,
+        reviewCount: 0
+      },
+      quantity,
+      price
+    };
+  }
+
+  private normalizeShippingInfo(order: any): ShippingInfo {
+    const address = order?.deliveryAddress || order?.shippingInfo?.address || '';
+    const userInfo = this.resolveUserInfo(order);
+    return {
+      fullName: order?.guestName || order?.shippingInfo?.fullName || userInfo.fullName || '',
+      phone: order?.guestPhone || order?.shippingInfo?.phone || userInfo.phone || '',
+      email: order?.guestEmail || order?.shippingInfo?.email || userInfo.email || '',
+      city: order?.shippingInfo?.city || '',
+      district: order?.shippingInfo?.district || '',
+      address,
+      note: order?.shippingInfo?.note
+    };
+  }
+
+  private resolveUserInfo(order: any): { fullName: string; phone: string; email: string } {
+    const userId = String(order?.userId || '').trim();
+    if (!userId) {
+      return { fullName: '', phone: '', email: '' };
+    }
+
+    const users = this.getUsersFromStorage();
+    const matchedUser = users.find((user: any) => String(user?.userId || '').trim() === userId);
+
+    return {
+      fullName: matchedUser?.fullName || '',
+      phone: matchedUser?.phoneNumber || '',
+      email: matchedUser?.email || ''
+    };
+  }
+
+  private getUsersFromStorage(): any[] {
+    try {
+      const raw = localStorage.getItem('users');
+      const parsed = raw ? JSON.parse(raw) : null;
+      return Array.isArray(parsed) ? parsed : Array.isArray(seedUsers) ? seedUsers : [];
+    } catch {
+      return Array.isArray(seedUsers) ? seedUsers : [];
+    }
+  }
+
+  private normalizeShippingMethod(method: any): 'standard' | 'express' {
+    const value = String(method || '').toLowerCase();
+    return value === 'express' ? 'express' : 'standard';
+  }
+
+  private normalizePaymentMethod(method: any): Order['paymentMethod'] {
+    const value = String(method || '').toLowerCase();
+    if (value.includes('bank')) return 'bank_transfer';
+    if (value.includes('wallet') || value.includes('e_wallet')) return 'e_wallet';
+    if (value.includes('credit') || value.includes('card')) return 'credit_card';
+    return 'cod';
+  }
+
+  private normalizeOrderStatus(status: any): Order['orderStatus'] {
+    const value = String(status || '').toLowerCase();
+    if (value.includes('cancel')) return 'Cancelled';
+    if (value.includes('complete') || value.includes('deliver')) return 'Completed';
+    if (value.includes('ship')) return 'Shipping';
+    if (value.includes('process')) return 'Processing';
+    return 'Pending';
+  }
+
+  private normalizeOrderState(status: Order['orderStatus']): Order['status'] {
+    switch (status) {
+      case 'Completed':
+        return 'delivered';
+      case 'Shipping':
+        return 'shipped';
+      case 'Processing':
+        return 'processing';
+      case 'Cancelled':
+        return 'cancelled';
+      default:
+        return 'pending_payment';
+    }
+  }
+
+  private parseDate(value: any): Date {
+    if (!value) {
+      return new Date();
+    }
+    const parsed = value instanceof Date ? value : new Date(value);
+    return Number.isNaN(parsed.getTime()) ? new Date() : parsed;
   }
 
   private writeStoredOrders(orders: any[]): void {
@@ -408,7 +598,8 @@ export class OrderService {
   // Return a single order by id (legacy API)
   getByOrderId(orderId: string): any | null {
     const orders = this.readStoredOrders();
-    return orders.find(o => String(o.orderId).toLowerCase() === String(orderId).toLowerCase()) || null;
+    const normalizedOrderId = String(orderId || '').trim().toLowerCase();
+    return orders.find(o => String(o.orderId || '').trim().toLowerCase() === normalizedOrderId) || null;
   }
 
   // Update order status (legacy API)

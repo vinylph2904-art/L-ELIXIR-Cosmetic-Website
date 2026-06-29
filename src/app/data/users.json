@@ -15,7 +15,7 @@
     "userId": "U1781977136020",
     "email": "aybixi@gmail.com",
     "password": "aaa",
-    "fullName": "Ây bi xi",
+    "fullName": "Ây Bi Xi",
     "phoneNumber": "1234567989",
     "role": "customer",
     "createdAt": "2026-06-20T17:38:56.020Z"
@@ -91,14 +91,5 @@
     "phoneNumber": "0901111117",
     "role": "customer",
     "createdAt": "2026-06-21T08:30:00.000Z"
-  },
-  {
-    "userId": "U1782100000008",
-    "email": "huynh.minh.an@gmail.com",
-    "password": "123456",
-    "fullName": "Huỳnh Minh An",
-    "phoneNumber": "0901111118",
-    "role": "customer",
-    "createdAt": "2026-06-21T08:35:00.000Z"
   }
 ]

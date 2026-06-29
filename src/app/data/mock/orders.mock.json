@@ -1,17 +1,17 @@
-[
+﻿[
   {
-    "orderId": "ORD001",
-    "userId": "user_001",
+    "orderId": "ORD-0001",
+    "userId": "U1718000000000",
     "orderStatus": "Completed",
     "items": [
       {
-        "productId": "PROD001",
+        "productId": "SP01",
         "productName": "Serum Vitamin C 10%",
         "quantity": 1,
         "priceAtPurchase": 450000
       },
       {
-        "productId": "PROD002",
+        "productId": "SP02",
         "productName": "Nước hoa hồng Toner Premium",
         "quantity": 1,
         "priceAtPurchase": 320000
@@ -24,51 +24,51 @@
     "createdAt": "2026-05-10T14:30:00Z"
   },
   {
-    "orderId": "ORD002",
-    "userId": "user_001",
-    "orderStatus": "Completed",
+    "orderId": "ORD-0002",
+    "userId": "U1781977136020",
+    "orderStatus": "Processing",
     "items": [
       {
-        "productId": "PROD003",
+        "productId": "SP03",
         "productName": "Kem dưỡng da ban đêm Renewal",
         "quantity": 1,
         "priceAtPurchase": 550000
       },
       {
-        "productId": "PROD004",
+        "productId": "SP04",
         "productName": "Mặt nạ sheet Collagen",
         "quantity": 3,
         "priceAtPurchase": 85000
       }
     ],
     "totalAmount": 1105000,
-    "deliveryAddress": "123 Đường Nguyễn Huệ, Quận 1, TP.HCM",
+    "deliveryAddress": "789 Đường Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội",
     "shippingMethod": "Express",
     "shippingFee": 50000,
     "createdAt": "2026-05-18T09:15:00Z"
   },
   {
-    "orderId": "ORD003",
-    "userId": "user_001",
-    "orderStatus": "Completed",
+    "orderId": "ORD-003",
+    "userId": "U1782000000000",
+    "orderStatus": "Shipped",
     "items": [
       {
-        "productId": "PROD005",
+        "productId": "SP05",
         "productName": "Sữa rửa mặt Foam Gentle",
         "quantity": 2,
         "priceAtPurchase": 280000
       }
     ],
     "totalAmount": 640000,
-    "deliveryAddress": "123 Đường Nguyễn Huệ, Quận 1, TP.HCM",
+    "deliveryAddress": "15 Lê Lợi, Quận 1, TP.HCM",
     "shippingMethod": "Standard",
     "shippingFee": 30000,
     "createdAt": "2026-05-25T16:45:00Z"
   },
   {
-    "orderId": "ORD501",
+    "orderId": "ORD-0004",
     "userId": "U1782100000001",
-    "orderStatus": "Completed",
+    "orderStatus": "Pending",
     "items": [
       {
         "productId": "SP23",
@@ -78,68 +78,14 @@
       }
     ],
     "totalAmount": 1190000,
-    "deliveryAddress": "12 Nguyễn Văn Cừ, Quận 5, TP.HCM",
+    "deliveryAddress": "22 Nguyễn Thị Minh Khai, Quận 1, TP.HCM",
     "shippingMethod": "Express",
     "shippingFee": 50000,
     "createdAt": "2026-05-15T09:10:00Z"
   },
   {
-    "orderId": "ORD502",
+    "orderId": "ORD-0005",
     "userId": "U1782100000002",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP23",
-        "productName": "Lumina Radiance Serum",
-        "quantity": 1,
-        "priceAtPurchase": 1190000
-      }
-    ],
-    "totalAmount": 1190000,
-    "deliveryAddress": "45 Lê Văn Sỹ, Quận 3, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-05-27T14:25:00Z"
-  },
-  {
-    "orderId": "ORD503",
-    "userId": "U1782100000003",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP23",
-        "productName": "Lumina Radiance Serum",
-        "quantity": 1,
-        "priceAtPurchase": 1190000
-      }
-    ],
-    "totalAmount": 1190000,
-    "deliveryAddress": "88 Hai Bà Trưng, Quận 1, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-06-08T10:40:00Z"
-  },
-  {
-    "orderId": "ORD504",
-    "userId": "U1782100000004",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP23",
-        "productName": "Lumina Radiance Serum",
-        "quantity": 1,
-        "priceAtPurchase": 1190000
-      }
-    ],
-    "totalAmount": 1190000,
-    "deliveryAddress": "27 Cách Mạng Tháng 8, Quận 10, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-06-18T16:05:00Z"
-  },
-  {
-    "orderId": "ORD505",
-    "userId": "U1782100000005",
     "orderStatus": "Completed",
     "items": [
       {
@@ -150,359 +96,95 @@
       }
     ],
     "totalAmount": 980000,
-    "deliveryAddress": "50 Nguyễn Đình Chiểu, Quận 3, TP.HCM",
+    "deliveryAddress": "78 Lê Văn Sỹ, Quận 3, TP.HCM",
     "shippingMethod": "Standard",
     "shippingFee": 30000,
     "createdAt": "2026-04-20T08:30:00Z"
   },
   {
-    "orderId": "ORD506",
-    "userId": "U1782100000006",
-    "orderStatus": "Completed",
+    "orderId": "ORD-0006",
+    "userId": "U1782100000003",
+    "orderStatus": "Cancelled",
     "items": [
       {
-        "productId": "SP24",
-        "productName": "Lumina Silk Cream",
+        "productId": "SP25",
+        "productName": "Lumina Sun Veil SPF50+",
         "quantity": 1,
-        "priceAtPurchase": 980000
+        "priceAtPurchase": 590000
       }
     ],
-    "totalAmount": 980000,
-    "deliveryAddress": "14 Phạm Ngũ Lão, Quận 1, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
+    "totalAmount": 590000,
+    "deliveryAddress": "35 Nguyễn Trãi, Quận 1, TP.HCM",
+    "shippingMethod": "Standard",
+    "shippingFee": 30000,
     "createdAt": "2026-05-02T11:40:00Z"
   },
   {
-    "orderId": "ORD507",
-    "userId": "U1782100000007",
-    "orderStatus": "Completed",
+    "orderId": "ORD-0007",
+    "userId": "U1782100000004",
+    "orderStatus": "Delivered",
     "items": [
       {
-        "productId": "SP24",
-        "productName": "Lumina Silk Cream",
+        "productId": "SP26",
+        "productName": "Aurora Purity Cleanser",
         "quantity": 1,
-        "priceAtPurchase": 980000
+        "priceAtPurchase": 420000
       }
     ],
-    "totalAmount": 980000,
-    "deliveryAddress": "99 Võ Văn Tần, Quận 3, TP.HCM",
+    "totalAmount": 420000,
+    "deliveryAddress": "101 Cách Mạng Tháng 8, Quận 10, TP.HCM",
     "shippingMethod": "Standard",
     "shippingFee": 30000,
     "createdAt": "2026-05-18T13:20:00Z"
   },
   {
-    "orderId": "ORD508",
-    "userId": "U1782100000008",
-    "orderStatus": "Completed",
+    "orderId": "ORD-0008",
+    "userId": "U1782100000005",
+    "orderStatus": "Processing",
     "items": [
       {
-        "productId": "SP24",
-        "productName": "Lumina Silk Cream",
-        "quantity": 1,
-        "priceAtPurchase": 980000
+        "productId": "SP27",
+        "productName": "Aurora Dew Toner",
+        "quantity": 2,
+        "priceAtPurchase": 490000
       }
     ],
     "totalAmount": 980000,
-    "deliveryAddress": "63 Tôn Đức Thắng, Quận 1, TP.HCM",
+    "deliveryAddress": "59 Phạm Ngũ Lão, Quận 1, TP.HCM",
     "shippingMethod": "Express",
     "shippingFee": 50000,
     "createdAt": "2026-06-11T15:55:00Z"
   },
   {
-    "orderId": "ORD509",
-    "userId": "U1782100000001",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP25",
-        "productName": "Lumina Sun Veil SPF50+",
-        "quantity": 1,
-        "priceAtPurchase": 590000
-      }
-    ],
-    "totalAmount": 590000,
-    "deliveryAddress": "72 Lê Lai, Quận 1, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-04-25T09:05:00Z"
-  },
-  {
-    "orderId": "ORD510",
-    "userId": "U1782100000002",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP25",
-        "productName": "Lumina Sun Veil SPF50+",
-        "quantity": 1,
-        "priceAtPurchase": 590000
-      }
-    ],
-    "totalAmount": 590000,
-    "deliveryAddress": "19 Nguyễn Thị Minh Khai, Quận 3, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-05-08T12:15:00Z"
-  },
-  {
-    "orderId": "ORD511",
-    "userId": "U1782100000003",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP25",
-        "productName": "Lumina Sun Veil SPF50+",
-        "quantity": 1,
-        "priceAtPurchase": 590000
-      }
-    ],
-    "totalAmount": 590000,
-    "deliveryAddress": "31 Bình Thạnh, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-05-22T10:30:00Z"
-  },
-  {
-    "orderId": "ORD512",
-    "userId": "U1782100000004",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP25",
-        "productName": "Lumina Sun Veil SPF50+",
-        "quantity": 1,
-        "priceAtPurchase": 590000
-      }
-    ],
-    "totalAmount": 590000,
-    "deliveryAddress": "85 Trần Hưng Đạo, Quận 5, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-06-14T16:40:00Z"
-  },
-  {
-    "orderId": "ORD513",
-    "userId": "U1782100000005",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP26",
-        "productName": "Aurora Purity Cleanser",
-        "quantity": 1,
-        "priceAtPurchase": 420000
-      }
-    ],
-    "totalAmount": 420000,
-    "deliveryAddress": "10 Đinh Tiên Hoàng, Quận 1, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-04-18T07:20:00Z"
-  },
-  {
-    "orderId": "ORD514",
+    "orderId": "ORD-0009",
     "userId": "U1782100000006",
-    "orderStatus": "Completed",
+    "orderStatus": "Pending",
     "items": [
       {
-        "productId": "SP26",
-        "productName": "Aurora Purity Cleanser",
+        "productId": "SP28",
+        "productName": "Aurora Glow Mask",
         "quantity": 1,
-        "priceAtPurchase": 420000
-      }
-    ],
-    "totalAmount": 420000,
-    "deliveryAddress": "60 Điện Biên Phủ, Quận 3, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-05-04T09:50:00Z"
-  },
-  {
-    "orderId": "ORD515",
-    "userId": "U1782100000007",
-    "orderStatus": "Completed",
-    "items": [
+        "priceAtPurchase": 350000
+      },
       {
-        "productId": "SP26",
-        "productName": "Aurora Purity Cleanser",
+        "productId": "SP29",
+        "productName": "Aurora Night Cream",
         "quantity": 1,
-        "priceAtPurchase": 420000
+        "priceAtPurchase": 1090000
       }
     ],
-    "totalAmount": 420000,
-    "deliveryAddress": "77 Nguyễn Hữu Cảnh, Quận 3, TP.HCM",
+    "totalAmount": 1445000,
+    "deliveryAddress": "47 Nguyễn Công Trứ, Quận 1, TP.HCM",
     "shippingMethod": "Standard",
     "shippingFee": 30000,
-    "createdAt": "2026-05-20T14:10:00Z"
-  },
-  {
-    "orderId": "ORD516",
-    "userId": "U1782100000008",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP26",
-        "productName": "Aurora Purity Cleanser",
-        "quantity": 1,
-        "priceAtPurchase": 420000
-      }
-    ],
-    "totalAmount": 420000,
-    "deliveryAddress": "34 Hoàng Sa, Quận 1, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
     "createdAt": "2026-06-09T16:25:00Z"
   },
   {
-    "orderId": "ORD517",
-    "userId": "U1782100000001",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP27",
-        "productName": "Aurora Dew Toner",
-        "quantity": 1,
-        "priceAtPurchase": 490000
-      }
-    ],
-    "totalAmount": 490000,
-    "deliveryAddress": "22 Phú Nhuận, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-04-22T08:45:00Z"
-  },
-  {
-    "orderId": "ORD518",
-    "userId": "U1782100000002",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP27",
-        "productName": "Aurora Dew Toner",
-        "quantity": 1,
-        "priceAtPurchase": 490000
-      }
-    ],
-    "totalAmount": 490000,
-    "deliveryAddress": "15 Nguyễn Trãi, Quận 5, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-05-06T11:30:00Z"
-  },
-  {
-    "orderId": "ORD519",
-    "userId": "U1782100000003",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP27",
-        "productName": "Aurora Dew Toner",
-        "quantity": 1,
-        "priceAtPurchase": 490000
-      }
-    ],
-    "totalAmount": 490000,
-    "deliveryAddress": "41 Bùi Thị Xuân, Quận 1, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-05-25T13:05:00Z"
-  },
-  {
-    "orderId": "ORD520",
-    "userId": "U1782100000004",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP27",
-        "productName": "Aurora Dew Toner",
-        "quantity": 1,
-        "priceAtPurchase": 490000
-      }
-    ],
-    "totalAmount": 490000,
-    "deliveryAddress": "91 Đông Du, Quận 1, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-06-16T15:20:00Z"
-  },
-  {
-    "orderId": "ORD521",
-    "userId": "U1782100000005",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP29",
-        "productName": "Aurora Night Cream",
-        "quantity": 1,
-        "priceAtPurchase": 1090000
-      }
-    ],
-    "totalAmount": 1090000,
-    "deliveryAddress": "18 An Dương Vương, Quận 5, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-04-16T20:10:00Z"
-  },
-  {
-    "orderId": "ORD522",
-    "userId": "U1782100000006",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP29",
-        "productName": "Aurora Night Cream",
-        "quantity": 1,
-        "priceAtPurchase": 1090000
-      }
-    ],
-    "totalAmount": 1090000,
-    "deliveryAddress": "58 Nguyễn Văn Cừ, Quận 5, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-05-10T22:35:00Z"
-  },
-  {
-    "orderId": "ORD523",
+    "orderId": "ORD-00010",
     "userId": "U1782100000007",
     "orderStatus": "Completed",
     "items": [
       {
-        "productId": "SP29",
-        "productName": "Aurora Night Cream",
-        "quantity": 1,
-        "priceAtPurchase": 1090000
-      }
-    ],
-    "totalAmount": 1090000,
-    "deliveryAddress": "30 Phan Đăng Lưu, Quận Phú Nhuận, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-05-28T21:50:00Z"
-  },
-  {
-    "orderId": "ORD524",
-    "userId": "U1782100000008",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP29",
-        "productName": "Aurora Night Cream",
-        "quantity": 1,
-        "priceAtPurchase": 1090000
-      }
-    ],
-    "totalAmount": 1090000,
-    "deliveryAddress": "66 Hoàng Hoa Thám, Quận Bình Thạnh, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-06-12T19:15:00Z"
-  },
-  {
-    "orderId": "ORD525",
-    "userId": "U1782100000001",
-    "orderStatus": "Completed",
-    "items": [
-      {
         "productId": "SP30",
         "productName": "Aurora UV Defense SPF50+",
         "quantity": 1,
@@ -510,63 +192,232 @@
       }
     ],
     "totalAmount": 620000,
+    "deliveryAddress": "33 Hoàng Sa, Quận 3, TP.HCM",
+    "shippingMethod": "Express",
+    "shippingFee": 50000,
+    "createdAt": "2026-04-22T08:45:00Z"
+  },
+  {
+    "orderId": "ORD-00011",
+    "userId": "",
+    "guestName": "Trần Văn Bảo",
+    "guestPhone": "0912345678",
+    "guestEmail": "tranbao@example.com",
+    "orderStatus": "Pending",
+    "items": [
+      {
+        "productId": "SP23",
+        "productName": "Lumina Radiance Serum",
+        "quantity": 1,
+        "priceAtPurchase": 1190000
+      }
+    ],
+    "totalAmount": 1190000,
+    "deliveryAddress": "324 Phan Xích Long, Phú Nhuận, TP.HCM",
+    "shippingMethod": "Standard",
+    "shippingFee": 30000,
+    "createdAt": "2026-06-01T10:15:00Z"
+  },
+  {
+    "orderId": "ORD-00012",
+    "userId": "",
+    "guestName": "Nguyễn Thị Mai",
+    "guestPhone": "0987654321",
+    "guestEmail": "mai.nguyen@example.com",
+    "orderStatus": "Processing",
+    "items": [
+      {
+        "productId": "SP24",
+        "productName": "Lumina Silk Cream",
+        "quantity": 2,
+        "priceAtPurchase": 980000
+      }
+    ],
+    "totalAmount": 1960000,
+    "deliveryAddress": "12 Hoàng Hoa Thám, Bình Thạnh, TP.HCM",
+    "shippingMethod": "Express",
+    "shippingFee": 50000,
+    "createdAt": "2026-06-05T14:20:00Z"
+  },
+  {
+    "orderId": "ORD-00013",
+    "userId": "",
+    "guestName": "Phạm Duy Quang",
+    "guestPhone": "0971122334",
+    "guestEmail": "quang.pham@example.com",
+    "orderStatus": "Shipped",
+    "items": [
+      {
+        "productId": "SP25",
+        "productName": "Lumina Sun Veil SPF50+",
+        "quantity": 1,
+        "priceAtPurchase": 590000
+      },
+      {
+        "productId": "SP26",
+        "productName": "Aurora Purity Cleanser",
+        "quantity": 1,
+        "priceAtPurchase": 420000
+      }
+    ],
+    "totalAmount": 1040000,
+    "deliveryAddress": "88 Lê Lợi, Quận 1, TP.HCM",
+    "shippingMethod": "Standard",
+    "shippingFee": 30000,
+    "createdAt": "2026-06-08T11:45:00Z"
+  },
+  {
+    "orderId": "ORD-00014",
+    "userId": "",
+    "guestName": "Lê Thị Hồng",
+    "guestPhone": "0935123456",
+    "guestEmail": "hong.le@example.com",
+    "orderStatus": "Completed",
+    "items": [
+      {
+        "productId": "SP27",
+        "productName": "Aurora Dew Toner",
+        "quantity": 1,
+        "priceAtPurchase": 490000
+      }
+    ],
+    "totalAmount": 490000,
+    "deliveryAddress": "45 Nguyễn Cư Trinh, Quận 1, TP.HCM",
+    "shippingMethod": "Express",
+    "shippingFee": 50000,
+    "createdAt": "2026-06-10T16:00:00Z"
+  },
+  {
+    "orderId": "ORD-00015",
+    "userId": "",
+    "guestName": "Hoàng Văn Dũng",
+    "guestPhone": "0919988776",
+    "guestEmail": "dung.hoang@example.com",
+    "orderStatus": "Cancelled",
+    "items": [
+      {
+        "productId": "SP28",
+        "productName": "Aurora Glow Mask",
+        "quantity": 1,
+        "priceAtPurchase": 350000
+      }
+    ],
+    "totalAmount": 350000,
+    "deliveryAddress": "7 Trần Quốc Thảo, Quận 3, TP.HCM",
+    "shippingMethod": "Standard",
+    "shippingFee": 30000,
+    "createdAt": "2026-06-12T09:20:00Z"
+  },
+  {
+    "orderId": "ORD-00016",
+    "userId": "",
+    "guestName": "Đào Thị Lan",
+    "guestPhone": "0944332211",
+    "guestEmail": "lan.dao@example.com",
+    "orderStatus": "Delivered",
+    "items": [
+      {
+        "productId": "SP29",
+        "productName": "Aurora Night Cream",
+        "quantity": 1,
+        "priceAtPurchase": 1090000
+      }
+    ],
+    "totalAmount": 1090000,
+    "deliveryAddress": "72 Lê Lai, Quận 1, TP.HCM",
+    "shippingMethod": "Express",
+    "shippingFee": 50000,
+    "createdAt": "2026-06-14T10:35:00Z"
+  },
+  {
+    "orderId": "ORD-00017",
+    "userId": "",
+    "guestName": "Cao Minh Khang",
+    "guestPhone": "0966554433",
+    "guestEmail": "khang.cao@example.com",
+    "orderStatus": "Processing",
+    "items": [
+      {
+        "productId": "SP30",
+        "productName": "Aurora UV Defense SPF50+",
+        "quantity": 2,
+        "priceAtPurchase": 620000
+      }
+    ],
+    "totalAmount": 1240000,
+    "deliveryAddress": "14 Phạm Ngũ Lão, Quận 1, TP.HCM",
+    "shippingMethod": "Standard",
+    "shippingFee": 30000,
+    "createdAt": "2026-06-15T12:50:00Z"
+  },
+  {
+    "orderId": "ORD-00018",
+    "userId": "",
+    "guestName": "Trịnh Thị Thu",
+    "guestPhone": "0907766554",
+    "guestEmail": "thu.trinh@example.com",
+    "orderStatus": "Pending",
+    "items": [
+      {
+        "productId": "SP31",
+        "productName": "Aurora Firming Serum",
+        "quantity": 1,
+        "priceAtPurchase": 780000
+      }
+    ],
+    "totalAmount": 780000,
+    "deliveryAddress": "53 Nguyễn Văn Trỗi, Phú Nhuận, TP.HCM",
+    "shippingMethod": "Express",
+    "shippingFee": 50000,
+    "createdAt": "2026-06-16T14:10:00Z"
+  },
+  {
+    "orderId": "ORD-00019",
+    "userId": "",
+    "guestName": "Phan Văn An",
+    "guestPhone": "0988665544",
+    "guestEmail": "an.phan@example.com",
+    "orderStatus": "Shipped",
+    "items": [
+      {
+        "productId": "SP32",
+        "productName": "Aurora Creamy Lotion",
+        "quantity": 2,
+        "priceAtPurchase": 520000
+      }
+    ],
+    "totalAmount": 1040000,
+    "deliveryAddress": "90 Nguyễn Thị Minh Khai, Quận 3, TP.HCM",
+    "shippingMethod": "Standard",
+    "shippingFee": 30000,
+    "createdAt": "2026-06-18T11:05:00Z"
+  },
+  {
+    "orderId": "ORD-00020",
+    "userId": "",
+    "guestName": "Bùi Thị Thanh",
+    "guestPhone": "0933445566",
+    "guestEmail": "thanh.bui@example.com",
+    "orderStatus": "Completed",
+    "items": [
+      {
+        "productId": "SP33",
+        "productName": "Aurora Daily Cleanser",
+        "quantity": 1,
+        "priceAtPurchase": 360000
+      },
+      {
+        "productId": "SP34",
+        "productName": "Aurora Night Repair Oil",
+        "quantity": 1,
+        "priceAtPurchase": 780000
+      }
+    ],
+    "totalAmount": 1140000,
     "deliveryAddress": "24 Lê Duẩn, Quận 1, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-04-28T08:50:00Z"
-  },
-  {
-    "orderId": "ORD526",
-    "userId": "U1782100000002",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP30",
-        "productName": "Aurora UV Defense SPF50+",
-        "quantity": 1,
-        "priceAtPurchase": 620000
-      }
-    ],
-    "totalAmount": 620000,
-    "deliveryAddress": "17 Xô Viết Nghệ Tĩnh, Quận Bình Thạnh, TP.HCM",
     "shippingMethod": "Express",
     "shippingFee": 50000,
-    "createdAt": "2026-05-12T12:15:00Z"
-  },
-  {
-    "orderId": "ORD527",
-    "userId": "U1782100000003",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP30",
-        "productName": "Aurora UV Defense SPF50+",
-        "quantity": 1,
-        "priceAtPurchase": 620000
-      }
-    ],
-    "totalAmount": 620000,
-    "deliveryAddress": "54 Nguyễn Oanh, Quận Gò Vấp, TP.HCM",
-    "shippingMethod": "Standard",
-    "shippingFee": 30000,
-    "createdAt": "2026-05-29T10:25:00Z"
-  },
-  {
-    "orderId": "ORD528",
-    "userId": "U1782100000004",
-    "orderStatus": "Completed",
-    "items": [
-      {
-        "productId": "SP30",
-        "productName": "Aurora UV Defense SPF50+",
-        "quantity": 1,
-        "priceAtPurchase": 620000
-      }
-    ],
-    "totalAmount": 620000,
-    "deliveryAddress": "82 Nam Kỳ Khởi Nghĩa, Quận 3, TP.HCM",
-    "shippingMethod": "Express",
-    "shippingFee": 50000,
-    "createdAt": "2026-06-17T17:40:00Z"
+    "createdAt": "2026-06-20T09:30:00Z"
   }
 ]
+
