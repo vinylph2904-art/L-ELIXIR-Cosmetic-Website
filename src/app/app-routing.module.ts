@@ -13,6 +13,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { PaymentFailureComponent } from './pages/payment-failure/payment-failure.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ProductReviewsComponent } from './pages/product-reviews/product-reviews.component';
 import { authGuard } from './guards/auth.guard';
 import { guestGuard } from './guards/guest.guard';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'products/:id/reviews', component: ProductReviewsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [guestGuard] },

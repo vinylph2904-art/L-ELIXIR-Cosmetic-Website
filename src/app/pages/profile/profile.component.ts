@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { OrderService } from '../../services/order.service';
 import { AddressService } from '../../services/address.service';
+import { ReviewService } from '../../services/review.service';
 import { User } from '../../data/user.model';
 import { Order } from '../../data/order.model';
 import PRODUCTS from '../../data/mock-products.json';
@@ -35,6 +36,18 @@ export class ProfileComponent implements OnInit {
     confirmPassword: ''
   };
 
+  reviewModalOpen = false;
+  reviewOrder: Order | null = null;
+  reviewableProducts: Array<{ productId: string; name: string }> = [];
+  selectedReviewProductId = '';
+  reviewDraft = {
+    title: '',
+    comment: '',
+    rating: 0
+  };
+  reviewError = '';
+  reviewSubmitting = false;
+
   form = {
     fullName: '',
     phoneNumber: '',
@@ -49,10 +62,12 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private orderService: OrderService,
     private addressService: AddressService,
+    private reviewService: ReviewService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.ensureHitidiSeedData();
     this.loadData();
     this.loadRecommendedProducts();
   }
@@ -245,6 +260,146 @@ export class ProfileComponent implements OnInit {
       confirmPassword: ''
     };
     this.loadData();
+  }
+
+  private ensureHitidiSeedData(): void {
+    const currentUser = this.authService.getCurrentUser();
+    if (!currentUser || currentUser.email !== 'hitidi@gmail.com') {
+      return;
+    }
+
+    const existingOrders = this.orderService.getByUserId(currentUser.userId);
+    if (existingOrders.length > 0) {
+      return;
+    }
+
+    const product = PRODUCTS.find((item: any) => item.productId === 'SP01');
+    if (!product) {
+      return;
+    }
+
+    const seededOrder: Order = {
+      orderId: 'ORD100',
+      userId: currentUser.userId,
+      items: [{
+        product,
+        quantity: 1,
+        price: product.price
+      }],
+      shippingInfo: {
+        fullName: currentUser.fullName,
+        phone: currentUser.phoneNumber,
+        email: currentUser.email,
+        city: 'TP.HCM',
+        district: 'Quận 1',
+        address: '123 Nguyễn Huệ'
+      },
+      shippingMethod: 'standard',
+      paymentMethod: 'cod',
+      subtotal: product.price,
+      shippingFee: 30000,
+      discount: 0,
+      total: product.price + 30000,
+      status: 'delivered',
+      createdAt: new Date('2026-06-20T09:00:00.000Z'),
+      updatedAt: new Date('2026-06-20T09:00:00.000Z'),
+      totalAmount: product.price + 30000,
+      orderStatus: 'Completed'
+    };
+
+    const storedOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+    storedOrders.push(seededOrder);
+    localStorage.setItem('orders', JSON.stringify(storedOrders));
+  }
+
+  canReviewOrder(order: Order): boolean {
+    if (!this.user) {
+      return false;
+    }
+
+    return (order.items || []).some(item => {
+      const productId = (item as any).product?.productId || (item as any).productId;
+      return !!productId && !this.reviewService.getByUserAndProduct(this.user!.userId, productId);
+    });
+  }
+
+  openReviewModal(order: Order): void {
+    if (!this.user) {
+      return;
+    }
+
+    const reviewableItems = (order.items || []).filter(item => {
+      const productId = (item as any).product?.productId || (item as any).productId;
+      return !!productId && !this.reviewService.getByUserAndProduct(this.user!.userId, productId);
+    });
+
+    if (reviewableItems.length === 0) {
+      this.reviewError = 'Bạn đã đánh giá hết sản phẩm trong đơn hàng này.';
+      return;
+    }
+
+    this.reviewOrder = order;
+    this.reviewableProducts = reviewableItems.map(item => ({
+      productId: (item as any).product?.productId || (item as any).productId,
+      name: (item as any).product?.name || (item as any).productName || 'Sản phẩm'
+    }));
+    this.selectedReviewProductId = this.reviewableProducts[0].productId;
+    this.reviewDraft = { title: '', comment: '', rating: 0 };
+    this.reviewError = '';
+    this.reviewModalOpen = true;
+  }
+
+  closeReviewModal(): void {
+    this.reviewModalOpen = false;
+    this.reviewOrder = null;
+    this.reviewableProducts = [];
+    this.selectedReviewProductId = '';
+    this.reviewDraft = { title: '', comment: '', rating: 0 };
+    this.reviewError = '';
+    this.reviewSubmitting = false;
+  }
+
+  selectReviewStar(rating: number): void {
+    this.reviewDraft.rating = rating;
+  }
+
+  async submitReview(): Promise<void> {
+    if (!this.user || !this.reviewOrder || !this.selectedReviewProductId) {
+      return;
+    }
+
+    if (this.reviewDraft.rating === 0) {
+      this.reviewError = 'Vui lòng chọn số sao';
+      return;
+    }
+
+    if (!this.reviewDraft.title.trim() || !this.reviewDraft.comment.trim()) {
+      this.reviewError = 'Vui lòng nhập tiêu đề và nội dung đánh giá.';
+      return;
+    }
+
+    this.reviewSubmitting = true;
+    this.reviewError = '';
+
+    try {
+      this.reviewService.create({
+        productId: this.selectedReviewProductId,
+        userId: this.user.userId,
+        userName: this.user.fullName,
+        orderId: this.reviewOrder.orderId,
+        title: this.reviewDraft.title.trim(),
+        rating: this.reviewDraft.rating,
+        comment: this.reviewDraft.comment.trim(),
+        images: []
+      });
+
+      this.reviewSubmitting = false;
+      this.closeReviewModal();
+      this.loadData();
+    } catch (error) {
+      this.reviewSubmitting = false;
+      this.reviewError = 'Đã có lỗi xảy ra, vui lòng thử lại.';
+    }
   }
 
   formatCurrency(value: number | undefined): string {

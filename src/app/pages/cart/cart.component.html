@@ -13,13 +13,18 @@
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
     <div class="lg:col-span-8">
       <!-- Giỏ hàng trống -->
-      <div *ngIf="isCartEmpty" class="py-16 text-center">
-        <p class="font-headline-md text-headline-md mb-4">Giỏ hàng của bạn đang trống</p>
-        <p class="font-body-md text-body-md text-on-surface-variant mb-8">Hãy thêm sản phẩm vào giỏ để tiếp tục mua sắm.</p>
-        <a class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-white font-label-md text-label-md hover:bg-primary-600 transition-colors" routerLink="/products">
-          <span class="material-symbols-outlined">shopping_bag</span>
-          Tiếp tục mua sắm
-        </a>
+      <div *ngIf="isCartEmpty" class="w-full min-h-[320px] sm:min-h-[420px] lg:min-h-[480px] px-4 py-8 sm:px-6 lg:px-8 flex items-center justify-center">
+        <div class="flex flex-col items-center justify-center text-center max-w-md">
+          <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-container text-primary">
+            <span class="material-symbols-outlined text-[32px]">shopping_bag</span>
+          </div>
+          <p class="font-headline-md text-headline-md mb-4">Giỏ hàng của bạn đang trống</p>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-8">Hãy thêm sản phẩm vào giỏ để tiếp tục mua sắm.</p>
+          <a class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-white font-label-md text-label-md hover:bg-primary-600 transition-colors" routerLink="/products">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            Tiếp tục mua sắm
+          </a>
+        </div>
       </div>
 
       <!-- Danh sách sản phẩm -->

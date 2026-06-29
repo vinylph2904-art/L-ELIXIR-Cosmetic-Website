@@ -19,5 +19,86 @@
     "phoneNumber": "1234567989",
     "role": "customer",
     "createdAt": "2026-06-20T17:38:56.020Z"
+  },
+  {
+    "userId": "U1782000000000",
+    "email": "hitidi@gmail.com",
+    "password": "123456",
+    "fullName": "Hiti Di",
+    "phoneNumber": "0909876543",
+    "role": "customer",
+    "createdAt": "2026-06-20T17:39:00.000Z"
+  },
+  {
+    "userId": "U1782100000001",
+    "email": "ngo.thanh.truc@gmail.com",
+    "password": "123456",
+    "fullName": "Ngô Thanh Trúc",
+    "phoneNumber": "0901111111",
+    "role": "customer",
+    "createdAt": "2026-06-21T08:00:00.000Z"
+  },
+  {
+    "userId": "U1782100000002",
+    "email": "pham.gia.han@gmail.com",
+    "password": "123456",
+    "fullName": "Phạm Gia Hân",
+    "phoneNumber": "0901111112",
+    "role": "customer",
+    "createdAt": "2026-06-21T08:05:00.000Z"
+  },
+  {
+    "userId": "U1782100000003",
+    "email": "nguyen.minh.khanh@gmail.com",
+    "password": "123456",
+    "fullName": "Nguyễn Minh Khánh",
+    "phoneNumber": "0901111113",
+    "role": "customer",
+    "createdAt": "2026-06-21T08:10:00.000Z"
+  },
+  {
+    "userId": "U1782100000004",
+    "email": "tran.thi.hoa@gmail.com",
+    "password": "123456",
+    "fullName": "Trần Thị Hòa",
+    "phoneNumber": "0901111114",
+    "role": "customer",
+    "createdAt": "2026-06-21T08:15:00.000Z"
+  },
+  {
+    "userId": "U1782100000005",
+    "email": "le.quang.duy@gmail.com",
+    "password": "123456",
+    "fullName": "Lê Quang Duy",
+    "phoneNumber": "0901111115",
+    "role": "customer",
+    "createdAt": "2026-06-21T08:20:00.000Z"
+  },
+  {
+    "userId": "U1782100000006",
+    "email": "vo.bao.tran@gmail.com",
+    "password": "123456",
+    "fullName": "Võ Bảo Trân",
+    "phoneNumber": "0901111116",
+    "role": "customer",
+    "createdAt": "2026-06-21T08:25:00.000Z"
+  },
+  {
+    "userId": "U1782100000007",
+    "email": "dang.thao.nhi@gmail.com",
+    "password": "123456",
+    "fullName": "Đặng Thảo Nhi",
+    "phoneNumber": "0901111117",
+    "role": "customer",
+    "createdAt": "2026-06-21T08:30:00.000Z"
+  },
+  {
+    "userId": "U1782100000008",
+    "email": "huynh.minh.an@gmail.com",
+    "password": "123456",
+    "fullName": "Huỳnh Minh An",
+    "phoneNumber": "0901111118",
+    "role": "customer",
+    "createdAt": "2026-06-21T08:35:00.000Z"
   }
 ]
