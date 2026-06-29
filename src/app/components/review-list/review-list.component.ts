@@ -14,6 +14,7 @@ import { ReviewService } from '../../services/review.service';
 export class ReviewListComponent implements OnInit, OnChanges {
   @Input() productId!: string;
   @Input() key?: string;
+  @Input() maxItems?: number;
 
   reviews: Review[] = [];
   averageRating: number = 0;
@@ -38,7 +39,9 @@ export class ReviewListComponent implements OnInit, OnChanges {
    * Tải danh sách review cho sản phẩm
    */
   private loadReviews() {
-    this.reviews = this.reviewService.getByProductId(this.productId);
+    const allReviews = this.reviewService.getByProductId(this.productId);
+    // Giữ 2 review mới nhất: getByProductId đã trả về reviews theo createdAt giảm dần.
+    this.reviews = this.maxItems ? allReviews.slice(0, this.maxItems) : allReviews;
     const ratingInfo = this.reviewService.calcAverageRating(this.productId);
     this.averageRating = ratingInfo.average;
     this.totalReviews = ratingInfo.count;

@@ -106,20 +106,24 @@
     <div class="max-w-container-max mx-auto px-gutter">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
         <h2 class="font-headline-lg text-headline-lg">Đánh giá & Bình luận</h2>
-        <a
-          class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:text-primary/80 transition-colors"
-          [routerLink]="['/products', product.productId, 'reviews']">
-          <span class="material-symbols-outlined text-[18px]">rate_review</span>
-          Xem tất cả đánh giá
-        </a>
       </div>
 
       <div class="lg:max-w-3xl">
         <h3 class="font-headline-md text-headline-md mb-4">Đánh giá từ khách hàng</h3>
         <app-review-list
           [productId]="product.productId"
-          [key]="newReviewAdded ? 'refresh' : 'normal'">
+          [key]="newReviewAdded ? 'refresh' : 'normal'"
+          [maxItems]="2">
         </app-review-list>
+
+        <div *ngIf="product.reviewCount > 2" class="mt-6">
+          <a
+            class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:text-primary/80 transition-colors"
+            [routerLink]="['/products', product.productId, 'reviews']">
+            <span class="material-symbols-outlined text-[18px]">rate_review</span>
+            Xem tất cả ({{ product.reviewCount }} đánh giá)
+          </a>
+        </div>
       </div>
     </div>
   </section>
