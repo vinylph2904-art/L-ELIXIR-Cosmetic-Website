@@ -1,164 +1,233 @@
-<main class="pt-32 pb-section-gap-desktop max-w-container-max mx-auto px-6 md:px-24">
-<nav class="flex mb-8 items-center gap-2 text-on-surface-variant">
-  <a class="font-label-sm text-label-sm hover:text-primary transition-colors" routerLink="/">Trang chủ</a>
-  <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-  <span class="font-label-sm text-label-sm text-primary">Theo dõi đơn hàng</span>
-</nav>
+<div class="pt-32 pb-section-gap-desktop max-w-container-max mx-auto px-6 md:px-24">
+  <nav class="flex mb-8 items-center gap-2 text-on-surface-variant">
+    <a class="font-label-sm text-label-sm hover:text-primary transition-colors" routerLink="/">Trang chủ</a>
+    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+    <a class="font-label-sm text-label-sm hover:text-primary transition-colors" routerLink="/profile">Tài khoản</a>
+    <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+    <span class="font-label-sm text-label-sm text-primary">Theo dõi đơn hàng</span>
+  </nav>
 
-<header class="mb-12">
-  <h1 class="font-headline-lg text-headline-lg text-primary mb-4">Theo dõi đơn hàng</h1>
-  <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Kiểm tra trạng thái đơn hàng và thông tin giao nhận của bạn.</p>
-</header>
+  <header class="mb-12">
+    <h1 class="font-headline-lg text-headline-lg text-primary mb-4">Theo dõi đơn hàng</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Kiểm tra trạng thái đơn hàng và thông tin giao nhận của bạn.</p>
+  </header>
 
-<!-- KHÁCH VÃNG LAI: tra cứu theo mã đơn -->
-<section *ngIf="!isLoggedIn" class="bg-surface-container-low rounded-xl p-8 mb-12 border border-outline-variant/30 max-w-xl">
-  <h2 class="font-headline-md text-headline-md text-primary mb-4">Tra cứu đơn hàng</h2>
-  <p class="font-body-md text-body-md text-on-surface-variant mb-6">Nhập mã đơn hàng để xem trạng thái (không cần đăng nhập).</p>
-  <div class="flex flex-col sm:flex-row gap-3">
-    <input [(ngModel)]="searchOrderId" name="searchOrderId" placeholder="VD: ORD-0001"
-           class="flex-grow bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md focus:ring-0" />
-    <button type="button" (click)="searchGuestOrder()"
-            class="px-8 py-3 bg-primary text-white font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition">
-      Tra cứu
-    </button>
-  </div>
-  <p *ngIf="searchError" class="text-red-600 font-body-sm mt-3">{{ searchError }}</p>
-</section>
+  <section *ngIf="!isLoggedIn" class="bg-surface-container-low rounded-xl p-8 mb-12 border border-outline-variant/30 max-w-xl">
+    <h2 class="font-headline-md text-headline-md text-primary mb-4">Tra cứu đơn hàng</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant mb-6">Nhập mã đơn hàng để xem trạng thái (không cần đăng nhập).</p>
+    <div class="flex flex-col sm:flex-row gap-3">
+      <input [(ngModel)]="searchOrderId" name="searchOrderId" placeholder="VD: ORD-0001"
+             class="flex-grow bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md focus:ring-0" />
+      <button type="button" (click)="searchGuestOrder()"
+              class="px-8 py-3 bg-primary text-white font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition">
+        Tra cứu
+      </button>
+    </div>
+    <p *ngIf="searchError" class="text-red-600 font-body-sm mt-3">{{ searchError }}</p>
+  </section>
 
-<!-- ĐÃ ĐĂNG NHẬP: danh sách đơn của tôi -->
-<section *ngIf="isLoggedIn" class="mb-12">
-  <h2 class="font-headline-md text-headline-md text-primary mb-6">Đơn hàng của tôi ({{ myOrders.length }})</h2>
-
-  <p *ngIf="myOrders.length === 0" class="font-body-md text-on-surface-variant">Bạn chưa có đơn hàng nào.</p>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" *ngIf="myOrders.length > 0">
-    <button type="button" *ngFor="let o of myOrders" (click)="selectOrder(o)"
-            class="text-left bg-surface-container-lowest border rounded-xl p-5 transition hover:border-primary"
-            [class.border-primary]="selectedOrder?.orderId === o.orderId"
-            [class.border-outline-variant]="selectedOrder?.orderId !== o.orderId">
-      <p class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap font-mono tabular-nums">#{{ o.orderId }}</p>
-      <p class="font-body-md font-bold text-primary">{{ formatCurrency(o.totalAmount) }}</p>
-      <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-primary-container text-on-primary-container">
-        {{ getStatusLabel(o.orderStatus) }}
-      </span>
-    </button>
-  </div>
-</section>
-
-<!-- CHI TIẾT ĐƠN HÀNG ĐANG CHỌN (dùng chung cho cả 2 trường hợp) -->
-<ng-container *ngIf="selectedOrder as order">
-  <div class="bg-surface-container-lowest rounded-xl p-8 mb-12 luxury-shadow border border-outline-variant/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full md:w-auto">
+  <section *ngIf="isLoggedIn" class="mb-12">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-6">
       <div>
-        <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">MÃ ĐƠN HÀNG</p>
-        <p class="font-headline-md text-headline-md text-primary">#{{ order.orderId }}</p>
-      </div>
-      <div>
-        <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">TỔNG CỘNG</p>
-        <p class="font-body-lg text-body-lg font-bold">{{ formatCurrency(order.totalAmount) }}</p>
-      </div>
-    </div>
-    <div class="bg-primary-container px-6 py-3 rounded-full">
-    </div>
-  </div>
-
-  <section class="mb-12 bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/30">
-    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6 pb-4 border-b border-outline-variant">
-      <div>
-        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Thông tin chi tiết đơn hàng</p>
-        <h2 class="font-headline-md text-headline-md text-on-surface">Xem thông tin giao nhận</h2>
+        <h2 class="font-headline-md text-headline-md text-primary">Đơn hàng của tôi ({{ myOrders.length }})</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">Chọn một đơn để xem chi tiết trạng thái giao nhận.</p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-      <div class="space-y-4">
-        <div class="space-y-1">
-          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Tên người nhận</p>
-          <p class="font-body-md text-on-surface">{{ order.shippingInfo.fullName }}</p>
-        </div>
-        <div class="space-y-1">
-          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Số điện thoại</p>
-          <p class="font-body-md text-on-surface">{{ order.shippingInfo.phone }}</p>
-        </div>
-        <div class="space-y-1">
-          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Email</p>
-          <p class="font-body-md text-on-surface">{{ order.shippingInfo.email }}</p>
-        </div>
-        <div class="space-y-1">
-          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Địa chỉ</p>
-          <p class="font-body-md text-on-surface">{{ order.shippingInfo.address }}, {{ order.shippingInfo.district }}, {{ order.shippingInfo.city }}</p>
-        </div>
-      </div>
+    <p *ngIf="myOrders.length === 0" class="font-body-md text-on-surface-variant">Bạn chưa có đơn hàng nào.</p>
 
-      <div class="space-y-4">
-        <div class="space-y-1">
-          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Phương thức thanh toán</p>
-          <p class="font-body-md text-on-surface">{{ getPaymentMethodLabel(order.paymentMethod) }}</p>
-        </div>
-        <div class="space-y-1">
-          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Phương thức giao hàng</p>
-          <p class="font-body-md text-on-surface">{{ getShippingMethodLabel(order.shippingMethod) }}</p>
-        </div>
-        <div class="space-y-1">
-          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Ngày đặt</p>
-          <p class="font-body-md text-on-surface">{{ order.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
-        </div>
-        <div class="space-y-1">
-          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Trạng thái</p>
-          <p class="font-body-md text-on-surface">{{ getStatusLabel(order.orderStatus) }}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="mb-8">
-      <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-4">Sản phẩm trong đơn</p>
-      <div class="divide-y divide-outline-variant border border-outline-variant rounded-lg overflow-hidden">
-        <div *ngFor="let item of order.items" class="flex flex-wrap items-center justify-between gap-4 p-4 bg-white/40">
-          <div>
-            <p class="font-body-md font-semibold text-on-surface">{{ item.product.name }}</p>
-            <p class="font-body-sm text-on-surface-variant">Số lượng: {{ item.quantity }}</p>
-          </div>
-          <p class="font-body-md text-primary font-semibold">{{ getItemTotal(item.quantity, item.price) }}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant">
-        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Tạm tính</p>
-        <p class="font-body-md text-on-surface">{{ formatCurrency(order.subtotal) }}</p>
-      </div>
-      <div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant">
-        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Phí vận chuyển</p>
-        <p class="font-body-md text-on-surface">{{ formatCurrency(order.shippingFee) }}</p>
-      </div>
-      <div class="p-4 rounded-lg bg-primary-container/20 border border-primary/20">
-        <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Tổng cộng</p>
-        <p class="font-body-md font-semibold text-primary">{{ formatCurrency(order.totalAmount) }}</p>
-      </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" *ngIf="myOrders.length > 0">
+      <button type="button" *ngFor="let o of myOrders" (click)="selectOrder(o)"
+              class="text-left bg-surface-container-lowest border rounded-xl p-5 transition hover:border-primary"
+              [class.border-primary]="selectedOrder?.orderId === o.orderId"
+              [class.border-outline-variant]="selectedOrder?.orderId !== o.orderId">
+        <p class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap font-mono tabular-nums">#{{ o.orderId }}</p>
+        <p class="font-body-md font-bold text-primary">{{ formatCurrency(o.totalAmount) }}</p>
+        <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-primary-container text-on-primary-container">
+          {{ getStatusLabel(o.orderStatus) }}
+        </span>
+      </button>
     </div>
   </section>
 
-  <!-- Progress Tracker -->
-  <div class="mb-12 px-4" *ngIf="order.orderStatus !== 'Cancelled'">
-    <div class="relative flex justify-between items-center w-full">
-      <div class="absolute top-5 left-0 w-full h-[2px] bg-outline-variant -z-10"></div>
-      <div class="flex flex-col items-center gap-3 bg-surface px-2" *ngFor="let step of trackingSteps">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center"
-             [class.bg-primary]="step.state === 'done'"
-             [class.text-white]="step.state === 'done' || step.state === 'current'"
-             [class.bg-primary-container]="step.state === 'current'"
-             [class.bg-outline-variant]="step.state === 'pending'">
-          <span class="material-symbols-outlined text-[20px]">{{ step.icon }}</span>
+  <ng-container *ngIf="selectedOrder as order">
+    <div class="bg-surface-container-lowest rounded-xl p-8 mb-12 luxury-shadow border border-outline-variant/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full md:w-auto">
+        <div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">MÃ ĐƠN HÀNG</p>
+          <p class="font-headline-md text-headline-md text-primary">#{{ order.orderId }}</p>
         </div>
-        <p class="font-label-sm text-label-sm text-center"
-           [class.text-primary]="step.state !== 'pending'"
-           [class.font-bold]="step.state === 'current'"
-           [class.text-on-surface-variant]="step.state === 'pending'">{{ step.label }}</p>
+        <div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">NGÀY ĐẶT</p>
+          <p class="font-body-lg text-body-lg font-medium">{{ order.createdAt | date:'dd/MM/yyyy' }}</p>
+        </div>
+        <div>
+          <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">TỔNG CỘNG</p>
+          <p class="font-body-lg text-body-lg font-bold">{{ formatCurrency(order.totalAmount) }}</p>
+        </div>
+      </div>
+      <div class="bg-primary-container px-6 py-3 rounded-full">
+        <span class="font-label-md text-label-md text-on-primary-container">{{ getStatusLabel(order.orderStatus) }}</span>
       </div>
     </div>
-  </div>
 
-  <p *ngIf="order.orderStatus === 'Cancelled'" class="mb-12 font-body-md text-red-600">Đơn hàng này đã bị hủy.</p>
-</ng-container>
-</main>
+    <div class="mb-24 px-4">
+      <div class="relative flex justify-between items-center w-full">
+        <div class="absolute top-5 left-0 w-full h-[2px] bg-outline-variant -z-10"></div>
+        <div class="absolute top-5 left-0 h-[2px] bg-primary -z-10" [style.width]="getProgressPercent(order.orderStatus)"></div>
+        <div class="flex flex-col items-center gap-4 bg-surface px-2" *ngFor="let step of trackingSteps">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center"
+               [class.bg-primary]="step.state === 'done'"
+               [class.text-white]="step.state === 'done' || step.state === 'current'"
+               [class.bg-primary-container]="step.state === 'current'"
+               [class.bg-outline-variant]="step.state === 'pending'">
+            <span class="material-symbols-outlined text-[20px]">{{ step.icon }}</span>
+          </div>
+          <p class="font-label-sm text-label-sm text-center"
+             [class.text-primary]="step.state !== 'pending'"
+             [class.font-bold]="step.state === 'current'"
+             [class.text-on-surface-variant]="step.state === 'pending'">{{ step.label }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-7 space-y-12">
+        <section>
+          <h2 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-3">
+            <span class="material-symbols-outlined">location_on</span>
+            Thông tin giao hàng
+          </h2>
+          <div class="bg-surface-container-low rounded-xl p-8 border border-outline-variant/20">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-12">
+              <div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">NGƯỜI NHẬN</p>
+                <p class="font-body-md text-body-md font-medium">{{ order.shippingInfo.fullName }}</p>
+              </div>
+              <div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">SỐ ĐIỆN THOẠI</p>
+                <p class="font-body-md text-body-md">{{ order.shippingInfo.phone }}</p>
+              </div>
+              <div class="sm:col-span-2">
+                <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">ĐỊA CHỈ NHẬN HÀNG</p>
+                <p class="font-body-md text-body-md leading-relaxed">{{ order.shippingInfo.address }}, {{ order.shippingInfo.district }}, {{ order.shippingInfo.city }}</p>
+              </div>
+              <div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">ĐƠN VỊ VẬN CHUYỂN</p>
+                <p class="font-body-md text-body-md">LELIXIR Express</p>
+              </div>
+              <div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">DỰ KIẾN GIAO HÀNG</p>
+                <p class="font-body-md text-body-md text-primary font-bold">{{ order.createdAt | date:'dd/MM/yyyy' }}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-3">
+            <span class="material-symbols-outlined">history</span>
+            Lịch sử vận chuyển
+          </h2>
+          <div class="relative pl-8 space-y-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant">
+            <div class="relative">
+              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20"></div>
+              <div class="flex flex-col sm:flex-row sm:justify-between items-start">
+                <div>
+                  <p class="font-body-md text-body-md font-bold text-primary">Đơn hàng đang được giao</p>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Shipper đang trên đường giao đến bạn.</p>
+                </div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">Hôm nay, 09:30</p>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full bg-outline-variant"></div>
+              <div class="flex flex-col sm:flex-row sm:justify-between items-start opacity-70">
+                <div>
+                  <p class="font-body-md text-body-md font-medium">Đã đến kho phân loại TP.HCM</p>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Kiện hàng đã được xử lý tại trung tâm trung chuyển.</p>
+                </div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">21/06/2025, 14:15</p>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full bg-outline-variant"></div>
+              <div class="flex flex-col sm:flex-row sm:justify-between items-start opacity-70">
+                <div>
+                  <p class="font-body-md text-body-md font-medium">Đã bàn giao đơn vị vận chuyển</p>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Người bán đã gửi hàng thành công.</p>
+                </div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">20/06/2025, 18:00</p>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full bg-outline-variant"></div>
+              <div class="flex flex-col sm:flex-row sm:justify-between items-start opacity-70">
+                <div>
+                  <p class="font-body-md text-body-md font-medium">Đơn hàng đã được tạo</p>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Hệ thống đã ghi nhận đơn đặt hàng của bạn.</p>
+                </div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">20/06/2025, 10:25</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="lg:col-span-5 space-y-8">
+        <div class="bg-secondary-container rounded-xl p-8 border border-outline-variant/30 sticky top-24">
+          <h2 class="font-headline-md text-headline-md text-primary mb-8">Tóm tắt đơn hàng</h2>
+          <div class="space-y-6 mb-8 pb-8 border-b border-outline-variant/50">
+            <div *ngFor="let item of order.items" class="flex gap-4">
+              <div class="w-20 h-24 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+                <img [src]="item.product.images?.[0] || 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80'"
+                     [alt]="item.product.name"
+                     class="w-full h-full object-cover" />
+              </div>
+              <div class="flex-grow">
+                <p class="font-body-md text-body-md font-medium text-primary">{{ item.product.name }}</p>
+                <p class="font-label-sm text-label-sm text-on-surface-variant">{{ item.product.volume }} | Qty: {{ item.quantity }}</p>
+                <p class="font-body-md text-body-md font-medium mt-2">{{ formatCurrency(item.price) }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between items-center text-on-surface-variant">
+              <span class="font-body-md text-body-md">Tạm tính</span>
+              <span class="font-body-md text-body-md">{{ formatCurrency(order.subtotal) }}</span>
+            </div>
+            <div class="flex justify-between items-center text-on-surface-variant">
+              <span class="font-body-md text-body-md">Phí vận chuyển</span>
+              <span class="font-body-md text-body-md">{{ formatCurrency(order.shippingFee) }}</span>
+            </div>
+            <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 text-primary">
+              <span class="font-headline-md text-headline-md">Tổng cộng</span>
+              <span class="font-headline-md text-headline-md font-bold">{{ formatCurrency(order.totalAmount) }}</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <button class="w-full py-4 bg-primary text-white font-label-md text-label-md rounded-full hover:bg-primary/90 transition-all active:scale-[0.98]">
+              LIÊN HỆ HỖ TRỢ
+            </button>
+            <a routerLink="/" class="w-full inline-block text-center py-4 border border-primary text-primary font-label-md text-label-md rounded-full hover:bg-primary/5 transition-all active:scale-[0.98]">TIẾP TỤC MUA SẮM</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <section class="mt-24 relative rounded-2xl overflow-hidden bg-primary text-white luxury-shadow h-[400px]">
+    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1200&q=80"
+         alt="Beauty recommendation"
+         class="absolute inset-0 w-full h-full object-cover opacity-50" />
+    <div class="absolute inset-0 bg-gradient-to-r from-primary to-transparent flex flex-col justify-center px-12 md:px-20 max-w-2xl">
+      <h3 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6">Sản phẩm cho riêng bạn</h3>
+      <p class="font-body-lg text-body-lg mb-8 opacity-90">Khám phá thêm các sản phẩm chăm sóc da được tinh chỉnh để hoàn hảo nhất cho làn da của bạn.</p>
+      <button class="w-fit px-10 py-4 bg-white text-primary font-label-md text-label-md rounded-full hover:bg-surface-bright transition-all">
+        KHẢO SÁT DA NGAY
+      </button>
+    </div>
+  </section>
+</div>

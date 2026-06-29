@@ -124,6 +124,15 @@ export class OrderTrackingComponent implements OnInit {
     return map[status];
   }
 
+  getProgressPercent(status: Order['orderStatus']): string {
+    if (status === 'Cancelled') {
+      return '0%';
+    }
+
+    const stepIndex = this.orderService.getStepIndex(status);
+    return `${(stepIndex / 4) * 100}%`;
+  }
+
   getPaymentMethodLabel(method: Order['paymentMethod']): string {
     const map: Record<Order['paymentMethod'], string> = {
       cod: 'Tiền mặt (COD)',
