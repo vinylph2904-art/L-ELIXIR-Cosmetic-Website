@@ -49,6 +49,11 @@ export class AuthService {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
+  isValidFullName(fullName: string): boolean {
+    const trimmed = fullName.trim();
+    return /[A-Za-zÀ-ÿ]/.test(trimmed) && !/^\d+$/.test(trimmed);
+  }
+
   isValidPhone(phone: string): boolean {
     return /^\d{10}$/.test(phone.trim());
   }
@@ -62,6 +67,10 @@ export class AuthService {
   }
 
   async signup(data: { email: string; password: string; fullName: string; phoneNumber: string }): Promise<{ success: boolean; message: string }> {
+    if (!this.isValidFullName(data.fullName)) {
+      return { success: false, message: 'Sai định dạng.' };
+    }
+
     if (!this.isValidEmail(data.email)) {
       return { success: false, message: 'Email không đúng định dạng.' };
     }
@@ -134,6 +143,10 @@ export class AuthService {
     const idx = users.findIndex(u => u.userId === userId);
     if (idx === -1) {
       return { success: false, message: 'Không tìm thấy người dùng.' };
+    }
+
+    if (data.fullName && !this.isValidFullName(data.fullName)) {
+      return { success: false, message: 'Sai định dạng.' };
     }
 
     if (data.phoneNumber && !this.isValidPhone(data.phoneNumber)) {

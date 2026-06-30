@@ -50,12 +50,14 @@ export class SignupComponent {
 
     if (!this.fullName.trim()) {
       errors.fullName = 'Tên không được để trống.';
+    } else if (!this.authService.isValidFullName(this.fullName)) {
+      errors.fullName = 'Tên sai định dạng.';
     }
 
     if (!this.email.trim()) {
       errors.email = 'Email không được để trống.';
     } else if (!this.authService.isValidEmail(this.email.trim())) {
-      errors.email = 'Email không đúng định dạng.';
+      errors.email = 'Email sai định dạng.';
     } else if (await this.authService.emailExists(this.email)) {
       errors.email = 'Email đã tồn tại, vui lòng nhập email khác.';
     }
