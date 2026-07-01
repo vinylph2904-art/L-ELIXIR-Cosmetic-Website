@@ -63,8 +63,10 @@ export class ProductListComponent implements OnInit {
       }
 
       if (collection) {
+        const keyword = this.normalize(collection);
+
         this.filteredProducts = this.allProducts.filter(product =>
-          product.name.toLowerCase().includes(collection.toLowerCase())
+          this.normalize(product.name).includes(keyword)
         );
       }
 
@@ -76,13 +78,26 @@ export class ProductListComponent implements OnInit {
   });
 }
 
+private normalize(text: string): string {
+  return text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase()
+    .trim();
+}
+
   applyFilters() {
     let results = [...this.allProducts];
 
-    // AF2: Tìm kiếm (Bỏ qua nếu rỗng) 
-    if (this.searchTerm && this.searchTerm.trim() !== '') {
-      const search = this.searchTerm.toLowerCase().trim();
-      results = results.filter(p => p.name.toLowerCase().includes(search));
+    // AF2: Tìm kiếm (không phân biệt hoa/thường và dấu)
+    if (this.searchTerm.trim() !== '') {
+      const search = this.normalize(this.searchTerm);
+
+      results = results.filter(product =>
+        this.normalize(product.name).includes(search)
+      );
     }
 
     // Logic lọc Category & Skin Type 
@@ -178,11 +193,7 @@ export class ProductListComponent implements OnInit {
       .toLowerCase();
 
     this.filteredProducts = this.allProducts.filter(product =>
-      product.name.toLowerCase().includes(keyword)
-    );
-
-    this.filteredProducts = this.allProducts.filter(product =>
-      product.name.toLowerCase().includes(keyword)
+      this.normalize(product.name).includes(this.normalize(keyword))
     );
   }
 }
