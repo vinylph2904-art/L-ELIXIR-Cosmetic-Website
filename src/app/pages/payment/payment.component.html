@@ -59,6 +59,7 @@
 <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Họ và tên *</label>
 <input 
   [(ngModel)]="shippingInfo.fullName"
+  (ngModelChange)="onShippingInfoChange()"
   class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md" 
   placeholder="Nguyễn Văn A" 
   type="text">
@@ -68,6 +69,7 @@
 <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Số điện thoại *</label>
 <input 
   [(ngModel)]="shippingInfo.phone"
+  (ngModelChange)="onShippingInfoChange()"
   class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md" 
   placeholder="0901 234 567" 
   type="tel">
@@ -77,6 +79,7 @@
 <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Email (Để nhận xác nhận đơn hàng) *</label>
 <input 
   [(ngModel)]="shippingInfo.email"
+  (ngModelChange)="onShippingInfoChange()"
   class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md" 
   placeholder="example@lelixir.vn" 
   type="email">
@@ -84,25 +87,19 @@
 <!-- City -->
 <div class="space-y-2">
 <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Tỉnh / Thành phố *</label>
-<select 
-  [(ngModel)]="shippingInfo.city"
-  class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md appearance-none">
-<option value="">-- Chọn tỉnh/thành phố --</option>
-<option value="Ho Chi Minh">Hồ Chí Minh</option>
-<option value="Ha Noi">Hà Nội</option>
-<option value="Da Nang">Đà Nẵng</option>
+<select [(ngModel)]="shippingInfo.city" (ngModelChange)="onShippingInfoChange()" (change)="onCityChange()" class="...">
+  <option value="">-- Chọn tỉnh/thành phố --</option>
+  <option value="Ho Chi Minh">Hồ Chí Minh</option>
+  <option value="Ha Noi">Hà Nội</option>
+  <option value="Da Nang">Đà Nẵng</option>
 </select>
 </div>
 <!-- District -->
 <div class="space-y-2">
 <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Quận / Huyện *</label>
-<select 
-  [(ngModel)]="shippingInfo.district"
-  class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md appearance-none">
-<option value="">-- Chọn quận/huyện --</option>
-<option value="District 1">Quận 1</option>
-<option value="District 3">Quận 3</option>
-<option value="District 7">Quận 7</option>
+<select [(ngModel)]="shippingInfo.district" (ngModelChange)="onShippingInfoChange()" [disabled]="!shippingInfo.city" class="...">
+  <option value="">-- Chọn quận/huyện --</option>
+  <option *ngFor="let d of currentDistricts" [value]="d.value">{{ d.label }}</option>
 </select>
 </div>
 <!-- Address -->
@@ -110,6 +107,7 @@
 <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Địa chỉ chi tiết *</label>
 <input 
   [(ngModel)]="shippingInfo.address"
+  (ngModelChange)="onShippingInfoChange()"
   class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md" 
   placeholder="Số nhà, tên đường, phường/xã..." 
   type="text">
@@ -119,6 +117,7 @@
 <label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Ghi chú thêm</label>
 <textarea 
   [(ngModel)]="shippingInfo.note"
+  (ngModelChange)="onShippingInfoChange()"
   class="w-full bg-transparent border-0 border-b border-outline-variant py-3 focus:ring-0 focus:border-primary transition-slow font-body-md resize-none" 
   placeholder="VD: Giao giờ hành chính, gọi trước khi giao..." 
   rows="2"></textarea>
@@ -309,5 +308,48 @@
 </p>
 </div>
 </aside>
+</div>
+<div *ngIf="showSimulator" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+  <div class="bg-surface p-8 rounded-xl max-w-md w-full">
+
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-headline-md">Mô phỏng thanh toán</h3>
+      <span class="text-error font-bold">{{ countdown }}s</span>
+    </div>
+
+    <!-- COD -->
+    <div *ngIf="simulatorMethod === 'cod'">
+      <p class="text-on-surface-variant mb-6">Xác nhận đơn hàng, thanh toán tiền mặt khi nhận hàng.</p>
+      <button (click)="confirmSimplePayment()" class="w-full bg-primary text-white py-3 rounded-lg">Xác nhận đặt hàng</button>
+    </div>
+
+    <!-- Bank Transfer -->
+    <div *ngIf="simulatorMethod === 'bank_transfer'">
+      <p class="text-on-surface-variant mb-2">Số tài khoản: 0123456789 - Vietcombank</p>
+      <p class="text-on-surface-variant mb-6">Nội dung: {{ currentOrder?.orderId }}</p>
+      <button (click)="confirmSimplePayment()" class="w-full bg-primary text-white py-3 rounded-lg">Tôi đã chuyển khoản</button>
+    </div>
+
+    <!-- E-Wallet -->
+    <div *ngIf="simulatorMethod === 'e_wallet'">
+      <div class="w-48 h-48 bg-surface-container-low mx-auto mb-6 flex items-center justify-center">
+        <span class="material-symbols-outlined text-[64px]">qr_code_2</span>
+      </div>
+      <button (click)="confirmSimplePayment()" class="w-full bg-primary text-white py-3 rounded-lg">Đã thanh toán</button>
+    </div>
+
+    <!-- Credit Card -->
+    <div *ngIf="simulatorMethod === 'credit_card'">
+      <p class="text-label-sm text-on-surface-variant mb-4">Dùng thẻ test: 4242 4242 4242 4242</p>
+      <input [(ngModel)]="cardNumber" placeholder="Số thẻ" class="w-full border-b py-2 mb-4" type="text">
+      <div class="flex gap-4 mb-4">
+        <input [(ngModel)]="cardExpiry" placeholder="MM/YY" class="w-1/2 border-b py-2" type="text">
+        <input [(ngModel)]="cardCvv" placeholder="CVV" class="w-1/2 border-b py-2" type="text">
+      </div>
+      <p *ngIf="cardError" class="text-error text-label-sm mb-4">{{ cardError }}</p>
+      <button (click)="confirmCardPayment()" class="w-full bg-primary text-white py-3 rounded-lg">Thanh toán</button>
+    </div>
+
+  </div>
 </div>
 </main>

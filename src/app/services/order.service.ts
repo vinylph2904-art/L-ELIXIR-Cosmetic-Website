@@ -7,6 +7,8 @@ import mockOrders from '../data/mock/orders.mock.json';
 import PRODUCTS from '../data/mock-products.json';
 import seedUsers from '../data/users.json';
 import { AuthService } from './auth.service';
+import { throwError } from 'rxjs';
+
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
@@ -71,7 +73,7 @@ export class OrderService {
   ): Observable<Order> {
     // Validate shipping info
     if (!this.validateShippingInfo(shippingInfo)) {
-      throw new Error('Thông tin giao hàng không hợp lệ');
+      return throwError(() => new Error('Thông tin giao hàng không hợp lệ'));
     }
 
     // Validate cart items

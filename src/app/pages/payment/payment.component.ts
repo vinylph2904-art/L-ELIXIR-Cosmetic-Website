@@ -44,6 +44,36 @@ export class PaymentComponent implements OnInit, OnDestroy {
   selectedShippingMethod: 'standard' | 'express' = 'standard';
   selectedPaymentMethod: 'cod' | 'bank_transfer' | 'e_wallet' | 'credit_card' = 'cod';
 
+  districtsByCity: { [key: string]: { value: string, label: string }[] } = {
+  'Ho Chi Minh': [
+    { value: 'District 1', label: 'Quận 1' },
+    { value: 'District 3', label: 'Quận 3' },
+    { value: 'District 7', label: 'Quận 7' },
+  ],
+  'Ha Noi': [
+    { value: 'Ba Dinh', label: 'Ba Đình' },
+    { value: 'Hoan Kiem', label: 'Hoàn Kiếm' },
+    { value: 'Cau Giay', label: 'Cầu Giấy' },
+  ],
+  'Da Nang': [
+    { value: 'Hai Chau', label: 'Hải Châu' },
+    { value: 'Thanh Khe', label: 'Thanh Khê' },
+    { value: 'Son Tra', label: 'Sơn Trà' },
+  ],
+};
+
+get currentDistricts() {
+  return this.districtsByCity[this.shippingInfo.city] || [];
+}
+
+onCityChange() {
+  this.shippingInfo.district = '';
+  this.saveShippingInfoToSession();
+}
+
+
+
+
   // Address
   userAddresses: Address[] = [];
   selectedAddressId: string | null = null;
@@ -56,6 +86,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   // Simulator
   public showSimulator: boolean = false;
+  simulatorMethod: 'cod' | 'bank_transfer' | 'e_wallet' | 'credit_card' | null = null;
+  countdown = 15;
+  private countdownInterval: any = null;
+  cardNumber = '';
+  cardExpiry = '';
+  cardCvv = '';
+  cardError = '';
   currentOrder: Order | null = null;
 
   constructor(
@@ -103,6 +140,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
       });
     
     this.cartItems = this.cartService.getCart();
+    this.loadShippingInfoFromSession();
     this.recalcSubtotal();
     
     console.log('╚═══════════════════════════════════════╝');
@@ -111,6 +149,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    this.stopCountdown();
   }
 
   private loadUserAddresses(): void {
@@ -174,6 +213,21 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.userAddresses = [];
   }
 
+  private saveShippingInfoToSession(): void {
+  sessionStorage.setItem('shippingInfo', JSON.stringify(this.shippingInfo));
+}
+
+private loadShippingInfoFromSession(): void {
+  const saved = sessionStorage.getItem('shippingInfo');
+  if (saved) {
+    try {
+      this.shippingInfo = JSON.parse(saved);
+    } catch {
+      sessionStorage.removeItem('shippingInfo');
+    }
+  }
+}
+
   toggleAuthMode(useAccount: boolean) {
     console.log('[PaymentComponent] toggleAuthMode:', useAccount);
     this.isGuest = !useAccount;
@@ -221,7 +275,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
       this.errorMessage = 'Vui lòng nhập họ và tên.';
       return false;
     }
-    if (!phone?.trim() || !/^(\d{10}|0\d{9,10}|\+84\d{9,10})$/.test(normalizedPhone)) {
+    if (!phone?.trim() || !/^(0\d{9,10}|\+84\d{9,10})$/
+.test(normalizedPhone)) {
       this.errorMessage = 'Số điện thoại phải gồm 10 chữ số.';
       return false;
     }
@@ -319,12 +374,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
                   window.location.href = redirectUrl;
                 }
               } else {
-                const ok = window.confirm('Mô phỏng: chọn OK thành công, Cancel thất bại');
-                if (ok) {
-                  this.simulateSuccess();
-                } else {
-                  this.simulateFailure();
-                }
+                this.simulatorMethod = order.paymentMethod;
+                this.showSimulator = true;
+                this.startCountdown();
               }
             },
             error: (err) => {
@@ -342,6 +394,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   public simulateSuccess = () => {
     if (!this.currentOrder) return;
+    sessionStorage.removeItem('shippingInfo');
     const txId = `TX${Date.now()}`;
     this.orderService.confirmPaymentSuccess(this.currentOrder.orderId, txId).pipe(takeUntil(this.destroy$)).subscribe({
       next: (order) => {
@@ -368,4 +421,55 @@ export class PaymentComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  private startCountdown() {
+  this.countdown = 15;
+  this.countdownInterval = setInterval(() => {
+    this.countdown--;
+    this.cdr.markForCheck();
+    if (this.countdown <= 0) {
+      this.stopCountdown();
+      this.simulateFailure();
+    }
+  }, 1000);
+}
+
+private stopCountdown() {
+  if (this.countdownInterval) {
+    clearInterval(this.countdownInterval);
+    this.countdownInterval = null;
+  }
+}
+
+  confirmCardPayment() {
+    const cleanNumber = this.cardNumber.replace(/\s+/g, '');
+    const validTestCard = '4242424242424242'; // số thẻ giả lập hợp lệ
+
+    if (cleanNumber !== validTestCard) {
+      this.cardError = 'Số thẻ không hợp lệ. Dùng thẻ test: 4242 4242 4242 4242';
+      return;
+    }
+    if (!/^\d{2}\/\d{2}$/.test(this.cardExpiry)) {
+      this.cardError = 'Ngày hết hạn không đúng định dạng (MM/YY).';
+      return;
+    }
+    if (!/^\d{3}$/.test(this.cardCvv)) {
+      this.cardError = 'CVV phải gồm 3 chữ số.';
+      return;
+    }
+
+    this.cardError = '';
+    this.stopCountdown();
+    this.simulateSuccess();
+  }
+
+  confirmSimplePayment() {
+    this.stopCountdown();
+    this.simulateSuccess();
+  }
+
+onShippingInfoChange(): void {
+  this.saveShippingInfoToSession();
+}
+  
 }
