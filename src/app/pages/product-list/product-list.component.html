@@ -45,9 +45,9 @@
            class="w-full p-4 border border-outline rounded-lg outline-none focus:border-primary">
   </div>
 
-  <div class="flex gap-8 flex-col lg:flex-row">
+  <div class="product-layout">
     <!-- Sidebar Bộ lọc -->
-    <aside class="w-full lg:w-80 shrink-0">
+    <aside class="filter-sidebar">
       <div class="space-y-6">
         <div>
           <h4 class="font-label-md mb-3">Danh mục</h4>
@@ -77,8 +77,7 @@
     </aside>
 
     <!-- Danh sách sản phẩm -->
-    <section #productSection id="productSection" class="flex-1">
-
+  <section #productSection id="productSection" class="product-content">
       <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <span class="text-label-sm text-on-surface-variant">
           Hiển thị {{ filteredProducts.length }} sản phẩm

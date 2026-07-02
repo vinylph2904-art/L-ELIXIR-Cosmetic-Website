@@ -1,3 +1,23 @@
 :host {
   display: block;
 }
+
+.product-layout {
+    display: flex;
+    gap: 2rem;
+}
+
+.filter-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.product-content {
+    flex: 1;
+}
+
+@media (max-width: 1000px) {
+    .filter-sidebar {
+        width: 240px;
+    }
+}
