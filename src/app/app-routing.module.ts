@@ -17,6 +17,9 @@ import { ProductReviewsComponent } from './pages/product-reviews/product-reviews
 import { AboutUsComponent } from './pages/about-us/about-us.component'; // Import Component mới ở đây
 import { authGuard } from './guards/auth.guard';
 import { guestGuard } from './guards/guest.guard';
+import { SupportComponent } from './pages/support/support.component';
+import { CollectionComponent } from './pages/collection/collection.component';
+import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,6 +37,10 @@ const routes: Routes = [
   { path: 'payment-success', component: PaymentSuccessComponent },
   { path: 'payment-failure', component: PaymentFailureComponent },
   { path: 'about-us', component: AboutUsComponent }, // Đăng ký đường dẫn trang Về Chúng Tôi
+  { path: 'support', component: SupportComponent},
+  { path: 'collection', component: CollectionComponent},
+  { path: 'articles/:id', component: ArticleDetailComponent},
+
   { path: '**', redirectTo: '' } // Luôn để dòng này ở cuối cùng
 ];
 

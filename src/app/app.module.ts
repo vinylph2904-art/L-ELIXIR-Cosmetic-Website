@@ -26,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductReviewsComponent } from './pages/product-reviews/product-reviews.component';
+import { SupportComponent } from './pages/support/support.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { ProductReviewsComponent } from './pages/product-reviews/product-reviews
     ProductCardComponent,
     ReviewListComponent,
     ReviewFormComponent,
-    ProductReviewsComponent
+    ProductReviewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,8 @@ import { ProductReviewsComponent } from './pages/product-reviews/product-reviews
     AppRoutingModule,
     BeautyAssistantComponent,
     ToastContainerComponent,
-    RouterModule
+    RouterModule,
+    SupportComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,84 @@
+<main class="pt-20">
+  <!-- Journal Header -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter pt-section-gap-mobile md:pt-section-gap-desktop pb-16">
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary text-center mb-8">Tạp chí L'ELIXIR</h1>
+    
+    <!-- Category Tabs -->
+    <div class="flex flex-wrap justify-center gap-4 md:gap-12 border-b border-outline-variant pb-4">
+      <button class="font-label-md text-label-md text-primary border-b-2 border-primary pb-4 -mb-[18px] transition-all">Tất cả bài viết</button>
+      <button class="font-label-md text-label-md text-secondary hover:text-primary transition-colors pb-4 -mb-[18px]">Bộ sưu tập</button>
+      <button class="font-label-md text-label-md text-secondary hover:text-primary transition-colors pb-4 -mb-[18px]">Mẹo chăm sóc</button>
+    </div>
+  </section>
+
+  <!-- Featured Article - Lumina -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mb-section-gap-mobile md:mb-section-gap-desktop">
+    <div class="relative group overflow-hidden rounded-xl aspect-[16/9] md:aspect-[21/9]">
+      <img alt="Tinh Hoa Dưỡng Sáng Lumina" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3TGHEBLX0pS9Ay6XVoyJtbAtfj-C4ssGB2kAeTlIvD6feY1hh0bngtp7sB_S3DCHDsQJLO9ZklmTPgW6HzpndSnR1JmcjyrRYczU7_xewXdS4lljjcZhVS3YM9_J7n9SAUB0il7hHly-KiDbA0hxYJS8NFQzz2xc6WWCHxYis8Jq3gJdXyzM2nLIBKMItYtib-wWLqG2h5ZKMKYaKb_uaOH1AT6erbQ84bR2XFpSvIHJLrxhhO3NWZsq4XGsXvvijh_AcqoaYz2UJ"/>
+      <div class="absolute inset-0 hero-gradient"></div>
+      <div class="absolute bottom-0 left-0 p-8 md:p-16 max-w-3xl">
+        <span class="inline-block px-3 py-1 bg-primary text-on-primary font-label-sm text-label-sm rounded-full mb-4">Bộ sưu tập</span>
+        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-6">Tinh Hoa Dưỡng Sáng Lumina</h2>
+        <p class="font-body-lg text-white/80 mb-8 hidden md:block">Khám phá bí quyết về công nghệ dưỡng sáng tiên tiến kết hợp với các thành phần thiên nhiên quý giá, giúp làn da sáng rạng rỡ và trẻ trung.</p>
+        <a class="inline-flex items-center gap-2 text-white font-label-md text-label-md hover:gap-4 transition-all group/link" routerLink="/articles/lumina">
+          Đọc thêm <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Grid -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mb-section-gap-mobile md:mb-section-gap-desktop">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      
+      <!-- Article Card 1 - Lumina -->
+      <article class="hover-lift flex flex-col h-full group">
+        <div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+          <img alt="Tinh Hoa Dưỡng Sáng Lumina" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3TGHEBLX0pS9Ay6XVoyJtbAtfj-C4ssGB2kAeTlIvD6feY1hh0bngtp7sB_S3DCHDsQJLO9ZklmTPgW6HzpndSnR1JmcjyrRYczU7_xewXdS4lljjcZhVS3YM9_J7n9SAUB0il7hHly-KiDbA0hxYJS8NFQzz2xc6WWCHxYis8Jq3gJdXyzM2nLIBKMItYtib-wWLqG2h5ZKMKYaKb_uaOH1AT6erbQ84bR2XFpSvIHJLrxhhO3NWZsq4XGsXvvijh_AcqoaYz2UJ"/>
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-primary font-label-sm text-label-sm rounded-full">Bộ sưu tập</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <p class="font-label-sm text-label-sm text-secondary mb-3">THÁNG 6, 2024</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">Tinh Hoa Dưỡng Sáng Lumina</h3>
+          <p class="font-body-md text-on-surface-variant line-clamp-3 mb-6">Bộ sưu tập Lumina được thiết kế để mang lại ánh sáng tự nhiên cho làn da, với công thức độc quyền kết hợp các chiết xuất từ hoa hồng và vàng colloidal.</p>
+        </div>
+        <a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:gap-3 transition-all" routerLink="/articles/lumina">
+          Đọc thêm <span class="material-symbols-outlined" style="font-size: 18px;">north_east</span>
+        </a>
+      </article>
+
+      <!-- Article Card 2 - Aurora -->
+      <article class="hover-lift flex flex-col h-full group">
+        <div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+          <img alt="Vẻ Đẹp Rạng Đông Aurora" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLtoMTWBhibtXy0Ul9Xt3rmBF_CIDuZkex0C7GXrDbDcewBkkYov7CWWizMyQtSHWAZI_pLzHlNI9CPqx7sogrYRCKvjnhGl8ocqx24m1zuHGqhvItv4N2vAN83QenwotVeagJVClnIA0wMs77IsBdjaot2czToaETEgfCe5slBUDFLqGViuECUZ48uAgXFmwfeoHDlbmHOgjBtASfP5UYJt59ohw1PvV4wXK8otIk2-5-Jr1jYT7hsxQ4KM"/>
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-primary font-label-sm text-label-sm rounded-full">Bộ sưu tập</span>
+          </div>
+        </div>
+        <div class="flex-grow">
+          <p class="font-label-sm text-label-sm text-secondary mb-3">THÁNG 6, 2024</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">Vẻ Đẹp Rạng Đông Aurora</h3>
+          <p class="font-body-md text-on-surface-variant line-clamp-3 mb-6">Aurora là bộ sưu tập đặc biệt được lấy cảm hứng từ hiện tượng Aurora Borealis, giúp làn da có ánh nhìn tự nhiên và khỏe mạnh từ bên trong.</p>
+        </div>
+        <a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:gap-3 transition-all" routerLink="/articles/aurora">
+          Đọc thêm <span class="material-symbols-outlined" style="font-size: 18px;">north_east</span>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="bg-surface-container-low py-section-gap-mobile md:py-section-gap-desktop">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center">
+      <span class="font-label-sm text-label-sm text-primary tracking-[0.2em] mb-4 block">SUBSCRIBE</span>
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-8">Nhận những tin tức mới nhất từ L'ELIXIR</h2>
+      <div class="max-w-xl mx-auto flex flex-col md:flex-row gap-4">
+        <input class="flex-grow bg-transparent border-0 border-b border-outline text-on-surface-variant py-4 focus:ring-0 focus:border-primary transition-all" placeholder="Địa chỉ email của bạn" type="email"/>
+        <button class="bg-primary text-on-primary px-10 py-4 font-label-md text-label-md tracking-wider hover:bg-on-primary-fixed-variant transition-colors">ĐĂNG KÝ</button>
+      </div>
+    </div>
+  </section>
+</main>
