@@ -1,54 +1,30 @@
 <footer class="bg-surface-container-low pt-16 pb-6">
   <div class="max-w-container-max mx-auto px-gutter">
-
-    <!-- Phần trên -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-      <!-- Bên trái -->
       <div>
-        <a
-          routerLink="/"
-          class="text-display-lg font-headline-lg text-primary tracking-tight"
-        >
-          L'ELIXIR
-        </a>
-
+        <a routerLink="/" class="text-display-lg font-headline-lg text-primary tracking-tight">L'ELIXIR </a>
         <p class="mt-6 text-on-surface-variant leading-relaxed max-w-md">
           Nâng tầm nghệ thuật làm đẹp cá nhân hóa thông qua khoa học và tâm hồn.
           Trải nghiệm sự sang trọng đích thực dành riêng cho làn da bạn.
         </p>
-
         <div class="flex items-center gap-5 mt-8 text-2xl">
-          <span class="cursor-pointer hover:text-primary transition">
-            🌐
-          </span>
-
-          <span class="cursor-pointer hover:text-primary transition">
-            📷
-          </span>
-
-          <span class="cursor-pointer hover:text-primary transition">
-            ▶️
-          </span>
+          <span class="cursor-pointer hover:text-primary transition">🌐</span>
+          <span class="cursor-pointer hover:text-primary transition">📷</span>
+          <span class="cursor-pointer hover:text-primary transition">▶️</span>
         </div>
       </div>
 
-      <!-- Bên phải -->
       <div class="grid grid-cols-3 gap-8">
-
-        <!-- Cột 1 -->
         <div>
-          <h4 class="font-semibold uppercase mb-4">
+          <h4 class="font-semibold uppercase mb-4 text-primary">
             Bộ sưu tập
           </h4>
-
           <ul class="space-y-3 text-on-surface-variant">
             <li>
               <a [routerLink]="['/products']" [queryParams]="{ collection: 'Lumina' }" class="hover:text-primary">
                 Tinh Hoa Dưỡng Sáng Lumina
               </a>
             </li>
-
             <li>
               <a [routerLink]="['/products']" [queryParams]="{ collection: 'Aurora' }" class="hover:text-primary">
                 Vẻ Đẹp Rạng Đông Aurora
@@ -57,12 +33,10 @@
           </ul>
         </div>
 
-        <!-- Cột 2 -->
         <div>
-          <h4 class="font-semibold uppercase mb-4">
+          <h4 class="font-semibold uppercase mb-4 text-primary">
             Hỗ trợ
           </h4>
-
           <ul class="space-y-3 text-on-surface-variant">
             <li>Giao hàng & Đổi trả</li>
             <li>Liên hệ</li>
@@ -70,46 +44,44 @@
             <li>Tài khoản của tôi</li>
           </ul>
         </div>
-
-        <!-- Cột 3 -->
         <div>
-          <h4 class="font-semibold uppercase mb-4">
-            Về chúng tôi
+          <h4 class="mb-4">
+            <a routerLink="/about-us" class="font-semibold uppercase text-primary hover:underline">
+              Về chúng tôi
+            </a>
           </h4>
-
           <ul class="space-y-3 text-on-surface-variant">
-            <li>Câu chuyện thương hiệu</li>
-            <li>Khoa học & DNA</li>
-            <li>Phát triển bền vững</li>
-            <li>Cơ hội nghề nghiệp</li>
+            <li>
+              <a routerLink="/about-us" fragment="cau-chuyen" class="hover:text-primary transition-colors cursor-pointer block">
+                Câu chuyện thương hiệu
+              </a>
+            </li>
+            <li>
+              <a routerLink="/about-us" fragment="khoa-hoc-dna" class="hover:text-primary transition-colors cursor-pointer block">
+                Khoa học & DNA
+              </a>
+            </li>
+            <li>
+              <a routerLink="/about-us" fragment="phat-trien-ben-vung" class="hover:text-primary transition-colors cursor-pointer block">
+                Phát triển bền vững
+              </a>
+            </li>
+            <li>
+              <a routerLink="/about-us" fragment="co-hoi-nghe-nghiep" class="hover:text-primary transition-colors cursor-pointer block">
+                Cơ hội nghề nghiệp
+              </a>
+            </li>
           </ul>
         </div>
-
       </div>
-
     </div>
-
-    <!-- Đường kẻ -->
     <hr class="my-10 border-outline-variant">
-
-    <!-- Phần dưới -->
     <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
-
-      <p>
-        © 2024 L'ELIXIR. TẤT CẢ QUYỀN ĐƯỢC BẢO LƯU.
-      </p>
-
+      <p>© 2024 L'ELIXIR. TẤT CẢ QUYỀN ĐƯỢC BẢO LƯU.</p>
       <div class="flex items-center gap-8">
-        <a href="#" class="hover:text-primary">
-          CHÍNH SÁCH BẢO MẬT
-        </a>
-
-        <a href="#" class="hover:text-primary">
-          ĐIỀU KHOẢN DỊCH VỤ
-        </a>
+        <a href="#" class="hover:text-primary">CHÍNH SÁCH BẢO MẬT</a>
+        <a href="#" class="hover:text-primary">ĐIỀU KHOẢN DỊCH VỤ</a>
       </div>
-
     </div>
-
   </div>
 </footer>
