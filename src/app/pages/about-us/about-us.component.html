@@ -1,0 +1,182 @@
+<div class="max-w-container-max mx-auto px-gutter py-20 text-on-surface select-none font-sans">
+  <div class="flex flex-col lg:flex-row gap-16">
+    <div class="w-full lg:w-1/4">
+      <div class="sticky top-28 pl-2 space-y-8 border-l border-outline-variant/40"> 
+        <nav class="space-y-4">
+          <div *ngFor="let item of menuItems" class="border-b border-outline-variant/20 pb-3 last:border-none">
+            <button type="button" (click)="toggleSection($event, item.id)"
+               [class.text-primary]="activeSection === item.id"
+               [class.font-medium]="activeSection === item.id"
+               class="w-full text-left text-body-medium text-on-surface-variant hover:text-primary transition-all duration-300 tracking-wide flex justify-between items-center py-2 group custom-btn">
+              <span class="text-[13px] uppercase tracking-wider group-hover:translate-x-1 transition-transform duration-300">{{ item.title }}</span>
+              <span class="text-xs text-primary/60 font-light transition-all duration-300">
+                {{ item.isOpen ? '↓' : '→' }}
+              </span>
+            </button>
+            <div *ngIf="item.isOpen" class="pl-4 space-y-2.5 pt-2 pb-1 border-l border-primary/30 ml-0.5 animate-fadeIn">
+              <button type="button" *ngFor="let sub of item.subSections"
+                 (click)="scrollToSubSection($event, item.id, sub.id)"
+                 [class.text-primary]="activeSubSection === sub.id"
+                 [class.font-semibold]="activeSubSection === sub.id"
+                 class="w-full text-left text-xs text-on-surface-variant/70 hover:text-primary transition-colors block py-0.5 tracking-wide custom-btn">
+                {{ sub.title }}
+              </button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="w-full lg:w-3/4 space-y-32">
+
+      <!-- SECTION 1: Câu chuyện thương hiệu -->
+      <section id="cau-chuyen" class="scroll-mt-28">
+        <h3 class="text-headline-medium font-headline-md tracking-widest mb-10 text-primary uppercase border-b border-outline-variant/20 pb-4">Câu chuyện thương hiệu</h3>
+        <div id="khoi-nguon" class="scroll-mt-28 mb-12">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Khởi nguồn di sản</h4>
+          <p class="text-on-surface-variant leading-relaxed text-justify text-sm mb-4">
+            L'ELIXIR không bắt đầu bằng những dây chuyền công nghiệp sản xuất hàng loạt hay những công thức đại trà được đóng gói sẵn. Thương hiệu ra đời từ một câu hỏi cốt lõi: <span class="italic text-primary font-medium">"Nếu mỗi làn da là một bản thể duy nhất với cấu trúc sinh học, lối sống và tâm hồn riêng biệt, tại sao chúng ta lại phải chia sẻ chung một công thức mỹ phẩm?"</span>
+          </p>
+          <p class="text-on-surface-variant leading-relaxed text-justify text-sm">
+            Hành trình của chúng tôi khởi nguồn từ những buổi lắng nghe, nghiên cứu chuyên sâu về biểu đồ sinh học của hàng ngàn phụ nữ Á Đông. L'ELIXIR được định vị như một nhà giám tuyển nhan sắc thượng lưu, nơi mỗi giọt tinh chất được tinh chế giống như một tác phẩm nghệ thuật đo ni đóng giày độc bản, chỉ dành riêng cho một làn da duy nhất — là chính bạn.
+          </p>
+        </div>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80" alt="L'ELIXIR Natural Botanical Heritage" class="w-full h-full object-cover">
+        </div>
+        <div id="tam-nhin" class="scroll-mt-28">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Tầm nhìn & Sứ mệnh</h4>
+          <div class="space-y-4 text-on-surface-variant leading-relaxed text-justify text-sm">
+            <p>
+              <span class="font-medium text-on-surface">Tầm nhìn:</span> Trở thành biểu tượng tiên phong định hình lại thị trường mỹ phẩm cá nhân hóa cao cấp tại Việt Nam và vươn tầm khu vực, kết hợp nhuần nhuyễn giữa trí tuệ nhân tạo (AI), dữ liệu da học chuyên sâu và nguồn nguyên liệu hữu cơ xa xỉ.
+            </p>
+            <p>
+              <span class="font-medium text-on-surface">Sứ mệnh:</span> Khơi thức vẻ đẹp di sản vốn có từ bên trong cấu trúc tế bào của mỗi cá nhân. Chúng tôi không thay đổi làn da của bạn, chúng tôi cung cấp giải pháp tối ưu để làn da tự chữa lành, tự tái tạo và tỏa sáng theo cách nguyên bản nhất bằng sự tôn trọng và thấu hiểu tuyệt đối từ tâm hồn.
+            </p>
+          </div>
+        </div>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low mt-10">
+          <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80" alt="L'ELIXIR Luxury Formulation" class="w-full h-full object-cover">
+        </div>
+      </section>
+
+      <!-- SECTION 2: Khoa học & DNA -->
+      <section id="khoa-hoc-dna" class="scroll-mt-28 border-t border-outline-variant/40 pt-16">
+        <h3 class="text-headline-medium font-headline-md tracking-widest mb-10 text-primary uppercase border-b border-outline-variant/20 pb-4">Khoa học & DNA</h3>
+        <div id="phuc-hop" class="scroll-mt-28 mb-12">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Phức hợp độc quyền</h4>
+          <p class="text-on-surface-variant leading-relaxed text-justify text-sm mb-4">
+            Trọng tâm sức mạnh của L'ELIXIR nằm ở phức hợp hoạt chất sinh học độc quyền được chiết tách ở cấp độ phân tử siêu nhỏ. Dựa trên kết quả từ hệ thống Khảo sát da chuyên sâu, các thuật toán thông minh sẽ phân tích toàn diện các chỉ số về độ ẩm, hàng rào bảo vệ da, tốc độ lão hóa biểu bì và mật độ sắc tố melanin.
+          </p>
+          <p class="text-on-surface-variant leading-relaxed text-justify text-sm">
+            Từ đó, đội ngũ chuyên gia sẽ tổng hợp các chuỗi peptide thông minh kết hợp màng DNA thực vật giúp kích thích sản sinh collagen tự nhiên sâu dưới lớp trung bì, thúc đẩy quá trình liên kết cấu trúc tế bào, mang lại hiệu quả đảo ngược lão hóa vượt thời gian một cách chuẩn xác và an toàn nhất.
+          </p>
+        </div>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+          <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=1200&q=80" alt="L'ELIXIR Pure Droplet Texture" class="w-full h-full object-cover">
+        </div>
+        <div id="phong-lab" class="scroll-mt-28">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Tiêu chuẩn phòng lab</h4>
+          <p class="text-on-surface-variant leading-relaxed text-justify text-sm">
+            Mỗi chai tinh chất L'ELIXIR gửi đến khách hàng đều được pha chế trực tiếp trong hệ thống phòng thí nghiệm khép kín đạt tiêu chuẩn vô trùng Class 100 quốc tế. Quy trình chưng cất áp suất thấp khép kín giúp giữ lại nguyên vẹn 100% hoạt tính sinh học nguyên bản của các thảo dược hữu cơ cao cấp. Toàn bộ thành phẩm phải trải qua 48 bước kiểm định lâm sàng nghiêm ngặt, hoàn toàn không chứa cồn hay hương liệu nhân tạo, bảo đảm tính an toàn tối thượng trên mọi làn da nhạy cảm.
+          </p>
+        </div>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low mt-10">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" alt="L'ELIXIR High-Tech Futuristic Lab" class="w-full h-full object-cover">
+        </div>
+      </section>
+
+      <!-- SECTION 3: Phát triển bền vững -->
+      <section id="phat-trien-ben-vung" class="scroll-mt-28 border-t border-outline-variant/40 pt-16">
+        <span class="text-label-sm uppercase tracking-widest text-primary font-semibold">Cam kết L-Elixir</span>
+        <h3 class="text-headline-medium font-headline-md tracking-widest mt-2 mb-10 text-primary uppercase border-b border-outline-variant/20 pb-4">Phập triển bền vững</h3>
+        <div id="nguyen-lieu-huu-co" class="scroll-mt-28 mb-12">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Nguồn nguyên liệu hữu cơ</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="text-on-surface-variant text-justify leading-relaxed text-sm space-y-4">
+              <p>
+                Tại L-ELIXIR, chúng tôi tin rằng vẻ đẹp bền vững của làn da không thể được đánh đổi bằng sự suy kiệt của hành tinh. 100% nguồn thực vật phục vụ cho quá trình chiết tách của thương hiệu đều được nuôi trồng tại các thung lũng nông sản đạt chuẩn Organic khắt khe nhất.
+              </p>
+              <p>
+                Cây trồng được thu hoạch hoàn toàn thủ công vào thời điểm lượng dưỡng chất đạt đỉnh sinh học cao nhất, tuân theo chu kỳ tự nhiên của đất trời và tuyệt đối nói không với các hóa chất bảo vệ thực vật độc hại.
+              </p>
+            </div>
+            <div class="w-full h-56 rounded-lg overflow-hidden shadow-sm border border-outline-variant bg-surface-container-low">
+              <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=600&q=80" alt="L'ELIXIR Pure Organic Essence" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+        <div id="bao-bi-xanh" class="scroll-mt-28 mb-12">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Hành trình xanh & Bao bì</h4>
+          <p class="text-on-surface-variant text-justify leading-relaxed text-sm mb-4">
+            Sự xa xỉ của L-ELIXIR luôn đi đôi với ý thức trách nhiệm sinh thái tuần hoàn. Thay vì sử dụng những lớp vỏ nhựa cầu kỳ làm tăng rác thải công nghiệp, sản phẩm của chúng tôi được lưu trữ trong những chai lọ thủy tinh mờ cao cấp đúc tinh xảo, vừa có khả năng ngăn chặn tác động của tia UV từ ánh sáng mặt trời để bảo quản tinh chất, vừa có khả năng tái chế tuần hoàn hoàn toàn 100%.
+          </p>
+        </div>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+          <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=1200&q=80" alt="L'ELIXIR Sustainable Luxury Packaging" class="w-full h-full object-cover">
+        </div>
+        <div id="cam-ket-sinh-thai" class="scroll-mt-28">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Cam kết hệ sinh thái</h4>
+          <p class="text-on-surface-variant text-justify leading-relaxed text-sm mb-6">
+            L-ELIXIR luôn nỗ lực cụ thể hóa trách nhiệm với môi trường bằng các hành động định lượng thực tế trong quy trình vận hành và cam kết đồng hành bền vững cùng hệ sinh thái tự nhiên toàn cầu:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-6 bg-surface-container-low rounded border border-outline-variant hover:shadow-md transition duration-300">
+              <h5 class="text-sm font-semibold text-primary mb-2">100% Thuần Chay</h5>
+              <p class="text-xs text-on-surface-variant/80 leading-relaxed">Nguồn nguyên liệu thực vật lành tính tuyệt đối, hoàn toàn không thử nghiệm trên động vật.</p>
+            </div>
+            <div class="p-6 bg-surface-container-low rounded border border-outline-variant hover:shadow-md transition duration-300">
+              <h5 class="text-sm font-semibold text-primary mb-2">Không Rác Thải Nhựa</h5>
+              <p class="text-xs text-on-surface-variant/80 leading-relaxed">Tối ưu hóa thiết kế bao bì tuần hoàn xanh, loại bỏ triệt để màng bọc nilon và mực in hóa chất.</p>
+            </div>
+            <div class="p-6 bg-surface-container-low rounded border border-outline-variant hover:shadow-md transition duration-300">
+              <h5 class="text-sm font-semibold text-primary mb-2">Tối Ưu Năng Lượng</h5>
+              <p class="text-xs text-on-surface-variant/80 leading-relaxed">Ứng dụng công nghệ xử lý nước khép kín giúp tiết kiệm 40% năng lượng nhiệt vận hành phòng Lab.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: Cơ hội nghề nghiệp -->
+      <section id="co-hoi-nghe-nghiep" class="scroll-mt-28 border-t border-outline-variant/40 pt-16 pb-16">
+        <span class="text-label-sm uppercase tracking-widest text-primary font-semibold">Gia nhập đội ngũ</span>
+        <h3 class="text-headline-medium font-headline-md tracking-widest mt-2 mb-10 text-primary uppercase border-b border-outline-variant/20 pb-4">Cơ hội nghề nghiệp</h3>
+        <div id="moi-truong" class="scroll-mt-28 mb-12">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Môi trường làm việc lý tưởng</h4>
+          <p class="text-on-surface-variant leading-relaxed text-justify text-sm">
+            Tại không gian làm việc của L-ELIXIR, chúng tôi kiến tạo môi trường tự do học thuật cởi mở, ngập tràn ánh sáng tự nhiên với tone màu kem gỗ sồi trang nhã. Thương hiệu luôn tôn trọng bản sắc cá nhân và nuôi dưỡng tối đa tiềm năng của từng cộng sự, tạo sự giao thoa hài hòa giữa tư duy nghiên cứu ứng dụng thực tế chuẩn xác của phòng Lab và sự bứt phá bay bổng đầy tính nghệ thuật thị giác của phòng Marketing.
+          </p>
+        </div>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="L'ELIXIR Architectural Creative Office" class="w-full h-full object-cover">
+        </div>
+        <div id="tuyen-dung" class="scroll-mt-28">
+          <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase tracking-wider">Các vị trí đang tuyển dụng</h4>
+          <div class="space-y-4">
+            <div class="border border-outline-variant bg-surface-container-low rounded p-5 hover:border-primary transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md">
+              <div class="flex justify-between items-center">
+                <div>
+                  <h5 class="text-[14px] font-semibold text-on-surface group-hover:text-primary transition-colors">Chuyên Viên Nghiên Cứu & Phát Triển Sản Phẩm (R&D)</h5>
+                  <p class="text-xs text-on-surface-variant/70 mt-1">Phòng Lab • Toàn thời gian • TP. Hồ Chí Minh</p>
+                </div>
+                <span class="text-on-surface-variant group-hover:text-primary text-sm transition-transform group-hover:translate-x-1">→</span>
+              </div>
+            </div>
+            <div class="border border-outline-variant bg-surface-container-low rounded p-5 hover:border-primary transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md">
+              <div class="flex justify-between items-center">
+                <div>
+                  <h5 class="text-[14px] font-semibold text-on-surface group-hover:text-primary transition-colors">Nhà Sáng Tạo Nội Dung Trực Quan (Visual Creator)</h5>
+                  <p class="text-xs text-on-surface-variant/70 mt-1">Phòng Marketing • Toàn thời gian / Bán thời gian • TP. Hồ Chí Minh</p>
+                </div>
+                <span class="text-on-surface-variant group-hover:text-primary text-sm transition-transform group-hover:translate-x-1">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-12 p-6 bg-surface-container-high rounded text-center border border-outline-variant">
+          <p class="text-body-medium text-on-surface text-sm">Bạn sẵn sàng đồng hành cùng L-ELIXIR? Gửi hồ sơ (CV) của bạn về địa chỉ email:</p>
+          <a href="mailto:careers&#64;lelixir.vn" class="inline-block mt-2 font-semibold text-primary hover:underline text-sm tracking-wide">careers&#64;lelixir.vn</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
