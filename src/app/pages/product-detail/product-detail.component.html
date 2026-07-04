@@ -65,25 +65,39 @@
       <div class="mb-12">
         <div class="grid gap-4 sm:grid-cols-2">
           <!-- Quantity selector: Nút -, số lượng, nút + -->
-          <div class="flex items-center border border-outline rounded-lg px-4 py-3 min-w-[120px] justify-between">
-            <!-- Nút - (decrease): Giảm số lượng, chỉ enabled khi > 1 -->
-            <button 
-              (click)="decreaseQuantity()" 
-              [disabled]="selectedQuantity <= 1"
-              class="material-symbols-outlined text-[20px] hover:text-primary disabled:text-outline disabled:hover:text-outline transition-colors" 
-              type="button">
-              remove
-            </button>
-            <!-- Hiển thị số lượng hiện tại (2-way binding hoặc interpolation) -->
-            <span class="font-label-md text-label-md">{{ selectedQuantity }}</span>
-            <!-- Nút + (increase): Tăng số lượng, chỉ enabled khi < stockQuantity -->
-            <button 
-              (click)="increaseQuantity()" 
-              [disabled]="selectedQuantity >= product.stockQuantity"
-              class="material-symbols-outlined text-[20px] hover:text-primary disabled:text-outline disabled:hover:text-outline transition-colors" 
-              type="button">
-              add
-            </button>
+          <div class="flex flex-col">
+            <div class="flex items-center border border-outline rounded-lg px-4 py-3 min-w-[120px] justify-between">
+              <!-- Nút - (decrease): Giảm số lượng, chỉ enabled khi > 1 -->
+              <button 
+                (click)="decreaseQuantity()" 
+                [disabled]="selectedQuantity <= 1"
+                class="material-symbols-outlined text-[20px] hover:text-primary disabled:text-outline disabled:hover:text-outline transition-colors" 
+                type="button">
+                remove
+              </button>
+              <!-- Ô nhập số lượng hiện tại (2-way binding với selectedQuantity) -->
+              <input
+                type="number"
+                inputmode="numeric"
+                min="1"
+                [attr.max]="product.stockQuantity > 0 ? product.stockQuantity : 1"
+                step="1"
+                class="w-12 bg-transparent text-center font-label-md text-label-md outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                [ngModel]="selectedQuantity"
+                (ngModelChange)="onQuantityInputChange($event)"
+                (blur)="validateQuantity()"
+                aria-label="Số lượng sản phẩm"
+              />
+              <!-- Nút + (increase): Tăng số lượng, chỉ enabled khi < stockQuantity -->
+              <button 
+                (click)="increaseQuantity()" 
+                [disabled]="selectedQuantity >= product.stockQuantity"
+                class="material-symbols-outlined text-[20px] hover:text-primary disabled:text-outline disabled:hover:text-outline transition-colors" 
+                type="button">
+                add
+              </button>
+            </div>
+            <p *ngIf="quantityError" class="mt-2 text-sm text-red-500">{{ quantityError }}</p>
           </div>
           <!-- Nút Add to Cart: Gọi addToCart() với selectedQuantity -->
           <button 

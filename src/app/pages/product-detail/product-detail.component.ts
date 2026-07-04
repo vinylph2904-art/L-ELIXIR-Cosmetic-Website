@@ -39,6 +39,7 @@ export class ProductDetailComponent implements OnInit {
    * Không liên quan đến quantity trong giỏ - đây chỉ là con số trên bộ đếm.
    */
   selectedQuantity: number = 1;
+  quantityError = '';
 
   // UC11 - Review & Comments
   orders: Order[] = [];
@@ -81,14 +82,20 @@ export class ProductDetailComponent implements OnInit {
     this.currentUserName = localStorage.getItem('currentUserName') || 'Người dùng';
   }
 
+  private getMaxQuantity(): number {
+    return this.product.stockQuantity > 0 ? this.product.stockQuantity : Number.POSITIVE_INFINITY;
+  }
+
   /**
    * Tăng số lượng sản phẩm trên bộ đếm (nút +).
    * Giới hạn tối đa = product.stockQuantity (không cho vượt quá số trong kho).
    */
   increaseQuantity(): void {
-    if (this.selectedQuantity < this.product.stockQuantity) {
+    const maxQuantity = this.getMaxQuantity();
+    if (this.selectedQuantity < maxQuantity) {
       this.selectedQuantity++;
     }
+    this.validateQuantity();
   }
 
   /**
@@ -99,6 +106,51 @@ export class ProductDetailComponent implements OnInit {
     if (this.selectedQuantity > 1) {
       this.selectedQuantity--;
     }
+    this.validateQuantity();
+  }
+
+  onQuantityInputChange(value: number | string | null): void {
+    if (value === null || value === '') {
+      this.selectedQuantity = 1;
+      this.quantityError = '';
+      return;
+    }
+
+    const parsedValue = typeof value === 'string' ? Number(value.trim()) : value;
+
+    if (!Number.isFinite(parsedValue) || !Number.isInteger(parsedValue) || parsedValue < 1) {
+      this.selectedQuantity = 1;
+      this.quantityError = '';
+      return;
+    }
+
+    const maxQuantity = this.getMaxQuantity();
+    if (maxQuantity !== Number.POSITIVE_INFINITY && parsedValue > maxQuantity) {
+      this.selectedQuantity = maxQuantity;
+      this.quantityError = `Số lượng tối đa là ${maxQuantity}`;
+      return;
+    }
+
+    this.selectedQuantity = parsedValue;
+    this.quantityError = '';
+  }
+
+  validateQuantity(): void {
+    const maxQuantity = this.getMaxQuantity();
+
+    if (!Number.isFinite(this.selectedQuantity) || !Number.isInteger(this.selectedQuantity) || this.selectedQuantity < 1) {
+      this.selectedQuantity = 1;
+      this.quantityError = '';
+      return;
+    }
+
+    if (maxQuantity !== Number.POSITIVE_INFINITY && this.selectedQuantity > maxQuantity) {
+      this.selectedQuantity = maxQuantity;
+      this.quantityError = `Số lượng tối đa là ${maxQuantity}`;
+      return;
+    }
+
+    this.quantityError = '';
   }
 
   /**
@@ -107,6 +159,7 @@ export class ProductDetailComponent implements OnInit {
    * QUAN TRỌNG: Phải pass đúng selectedQuantity, không hardcode = 1
    */
   addToCart(): void {
+    this.validateQuantity();
     // Thêm vào giỏ với số lượng từ bộ đếm
     this.cartService.addToCart({ ...this.product, quantity: this.selectedQuantity });
     // Hiện toast thông báo thành công
@@ -133,6 +186,8 @@ export class ProductDetailComponent implements OnInit {
    * chỉ có '/cart' (giỏ hàng) và '/payment' (thanh toán).
    */
   onBuyNow(): void {
+    this.validateQuantity();
+
     // Validate: Kiểm tra stock
     if (this.product.stockQuantity <= 0) {
       this.toastService.error('Sản phẩm đã hết hàng', 3000);

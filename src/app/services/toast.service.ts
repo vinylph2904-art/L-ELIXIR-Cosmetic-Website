@@ -16,6 +16,7 @@ export class ToastService {
   toasts$ = this.toastsSubject.asObservable();
 
   private toastId = 0;
+  private timers = new Map<string, ReturnType<typeof setTimeout>>();
 
   show(message: string, type: 'success' | 'error' | 'info' | 'warning' = 'success', duration = 3000) {
     const id = `toast-${++this.toastId}`;
@@ -25,9 +26,12 @@ export class ToastService {
     this.toastsSubject.next([...currentToasts, toast]);
 
     if (duration > 0) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         this.remove(id);
-      }, duration);
+        this.timers.delete(id);
+      }, 2000);
+
+      this.timers.set(id, timer);
     }
   }
 
@@ -48,6 +52,12 @@ export class ToastService {
   }
 
   remove(id: string) {
+    const timer = this.timers.get(id);
+    if (timer) {
+      clearTimeout(timer);
+      this.timers.delete(id);
+    }
+
     const currentToasts = this.toastsSubject.value;
     this.toastsSubject.next(currentToasts.filter(t => t.id !== id));
   }

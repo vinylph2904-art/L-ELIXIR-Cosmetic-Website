@@ -139,7 +139,17 @@ onCityChange() {
         this.cdr.markForCheck();
       });
     
-    this.cartItems = this.cartService.getCart();
+    const selectedItems = sessionStorage.getItem('selectedCheckoutItems');
+    if (selectedItems) {
+      try {
+        this.cartItems = JSON.parse(selectedItems) as Product[];
+      } catch {
+        sessionStorage.removeItem('selectedCheckoutItems');
+        this.cartItems = this.cartService.getCart();
+      }
+    } else {
+      this.cartItems = this.cartService.getCart();
+    }
     this.loadShippingInfoFromSession();
     this.recalcSubtotal();
     
