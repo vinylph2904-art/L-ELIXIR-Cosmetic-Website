@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Order, ShippingInfo, OrderItem, PaymentSandboxResponse } from '../data/order.model';
@@ -303,7 +303,7 @@ export class OrderService {
 
     const nextSequence = Math.max(this.readOrderSequence(), storedMax) + 1;
     this.writeOrderSequence(nextSequence);
-    return `ORD-${String(nextSequence).padStart(4, '0')}`;
+    return `ORD-000${nextSequence}`;
   }
 
   /**
