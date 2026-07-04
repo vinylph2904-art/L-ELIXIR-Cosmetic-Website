@@ -1,1 +1,279 @@
-<p>support works!</p>
+trước tiên<div class="max-w-container-max mx-auto px-gutter py-20 text-on-surface select-none font-sans">
+  <div class="flex flex-col lg:flex-row gap-16">
+    <div class="w-full lg:w-1/4">
+      <div class="sticky top-28 pl-2 space-y-8 border-l border-outline-variant/40"> 
+        <nav class="space-y-4">
+          <div *ngFor="let item of menuItems" class="border-b border-outline-variant/20 pb-3 last:border-none">
+            <button type="button" (click)="toggleSection($event, item.id)"
+               [class.text-primary]="activeSection === item.id"
+               [class.font-medium]="activeSection === item.id"
+               class="w-full text-left text-body-medium text-on-surface-variant hover:text-primary transition-all duration-300 tracking-wide flex justify-between items-center py-2 group custom-btn">
+              <span class="text-[13px] uppercase tracking-wider group-hover:translate-x-1 transition-transform duration-300">{{ item.title }}</span>
+              <span class="text-xs text-primary/60 font-light transition-all duration-300">
+                {{ item.isOpen ? '↓' : '→' }}
+              </span>
+            </button>
+            <div *ngIf="item.isOpen" class="pl-4 space-y-2.5 pt-2 pb-1 border-l border-primary/30 ml-0.5 animate-fadeIn">
+              <button type="button" *ngFor="let sub of item.subSections"
+                 (click)="scrollToSubSection($event, item.id, sub.id)"
+                 [class.text-primary]="activeSubSection === sub.id"
+                 [class.font-semibold]="activeSubSection === sub.id"
+                 class="w-full text-left text-xs text-on-surface-variant/70 hover:text-primary transition-colors block py-0.5 tracking-wide custom-btn">
+                {{ sub.title }}
+              </button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="w-full lg:w-3/4 space-y-32">
+
+    <!-- SECTION 1: Giao hàng & Đổi trả -->
+    <section id="giao-hang" class="scroll-mt-28">
+
+    <h3 class="text-headline-medium font-headline-md tracking-widest mb-10 text-primary uppercase border-b border-outline-variant/20 pb-4">
+        Giao hàng & Đổi trả
+    </h3>
+
+    <div id="chinh-sach-giao-hang" class="scroll-mt-28 mb-12">
+        <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase">
+        Chính sách giao hàng
+        </h4>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        L'ELIXIR giao hàng trên toàn quốc thông qua các đơn vị vận chuyển uy tín nhằm đảm bảo sản phẩm được giao đến khách hàng nhanh chóng và an toàn.
+        <span class="font-medium text-on-surface">Mọi đơn hàng đều được đóng gói theo tiêu chuẩn cao cấp</span> trước khi bàn giao cho đơn vị vận chuyển.
+        </p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Đơn hàng sẽ được xử lý trong vòng <span class="font-semibold text-primary">24 giờ làm việc</span>.
+        Thời gian giao dự kiến từ <span class="font-semibold">2–5 ngày</span> đối với nội thành và từ
+        <span class="font-semibold">3–7 ngày</span> đối với các tỉnh thành khác.
+        </p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify">
+        <span class="italic text-primary">
+            "Sự hài lòng của khách hàng bắt đầu từ một trải nghiệm giao hàng an toàn và đúng hẹn."
+        </span>
+        </p>
+
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+        <img
+            src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80"
+            alt="Delivery"
+            class="w-full h-full object-cover">
+        </div>        
+    </div>
+
+    <div id="chinh-sach-doi-tra" class="scroll-mt-28">
+        <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase">
+        Chính sách đổi trả
+        </h4>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        L'ELIXIR luôn đặt
+        <span class="font-semibold text-primary">trải nghiệm khách hàng</span>
+        lên hàng đầu. Nếu sản phẩm bị lỗi hoặc giao sai, khách hàng có thể yêu cầu đổi trả trong vòng
+        <span class="font-semibold">07 ngày</span>.
+        </p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Điều kiện áp dụng gồm:
+        <span class="font-medium">sản phẩm còn nguyên tem, chưa qua sử dụng và đầy đủ phụ kiện.</span>
+        </p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify">
+        <span class="italic text-primary">
+            "Chúng tôi cam kết xử lý mọi yêu cầu đổi trả minh bạch, nhanh chóng và công bằng."
+        </span>
+        </p>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+        <img
+            src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80"
+            alt="Return Policy"
+            class="w-full h-full object-cover">
+        </div>
+    </div>
+
+    </section>
+
+    <!-- SECTION 2: Liên hệ -->
+    <section id="lien-he" class="scroll-mt-28 border-t border-outline-variant/40 pt-16">
+
+    <h3 class="text-headline-medium font-headline-md tracking-widest mb-10 text-primary uppercase border-b border-outline-variant/20 pb-4">
+        Liên hệ
+    </h3>
+
+    <div id="thong-tin-lien-he" class="scroll-mt-28 mb-12">
+
+        <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase">
+        Thông tin liên hệ
+        </h4>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Nếu cần tư vấn về sản phẩm hoặc đơn hàng,
+        <span class="font-medium text-on-surface">
+            đội ngũ Chăm sóc khách hàng của L'ELIXIR luôn sẵn sàng hỗ trợ.
+        </span>
+        </p>
+
+        <p><span class="font-semibold text-primary">Email:</span> support&#64;lelixir.vn</p>
+        <p><span class="font-semibold text-primary">Hotline:</span> 1900 1234</p>
+        <p><span class="font-semibold text-primary">Địa chỉ:</span> TP. Hồ Chí Minh</p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mt-5 italic text-primary">
+        "Mỗi phản hồi của khách hàng đều là động lực để chúng tôi hoàn thiện chất lượng dịch vụ."
+        </p>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+        <img
+            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
+            alt="Customer Support"
+            class="w-full h-full object-cover">
+        </div>
+
+    </div>
+
+    <div id="thoi-gian-ho-tro" class="scroll-mt-28">
+
+        <h4 class="mb-4">
+        <a
+            routerLink="/support"
+            class="font-semibold uppercase text-primary hover:underline">
+            Hỗ trợ
+        </a>
+        </h4>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Đội ngũ tư vấn hoạt động xuyên suốt nhằm đảm bảo mọi yêu cầu đều được tiếp nhận và xử lý kịp thời.
+        </p>
+
+        <p class="text-lg font-semibold text-primary mb-4">
+        08:00 – 21:00
+        </p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify">
+        Ngoài thời gian trên, mọi yêu cầu vẫn sẽ được ghi nhận và
+        <span class="font-medium">
+            phản hồi vào đầu ngày làm việc kế tiếp.
+        </span>
+        </p>
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+        <img
+            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80"
+            alt="Working Hours"
+            class="w-full h-full object-cover">
+        </div>
+
+    </div>
+
+    </section>
+
+    <!-- SECTION 3: Câu hỏi thường gặp -->
+    <section id="faq" class="scroll-mt-28 border-t border-outline-variant/40 pt-16">
+
+    <h3 class="text-headline-medium font-headline-md tracking-widest mb-10 text-primary uppercase border-b border-outline-variant/20 pb-4">
+        Câu hỏi thường gặp
+    </h3>
+
+    <div id="faq-don-hang" class="mb-12">
+
+        <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase">
+        Đơn hàng
+        </h4>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Sau khi đặt hàng thành công, bạn có thể theo dõi trạng thái trong mục
+        <span class="font-semibold text-primary">
+            "Đơn hàng của tôi".
+        </span>
+        </p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Hệ thống sẽ cập nhật đầy đủ các bước:
+        <span class="font-medium">
+            xác nhận → đóng gói → vận chuyển → giao thành công.
+        </span>
+        </p>
+
+        <p class="text-sm text-on-surface-variant italic text-primary">
+        "Mọi thay đổi về đơn hàng sẽ được thông báo ngay khi phát sinh."
+        </p>
+
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+        <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+            alt="Order Tracking"
+            class="w-full h-full object-cover">
+        </div>
+
+    </div>
+
+    <div id="faq-thanh-toan" class="mb-12">
+
+        <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase">
+        Thanh toán
+        </h4>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Chúng tôi hỗ trợ đa dạng phương thức thanh toán nhằm mang lại trải nghiệm thuận tiện nhất.
+        </p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Bao gồm:
+        <span class="font-semibold">Thẻ ngân hàng</span>,
+        <span class="font-semibold">Ví điện tử</span>,
+        <span class="font-semibold">COD</span>.
+        </p>
+
+        <p class="text-sm text-on-surface-variant italic text-primary">
+        "Toàn bộ giao dịch đều được mã hóa và bảo mật theo tiêu chuẩn hiện đại."
+        </p>
+
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+        <img
+            src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80"
+            alt="Payment"
+            class="w-full h-full object-cover">
+        </div>
+
+    </div>
+
+    <div id="faq-san-pham">
+
+        <h4 class="text-title-medium font-semibold text-primary mb-4 uppercase">
+        Sản phẩm
+        </h4>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Mỗi sản phẩm của L'ELIXIR được nghiên cứu dựa trên
+        <span class="font-semibold text-primary">
+            nền tảng khoa học hiện đại
+        </span>
+        kết hợp cùng nguồn nguyên liệu chọn lọc.
+        </p>
+
+        <p class="text-sm text-on-surface-variant leading-relaxed text-justify mb-4">
+        Nếu chưa biết lựa chọn sản phẩm nào,
+        <span class="font-medium">
+            đội ngũ chuyên gia sẽ tư vấn giải pháp phù hợp với tình trạng làn da của bạn.
+        </span>
+        </p>
+
+        <p class="text-sm text-on-surface-variant italic text-primary">
+        "Vẻ đẹp bền vững luôn bắt đầu từ việc lựa chọn sản phẩm phù hợp."
+        </p>
+
+        <div class="w-full h-[450px] rounded-lg shadow-md overflow-hidden bg-surface-container-low my-10">
+        <img
+            src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80"
+            alt="Beauty Products"
+            class="w-full h-full object-cover">
+        </div>
+
+    </div>
+
+    </section>
+    </div>
+  </div>
+</div>
+
