@@ -11,10 +11,10 @@
   </header>
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-    <div class="lg:col-span-8">
+    <div [class.lg:col-span-8]="!isCartEmpty" [class.lg:col-span-12]="isCartEmpty">
       <!-- Giỏ hàng trống -->
-      <div *ngIf="isCartEmpty" class="w-full min-h-[320px] sm:min-h-[420px] lg:min-h-[480px] px-4 py-8 sm:px-6 lg:px-8 flex items-center justify-center">
-        <div class="flex flex-col items-center justify-center text-center max-w-md">
+      <div *ngIf="isCartEmpty" class="flex min-h-[320px] w-full items-center justify-center px-4 py-10 sm:min-h-[420px] sm:px-6 sm:py-12 lg:min-h-[480px] lg:px-8 lg:py-16">
+        <div class="mx-auto flex w-full max-w-md flex-col items-center justify-center text-center">
           <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-container text-primary">
             <span class="material-symbols-outlined text-[32px]">shopping_bag</span>
           </div>
@@ -29,7 +29,16 @@
 
       <!-- Danh sách sản phẩm -->
       <div *ngIf="!isCartEmpty" class="border-t border-outline-variant">
+        <div class="flex items-center justify-between py-4 border-b border-outline-variant">
+          <label class="flex items-center gap-3 font-label-md text-label-md text-on-surface">
+            <input type="checkbox" class="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" [checked]="isAllSelected" (change)="toggleSelectAll($any($event.target).checked)">
+            <span>Chọn tất cả</span>
+          </label>
+        </div>
         <div *ngFor="let item of cartItems" class="py-8 border-b border-outline-variant flex flex-col sm:flex-row gap-6">
+          <div class="flex items-start pt-1">
+            <input type="checkbox" class="mt-1 h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary" [checked]="isSelected(item.productId)" (change)="toggleSelectItem(item.productId, $any($event.target).checked)">
+          </div>
           <div class="w-full sm:w-40 aspect-[3/4] overflow-hidden rounded-lg bg-surface-container img-zoom flex-shrink-0">
             <img [src]="item.images[0]" [alt]="item.name" class="w-full h-full object-cover transition-standard">
           </div>
@@ -48,10 +57,25 @@
             </div>
             <div class="flex justify-between items-center mt-4">
               <div class="flex items-center gap-6">
-                <div class="flex items-center border border-outline-variant rounded-full p-1 bg-surface-container-lowest">
-                  <button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-standard" type="button" (click)="changeQuantity(item.productId, -1)">-</button>
-                  <span class="w-10 text-center font-label-md text-label-md">{{ item.quantity || 1 }}</span>
-                  <button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-standard" type="button" (click)="changeQuantity(item.productId, 1)">+</button>
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center border border-outline-variant rounded-full p-1 bg-surface-container-lowest">
+                    <button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-standard" type="button" (click)="changeQuantity(item.productId, -1)">-</button>
+                    <input
+                      type="number"
+                      inputmode="numeric"
+                      min="1"
+                      [attr.max]="item.stockQuantity > 0 ? item.stockQuantity : 1"
+                      step="1"
+                      class="w-10 bg-transparent text-center font-label-md text-label-md outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      [ngModel]="item.quantity || 1"
+                      (ngModelChange)="onQuantityInputChange(item.productId, $event)"
+                      (blur)="validateQuantity(item.productId)"
+                      (keydown.enter)="validateQuantity(item.productId)"
+                      aria-label="Số lượng sản phẩm"
+                    />
+                    <button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-standard" type="button" (click)="changeQuantity(item.productId, 1)">+</button>
+                  </div>
+                  <p *ngIf="getQuantityError(item.productId)" class="text-xs text-red-500">{{ getQuantityError(item.productId) }}</p>
                 </div>
                 <div class="flex gap-4">
                   <button class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-standard" type="button">
@@ -106,7 +130,17 @@
             <button class="rounded-lg bg-primary px-4 py-3 text-white hover:opacity-90 transition-all">Áp dụng</button>
           </div>
         </div>
-        <button routerLink="/payment" class="w-full bg-primary text-white py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all">Tiến hành thanh toán</button>
+        <div class="space-y-2">
+          <button
+            type="button"
+            [disabled]="!hasSelectedItems"
+            (click)="goToPayment()"
+            class="w-full bg-primary text-white py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all disabled:cursor-not-allowed disabled:bg-outline-variant disabled:text-on-surface-variant"
+          >
+            Tiến hành thanh toán
+          </button>
+          <p *ngIf="!hasSelectedItems" class="text-sm text-red-500">Vui lòng chọn ít nhất một sản phẩm để thanh toán</p>
+        </div>
       </div>
     </aside>
   </div>
