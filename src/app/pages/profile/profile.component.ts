@@ -88,12 +88,22 @@ export class ProfileComponent implements OnInit {
 
     this.orders = this.orderService.getByUserId(this.user.userId)
       .slice()
-      .sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+      .sort((a, b) => this.getOrderSortDate(b).getTime() - this.getOrderSortDate(a).getTime());
 
     const addr = await this.addressService.getDefault(this.user.userId);
     this.defaultAddress = addr ? addr.addressDetails : '';
 
     this.resetForm();
+  }
+
+  private getOrderSortDate(order: Order): Date {
+    const value = (order as any).createdAt ?? (order as any).createdAtStr ?? '';
+    if (value instanceof Date) {
+      return value;
+    }
+
+    const parsed = value ? new Date(value) : new Date(0);
+    return Number.isNaN(parsed.getTime()) ? new Date(0) : parsed;
   }
   private loadRecommendedProducts(): void {
     const suffix = this.getAccountSuffix();
@@ -207,12 +217,14 @@ export class ProfileComponent implements OnInit {
     }
 
     if (this.form.address.trim()) {
-      await this.addressService.upsertDefault(this.user.userId, this.form.address.trim());
+      const savedAddress = await this.addressService.upsertDefault(this.user.userId, this.form.address.trim());
+      this.defaultAddress = savedAddress.addressDetails;
+      this.form.address = savedAddress.addressDetails;
     }
 
     this.editSuccess = 'Cập nhật thông tin thành công.';
     this.isEditing = false;
-    this.loadData();
+    await this.loadData();
   }
 
   async savePassword(): Promise<void> {

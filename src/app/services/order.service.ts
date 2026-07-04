@@ -112,8 +112,19 @@ export class OrderService {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       order.userId = currentUser.userId;
+      order.shippingInfo = {
+        ...order.shippingInfo,
+        fullName: order.shippingInfo.fullName || currentUser.fullName || '',
+        phone: order.shippingInfo.phone || currentUser.phoneNumber || '',
+        email: order.shippingInfo.email || currentUser.email || ''
+      };
     } else {
       order.guestId = this.generateGuestId();
+    }
+
+    const resolvedUserId = this.resolveOrderUserId(order, currentUser);
+    if (resolvedUserId) {
+      order.userId = resolvedUserId;
     }
 
     order.totalAmount = order.total;
@@ -393,6 +404,7 @@ export class OrderService {
       ? order.items.map((item: any) => this.normalizeOrderItem(item))
       : [];
     const subtotal = Number(order.subtotal ?? order.totalAmount ?? 0);
+    const resolvedUserId = this.resolveOrderUserId(order, this.authService.getCurrentUser());
     const shippingFee = Number(order.shippingFee ?? 0);
     const totalAmount = Number(order.totalAmount ?? order.total ?? subtotal + shippingFee);
     const shippingInfo = this.normalizeShippingInfo(order);
@@ -414,7 +426,7 @@ export class OrderService {
       orderStatus: normalizedOrderStatus,
       createdAt: this.parseDate(order.createdAt),
       updatedAt: this.parseDate(order.updatedAt ?? order.createdAt),
-      userId: order.userId ?? null,
+      userId: resolvedUserId ?? order.userId ?? null,
       guestName: order.guestName ?? shippingInfo.fullName,
       guestEmail: order.guestEmail ?? shippingInfo.email,
       guestPhone: order.guestPhone ?? shippingInfo.phone
@@ -544,6 +556,36 @@ export class OrderService {
     }
   }
 
+  private resolveOrderUserId(order: any, currentUser: any): string | null {
+    const directUserId = String(order?.userId || '').trim();
+    if (directUserId) {
+      return directUserId;
+    }
+
+    const normalizedEmail = String(order?.shippingInfo?.email || order?.guestEmail || '').trim().toLowerCase();
+    const normalizedPhone = String(order?.shippingInfo?.phone || order?.guestPhone || '').replace(/\s+/g, '');
+
+    if (currentUser) {
+      const currentEmail = String(currentUser?.email || '').trim().toLowerCase();
+      const currentPhone = String(currentUser?.phoneNumber || '').replace(/\s+/g, '');
+      if (currentEmail && normalizedEmail && currentEmail === normalizedEmail) {
+        return currentUser.userId || null;
+      }
+      if (currentPhone && normalizedPhone && currentPhone === normalizedPhone) {
+        return currentUser.userId || null;
+      }
+    }
+
+    const users = this.getUsersFromStorage();
+    const matchedUser = users.find((user: any) => {
+      const userEmail = String(user?.email || '').trim().toLowerCase();
+      const userPhone = String(user?.phoneNumber || '').replace(/\s+/g, '');
+      return (userEmail && normalizedEmail && userEmail === normalizedEmail) || (userPhone && normalizedPhone && userPhone === normalizedPhone);
+    });
+
+    return matchedUser?.userId ? String(matchedUser.userId).trim() : null;
+  }
+
   private readOrderSequence(): number {
     try {
       const raw = localStorage.getItem(this.ORDER_SEQUENCE_KEY);
@@ -563,6 +605,8 @@ export class OrderService {
 
   private upsertStoredOrder(order: Order): void {
     const orders = this.readStoredOrders();
+    const currentUser = this.authService.getCurrentUser();
+    const resolvedUserId = this.resolveOrderUserId(order, currentUser);
     const serializedOrder = {
       ...order,
       createdAt: order.createdAt instanceof Date ? order.createdAt.toISOString() : order.createdAt,
@@ -576,7 +620,7 @@ export class OrderService {
           }
         : undefined,
       totalAmount: order.totalAmount ?? order.total,
-      userId: order.userId ?? null,
+      userId: resolvedUserId ?? order.userId ?? currentUser?.userId ?? null,
       guestName: order.guestName ?? order.shippingInfo.fullName,
       guestEmail: order.guestEmail ?? order.shippingInfo.email
     };
@@ -594,7 +638,61 @@ export class OrderService {
   // Return orders for a specific userId (legacy API)
   getByUserId(userId: string): any[] {
     const orders = this.readStoredOrders();
-    return orders.filter(o => o.userId === userId || (o.guestId && o.guestId === userId));
+    const currentUser = this.authService.getCurrentUser();
+    const normalizedUserId = String(userId || '').trim();
+
+    const matchedOrders = orders.filter(order => this.matchesUserOrder(order, normalizedUserId, currentUser));
+
+    if (currentUser?.userId && matchedOrders.length > 0) {
+      const needsBackfill = orders.some(order => {
+        const hasUserId = String(order?.userId || '').trim();
+        return !hasUserId && this.matchesUserOrder(order, normalizedUserId, currentUser);
+      });
+
+      if (needsBackfill) {
+        const updatedOrders = orders.map(order => {
+          if (!String(order?.userId || '').trim() && this.matchesUserOrder(order, normalizedUserId, currentUser)) {
+            return { ...order, userId: currentUser.userId };
+          }
+          return order;
+        });
+        this.writeStoredOrders(updatedOrders);
+      }
+    }
+
+    return matchedOrders;
+  }
+
+  private matchesUserOrder(order: any, userId: string, currentUser: any): boolean {
+    if (!order) {
+      return false;
+    }
+
+    if (String(order.userId || '').trim() === userId) {
+      return true;
+    }
+
+    if (String(order.guestId || '').trim() === userId) {
+      return true;
+    }
+
+    if (!userId) {
+      return false;
+    }
+
+    const orderEmail = String(order?.shippingInfo?.email || order?.guestEmail || '').trim().toLowerCase();
+    const currentEmail = String(currentUser?.email || '').trim().toLowerCase();
+    if (orderEmail && currentEmail && orderEmail === currentEmail) {
+      return true;
+    }
+
+    const orderPhone = String(order?.shippingInfo?.phone || order?.guestPhone || '').replace(/\s+/g, '');
+    const currentPhone = String(currentUser?.phoneNumber || '').replace(/\s+/g, '');
+    if (orderPhone && currentPhone && orderPhone === currentPhone) {
+      return true;
+    }
+
+    return false;
   }
 
   // Return a single order by id (legacy API)

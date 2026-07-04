@@ -164,7 +164,7 @@ onCityChange() {
           console.log('[PaymentComponent] Addresses loaded:', addresses);
           this.userAddresses = addresses;
           
-          const defaultAddr = addresses.find(a => a.isDefault);
+          const defaultAddr = addresses.find(a => a.isDefault) || addresses[0];
           if (defaultAddr) {
             this.selectAddress(defaultAddr.addressId);
           }
@@ -186,13 +186,11 @@ onCityChange() {
     if (addr) {
       this.selectedAddressId = addressId;
       this.shippingInfo = {
-        fullName: addr.receiverName,
-        phone: addr.receiverPhone,
-        email: this.shippingInfo.email,
-        city: '',
-        district: '',
-        address: addr.addressDetails,
-        note: ''
+        ...this.shippingInfo,
+        fullName: addr.receiverName || this.shippingInfo.fullName,
+        phone: addr.receiverPhone || this.shippingInfo.phone,
+        address: addr.addressDetails || this.shippingInfo.address,
+        note: this.shippingInfo.note || ''
       };
       
       this.cdr.markForCheck();
