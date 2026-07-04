@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="fixed top-6 right-6 z-50 space-y-3 pointer-events-none">
+    <div class="fixed top-20 right-4 z-50 w-[calc(100%-2rem)] max-w-sm space-y-3 pointer-events-none sm:right-6 sm:top-24 sm:w-auto">
       <div
         *ngFor="let toast of toasts"
         class="flex items-center gap-3 px-4 py-3 rounded-lg text-white shadow-lg pointer-events-auto transform transition-all duration-300 animate-in slide-in-from-right-2"
