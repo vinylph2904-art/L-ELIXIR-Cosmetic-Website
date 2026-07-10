@@ -14,7 +14,7 @@ import { PaymentSuccessComponent } from './pages/payment-success/payment-success
 import { PaymentFailureComponent } from './pages/payment-failure/payment-failure.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ProductReviewsComponent } from './pages/product-reviews/product-reviews.component';
-import { AboutUsComponent } from './pages/about-us/about-us.component'; // Import Component mới ở đây
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { authGuard } from './guards/auth.guard';
 import { guestGuard } from './guards/guest.guard';
 import { SupportComponent } from './pages/support/support.component';
