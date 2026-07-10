@@ -1,69 +1,132 @@
-<main class="pt-20 pb-20">
-  <article *ngIf="currentArticle">
-    <!-- Hero Image -->
-    <section class="w-full h-[400px] md:h-[600px] overflow-hidden">
-      <img 
-        [src]="currentArticle.image" 
-        [alt]="currentArticle.title"
-        class="w-full h-full object-cover"
-      />
+<div class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+  <ng-container *ngIf="currentArticle; else notFound">
+    <header class="relative mt-0 h-[85vh] w-full overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img class="h-full w-full object-cover" [src]="currentArticle.image" [alt]="currentArticle.title" />
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80"></div>
+      </div>
+      <div class="relative z-10 flex h-full flex-col items-center justify-end px-margin-mobile pb-24 text-center">
+        <div class="mx-auto max-w-4xl">
+          <span class="mb-6 block font-label-md text-label-md uppercase tracking-[0.3em] text-primary opacity-0 animate-[fadeInUp_1s_ease-out_forwards]">HÀNH TRÌNH TĨNH LẶNG</span>
+          <h1 class="mb-8 font-display-lg-mobile text-display-lg-mobile text-on-background leading-tight opacity-0 animate-[fadeInUp_1s_ease-out_0.3s_forwards] md:font-display-lg md:text-display-lg">
+            {{ currentArticle.title }}
+          </h1>
+          <div class="mx-auto mb-8 h-[1px] w-16 bg-primary opacity-0 animate-[fadeInUp_1s_ease-out_0.6s_forwards]"></div>
+          <p class="mx-auto max-w-2xl font-body-lg text-body-lg text-secondary opacity-0 animate-[fadeInUp_1s_ease-out_0.9s_forwards]">
+            {{ currentArticle.excerpt }}
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-container-max px-margin-mobile py-section-gap-mobile md:px-gutter md:py-section-gap-desktop">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
+        <article class="md:col-start-3 md:col-end-11">
+          <section class="mb-24">
+            <p class="editorial-dropcap mb-8 font-body-lg text-body-lg leading-relaxed text-on-surface-variant">
+              Vẻ đẹp không chỉ là một kết quả, mà là một hành trình của sự kiên nhẫn và trân trọng bản thân. Khi ánh bình minh đầu tiên chạm vào khung cửa, đó là lúc làn da cần sự vỗ về dịu dàng nhất. Nghi thức buổi sáng tại L'ELIXIR không chỉ là việc thoa các lớp dưỡng, mà là một sự kết nối tâm hồn với thiên nhiên, chuẩn bị cho một ngày mới rạng ngời và thuần khiết như những viên pha lê.
+            </p>
+          </section>
+
+          <section class="mb-32">
+            <div class="mb-16 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+              <div class="order-2 md:order-1">
+                <h2 class="mb-6 font-headline-lg text-headline-lg text-primary">Nghi thức làm sạch</h2>
+                <p class="mb-6 font-body-md text-body-md leading-relaxed text-secondary">
+                  Bước đầu tiên của sự thuần khiết bắt đầu từ việc loại bỏ những tạp chất của đêm qua. Chúng tôi tin rằng việc làm sạch không nên là một sự tẩy rửa thô bạo, mà là một sự thanh lọc tinh tế.
+                </p>
+                <p class="font-body-md text-body-md leading-relaxed text-secondary">
+                  Sử dụng nước ấm để mở rộng các lỗ chân lông, sau đó nhẹ nhàng massage lớp kem mịn màng. Cảm giác mát lạnh và hương thơm thanh khiết sẽ đánh thức các giác quan của bạn ngay lập tức.
+                </p>
+              </div>
+              <div class="order-1 overflow-hidden rounded-2xl shadow-xl group md:order-2">
+                <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLv38E4-SkAt1M3Byj_qsYJNMJbby1Bxq_25p_ZSUPRUJQ0lqTh9dSHAsRv4NvBTsMkcFsjDISjAwCx-RiNVEbUQqFHeX_agNkFVc6qf_THtUXYy1MBIcq0cQDh5vaQQNPPPdfPn1XcBjHISpIAebw-3JLcrk_N54RJrgGcKzVc-8qVg2ZMcpPFdxCfx3puK6gYRyjrCzyFDnWkQ_SzD8iTOcN3bBoMldu2FR76du-pMt_4Y-SKRBVLPrVme" alt="Nghi thức làm sạch" />
+              </div>
+            </div>
+          </section>
+
+          <blockquote class="my-24 border-y border-outline-variant py-16 text-center">
+            <span class="mb-6 inline-block text-5xl text-primary-container material-symbols-outlined">format_quote</span>
+            <p class="px-8 font-headline-md text-headline-md italic text-primary md:px-24">
+              "Làn da của bạn là tấm gương phản chiếu sự chăm sóc tận tâm. Hãy để mỗi giọt tinh chất kể câu chuyện về sự thuần khiết của bạn."
+            </p>
+          </blockquote>
+
+          <section class="mb-32">
+            <div class="mb-16 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+              <div class="overflow-hidden rounded-2xl shadow-xl group">
+                <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLvmIAkk7Gh8qmucqYtZ8ZWOPoS7h6LYhPVPPID0x1XX847Jom7P97G6GGYFnqkqRl8q1vMCNkSY57SEoqRg4avbMGYy6XDKhuKWbU4ndyZmbz4wjvCKQ7p-h-Sa_vub7LAOwDmhWvBB1isZ4hbD_u2iq15uc_KByqvqOWdjqGLcHuqXTFfAD5DR5eJBhst5yzOpEj5qmnvg09hkBkwvrbjXI67B_DejWYmAW-ZqORR3IHQf8ZZAgzRTyeND" alt="Tinh hoa từ thực vật" />
+              </div>
+              <div>
+                <h2 class="mb-6 font-headline-lg text-headline-lg text-primary">Tinh hoa từ thực vật</h2>
+                <p class="mb-6 font-body-md text-body-md leading-relaxed text-secondary">
+                  Tại L'ELIXIR, chúng tôi tìm kiếm những thành phần quý giá nhất từ những vùng đất hoang sơ. Những cánh hoa hồng sớm mai, những nhành oải hương ngậm sương đều được chắt lọc tỉ mỉ để giữ trọn vẹn sức mạnh chữa lành.
+                </p>
+                <p class="font-body-md text-body-md leading-relaxed text-secondary">
+                  Sự kết hợp giữa các loại tinh dầu hữu cơ và công nghệ sinh học tiên tiến giúp các dưỡng chất thẩm thấu sâu, nuôi dưỡng làn da từ tầng tế bào, mang lại vẻ rạng rỡ tự nhiên mà không gây nặng nề.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <div class="flex flex-wrap items-center justify-between gap-6 border-t border-outline-variant pt-8">
+            <div class="flex items-center gap-4">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-tertiary-fixed font-bold text-primary">LE</div>
+              <div>
+                <p class="font-label-md text-label-md text-on-surface">Đội ngũ Biên tập L'ELIXIR</p>
+                <p class="font-label-sm text-label-sm text-secondary">Chuyên gia Da liễu &amp; Lifestyle</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <button class="flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant transition-all hover:bg-primary-container hover:text-white">
+                <span class="material-symbols-outlined text-sm">share</span>
+              </button>
+              <button class="flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant transition-all hover:bg-primary-container hover:text-white">
+                <span class="material-symbols-outlined text-sm">bookmark</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <section class="bg-surface-container-low py-section-gap-desktop">
+      <div class="mx-auto max-w-container-max px-margin-mobile md:px-gutter">
+        <div class="mb-16 text-center">
+          <span class="mb-4 block font-label-md text-label-md uppercase tracking-widest text-primary">GỢI Ý CHO BẠN</span>
+          <h2 class="font-headline-lg text-headline-lg text-on-background">Sản phẩm đề xuất</h2>
+        </div>
+        <div class="flex flex-col items-stretch overflow-hidden rounded-[2rem] bg-background shadow-2xl md:flex-row">
+          <div class="relative overflow-hidden md:w-1/2">
+            <img class="h-full w-full object-cover transition-transform duration-1000 hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLtjix7m53Nf5OzZ1U7AH7VzFCFaiegspnTo2WeNhGnD46JgA2TBJGjqO4XQyLEtKpVpUhWcgAhQ_jOrvljq1LCaxd3omuWuTOz7q9YJedEL10n5KyX16qoc9S6Vf1rOzafBhWUyUCBu1dx0QpWvnstuvoQLE36wErqz_DikIIXc5K4dgfK6DNVK6oSYbuQwBeIkXLwpkcPT-usWVlENZHmyDyFOKtMzUpJ-U-Iijjbs8Cf0hKGmA-wH4m9H" alt="Serum Phục Hồi L'ELIXIR" />
+            <div class="absolute left-6 top-6 rounded-full bg-primary-container/90 px-4 py-1 text-on-primary-container backdrop-blur-md">
+              <span class="font-label-sm text-label-sm">BÁN CHẠY NHẤT</span>
+            </div>
+          </div>
+          <div class="flex flex-col justify-center p-12 md:w-1/2 md:p-20">
+            <h3 class="mb-4 font-headline-lg text-headline-lg leading-tight text-primary">Serum Phục Hồi L'ELIXIR</h3>
+            <div class="mb-6 flex items-center gap-1 text-primary">
+              <span class="material-symbols-outlined fill-current">star</span>
+              <span class="material-symbols-outlined fill-current">star</span>
+              <span class="material-symbols-outlined fill-current">star</span>
+            </div>
+            <p class="font-body-md leading-7 text-on-surface-variant">
+              Công thức phục hồi da sâu, giúp làm dịu, cấp ẩm và tái tạo lớp hàng rào bảo vệ cho làn da bạn.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
+  </ng-container>
 
-    <!-- Article Content -->
-    <section class="max-w-4xl mx-auto px-margin-mobile md:px-gutter py-16 md:py-24">
-      <!-- Meta Info -->
-      <div class="mb-8">
-        <span class="inline-block px-3 py-1 bg-primary text-on-primary font-label-sm text-label-sm rounded-full mb-4">
-          {{ currentArticle.category }}
-        </span>
-        <p class="font-label-sm text-label-sm text-secondary">{{ currentArticle.date }}</p>
-      </div>
-
-      <!-- Title -->
-      <h1 class="font-display-md text-display-md-mobile md:text-display-md text-on-surface mb-8">
-        {{ currentArticle.title }}
-      </h1>
-
-      <!-- Excerpt -->
-      <p class="font-body-lg text-on-surface-variant mb-12 pb-8 border-b border-outline-variant">
-        {{ currentArticle.excerpt }}
-      </p>
-
-      <!-- Main Content -->
-      <div class="prose prose-lg max-w-none font-body-md text-on-surface-variant mb-12" [innerHTML]="currentArticle.content">
-      </div>
-
-      <!-- CTA Button -->
-      <div class="flex gap-4 flex-col md:flex-row">
-        <a 
-          [href]="currentArticle.productLink"
-          target="_blank"
-          class="inline-flex items-center justify-center gap-2 bg-primary text-on-primary px-8 py-4 font-label-md text-label-md rounded-lg hover:bg-primary/90 transition-colors"
-        >
-          Xem Bộ Sưu Tập
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </a>
-        <a 
-          routerLink="/collection"
-          class="inline-flex items-center justify-center gap-2 border border-primary text-primary px-8 py-4 font-label-md text-label-md rounded-lg hover:bg-primary/5 transition-colors"
-        >
-          Quay Lại
-          <span class="material-symbols-outlined">arrow_back</span>
-        </a>
-      </div>
+  <ng-template #notFound>
+    <section class="mx-auto max-w-container-max px-margin-mobile py-24 text-center md:px-gutter">
+      <h1 class="mb-4 font-display-md text-display-md text-on-surface">Bài viết không tìm thấy</h1>
+      <p class="mb-8 font-body-lg text-on-surface-variant">Xin lỗi, bài viết bạn tìm kiếm không tồn tại.</p>
+      <a routerLink="/collection" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-4 font-label-md text-label-md text-on-primary transition-colors hover:bg-primary/90">
+        Quay lại tạp chí
+        <span class="material-symbols-outlined">arrow_back</span>
+      </a>
     </section>
-  </article>
-
-  <!-- Not Found -->
-  <section *ngIf="!currentArticle" class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-24 text-center">
-    <h1 class="font-display-md text-display-md text-on-surface mb-4">Bài viết không tìm thấy</h1>
-    <p class="font-body-lg text-on-surface-variant mb-8">Xin lỗi, bài viết bạn tìm kiếm không tồn tại.</p>
-    <a 
-      routerLink="/collection"
-      class="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 font-label-md text-label-md rounded-lg hover:bg-primary/90 transition-colors"
-    >
-      Quay Lại Tạp Chí
-      <span class="material-symbols-outlined">arrow_back</span>
-    </a>
-  </section>
-</main>
+  </ng-template>
+</div>

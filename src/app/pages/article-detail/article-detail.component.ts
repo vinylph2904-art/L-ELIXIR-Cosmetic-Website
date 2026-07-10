@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 interface Article {
+  id: string;
   title: string;
   category: string;
   date: string;
@@ -22,8 +23,9 @@ interface Article {
 export class ArticleDetailComponent implements OnInit {
   currentArticle: Article | null = null;
 
-  articles: { [key: string]: Article } = {
-    lumina: {
+  articles: Article[] = [
+    {
+      id: 'lumina',
       title: 'Tinh Hoa Dưỡng Sáng Lumina',
       category: 'Bộ sưu tập',
       date: 'THÁNG 6, 2024',
@@ -51,7 +53,8 @@ export class ArticleDetailComponent implements OnInit {
       `,
       productLink: 'http://localhost:62516/products?collection=Lumina'
     },
-    aurora: {
+    {
+      id: 'aurora',
       title: 'Vẻ Đẹp Rạng Đông Aurora',
       category: 'Bộ sưu tập',
       date: 'THÁNG 6, 2024',
@@ -79,14 +82,14 @@ export class ArticleDetailComponent implements OnInit {
       `,
       productLink: 'http://localhost:62516/products?collection=Aurora'
     }
-  };
+  ];
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
-      this.currentArticle = this.articles[id] || null;
+      this.currentArticle = this.articles.find(article => article.id === id) || null;
     });
   }
 }

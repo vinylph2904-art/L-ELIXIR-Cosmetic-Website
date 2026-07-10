@@ -133,7 +133,7 @@
           <div class="space-y-6 mb-8 pb-8 border-b border-outline-variant/50">
             <div *ngFor="let item of order.items" class="flex gap-4">
               <div class="w-20 h-24 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
-                <img [src]="item.product.images?.[0] || 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80'"
+                <img [src]="item.product.images[0] || 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80'"
                      [alt]="item.product.name"
                      class="w-full h-full object-cover" />
               </div>

@@ -1,0 +1,35 @@
+.luxury-card {
+  box-shadow: 0 20px 60px rgba(102, 77, 52, 0.08);
+  min-height: 100%;
+}
+
+.luxury-image {
+  transform-origin: center;
+  object-position: center;
+}
+
+.luxury-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #8a4a1f;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(138, 74, 31, 0.2);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.45rem 0.8rem;
+  color: #8a4a1f;
+  font-size: 0.8rem;
+  font-weight: 500;
+}

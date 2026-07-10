@@ -8,7 +8,14 @@
     </div>
 
     <nav class="hidden md:flex items-center gap-8">
-      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/">Trang chủ</a>
+      <div class="relative group">
+        <a routerLink="/" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Trang chủ</a>
+        <div class="absolute left-0 top-full hidden group-hover:block bg-white shadow-lg rounded-lg min-w-[220px] z-50">
+          <a routerLink="/about-us" class="block px-4 py-3 hover:bg-surface-container">Về chúng tôi</a>
+          <a routerLink="/collection" class="block px-4 py-3 hover:bg-surface-container">Bộ sưu tập</a>
+          <a routerLink="/support" class="block px-4 py-3 hover:bg-surface-container">Hỗ trợ</a>
+        </div>
+      </div>
       <div class="relative group">
         <a routerLink="/products" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"> Sản phẩm
         </a>        
