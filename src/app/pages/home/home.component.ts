@@ -11,20 +11,28 @@ import { ToastService } from '../../services/toast.service';
 })
 export class HomeComponent implements OnInit {
   featuredProducts: Product[] = [];
-  categories: string[] = [];
+  categories: { name: string; image: string }[] = [
+    { name: 'Sữa rửa mặt', image: 'assets/images/SRM/SP01.1.png' },
+    { name: 'Toner', image: 'assets/images/Toner/1.1.png' },
+    { name: 'Serum', image: 'assets/images/Serum/Serum 1.png' },
+    { name: 'Kem dưỡng', image: 'assets/images/Kem dưỡng/1.1.png' },
+    { name: 'Chống nắng', image: 'assets/images/KCN/kcn 1.1.jpg' }
+  ];
   products: Product[] = [];
   collections = [
     {
       name: 'Lumina',
       title: 'Bộ sưu tập Lumina',
       subtitle: 'Tinh hoa dưỡng sáng',
-      image: 'assets/images/lumina-banner.jpg'
+      image: 'assets/images/Banner/LuminaBanner.jpg',
+      route: '/articles/lumina'
     },
     {
       name: 'Aurora',
       title: 'Bộ sưu tập Aurora',
       subtitle: 'Vẻ đẹp rạng đông',
-      image: 'assets/images/aurora-banner.jpg'
+      image: 'assets/images/Banner/AuroraBanner.jpg',
+      route: '/articles/aurora'
     }
   ];
 
@@ -41,9 +49,8 @@ export class HomeComponent implements OnInit {
         .sort((a, b) => b.averageRating - a.averageRating)
         .slice(0, 4);
 
-      this.categories = [...new Set(
-        data.map(product => product.categoryName)
-      )];
+      const availableCategoryNames = new Set(data.map(product => product.categoryName));
+      this.categories = this.categories.filter(category => availableCategoryNames.has(category.name));
     });
   }
 

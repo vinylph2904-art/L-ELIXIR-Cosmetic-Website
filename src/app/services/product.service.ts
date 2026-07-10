@@ -39,7 +39,11 @@ export class ProductService {
     try {
       const raw = localStorage.getItem(this.STORAGE_KEY);
       if (raw) {
-        return JSON.parse(raw) as Product[];
+        const parsed = JSON.parse(raw) as Product[];
+        // Ensure we have all 50 products, if not fall back to seed data
+        if (parsed.length >= 50) {
+          return parsed;
+        }
       }
     } catch {
       // ignore and fall back to seed data

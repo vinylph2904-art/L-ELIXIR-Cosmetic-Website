@@ -23,50 +23,7 @@
       <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
         <article class="md:col-start-3 md:col-end-11">
           <section class="mb-24">
-            <p class="editorial-dropcap mb-8 font-body-lg text-body-lg leading-relaxed text-on-surface-variant">
-              Vẻ đẹp không chỉ là một kết quả, mà là một hành trình của sự kiên nhẫn và trân trọng bản thân. Khi ánh bình minh đầu tiên chạm vào khung cửa, đó là lúc làn da cần sự vỗ về dịu dàng nhất. Nghi thức buổi sáng tại L'ELIXIR không chỉ là việc thoa các lớp dưỡng, mà là một sự kết nối tâm hồn với thiên nhiên, chuẩn bị cho một ngày mới rạng ngời và thuần khiết như những viên pha lê.
-            </p>
-          </section>
-
-          <section class="mb-32">
-            <div class="mb-16 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-              <div class="order-2 md:order-1">
-                <h2 class="mb-6 font-headline-lg text-headline-lg text-primary">Nghi thức làm sạch</h2>
-                <p class="mb-6 font-body-md text-body-md leading-relaxed text-secondary">
-                  Bước đầu tiên của sự thuần khiết bắt đầu từ việc loại bỏ những tạp chất của đêm qua. Chúng tôi tin rằng việc làm sạch không nên là một sự tẩy rửa thô bạo, mà là một sự thanh lọc tinh tế.
-                </p>
-                <p class="font-body-md text-body-md leading-relaxed text-secondary">
-                  Sử dụng nước ấm để mở rộng các lỗ chân lông, sau đó nhẹ nhàng massage lớp kem mịn màng. Cảm giác mát lạnh và hương thơm thanh khiết sẽ đánh thức các giác quan của bạn ngay lập tức.
-                </p>
-              </div>
-              <div class="order-1 overflow-hidden rounded-2xl shadow-xl group md:order-2">
-                <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLv38E4-SkAt1M3Byj_qsYJNMJbby1Bxq_25p_ZSUPRUJQ0lqTh9dSHAsRv4NvBTsMkcFsjDISjAwCx-RiNVEbUQqFHeX_agNkFVc6qf_THtUXYy1MBIcq0cQDh5vaQQNPPPdfPn1XcBjHISpIAebw-3JLcrk_N54RJrgGcKzVc-8qVg2ZMcpPFdxCfx3puK6gYRyjrCzyFDnWkQ_SzD8iTOcN3bBoMldu2FR76du-pMt_4Y-SKRBVLPrVme" alt="Nghi thức làm sạch" />
-              </div>
-            </div>
-          </section>
-
-          <blockquote class="my-24 border-y border-outline-variant py-16 text-center">
-            <span class="mb-6 inline-block text-5xl text-primary-container material-symbols-outlined">format_quote</span>
-            <p class="px-8 font-headline-md text-headline-md italic text-primary md:px-24">
-              "Làn da của bạn là tấm gương phản chiếu sự chăm sóc tận tâm. Hãy để mỗi giọt tinh chất kể câu chuyện về sự thuần khiết của bạn."
-            </p>
-          </blockquote>
-
-          <section class="mb-32">
-            <div class="mb-16 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-              <div class="overflow-hidden rounded-2xl shadow-xl group">
-                <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLvmIAkk7Gh8qmucqYtZ8ZWOPoS7h6LYhPVPPID0x1XX847Jom7P97G6GGYFnqkqRl8q1vMCNkSY57SEoqRg4avbMGYy6XDKhuKWbU4ndyZmbz4wjvCKQ7p-h-Sa_vub7LAOwDmhWvBB1isZ4hbD_u2iq15uc_KByqvqOWdjqGLcHuqXTFfAD5DR5eJBhst5yzOpEj5qmnvg09hkBkwvrbjXI67B_DejWYmAW-ZqORR3IHQf8ZZAgzRTyeND" alt="Tinh hoa từ thực vật" />
-              </div>
-              <div>
-                <h2 class="mb-6 font-headline-lg text-headline-lg text-primary">Tinh hoa từ thực vật</h2>
-                <p class="mb-6 font-body-md text-body-md leading-relaxed text-secondary">
-                  Tại L'ELIXIR, chúng tôi tìm kiếm những thành phần quý giá nhất từ những vùng đất hoang sơ. Những cánh hoa hồng sớm mai, những nhành oải hương ngậm sương đều được chắt lọc tỉ mỉ để giữ trọn vẹn sức mạnh chữa lành.
-                </p>
-                <p class="font-body-md text-body-md leading-relaxed text-secondary">
-                  Sự kết hợp giữa các loại tinh dầu hữu cơ và công nghệ sinh học tiên tiến giúp các dưỡng chất thẩm thấu sâu, nuôi dưỡng làn da từ tầng tế bào, mang lại vẻ rạng rỡ tự nhiên mà không gây nặng nề.
-                </p>
-              </div>
-            </div>
+            <div class="editorial-body font-body-lg text-body-lg leading-relaxed text-on-surface-variant" [innerHTML]="currentArticle.content"></div>
           </section>
 
           <div class="flex flex-wrap items-center justify-between gap-6 border-t border-outline-variant pt-8">
@@ -96,25 +53,33 @@
           <span class="mb-4 block font-label-md text-label-md uppercase tracking-widest text-primary">GỢI Ý CHO BẠN</span>
           <h2 class="font-headline-lg text-headline-lg text-on-background">Sản phẩm đề xuất</h2>
         </div>
-        <div class="flex flex-col items-stretch overflow-hidden rounded-[2rem] bg-background shadow-2xl md:flex-row">
-          <div class="relative overflow-hidden md:w-1/2">
-            <img class="h-full w-full object-cover transition-transform duration-1000 hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLtjix7m53Nf5OzZ1U7AH7VzFCFaiegspnTo2WeNhGnD46JgA2TBJGjqO4XQyLEtKpVpUhWcgAhQ_jOrvljq1LCaxd3omuWuTOz7q9YJedEL10n5KyX16qoc9S6Vf1rOzafBhWUyUCBu1dx0QpWvnstuvoQLE36wErqz_DikIIXc5K4dgfK6DNVK6oSYbuQwBeIkXLwpkcPT-usWVlENZHmyDyFOKtMzUpJ-U-Iijjbs8Cf0hKGmA-wH4m9H" alt="Serum Phục Hồi L'ELIXIR" />
-            <div class="absolute left-6 top-6 rounded-full bg-primary-container/90 px-4 py-1 text-on-primary-container backdrop-blur-md">
-              <span class="font-label-sm text-label-sm">BÁN CHẠY NHẤT</span>
-            </div>
-          </div>
-          <div class="flex flex-col justify-center p-12 md:w-1/2 md:p-20">
-            <h3 class="mb-4 font-headline-lg text-headline-lg leading-tight text-primary">Serum Phục Hồi L'ELIXIR</h3>
-            <div class="mb-6 flex items-center gap-1 text-primary">
-              <span class="material-symbols-outlined fill-current">star</span>
-              <span class="material-symbols-outlined fill-current">star</span>
-              <span class="material-symbols-outlined fill-current">star</span>
-            </div>
-            <p class="font-body-md leading-7 text-on-surface-variant">
-              Công thức phục hồi da sâu, giúp làm dịu, cấp ẩm và tái tạo lớp hàng rào bảo vệ cho làn da bạn.
-            </p>
+
+        <div *ngIf="relatedProducts.length > 0; else noProducts">
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <ng-container *ngFor="let product of relatedProducts">
+              <a [routerLink]="['/products', product.productId]" class="group block overflow-hidden rounded-3xl bg-background shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                <div class="aspect-[4/3] overflow-hidden bg-surface-container-lowest">
+                  <img [src]="product.images[0]" [alt]="product.name" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div class="p-6">
+                  <span class="inline-block mb-3 rounded-full bg-primary/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-primary">{{ product.categoryName }}</span>
+                  <h3 class="font-headline-sm text-headline-sm mb-3 text-on-surface">{{ product.name }}</h3>
+                  <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">{{ product.description }}</p>
+                  <div class="flex items-center justify-between text-sm font-semibold text-primary">
+                    <span>{{ product.price | number:'1.0-0' }} VNĐ</span>
+                    <span>{{ product.reviewCount }} đánh giá</span>
+                  </div>
+                </div>
+              </a>
+            </ng-container>
           </div>
         </div>
+
+        <ng-template #noProducts>
+          <div class="rounded-3xl bg-background p-10 text-center shadow-lg">
+            <p class="font-body-md text-on-surface-variant">Hiện chưa có sản phẩm gợi ý cho bộ sưu tập này.</p>
+          </div>
+        </ng-template>
       </div>
     </section>
   </ng-container>

@@ -28,13 +28,15 @@ export class ProductListComponent implements OnInit {
       title: 'Bộ sưu tập Lumina',
       subtitle: 'Tinh hoa dưỡng sáng',
       description: 'Khơi mở vẻ đẹp rạng rỡ từ bên trong.',
-      image: 'assets/images/banner1.jpg'
+      image: 'assets/images/Banner/LuminaBanner.jpg',
+      route: '/articles/lumina'
     },
     {
       title: 'Bộ sưu tập Aurora',
       subtitle: 'Vẻ đẹp rạng đông',
       description: 'Thanh lọc và phục hồi làn da mỗi ngày.',
-      image: 'assets/images/banner2.jpg'
+      image: 'assets/images/Banner/AuroraBanner.jpg',
+      route: '/articles/aurora'
     }
   ];
 

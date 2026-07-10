@@ -5,14 +5,29 @@
     "brand": "L'Elixir",
     "categoryName": "Sữa rửa mặt",
     "description": "Làm sạch sâu, loại bỏ bã nhờn và tế bào chết hiệu quả.",
-    "ingredients": ["Salicylic Acid (BHA)", "Glycerin", "Trà xanh"],
-    "images": ["assets/images/SP01.png", "assets/images/SP01-1.png"],
+    "ingredients": [
+      "Salicylic Acid (BHA)",
+      "Glycerin",
+      "Trà xanh"
+    ],
+    "images": [
+      "assets/images/SRM/SP01.1.png",
+      "assets/images/SRM/SP01.2.png",
+      "assets/images/SRM/SP01.3.png",
+      "assets/images/SRM/SP01.4.png"
+    ],
     "volume": "150ml",
     "routineStep": "Bước 1",
     "price": 250000,
     "stockQuantity": 100,
-    "targetSkinTypes": ["Da dầu", "Da hỗn hợp"],
-    "targetSkinProblems": ["Mụn", "Lỗ chân lông to"],
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Lỗ chân lông to"
+    ],
     "averageRating": 4.5,
     "reviewCount": 120
   },
@@ -22,14 +37,28 @@
     "brand": "L'Elixir",
     "categoryName": "Sữa rửa mặt",
     "description": "Làm sạch nhẹ nhàng mà không gây khô căng da.",
-    "ingredients": ["Ceramide", "Hyaluronic Acid", "B5"],
-    "images": ["assets/images/sp02.jpg"],
+    "ingredients": [
+      "Ceramide",
+      "Hyaluronic Acid",
+      "B5"
+    ],
+    "images": [
+      "assets/images/SRM/SP02.1.png",
+      "assets/images/SRM/SP02.2.png",
+      "assets/images/SRM/SP02.3.png",
+      "assets/images/SRM/SP02.4.png"
+    ],
     "volume": "200ml",
     "routineStep": "Bước 1",
     "price": 220000,
     "stockQuantity": 80,
-    "targetSkinTypes": ["Da khô", "Da nhạy cảm"],
-    "targetSkinProblems": ["Thiếu ẩm"],
+    "targetSkinTypes": [
+      "Da khô",
+      "Da nhạy cảm"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm"
+    ],
     "averageRating": 4.8,
     "reviewCount": 95
   },
@@ -39,14 +68,29 @@
     "brand": "L'Elixir",
     "categoryName": "Sữa rửa mặt",
     "description": "Giúp làm sạch và cải thiện tình trạng da xỉn màu.",
-    "ingredients": ["Vitamin C", "Niacinamide", "Citric Acid"],
-    "images": ["assets/images/sp03.jpg"],
+    "ingredients": [
+      "Vitamin C",
+      "Niacinamide",
+      "Citric Acid"
+    ],
+    "images": [
+      "assets/images/SRM/SP03.1.png",
+      "assets/images/SRM/SP03.2.png",
+      "assets/images/SRM/SP03.3.png",
+      "assets/images/SRM/SP03.4.png"
+    ],
     "volume": "150ml",
     "routineStep": "Bước 1",
     "price": 280000,
     "stockQuantity": 60,
-    "targetSkinTypes": ["Da hỗn hợp", "Da dầu"],
-    "targetSkinProblems": ["Da xỉn màu", "Thâm nám"],
+    "targetSkinTypes": [
+      "Da hỗn hợp",
+      "Da dầu"
+    ],
+    "targetSkinProblems": [
+      "Da xỉn màu",
+      "Thâm nám"
+    ],
     "averageRating": 4.3,
     "reviewCount": 45
   },
@@ -56,14 +100,28 @@
     "brand": "L'Elixir",
     "categoryName": "Sữa rửa mặt",
     "description": "Hỗ trợ ngăn ngừa các dấu hiệu lão hóa sớm.",
-    "ingredients": ["Peptides", "Collagen", "Vitamin E"],
-    "images": ["assets/images/sp04.jpg"],
+    "ingredients": [
+      "Peptides",
+      "Collagen",
+      "Vitamin E"
+    ],
+    "images": [
+      "assets/images/SRM/SP04.1.png",
+      "assets/images/SRM/SP04.2.png",
+      "assets/images/SRM/SP04.3.png",
+      "assets/images/SRM/SP04.4.png"
+    ],
     "volume": "150ml",
     "routineStep": "Bước 1",
     "price": 320000,
     "stockQuantity": 40,
-    "targetSkinTypes": ["Da khô", "Da lão hóa"],
-    "targetSkinProblems": ["Lão hóa"],
+    "targetSkinTypes": [
+      "Da khô",
+      "Da lão hóa"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa"
+    ],
     "averageRating": 4.6,
     "reviewCount": 30
   },
@@ -73,455 +131,1447 @@
     "brand": "L'Elixir",
     "categoryName": "Sữa rửa mặt",
     "description": "Giúp thông thoáng và thu nhỏ lỗ chân lông.",
-    "ingredients": ["Zinc PCA", "Witch Hazel", "Glycerin"],
-    "images": ["assets/images/sp05.jpg"],
+    "ingredients": [
+      "Zinc PCA",
+      "Witch Hazel",
+      "Glycerin"
+    ],
+    "images": [
+      "assets/images/SRM/SP05.1.jpg",
+      "assets/images/SRM/SP05.2.png",
+      "assets/images/SRM/SP05.3.png",
+      "assets/images/SRM/SP05.4.png"
+    ],
     "volume": "150ml",
     "routineStep": "Bước 1",
     "price": 240000,
     "stockQuantity": 120,
-    "targetSkinTypes": ["Da dầu", "Da hỗn hợp"],
-    "targetSkinProblems": ["Lỗ chân lông to", "Mụn"],
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Lỗ chân lông to",
+      "Mụn"
+    ],
     "averageRating": 4.4,
     "reviewCount": 150
   },
-
   {
     "productId": "SP06",
-    "name": "Toner Cân Bằng Dầu Nhờn",
+    "name": "Sữa Rửa Mặt Lemongrass Fresh",
     "brand": "L'Elixir",
-    "categoryName": "Toner",
-    "description": "Cân bằng độ pH và kiểm soát dầu thừa.",
-    "ingredients": ["Niacinamide", "Zinc PCA", "Rose Water"],
-    "images": ["assets/images/sp06.jpg"],
-    "volume": "150ml",
-    "routineStep": "Bước 2",
-    "price": 310000,
-    "stockQuantity": 90,
-    "targetSkinTypes": ["Da dầu", "Da hỗn hợp"],
-    "targetSkinProblems": ["Lỗ chân lông to", "Mụn"],
-    "averageRating": 4.6,
-    "reviewCount": 87
+    "categoryName": "Sữa rửa mặt",
+    "description": "Sữa rửa mặt tươi mát với hương sả tự nhiên, làm sạch và khử mùi.",
+    "ingredients": [
+      "Lemongrass Oil",
+      "Witch Hazel",
+      "Glycerin"
+    ],
+    "images": [
+      "assets/images/SRM/SP06.1.png",
+      "assets/images/SRM/SP06.2.png",
+      "assets/images/SRM/SP06.3.png",
+      "assets/images/SRM/SP06.4.png"
+    ],
+    "volume": "200ml",
+    "routineStep": "Bước 1",
+    "price": 180000,
+    "stockQuantity": 150,
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.4,
+    "reviewCount": 118
   },
   {
     "productId": "SP07",
-    "name": "Toner Cấp Ẩm Chuyên Sâu",
+    "name": "Sữa Rửa Mặt Charcoal Detox",
     "brand": "L'Elixir",
-    "categoryName": "Toner",
-    "description": "Dành riêng cho làn da thiếu nước, thô ráp.",
-    "ingredients": ["Hyaluronic Acid", "Aloe Vera", "Glycerin"],
-    "images": ["assets/images/sp07.jpg"],
-    "volume": "200ml",
-    "routineStep": "Bước 2",
-    "price": 350000,
-    "stockQuantity": 70,
-    "targetSkinTypes": ["Da khô", "Da nhạy cảm"],
-    "targetSkinProblems": ["Thiếu ẩm"],
-    "averageRating": 4.9,
-    "reviewCount": 110
+    "categoryName": "Sữa rửa mặt",
+    "description": "Sữa rửa mặt than hoạt tính, làm sạch sâu và loại bỏ độc tố.",
+    "ingredients": [
+      "Activated Charcoal",
+      "Tea Tree Oil",
+      "Aloe Vera"
+    ],
+    "images": [
+      "assets/images/SRM/SP07.1.jpg",
+      "assets/images/SRM/SP07.2.jpg",
+      "assets/images/SRM/SP07.3.jpg",
+      "assets/images/SRM/SP07.4.png"
+    ],
+    "volume": "180ml",
+    "routineStep": "Bước 1",
+    "price": 220000,
+    "stockQuantity": 95,
+    "targetSkinTypes": [
+      "Da dầu"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Lỗ chân lông to"
+    ],
+    "averageRating": 4.6,
+    "reviewCount": 142
   },
   {
     "productId": "SP08",
-    "name": "Toner Sáng Da Mờ Thâm",
+    "name": "Sữa Rửa Mặt Milk Gentle",
     "brand": "L'Elixir",
-    "categoryName": "Toner",
-    "description": "Hỗ trợ làm mờ thâm nám và đều màu da.",
-    "ingredients": ["AHA", "Alpha Arbutin", "Vitamin C"],
-    "images": ["assets/images/sp08.jpg"],
-    "volume": "150ml",
-    "routineStep": "Bước 2",
-    "price": 380000,
-    "stockQuantity": 55,
-    "targetSkinTypes": ["Da hỗn hợp", "Da thường"],
-    "targetSkinProblems": ["Da xỉn màu", "Thâm nám"],
-    "averageRating": 4.4,
-    "reviewCount": 52
+    "categoryName": "Sữa rửa mặt",
+    "description": "Sữa rửa mặt dạng sữa dịu nhẹ, hoàn hảo cho da nhạy cảm.",
+    "ingredients": [
+      "Milk Protein",
+      "Ceramide",
+      "Panthenol"
+    ],
+    "images": [
+      "assets/images/SRM/SP08.1.jpg",
+      "assets/images/SRM/SP08.2.jpg",
+      "assets/images/SRM/SP08.3.jpg",
+      "assets/images/SRM/SP08.4.jpg"
+    ],
+    "volume": "200ml",
+    "routineStep": "Bước 1",
+    "price": 240000,
+    "stockQuantity": 85,
+    "targetSkinTypes": [
+      "Da nhạy cảm",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Da kích ứng",
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.9,
+    "reviewCount": 167
   },
-
   {
     "productId": "SP09",
-    "name": "Serum Vitamin C Sáng Da",
+    "name": "Sữa Rửa Mặt Rose Hydra",
     "brand": "L'Elixir",
-    "categoryName": "Serum",
-    "description": "Cải thiện độ sáng và mờ thâm nám vượt trội.",
-    "ingredients": ["Vitamin C 15%", "Ferulic Acid", "Vitamin E"],
-    "images": ["assets/images/sp09.jpg"],
-    "volume": "30ml",
-    "routineStep": "Bước 3",
-    "price": 850000,
+    "categoryName": "Sữa rửa mặt",
+    "description": "Sữa rửa mặt hoa hồng cấp ẩm, mùi thơm tự nhiên dịu dàng.",
+    "ingredients": [
+      "Rose Water",
+      "Hyaluronic Acid",
+      "Glycerin"
+    ],
+    "images": [
+      "assets/images/SRM/SP09.1.jpg",
+      "assets/images/SRM/SP09.2.jpg",
+      "assets/images/SRM/SP09.3.jpg",
+      "assets/images/SRM/SP09.4.jpg"
+    ],
+    "volume": "250ml",
+    "routineStep": "Bước 1",
+    "price": 260000,
     "stockQuantity": 75,
-    "targetSkinTypes": ["Da thường", "Da dầu", "Da hỗn hợp"],
-    "targetSkinProblems": ["Thâm nám", "Da xỉn màu"],
-    "averageRating": 4.8,
-    "reviewCount": 210
+    "targetSkinTypes": [
+      "Da khô",
+      "Da thường"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm",
+      "Da xỉn màu"
+    ],
+    "averageRating": 4.5,
+    "reviewCount": 105
   },
   {
     "productId": "SP10",
-    "name": "Serum Phục Hồi & Trẻ Hóa",
-    "brand": "L'Elixir",
-    "categoryName": "Serum",
-    "description": "Tái tạo cấu trúc và ngăn ngừa lão hóa.",
-    "ingredients": ["Retinol 0.5%", "Peptides", "Niacinamide"],
-    "images": ["assets/images/sp10.jpg"],
-    "volume": "30ml",
-    "routineStep": "Bước 3",
-    "price": 1250000,
-    "stockQuantity": 40,
-    "targetSkinTypes": ["Da khô", "Da lão hóa"],
-    "targetSkinProblems": ["Lão hóa", "Thâm nám"],
-    "averageRating": 4.9,
-    "reviewCount": 145
-  },
-  {
-    "productId": "SP11",
-    "name": "Serum Trị Mụn BHA 2%",
-    "brand": "L'Elixir",
-    "categoryName": "Serum",
-    "description": "Điều trị mụn bọc, mụn đầu đen và thu nhỏ lỗ chân lông.",
-    "ingredients": ["Salicylic Acid 2%", "Tea Tree Oil", "Zinc"],
-    "images": ["assets/images/sp11.jpg"],
-    "volume": "30ml",
-    "routineStep": "Bước 3",
-    "price": 420000,
-    "stockQuantity": 110,
-    "targetSkinTypes": ["Da dầu", "Da hỗn hợp"],
-    "targetSkinProblems": ["Mụn", "Lỗ chân lông to"],
-    "averageRating": 4.6,
-    "reviewCount": 178
-  },
-  {
-    "productId": "SP12",
-    "name": "Serum Cấp Nước Đa Tầng",
-    "brand": "L'Elixir",
-    "categoryName": "Serum",
-    "description": "Phục hồi tình trạng thiếu ẩm tức thì.",
-    "ingredients": ["HA đa phân tử", "B5", "Squalane"],
-    "images": ["assets/images/sp12.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 3",
-    "price": 520000,
-    "stockQuantity": 95,
-    "targetSkinTypes": ["Da khô", "Da nhạy cảm"],
-    "targetSkinProblems": ["Thiếu ẩm"],
-    "averageRating": 4.7,
-    "reviewCount": 130
-  },
-
-  {
-    "productId": "SP13",
-    "name": "Kem Dưỡng Phục Hồi Barrier",
-    "brand": "L'Elixir",
-    "categoryName": "Kem dưỡng",
-    "description": "Củng cố hàng rào bảo vệ da, cấp ẩm sâu.",
-    "ingredients": ["Ceramide", "Cholesterol", "Panthenol"],
-    "images": ["assets/images/sp13.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 4",
-    "price": 650000,
-    "stockQuantity": 85,
-    "targetSkinTypes": ["Da khô", "Da nhạy cảm"],
-    "targetSkinProblems": ["Thiếu ẩm", "Lão hóa"],
-    "averageRating": 4.7,
-    "reviewCount": 92
-  },
-  {
-    "productId": "SP14",
-    "name": "Kem Dưỡng Gel-Cream Kiềm Dầu",
-    "brand": "L'Elixir",
-    "categoryName": "Kem dưỡng",
-    "description": "Cấp ẩm mỏng nhẹ, không gây bít tắc lỗ chân lông.",
-    "ingredients": ["Hyaluronic Acid", "Aloe Vera", "Zinc"],
-    "images": ["assets/images/sp14.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 4",
-    "price": 490000,
-    "stockQuantity": 130,
-    "targetSkinTypes": ["Da dầu", "Da hỗn hợp"],
-    "targetSkinProblems": ["Mụn", "Lỗ chân lông to"],
-    "averageRating": 4.3,
-    "reviewCount": 74
-  },
-  {
-    "productId": "SP15",
-    "name": "Kem Dưỡng Sáng Da Đêm",
-    "brand": "L'Elixir",
-    "categoryName": "Kem dưỡng",
-    "description": "Làm mờ đốm nâu và cải thiện da xỉn màu.",
-    "ingredients": ["Niacinamide", "Tranexamic Acid", "Alpha Arbutin"],
-    "images": ["assets/images/sp15.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 4",
-    "price": 720000,
-    "stockQuantity": 45,
-    "targetSkinTypes": ["Da hỗn hợp", "Da khô"],
-    "targetSkinProblems": ["Da xỉn màu", "Thâm nám"],
-    "averageRating": 4.5,
-    "reviewCount": 68
-  },
-  {
-    "productId": "SP16",
-    "name": "Kem Dưỡng Chống Lão Hóa Chuyên Sâu",
-    "brand": "L'Elixir",
-    "categoryName": "Kem dưỡng",
-    "description": "Cải thiện nếp nhăn và độ đàn hồi.",
-    "ingredients": ["Retinol 0.3%", "Bakuchiol", "Peptides"],
-    "images": ["assets/images/sp16.jpg"],
-    "volume": "30ml",
-    "routineStep": "Bước 4",
-    "price": 980000,
-    "stockQuantity": 55,
-    "targetSkinTypes": ["Da thường", "Da khô"],
-    "targetSkinProblems": ["Lão hóa", "Thâm nám"],
-    "averageRating": 4.8,
-    "reviewCount": 163
-  },
-
-  {
-    "productId": "SP17",
-    "name": "Kem Chống Nắng Vật Lý Kiềm Dầu",
-    "brand": "L'Elixir",
-    "categoryName": "Chống nắng",
-    "description": "Bảo vệ da khỏi UV mà không gây nhờn rít.",
-    "ingredients": ["Zinc Oxide", "Titanium Dioxide", "Chiết xuất trà xanh"],
-    "images": ["assets/images/sp17.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 5",
-    "price": 375000,
-    "stockQuantity": 200,
-    "targetSkinTypes": ["Da dầu", "Da hỗn hợp"],
-    "targetSkinProblems": ["Mụn", "Da xỉn màu"],
-    "averageRating": 4.5,
-    "reviewCount": 256
-  },
-  {
-    "productId": "SP18",
-    "name": "Kem Chống Nắng Dưỡng Ẩm SPF 50",
-    "brand": "L'Elixir",
-    "categoryName": "Chống nắng",
-    "description": "Kết hợp chống nắng và cấp nước cho da khô.",
-    "ingredients": ["Tinosorb S", "Glycerin", "Hyaluronic Acid"],
-    "images": ["assets/images/sp18.jpg"],
-    "volume": "60ml",
-    "routineStep": "Bước 5",
-    "price": 450000,
-    "stockQuantity": 160,
-    "targetSkinTypes": ["Da khô", "Da thường"],
-    "targetSkinProblems": ["Thiếu ẩm", "Thâm nám"],
-    "averageRating": 4.4,
-    "reviewCount": 89
-  },
-  {
-    "productId": "SP19",
-    "name": "Kem Chống Nắng Cho Da Nhạy Cảm",
-    "brand": "L'Elixir",
-    "categoryName": "Chống nắng",
-    "description": "Công thức dịu nhẹ, không gây kích ứng.",
-    "ingredients": ["Khoáng chất suối nóng", "B5", "Centella"],
-    "images": ["assets/images/sp19.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 5",
-    "price": 420000,
-    "stockQuantity": 120,
-    "targetSkinTypes": ["Da nhạy cảm", "Da khô"],
-    "targetSkinProblems": ["Thiếu ẩm"],
-    "averageRating": 4.7,
-    "reviewCount": 102
-  },
-  {
-    "productId": "SP20",
-    "name": "Kem Chống Nắng Chống Lão Hóa",
-    "brand": "L'Elixir",
-    "categoryName": "Chống nắng",
-    "description": "Ngăn ngừa đốm nâu và nếp nhăn do ánh nắng.",
-    "ingredients": ["Uvinul A Plus", "Vitamin E", "Adenosine"],
-    "images": ["assets/images/sp20.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 5",
-    "price": 550000,
-    "stockQuantity": 85,
-    "targetSkinTypes": ["Da dầu", "Da khô", "Da hỗn hợp"],
-    "targetSkinProblems": ["Lão hóa", "Thâm nám"],
-    "averageRating": 4.2,
-    "reviewCount": 77
-  },
-
-  {
-    "productId": "SP21",
     "name": "Lumina Velvet Cleanser",
     "brand": "L'Elixir",
     "categoryName": "Sữa rửa mặt",
     "description": "Sữa rửa mặt cao cấp giúp làm sạch sâu, duy trì độ ẩm và mang lại làn da rạng rỡ.",
-    "ingredients": ["Ceramide", "Niacinamide", "Hyaluronic Acid"],
-    "images": ["assets/images/sp21.jpg"],
+    "ingredients": [
+      "Ceramide",
+      "Niacinamide",
+      "Hyaluronic Acid"
+    ],
+    "images": [
+      "assets/images/SRM/SP10.1.jpg",
+      "assets/images/SRM/SP10.2.jpg",
+      "assets/images/SRM/SP10.3.jpg",
+      "assets/images/SRM/SP10.4.jpg"
+    ],
     "volume": "150ml",
     "routineStep": "Bước 1",
     "price": 390000,
     "stockQuantity": 80,
-    "targetSkinTypes": ["Da thường", "Da khô", "Da hỗn hợp"],
-    "targetSkinProblems": ["Da mất nước", "Thâm nám"],
+    "targetSkinTypes": [
+      "Da thường",
+      "Da khô",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Da mất nước",
+      "Thâm nám"
+    ],
     "averageRating": 4.8,
     "reviewCount": 186,
     "collection": "Lumina"
   },
   {
-    "productId": "SP22",
+    "productId": "SP11",
+    "name": "Toner Cân Bằng Dầu Nhờn",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Cân bằng độ pH và kiểm soát dầu thừa.",
+    "ingredients": [
+      "Niacinamide",
+      "Zinc PCA",
+      "Rose Water"
+    ],
+    "images": [
+      "assets/images/Toner/1.1.png",
+      "assets/images/Toner/1.2.png",
+      "assets/images/Toner/1.3.png"
+    ],
+    "volume": "150ml",
+    "routineStep": "Bước 2",
+    "price": 310000,
+    "stockQuantity": 90,
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Lỗ chân lông to",
+      "Mụn"
+    ],
+    "averageRating": 4.6,
+    "reviewCount": 87
+  },
+  {
+    "productId": "SP12",
+    "name": "Toner Cấp Ẩm Chuyên Sâu",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Dành riêng cho làn da thiếu nước, thô ráp.",
+    "ingredients": [
+      "Hyaluronic Acid",
+      "Aloe Vera",
+      "Glycerin"
+    ],
+    "images": [
+      "assets/images/Toner/2.1.png",
+      "assets/images/Toner/2.2.png",
+      "assets/images/Toner/2.3.png"
+    ],
+    "volume": "200ml",
+    "routineStep": "Bước 2",
+    "price": 350000,
+    "stockQuantity": 70,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da nhạy cảm"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.9,
+    "reviewCount": 110
+  },
+  {
+    "productId": "SP13",
+    "name": "Toner Sáng Da Mờ Thâm",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Hỗ trợ làm mờ thâm nám và đều màu da.",
+    "ingredients": [
+      "AHA",
+      "Alpha Arbutin",
+      "Vitamin C"
+    ],
+    "images": [
+      "assets/images/Toner/3.1.png",
+      "assets/images/Toner/3.2.png",
+      "assets/images/Toner/3.3.png"
+    ],
+    "volume": "150ml",
+    "routineStep": "Bước 2",
+    "price": 380000,
+    "stockQuantity": 55,
+    "targetSkinTypes": [
+      "Da hỗn hợp",
+      "Da thường"
+    ],
+    "targetSkinProblems": [
+      "Da xỉn màu",
+      "Thâm nám"
+    ],
+    "averageRating": 4.4,
+    "reviewCount": 52
+  },
+  {
+    "productId": "SP14",
+    "name": "Toner Lactic Acid Gentle",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Toner AHA nhẹ nhàng giúp loại bỏ tế bào chết và làm sáng da.",
+    "ingredients": [
+      "Lactic Acid 5%",
+      "Aloe Vera",
+      "Glycerin"
+    ],
+    "images": [
+      "assets/images/Toner/4.1.png",
+      "assets/images/Toner/4.2.png",
+      "assets/images/Toner/4.3.png"
+    ],
+    "volume": "200ml",
+    "routineStep": "Bước 2",
+    "price": 380000,
+    "stockQuantity": 85,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Da xỉn màu",
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.7,
+    "reviewCount": 128
+  },
+  {
+    "productId": "SP15",
+    "name": "Toner Rosewater Hydrating",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Toner nước hoa hồng cấp ẩm sâu, mùi thơm tự nhiên dịu dàng.",
+    "ingredients": [
+      "Rose Water",
+      "Hyaluronic Acid",
+      "Glycerin"
+    ],
+    "images": [
+      "assets/images/Toner/5.1.png",
+      "assets/images/Toner/5.2.png",
+      "assets/images/Toner/5.3.png"
+    ],
+    "volume": "200ml",
+    "routineStep": "Bước 2",
+    "price": 350000,
+    "stockQuantity": 75,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da thường"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm",
+      "Da xỉn màu"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 152
+  },
+  {
+    "productId": "SP16",
+    "name": "Toner Snail Secretion Recovery",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Toner dịch ốc phục hồi da, cấp ẩm và tái tạo da tổn thương.",
+    "ingredients": [
+      "Snail Secretion Filtrate",
+      "HA",
+      "Panthenol"
+    ],
+    "images": [
+      "assets/images/Toner/6.1.png",
+      "assets/images/Toner/6.2.png",
+      "assets/images/Toner/6.3.jpg"
+    ],
+    "volume": "180ml",
+    "routineStep": "Bước 2",
+    "price": 420000,
+    "stockQuantity": 65,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da nhạy cảm"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm",
+      "Da kích ứng"
+    ],
+    "averageRating": 4.9,
+    "reviewCount": 176
+  },
+  {
+    "productId": "SP17",
+    "name": "Toner Centella Soothing",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Toner Cica dịu nhẹ, giúp làm dịu da và giảm mụn viêm.",
+    "ingredients": [
+      "Centella Asiatica",
+      "B5",
+      "Allantoin"
+    ],
+    "images": [
+      "assets/images/Toner/7.1.png",
+      "assets/images/Toner/7.2.png",
+      "assets/images/Toner/7.3.png"
+    ],
+    "volume": "150ml",
+    "routineStep": "Bước 2",
+    "price": 380000,
+    "stockQuantity": 90,
+    "targetSkinTypes": [
+      "Da nhạy cảm",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Da kích ứng",
+      "Mụn"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 164
+  },
+  {
+    "productId": "SP18",
+    "name": "Toner Green Tea Antioxidant",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Toner trà xanh giàu chất chống oxy hóa, bảo vệ da khỏi tổn thương.",
+    "ingredients": [
+      "Green Tea Extract",
+      "EGCG",
+      "Vitamin E"
+    ],
+    "images": [
+      "assets/images/Toner/8.1.png",
+      "assets/images/Toner/8.2.png",
+      "assets/images/Toner/8.3.png"
+    ],
+    "volume": "200ml",
+    "routineStep": "Bước 2",
+    "price": 360000,
+    "stockQuantity": 80,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Da xỉn màu",
+      "Lão hóa"
+    ],
+    "averageRating": 4.6,
+    "reviewCount": 118
+  },
+  {
+    "productId": "SP19",
+    "name": "Toner Propolis Brightening",
+    "brand": "L'Elixir",
+    "categoryName": "Toner",
+    "description": "Toner keo ong làm sáng da, cấp ẩm và kháng viêm hiệu quả.",
+    "ingredients": [
+      "Propolis Extract",
+      "Honey",
+      "Vitamin C"
+    ],
+    "images": [
+      "assets/images/Toner/9.1.png",
+      "assets/images/Toner/9.2.png",
+      "assets/images/Toner/9.3.png"
+    ],
+    "volume": "150ml",
+    "routineStep": "Bước 2",
+    "price": 400000,
+    "stockQuantity": 70,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Da xỉn màu",
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.7,
+    "reviewCount": 135
+  },
+  {
+    "productId": "SP20",
     "name": "Lumina Essence Toner",
     "brand": "L'Elixir",
     "categoryName": "Toner",
     "description": "Toner dưỡng sáng giúp cân bằng da và tăng khả năng hấp thụ dưỡng chất.",
-    "ingredients": ["Vitamin C", "Niacinamide", "Aloe Vera"],
-    "images": ["assets/images/sp22.jpg"],
+    "ingredients": [
+      "Vitamin C",
+      "Niacinamide",
+      "Aloe Vera"
+    ],
+    "images": [
+      "assets/images/Toner/10.1.png",
+      "assets/images/Toner/10.2.png",
+      "assets/images/Toner/10.3.png"
+    ],
     "volume": "150ml",
     "routineStep": "Bước 2",
     "price": 450000,
     "stockQuantity": 75,
-    "targetSkinTypes": ["Da thường", "Da hỗn hợp"],
-    "targetSkinProblems": ["Thâm nám", "Da mất nước"],
+    "targetSkinTypes": [
+      "Da thường",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Thâm nám",
+      "Da mất nước"
+    ],
     "averageRating": 4.9,
     "reviewCount": 143,
     "collection": "Lumina"
   },
   {
+    "productId": "SP21",
+    "name": "Aurora Serum Vitamin C Sáng Da",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Cải thiện độ sáng và mờ thâm nám vượt trội.",
+    "ingredients": [
+      "Vitamin C 15%",
+      "Ferulic Acid",
+      "Vitamin E"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 1.png",
+      "assets/images/Serum/Serum 1a.png",
+      "assets/images/Serum/Serum 1b.png",
+      "assets/images/Serum/Serum 1c.png"
+    ],
+    "volume": "30ml",
+    "routineStep": "Bước 3",
+    "price": 850000,
+    "stockQuantity": 75,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Thâm nám",
+      "Da xỉn màu"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 210,
+    "collection": "Aurora"
+  },
+  {
+    "productId": "SP22",
+    "name": "Serum Phục Hồi & Trẻ Hóa",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Tái tạo cấu trúc và ngăn ngừa lão hóa.",
+    "ingredients": [
+      "Retinol 0.5%",
+      "Peptides",
+      "Niacinamide"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 2.png",
+      "assets/images/Serum/Serum 2a.png",
+      "assets/images/Serum/Serum 2b.png",
+      "assets/images/Serum/Serum 2c.png"
+    ],
+    "volume": "30ml",
+    "routineStep": "Bước 3",
+    "price": 1250000,
+    "stockQuantity": 40,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da lão hóa"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Thâm nám"
+    ],
+    "averageRating": 4.9,
+    "reviewCount": 145
+  },
+  {
     "productId": "SP23",
+    "name": "Serum Trị Mụn BHA 2%",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Điều trị mụn bọc, mụn đầu đen và thu nhỏ lỗ chân lông.",
+    "ingredients": [
+      "Salicylic Acid 2%",
+      "Tea Tree Oil",
+      "Zinc"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 3.png",
+      "assets/images/Serum/Serum 3a.png",
+      "assets/images/Serum/Serum 3b.png",
+      "assets/images/Serum/Serum 3c.png"
+    ],
+    "volume": "30ml",
+    "routineStep": "Bước 3",
+    "price": 420000,
+    "stockQuantity": 110,
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Lỗ chân lông to"
+    ],
+    "averageRating": 4.6,
+    "reviewCount": 178
+  },
+  {
+    "productId": "SP24",
+    "name": "Serum Cấp Nước Đa Tầng",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Phục hồi tình trạng thiếu ẩm tức thì.",
+    "ingredients": [
+      "HA đa phân tử",
+      "B5",
+      "Squalane"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 4.png",
+      "assets/images/Serum/Serum 4a.png",
+      "assets/images/Serum/Serum 4b.png",
+      "assets/images/Serum/Serum 4c.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 3",
+    "price": 520000,
+    "stockQuantity": 95,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da nhạy cảm"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.7,
+    "reviewCount": 130
+  },
+  {
+    "productId": "SP25",
+    "name": "Serum Glycolic Acid 7%",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Serum AHA giúp loại bỏ tế bào chết và làm sáng da từ bên trong.",
+    "ingredients": [
+      "Glycolic Acid 7%",
+      "Aloe Vera",
+      "Panthenol"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 5.png",
+      "assets/images/Serum/Serum 5a.png",
+      "assets/images/Serum/Serum 5b.png",
+      "assets/images/Serum/Serum 5c.png"
+    ],
+    "volume": "30ml",
+    "routineStep": "Bước 3",
+    "price": 520000,
+    "stockQuantity": 70,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Da xỉn màu",
+      "Mụn"
+    ],
+    "averageRating": 4.6,
+    "reviewCount": 134
+  },
+  {
+    "productId": "SP26",
+    "name": "Serum Azelaic Acid 10%",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Serum Azelaic Acid giúp trị mụn rosacea và làm đều màu da.",
+    "ingredients": [
+      "Azelaic Acid 10%",
+      "Niacinamide",
+      "Aloe"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 6.png",
+      "assets/images/Serum/Serum 6a.png",
+      "assets/images/Serum/Serum 6b.png",
+      "assets/images/Serum/Serum 6c.png"
+    ],
+    "volume": "30ml",
+    "routineStep": "Bước 3",
+    "price": 580000,
+    "stockQuantity": 60,
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Thâm nám"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 148
+  },
+  {
+    "productId": "SP27",
+    "name": "Serum Bakuchiol Night",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Serum Bakuchiol an toàn ban đêm, thay thế Retinol cho da nhạy cảm.",
+    "ingredients": [
+      "Bakuchiol 2%",
+      "Peptides",
+      "Ceramide"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 7.png",
+      "assets/images/Serum/Serum 7a.png",
+      "assets/images/Serum/Serum 7b.png",
+      "assets/images/Serum/Serum 7c.png"
+    ],
+    "volume": "40ml",
+    "routineStep": "Bước 3",
+    "price": 750000,
+    "stockQuantity": 55,
+    "targetSkinTypes": [
+      "Da nhạy cảm",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.9,
+    "reviewCount": 156
+  },
+  {
+    "productId": "SP28",
+    "name": "Serum Squalane Restore",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Serum Squalane nhẹ nhàng, phục hồi hàng rào bảo vệ da.",
+    "ingredients": [
+      "Squalane",
+      "Ceramide",
+      "Cholesterol"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 8.png",
+      "assets/images/Serum/Serum 8a.png",
+      "assets/images/Serum/Serum 8b.png",
+      "assets/images/Serum/Serum 8c.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 3",
+    "price": 680000,
+    "stockQuantity": 65,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da nhạy cảm"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm",
+      "Da kích ứng"
+    ],
+    "averageRating": 4.7,
+    "reviewCount": 128
+  },
+  {
+    "productId": "SP29",
+    "name": "Serum Peptide Firming",
+    "brand": "L'Elixir",
+    "categoryName": "Serum",
+    "description": "Serum Peptide giúp làm chắc chẽ da và cải thiện độ đàn hồi.",
+    "ingredients": [
+      "Peptides 5%",
+      "Collagen",
+      "Hyaluronic Acid"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 9.png",
+      "assets/images/Serum/Serum 9a.png",
+      "assets/images/Serum/Serum 9b.png",
+      "assets/images/Serum/Serum 9c.png"
+    ],
+    "volume": "30ml",
+    "routineStep": "Bước 3",
+    "price": 820000,
+    "stockQuantity": 50,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Nếp nhăn"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 172
+  },
+  {
+    "productId": "SP30",
     "name": "Lumina Radiance Serum",
     "brand": "L'Elixir",
     "categoryName": "Serum",
     "description": "Serum làm sáng da chuyên sâu, hỗ trợ đều màu và giảm thâm.",
-    "ingredients": ["Vitamin C 20%", "Ferulic Acid", "Alpha Arbutin"],
-    "images": ["assets/images/sp23.jpg"],
+    "ingredients": [
+      "Vitamin C 20%",
+      "Ferulic Acid",
+      "Alpha Arbutin"
+    ],
+    "images": [
+      "assets/images/Serum/Serum 10.png",
+      "assets/images/Serum/Serum 10a.png",
+      "assets/images/Serum/Serum 10b.png",
+      "assets/images/Serum/Serum 10c.png"
+    ],
     "volume": "30ml",
     "routineStep": "Bước 3",
     "price": 1190000,
     "stockQuantity": 50,
-    "targetSkinTypes": ["Da thường", "Da hỗn hợp", "Da dầu"],
-    "targetSkinProblems": ["Thâm nám", "Da xỉn màu"],
+    "targetSkinTypes": [
+      "Da thường",
+      "Da hỗn hợp",
+      "Da dầu"
+    ],
+    "targetSkinProblems": [
+      "Thâm nám",
+      "Da xỉn màu"
+    ],
     "averageRating": 4.5,
     "reviewCount": 6,
     "collection": "Lumina"
   },
   {
-    "productId": "SP24",
+    "productId": "SP31",
+    "name": "Aurora Kem Dưỡng Phục Hồi Barrier",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Củng cố hàng rào bảo vệ da, cấp ẩm sâu.",
+    "ingredients": [
+      "Ceramide",
+      "Cholesterol",
+      "Panthenol"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/1.1.png",
+      "assets/images/Kem dưỡng/1.2.png",
+      "assets/images/Kem dưỡng/1.3.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 4",
+    "price": 650000,
+    "stockQuantity": 85,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da nhạy cảm"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm",
+      "Lão hóa"
+    ],
+    "averageRating": 4.7,
+    "reviewCount": 92,
+    "collection": "Aurora"
+  },
+  {
+    "productId": "SP32",
+    "name": "Kem Dưỡng Gel-Cream Kiềm Dầu",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Cấp ẩm mỏng nhẹ, không gây bít tắc lỗ chân lông.",
+    "ingredients": [
+      "Hyaluronic Acid",
+      "Aloe Vera",
+      "Zinc"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/2.1.png",
+      "assets/images/Kem dưỡng/2.2.png",
+      "assets/images/Kem dưỡng/2.3.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 4",
+    "price": 490000,
+    "stockQuantity": 130,
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Lỗ chân lông to"
+    ],
+    "averageRating": 4.3,
+    "reviewCount": 74
+  },
+  {
+    "productId": "SP33",
+    "name": "Kem Dưỡng Sáng Da Đêm",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Làm mờ đốm nâu và cải thiện da xỉn màu.",
+    "ingredients": [
+      "Niacinamide",
+      "Tranexamic Acid",
+      "Alpha Arbutin"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/3.1.png",
+      "assets/images/Kem dưỡng/3.2.png",
+      "assets/images/Kem dưỡng/3.3.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 4",
+    "price": 720000,
+    "stockQuantity": 45,
+    "targetSkinTypes": [
+      "Da hỗn hợp",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Da xỉn màu",
+      "Thâm nám"
+    ],
+    "averageRating": 4.5,
+    "reviewCount": 68
+  },
+  {
+    "productId": "SP34",
+    "name": "Kem Dưỡng Chống Lão Hóa Chuyên Sâu",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Cải thiện nếp nhăn và độ đàn hồi.",
+    "ingredients": [
+      "Retinol 0.3%",
+      "Bakuchiol",
+      "Peptides"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/4.1.png",
+      "assets/images/Kem dưỡng/4.3(1).png",
+      "assets/images/Kem dưỡng/4.3.png"
+    ],
+    "volume": "30ml",
+    "routineStep": "Bước 4",
+    "price": 980000,
+    "stockQuantity": 55,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Thâm nám"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 163
+  },
+  {
+    "productId": "SP35",
+    "name": "Kem Dưỡng Green Tea Anti-Age",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Kem dưỡng trà xanh chống lão hóa, chống oxy hóa mạnh mẽ.",
+    "ingredients": [
+      "Green Tea Extract",
+      "EGCG",
+      "Vitamin E"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/5.1.png",
+      "assets/images/Kem dưỡng/5.2.png",
+      "assets/images/Kem dưỡng/5.3.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 4",
+    "price": 650000,
+    "stockQuantity": 70,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Da xỉn màu"
+    ],
+    "averageRating": 4.7,
+    "reviewCount": 145
+  },
+  {
+    "productId": "SP36",
+    "name": "Kem Dưỡng Collagen Boost",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Kem dưỡng Collagen giúp tăng độ đàn hồi và làm trẻ hóa da.",
+    "ingredients": [
+      "Marine Collagen",
+      "Peptides",
+      "Vitamin C"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/6.1.png",
+      "assets/images/Kem dưỡng/6.2.png",
+      "assets/images/Kem dưỡng/6.3.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 4",
+    "price": 850000,
+    "stockQuantity": 60,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da lão hóa"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Nếp nhăn"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 156
+  },
+  {
+    "productId": "SP37",
+    "name": "Kem Dưỡng Snail Mucin",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Kem dưỡng dịch ốc cấp ẩm sâu, phục hồi da nhanh chóng.",
+    "ingredients": [
+      "Snail Secretion",
+      "Hyaluronic Acid",
+      "Glycerin"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/7.1.png",
+      "assets/images/Kem dưỡng/7.2.png",
+      "assets/images/Kem dưỡng/7.3.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 4",
+    "price": 720000,
+    "stockQuantity": 75,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da thường"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm",
+      "Lão hóa"
+    ],
+    "averageRating": 4.9,
+    "reviewCount": 168
+  },
+  {
+    "productId": "SP38",
+    "name": "Kem Dưỡng Centella Barrier",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Kem dưỡng Cica phục hồi hàng rào bảo vệ da hiệu quả.",
+    "ingredients": [
+      "Centella Asiatica",
+      "Ceramide",
+      "Cholesterol"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/8.1.png",
+      "assets/images/Kem dưỡng/8.2.png",
+      "assets/images/Kem dưỡng/8.3.png"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 4",
+    "price": 720000,
+    "stockQuantity": 65,
+    "targetSkinTypes": [
+      "Da nhạy cảm",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Da kích ứng",
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.9,
+    "reviewCount": 171
+  },
+  {
+    "productId": "SP39",
+    "name": "Kem Dưỡng Retinol Renewal",
+    "brand": "L'Elixir",
+    "categoryName": "Kem dưỡng",
+    "description": "Kem dưỡng Retinol 0.5% chống lão hóa hiệu quả cho ban đêm.",
+    "ingredients": [
+      "Retinol 0.5%",
+      "Peptides",
+      "Squalane"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/9.1.png",
+      "assets/images/Kem dưỡng/9.2.png",
+      "assets/images/Kem dưỡng/9.3.png"
+    ],
+    "volume": "40ml",
+    "routineStep": "Bước 4",
+    "price": 980000,
+    "stockQuantity": 55,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da thường"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Nếp nhăn"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 189
+  },
+  {
+    "productId": "SP40",
     "name": "Lumina Silk Cream",
     "brand": "L'Elixir",
     "categoryName": "Kem dưỡng",
     "description": "Kem dưỡng cao cấp giúp làm sáng và cải thiện độ đàn hồi của da.",
-    "ingredients": ["Peptides", "Ceramide", "Squalane"],
-    "images": ["assets/images/sp24.jpg"],
+    "ingredients": [
+      "Peptides",
+      "Ceramide",
+      "Squalane"
+    ],
+    "images": [
+      "assets/images/Kem dưỡng/10.1.png",
+      "assets/images/Kem dưỡng/10.2.png",
+      "assets/images/Kem dưỡng/10.3.png"
+    ],
     "volume": "50ml",
     "routineStep": "Bước 4",
     "price": 980000,
     "stockQuantity": 60,
-    "targetSkinTypes": ["Da khô", "Da thường"],
-    "targetSkinProblems": ["Da mất nước", "Nếp nhăn"],
+    "targetSkinTypes": [
+      "Da khô",
+      "Da thường"
+    ],
+    "targetSkinProblems": [
+      "Da mất nước",
+      "Nếp nhăn"
+    ],
     "averageRating": 4.5,
     "reviewCount": 6,
     "collection": "Lumina"
   },
   {
-    "productId": "SP25",
+    "productId": "SP41",
+    "name": "Aurora Kem Chống Nắng Vật Lý Kiềm Dầu",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Bảo vệ da khỏi UV mà không gây nhờn rít.",
+    "ingredients": [
+      "Zinc Oxide",
+      "Titanium Dioxide",
+      "Chiết xuất trà xanh"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 1.1.jpg",
+      "assets/images/KCN/kcn 1.2.jpg",
+      "assets/images/KCN/kcn 1.3.jpg"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 5",
+    "price": 375000,
+    "stockQuantity": 200,
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Da xỉn màu"
+    ],
+    "averageRating": 4.5,
+    "reviewCount": 256,
+    "collection": "Aurora"
+  },
+  {
+    "productId": "SP42",
+    "name": "Kem Chống Nắng Dưỡng Ẩm SPF 50",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Kết hợp chống nắng và cấp nước cho da khô.",
+    "ingredients": [
+      "Tinosorb S",
+      "Glycerin",
+      "Hyaluronic Acid"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 2.1.jpg",
+      "assets/images/KCN/kcn 2.2.jpg",
+      "assets/images/KCN/kcn 2.3.jpg"
+    ],
+    "volume": "60ml",
+    "routineStep": "Bước 5",
+    "price": 450000,
+    "stockQuantity": 160,
+    "targetSkinTypes": [
+      "Da khô",
+      "Da thường"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm",
+      "Thâm nám"
+    ],
+    "averageRating": 4.4,
+    "reviewCount": 89
+  },
+  {
+    "productId": "SP43",
+    "name": "Kem Chống Nắng Cho Da Nhạy Cảm",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Công thức dịu nhẹ, không gây kích ứng.",
+    "ingredients": [
+      "Khoáng chất suối nóng",
+      "B5",
+      "Centella"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 3.1.jpg",
+      "assets/images/KCN/kcn 3.2.jpg",
+      "assets/images/KCN/kcn 3.3.jpg"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 5",
+    "price": 420000,
+    "stockQuantity": 120,
+    "targetSkinTypes": [
+      "Da nhạy cảm",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.7,
+    "reviewCount": 102
+  },
+  {
+    "productId": "SP44",
+    "name": "Kem Chống Nắng Chống Lão Hóa",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Ngăn ngừa đốm nâu và nếp nhăn do ánh nắng.",
+    "ingredients": [
+      "Uvinul A Plus",
+      "Vitamin E",
+      "Adenosine"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 4.1.jpg",
+      "assets/images/KCN/kcn 4.2.jpg",
+      "assets/images/KCN/kcn 4.3.jpg"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 5",
+    "price": 550000,
+    "stockQuantity": 85,
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da khô",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Thâm nám"
+    ],
+    "averageRating": 4.2,
+    "reviewCount": 77
+  },
+  {
+    "productId": "SP45",
+    "name": "Kem Chống Nắng Mineral Clear SPF 60",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Kem chống nắng khoáng chất trong suốt, không để lại vết trắng.",
+    "ingredients": [
+      "Zinc Oxide",
+      "Iron Oxide",
+      "Vitamin C"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 5.1.jpg",
+      "assets/images/KCN/kcn 5.2.jpg",
+      "assets/images/KCN/kcn 5.3.jpg"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 5",
+    "price": 480000,
+    "stockQuantity": 100,
+    "targetSkinTypes": [
+      "Da thường",
+      "Da dầu"
+    ],
+    "targetSkinProblems": [
+      "Lão hóa",
+      "Thâm nám"
+    ],
+    "averageRating": 4.6,
+    "reviewCount": 95
+  },
+  {
+    "productId": "SP46",
+    "name": "Kem Chống Nắng Tinted BB SPF 50",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Kem chống nắng che phủ nhẹ, cung cấp màu sắc tự nhiên.",
+    "ingredients": [
+      "Tinosorb M",
+      "Niacinamide",
+      "Hyaluronic Acid"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 6.1.jpg",
+      "assets/images/KCN/kcn 6.2.jpg"
+    ],
+    "volume": "40ml",
+    "routineStep": "Bước 5",
+    "price": 520000,
+    "stockQuantity": 110,
+    "targetSkinTypes": [
+      "Da hỗn hợp",
+      "Da thường"
+    ],
+    "targetSkinProblems": [
+      "Da xỉn màu",
+      "Thâm nám"
+    ],
+    "averageRating": 4.7,
+    "reviewCount": 128
+  },
+  {
+    "productId": "SP47",
+    "name": "Kem Chống Nắng Aqua Essence SPF 70",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Kem chống nắng dạng gel nhẹ, cấp nước mạnh mẽ.",
+    "ingredients": [
+      "Avobenzone",
+      "Glycerin",
+      "Aloe Vera"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 7.1.png",
+      "assets/images/KCN/kcn 7.2.png",
+      "assets/images/KCN/kcn 7.3.jpg"
+    ],
+    "volume": "60ml",
+    "routineStep": "Bước 5",
+    "price": 420000,
+    "stockQuantity": 95,
+    "targetSkinTypes": [
+      "Da dầu",
+      "Da hỗn hợp"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.5,
+    "reviewCount": 87
+  },
+  {
+    "productId": "SP48",
+    "name": "Kem Chống Nắng Dry Touch SPF 55",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Kem chống nắng kiểm soát bóng nhờn, hoàn hảo cho da dầu.",
+    "ingredients": [
+      "Zinc PCA",
+      "Titanium Dioxide",
+      "Niacinamide"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 8.1.jpg",
+      "assets/images/KCN/kcn 8.2.jpg",
+      "assets/images/KCN/kcn 8.3.jpg"
+    ],
+    "volume": "50ml",
+    "routineStep": "Bước 5",
+    "price": 390000,
+    "stockQuantity": 120,
+    "targetSkinTypes": [
+      "Da dầu"
+    ],
+    "targetSkinProblems": [
+      "Mụn",
+      "Lỗ chân lông to"
+    ],
+    "averageRating": 4.4,
+    "reviewCount": 112
+  },
+  {
+    "productId": "SP49",
+    "name": "Kem Chống Nắng Bio Defense SPF 48",
+    "brand": "L'Elixir",
+    "categoryName": "Chống nắng",
+    "description": "Kem chống nắng sinh học với chiết xuất thảo dược tự nhiên.",
+    "ingredients": [
+      "Avobenzone",
+      "Centella",
+      "Trà xanh"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 9.1.jpg",
+      "assets/images/KCN/kcn 9.2.jpg",
+      "assets/images/KCN/kcn 9.3.jpg"
+    ],
+    "volume": "55ml",
+    "routineStep": "Bước 5",
+    "price": 510000,
+    "stockQuantity": 85,
+    "targetSkinTypes": [
+      "Da nhạy cảm",
+      "Da khô"
+    ],
+    "targetSkinProblems": [
+      "Da kích ứng",
+      "Thiếu ẩm"
+    ],
+    "averageRating": 4.8,
+    "reviewCount": 134
+  },
+  {
+    "productId": "SP50",
     "name": "Lumina Sun Veil SPF50+",
     "brand": "L'Elixir",
     "categoryName": "Chống nắng",
     "description": "Kem chống nắng phổ rộng với hiệu ứng nâng tông tự nhiên.",
-    "ingredients": ["Tinosorb S", "Vitamin E", "Niacinamide"],
-    "images": ["assets/images/sp25.jpg"],
+    "ingredients": [
+      "Tinosorb S",
+      "Vitamin E",
+      "Niacinamide"
+    ],
+    "images": [
+      "assets/images/KCN/kcn 10.1.jpg",
+      "assets/images/KCN/kcn 10.2.jpg",
+      "assets/images/KCN/kcn 10.3.jpg"
+    ],
     "volume": "50ml",
     "routineStep": "Bước 5",
     "price": 590000,
     "stockQuantity": 120,
-    "targetSkinTypes": ["Da thường", "Da hỗn hợp", "Da dầu"],
-    "targetSkinProblems": ["Thâm nám", "Da xỉn màu"],
+    "targetSkinTypes": [
+      "Da thường",
+      "Da hỗn hợp",
+      "Da dầu"
+    ],
+    "targetSkinProblems": [
+      "Thâm nám",
+      "Da xỉn màu"
+    ],
     "averageRating": 4.5,
     "reviewCount": 6,
     "collection": "Lumina"
-  },
-  {
-    "productId": "SP26",
-    "name": "Aurora Purity Cleanser",
-    "brand": "L'Elixir",
-    "categoryName": "Sữa rửa mặt",
-    "description": "Sữa rửa mặt dịu nhẹ giúp làm sạch và phục hồi hàng rào bảo vệ da.",
-    "ingredients": ["Centella Asiatica", "Ceramide", "Panthenol"],
-    "images": ["assets/images/sp26.jpg"],
-    "volume": "150ml",
-    "routineStep": "Bước 1",
-    "price": 420000,
-    "stockQuantity": 90,
-    "targetSkinTypes": ["Da nhạy cảm", "Da khô"],
-    "targetSkinProblems": ["Da kích ứng", "Da mất nước"],
-    "averageRating": 4.5,
-    "reviewCount": 6,
-    "collection": "Aurora"
-  },
-  {
-    "productId": "SP27",
-    "name": "Aurora Dew Toner",
-    "brand": "L'Elixir",
-    "categoryName": "Toner",
-    "description": "Toner cấp ẩm chuyên sâu, giúp da căng mọng và mềm mại.",
-    "ingredients": ["Hyaluronic Acid", "Beta-Glucan", "Aloe Vera"],
-    "images": ["assets/images/sp27.jpg"],
-    "volume": "180ml",
-    "routineStep": "Bước 2",
-    "price": 490000,
-    "stockQuantity": 85,
-    "targetSkinTypes": ["Da khô", "Da nhạy cảm", "Da thường"],
-    "targetSkinProblems": ["Da mất nước", "Da kích ứng"],
-    "averageRating": 4.5,
-    "reviewCount": 6,
-    "collection": "Aurora"
-  },
-  {
-    "productId": "SP28",
-    "name": "Aurora Elixir Serum",
-    "brand": "L'Elixir",
-    "categoryName": "Serum",
-    "description": "Serum phục hồi chuyên sâu giúp làm dịu và tái tạo làn da tổn thương.",
-    "ingredients": ["B5", "Madecassoside", "Ceramide"],
-    "images": ["assets/images/sp28.jpg"],
-    "volume": "30ml",
-    "routineStep": "Bước 3",
-    "price": 1350000,
-    "stockQuantity": 60,
-    "targetSkinTypes": ["Da nhạy cảm", "Da khô"],
-    "targetSkinProblems": ["Da kích ứng", "Da mất nước", "Nếp nhăn"],
-    "averageRating": 5.0,
-    "reviewCount": 289,
-    "collection": "Aurora"
-  },
-  {
-    "productId": "SP29",
-    "name": "Aurora Night Cream",
-    "brand": "L'Elixir",
-    "categoryName": "Kem dưỡng",
-    "description": "Kem dưỡng ban đêm giúp phục hồi và nuôi dưỡng làn da suốt đêm.",
-    "ingredients": ["Ceramide", "Squalane", "Peptides"],
-    "images": ["assets/images/sp29.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 4",
-    "price": 1090000,
-    "stockQuantity": 55,
-    "targetSkinTypes": ["Da khô", "Da nhạy cảm"],
-    "targetSkinProblems": ["Da mất nước", "Nếp nhăn"],
-    "averageRating": 4.5,
-    "reviewCount": 6,
-    "collection": "Aurora"
-  },
-  {
-    "productId": "SP30",
-    "name": "Aurora UV Defense SPF50+",
-    "brand": "L'Elixir",
-    "categoryName": "Chống nắng",
-    "description": "Kem chống nắng phục hồi và bảo vệ da nhạy cảm trước tác động của tia UV.",
-    "ingredients": ["Zinc Oxide", "Centella Asiatica", "Vitamin E"],
-    "images": ["assets/images/sp30.jpg"],
-    "volume": "50ml",
-    "routineStep": "Bước 5",
-    "price": 620000,
-    "stockQuantity": 140,
-    "targetSkinTypes": ["Da nhạy cảm", "Da khô", "Da thường"],
-    "targetSkinProblems": ["Da kích ứng", "Da mất nước"],
-    "averageRating": 4.5,
-    "reviewCount": 6,
-    "collection": "Aurora"
   }
 ]

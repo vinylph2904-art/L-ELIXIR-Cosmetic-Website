@@ -16,14 +16,14 @@ export class CollectionComponent implements OnInit, OnDestroy {
     {
       title: 'Tinh Hoa Dưỡng Sáng Lumina',
       description: 'Một bộ sưu tập được thiết kế để mang đến vẻ sáng tự nhiên, mềm mại và đầy sức sống cho làn da mỗi sáng mới.',
-      image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80',
+      image: 'assets/images/Banner/LuminaBanner.jpg',
       tag: 'Bộ sưu tập',
       route: '/articles/lumina'
     },
     {
       title: 'Vẻ Đẹp Rạng Đông Aurora',
       description: 'Aurora mang đến cảm giác mềm mại, ấm áp và tái tạo, như một buổi bình minh mới cho làn da bạn.',
-      image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80',
+      image: 'assets/images/Banner/AuroraBanner.jpg',
       tag: 'Bộ sưu tập',
       route: '/articles/aurora'
     }

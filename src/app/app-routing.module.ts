@@ -20,6 +20,8 @@ import { guestGuard } from './guards/guest.guard';
 import { SupportComponent } from './pages/support/support.component';
 import { CollectionComponent } from './pages/collection/collection.component';
 import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
+import { ArticleDetailLuminaComponent } from './pages/article-detail-lumina/article-detail-lumina.component';
+import { ArticleDetailAuroraComponent } from './pages/article-detail-aurora/article-detail-aurora.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,6 +41,8 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent }, // Đăng ký đường dẫn trang Về Chúng Tôi
   { path: 'support', component: SupportComponent},
   { path: 'collection', component: CollectionComponent},
+  { path: 'articles/lumina', component: ArticleDetailLuminaComponent },
+  { path: 'articles/aurora', component: ArticleDetailAuroraComponent },
   { path: 'articles/:id', component: ArticleDetailComponent},
 
   { path: '**', redirectTo: '' } // Luôn để dòng này ở cuối cùng

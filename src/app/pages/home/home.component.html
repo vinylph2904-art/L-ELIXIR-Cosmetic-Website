@@ -54,11 +54,11 @@
 <section class="py-section-gap-desktop max-w-container-max mx-auto px-gutter">
   <h2 class="font-display-lg text-headline-lg text-center mb-16">Mua sắm theo Nhu cầu</h2>
   <div class="flex justify-center gap-gutter pb-8">
-    <div *ngFor="let category of categories" class="flex-none w-48 snap-start group cursor-pointer" [routerLink]="['/products']" [queryParams]="{ category: category }">
-      <div class="aspect-square bg-surface-container-high rounded-full flex items-center justify-center mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
-        <span class="material-symbols-outlined text-5xl text-primary">spa</span>
+    <div *ngFor="let category of categories" class="flex-none w-48 snap-start group cursor-pointer" [routerLink]="['/products']" [queryParams]="{ category: category.name }">
+      <div class="aspect-square rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
+        <img [src]="category.image" [alt]="category.name" class="w-full h-full object-cover" />
       </div>
-      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">{{ category }}</p>
+      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">{{ category.name }}</p>
     </div>
   </div>
 </section>
@@ -92,26 +92,18 @@
       </div>
     </div>
     <div class="flex gap-gutter overflow-x-auto pb-12 hide-scrollbar snap-x">
-      <div class="flex-none w-[80vw] md:w-[600px] snap-center">
-        <div class="relative aspect-[16/9] rounded-xl overflow-hidden group">
-          <img alt="Golden Hour Mist" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-UjfXpH8jZRl5xGTU8wHdQy3XolbTBNM9W3XYyKchcx5XCOOzf-705ZbDIcU7P9q7-jmrN0EvCqE3Wu0JUM2ev71ZmmayuLdlEGDC_G1G5PCGKu0KEU8b_wujjSJFB705UHKG3wr8kKbl1xTtPWF58AoezRPapRUgA-NnNHc_WGjmcXVRhTkymubzCs4Bub-Mp_3E4oW_1zwmx1Rfr1RPXUqAGEJnNofO36z9llE4sZiA4UIM6NMnyyS1t7JFcDFvUyhMKlvAnMI">
-          <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex flex-col justify-end p-8 text-white">
-            <span class="font-label-sm uppercase tracking-widest mb-2">Tinh hoa dưỡng sáng</span>
-            <h3 class="font-display-lg text-headline-lg">Bộ sưu tập Lumina</h3>
-            <a [routerLink]="['/products']" [queryParams]="{ collection: 'Lumina' }" class="mt-4 font-label-md uppercase underline underline-offset-8 inline-block"> Khám phá bộ sưu tập</a>          
-          </div>
+      <ng-container *ngFor="let collection of collections">
+        <div class="flex-none w-[80vw] md:w-[600px] snap-center">
+          <a [routerLink]="collection.route" class="block relative aspect-[16/9] rounded-xl overflow-hidden group">
+            <img [alt]="collection.title" class="w-full h-full object-cover" [src]="collection.image">
+            <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex flex-col justify-end p-8 text-white">
+              <span class="font-label-sm uppercase tracking-widest mb-2">{{ collection.subtitle }}</span>
+              <h3 class="font-display-lg text-headline-lg">{{ collection.title }}</h3>
+              <span class="mt-4 font-label-md uppercase underline underline-offset-8 inline-block">Xem bài viết</span>
+            </div>
+          </a>
         </div>
-      </div>
-      <div class="flex-none w-[80vw] md:w-[600px] snap-center">
-        <div class="relative aspect-[16/9] rounded-xl overflow-hidden group">
-          <img alt="Charcoal Infusion" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUY4OJKso_GDjXGr0X0zm_mmwZucbrTAhtAnhUYbcFINRKmKn3sg4D-3M8xCZViwRFLqOlpbRAc1rwBpPbC-E5VEjQFbx-9xqevXRb9UoVVckkSZ39HhUY8X_TbfsD_hVea8G8Gk-P4vRwlINrnZMuJ7sLpV33aZdEJlkZh6fMoMqEiP_-r4YHH0yfJVzKdj9V2GdeauHgigNHZvwsVkmxJjmJhDnwrICwXSSjKuZbrty0jSF3d5TZ2pdkjjT3fcBNuIHq-FJ6AmA">
-          <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex flex-col justify-end p-8 text-white">
-            <span class="font-label-sm uppercase tracking-widest mb-2">Vẻ đẹp rạng đông</span>
-            <h3 class="font-display-lg text-headline-lg">Bộ sưu tập Aurora</h3>
-            <a [routerLink]="['/products']" [queryParams]="{ collection: 'Aurora' }" class="mt-4 font-label-md uppercase underline underline-offset-8 inline-block">Khám phá bộ sưu tập</a>
-          </div>
-        </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </section>
