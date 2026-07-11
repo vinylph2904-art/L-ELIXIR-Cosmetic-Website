@@ -78,10 +78,6 @@
                   <p *ngIf="getQuantityError(item.productId)" class="text-xs text-red-500">{{ getQuantityError(item.productId) }}</p>
                 </div>
                 <div class="flex gap-4">
-                  <button class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-standard" type="button">
-                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                    <span class="hidden sm:inline">Lưu yêu thích</span>
-                  </button>
                   <button class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant hover:text-error transition-standard" (click)="askDeleteConfirm(item)" type="button">
                     <span class="material-symbols-outlined text-[20px]">delete</span>
                     <span class="hidden sm:inline">Xóa</span>

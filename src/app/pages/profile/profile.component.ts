@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
 
   orders: Order[] = [];
   defaultAddress = '';
+  reviewsCount = 0;
   selectedOrder: Order | null = null;
   recommendedProducts: any[] = [];
   hasSurveyData = false;
@@ -92,6 +93,8 @@ export class ProfileComponent implements OnInit {
 
     const addr = await this.addressService.getDefault(this.user.userId);
     this.defaultAddress = addr ? addr.addressDetails : '';
+
+    this.reviewsCount = this.reviewService.getByUserId(this.user.userId).length;
 
     this.resetForm();
   }

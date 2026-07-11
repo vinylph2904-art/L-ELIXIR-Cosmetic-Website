@@ -30,6 +30,7 @@
     <div class="flex items-center gap-4">
       <a class="hidden md:inline-flex items-center p-2 rounded hover:bg-surface-container transition" routerLink="/products" aria-label="Search">🔍</a>
       <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition" [routerLink]="accountLink" aria-label="Account">👤</a>
+      <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition" routerLink="/order-tracking" aria-label="Theo dõi đơn hàng" title="Theo dõi đơn hàng">📦</a>
       <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition relative" routerLink="/cart" aria-label="Cart">
         👜
         <span class="ml-1 text-sm bg-primary text-white rounded-full px-2">{{ cartCount }}</span>
@@ -43,6 +44,7 @@
       <a class="py-2 px-2 rounded hover:bg-surface-container" routerLink="/products">Sản phẩm</a>
       <a class="py-2 px-2 rounded hover:bg-surface-container" routerLink="/survey">Khảo sát da</a>
       <a class="py-2 px-2 rounded hover:bg-surface-container" routerLink="/recommendation">Quy trình của bạn</a>
+      <a class="py-2 px-2 rounded hover:bg-surface-container" routerLink="/order-tracking">Theo dõi đơn hàng</a>
     </div>
   </div>
 </nav>
