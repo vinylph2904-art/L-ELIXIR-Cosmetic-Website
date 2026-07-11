@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { OrderService } from '../../services/order.service';
+import { ReviewService } from '../../services/review.service';
+import { ToastService } from '../../services/toast.service';
 import { Order } from '../../data/order.model';
+import PRODUCTS from '../../data/mock-data/mock-products.json';
 
 interface TrackingStep {
   label: string;
@@ -30,6 +33,19 @@ export class OrderTrackingComponent implements OnInit {
   selectedOrder: Order | null = null;
   trackingSteps: TrackingStep[] = [];
 
+  currentUser: any = null;
+  reviewModalOpen = false;
+  reviewOrder: Order | null = null;
+  reviewableProducts: Array<{ productId: string; name: string }> = [];
+  selectedReviewProductId = '';
+  reviewDraft = {
+    title: '',
+    comment: '',
+    rating: 0
+  };
+  reviewError = '';
+  reviewSubmitting = false;
+
   private readonly STEP_LABELS = [
     { label: 'Đã đặt hàng', icon: 'check' },
     { label: 'Đã xác nhận', icon: 'check' },
@@ -41,6 +57,8 @@ export class OrderTrackingComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
+    private reviewService: ReviewService,
+    private toastService: ToastService,
     private route: ActivatedRoute
   ) {}
 
@@ -50,6 +68,7 @@ export class OrderTrackingComponent implements OnInit {
 
     if (this.isLoggedIn) {
       const user = this.authService.getCurrentUser();
+      this.currentUser = user;
       if (user) {
         this.myOrders = this.orderService.getByUserId(user.userId);
         if (routeOrderId) {
@@ -215,5 +234,178 @@ export class OrderTrackingComponent implements OnInit {
   formatCurrency(value: number | undefined): string {
     const amount = value ?? 0;
     return amount.toLocaleString('vi-VN') + ' VNĐ';
+  }
+
+  canReviewOrder(order: Order): boolean {
+    if (!this.isLoggedIn || !this.currentUser) {
+      return false;
+    }
+    if (order.orderStatus !== 'Completed') {
+      return false;
+    }
+
+    return (order.items || []).some(item => {
+      const productId = (item as any).product?.productId || (item as any).productId;
+      return !!productId && !this.reviewService.getByUserAndProduct(this.currentUser.userId, productId);
+    });
+  }
+
+  openReviewModal(order: Order): void {
+    if (!this.currentUser) {
+      return;
+    }
+
+    const reviewableItems = (order.items || []).filter(item => {
+      const productId = (item as any).product?.productId || (item as any).productId;
+      return !!productId && !this.reviewService.getByUserAndProduct(this.currentUser.userId, productId);
+    });
+
+    if (reviewableItems.length === 0) {
+      this.reviewError = 'Bạn đã đánh giá hết sản phẩm trong đơn hàng này.';
+      return;
+    }
+
+    this.reviewOrder = order;
+    this.reviewableProducts = reviewableItems.map(item => ({
+      productId: (item as any).product?.productId || (item as any).productId,
+      name: (item as any).product?.name || (item as any).productName || 'Sản phẩm'
+    }));
+    this.selectedReviewProductId = this.reviewableProducts[0].productId;
+    this.reviewDraft = { title: '', comment: '', rating: 0 };
+    this.reviewError = '';
+    this.reviewModalOpen = true;
+  }
+
+  closeReviewModal(): void {
+    this.reviewModalOpen = false;
+    this.reviewOrder = null;
+    this.reviewableProducts = [];
+    this.selectedReviewProductId = '';
+    this.reviewDraft = { title: '', comment: '', rating: 0 };
+    this.reviewError = '';
+    this.reviewSubmitting = false;
+  }
+
+  selectReviewStar(rating: number): void {
+    this.reviewDraft.rating = rating;
+  }
+
+  async submitReview(): Promise<void> {
+    if (!this.currentUser || !this.reviewOrder || !this.selectedReviewProductId) {
+      return;
+    }
+
+    if (this.reviewDraft.rating === 0) {
+      this.reviewError = 'Vui lòng chọn số sao';
+      return;
+    }
+
+    if (!this.reviewDraft.title.trim() || !this.reviewDraft.comment.trim()) {
+      this.reviewError = 'Vui lòng nhập tiêu đề và nội dung đánh giá.';
+      return;
+    }
+
+    this.reviewSubmitting = true;
+    this.reviewError = '';
+
+    try {
+      this.reviewService.create({
+        productId: this.selectedReviewProductId,
+        userId: this.currentUser.userId,
+        userName: this.currentUser.fullName,
+        orderId: this.reviewOrder.orderId,
+        title: this.reviewDraft.title.trim(),
+        rating: this.reviewDraft.rating,
+        comment: this.reviewDraft.comment.trim(),
+        images: []
+      });
+
+      this.reviewSubmitting = false;
+      this.closeReviewModal();
+
+      if (this.isLoggedIn && this.currentUser) {
+        this.myOrders = this.orderService.getByUserId(this.currentUser.userId);
+        if (this.selectedOrder) {
+          const updated = this.myOrders.find(o => o.orderId === this.selectedOrder!.orderId);
+          if (updated) {
+            this.selectedOrder = updated;
+          }
+        }
+      }
+    } catch (error) {
+      this.reviewSubmitting = false;
+      this.reviewError = 'Đã có lỗi xảy ra, vui lòng thử lại.';
+    }
+  }
+
+  clickReviewButton(order: Order): void {
+    if (!this.isLoggedIn || !this.currentUser) {
+      this.toastService.warning('Vui lòng đăng nhập để đánh giá sản phẩm.');
+      return;
+    }
+    if (order.orderStatus !== 'Completed') {
+      this.toastService.warning('Chỉ có thể đánh giá đơn hàng đã hoàn tất.');
+      return;
+    }
+
+    const reviewableItems = (order.items || []).filter(item => {
+      const productId = (item as any).product?.productId || (item as any).productId;
+      return !!productId && !this.reviewService.getByUserAndProduct(this.currentUser.userId, productId);
+    });
+
+    if (reviewableItems.length === 0) {
+      this.toastService.info('Bạn đã đánh giá hết sản phẩm trong đơn hàng này.');
+      return;
+    }
+
+    this.openReviewModal(order);
+  }
+
+  getProductImage(item: any): string {
+    const fallbackImage = 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80';
+    if (!item) return fallbackImage;
+
+    const productName = (item.product?.name || item.productName || '').toLowerCase().trim();
+    const productId = (item.product?.productId || item.productId || '').toLowerCase().trim();
+
+    // 1. Tìm sản phẩm trong danh sách PRODUCTS mẫu bằng ID
+    let matchedProduct = PRODUCTS.find((p: any) => p.productId.toLowerCase() === productId);
+    
+    // 2. Nếu không khớp hoặc tên sản phẩm khác nhau, tìm kiếm theo Tên để tránh lệch dữ liệu trong đơn hàng mẫu
+    if (!matchedProduct || (productName && matchedProduct.name.toLowerCase() !== productName)) {
+      const byName = PRODUCTS.find((p: any) => {
+        const pName = p.name.toLowerCase();
+        return pName === productName || pName.includes(productName) || productName.includes(pName);
+      });
+      if (byName) {
+        matchedProduct = byName;
+      }
+    }
+
+    // 3. Nếu tìm thấy sản phẩm mẫu, ưu tiên tìm ảnh chứa ".1" (ví dụ: SP01.1.png, 2.1.png, kcn 1.1.jpg)
+    if (matchedProduct && matchedProduct.images && matchedProduct.images.length > 0) {
+      const repImage = matchedProduct.images.find((img: string) => {
+        const lower = img.toLowerCase();
+        return lower.includes('.1.') || lower.endsWith('.1.png') || lower.endsWith('.1.jpg') || lower.endsWith('.1.jpeg') || lower.endsWith('.1');
+      });
+      if (repImage) {
+        return repImage;
+      }
+      return matchedProduct.images[0];
+    }
+
+    // 4. Nếu không tìm thấy sản phẩm mẫu, dùng ảnh trong item hiện tại và tìm ảnh ".1"
+    if (item.product?.images && item.product.images.length > 0) {
+      const repImage = item.product.images.find((img: string) => {
+        const lower = img.toLowerCase();
+        return lower.includes('.1.') || lower.endsWith('.1.png') || lower.endsWith('.1.jpg') || lower.endsWith('.1.jpeg') || lower.endsWith('.1');
+      });
+      if (repImage) {
+        return repImage;
+      }
+      return item.product.images[0];
+    }
+
+    return fallbackImage;
   }
 }

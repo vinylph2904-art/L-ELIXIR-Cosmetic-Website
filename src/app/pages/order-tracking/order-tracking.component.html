@@ -143,17 +143,19 @@
           <h2 class="font-headline-md text-headline-md text-primary mb-8">Tóm tắt đơn hàng</h2>
           <div class="space-y-6 mb-8 pb-8 border-b border-outline-variant/50">
             <div *ngFor="let item of order.items" class="flex gap-4">
-              <div class="w-20 h-24 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
-                <img
-                  [src]="item.product.images[0] || 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80'"
-                  [alt]="item.product.name" class="w-full h-full object-cover" />
-              </div>
-              <div class="flex-grow">
-                <p class="font-body-md text-body-md font-medium text-primary">{{ item.product.name }}</p>
-                <p class="font-label-sm text-label-sm text-on-surface-variant">{{ item.product.volume }} | Số lượng:
-                  {{ item.quantity }}</p>
-                <p class="font-body-md text-body-md font-medium mt-2">{{ formatCurrency(item.price) }}</p>
-              </div>
+              <a [routerLink]="['/products', item.product.productId]" class="flex gap-4 hover:opacity-80 transition cursor-pointer group decoration-none w-full text-left">
+                <div class="w-20 h-24 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+                  <img
+                    [src]="getProductImage(item)"
+                    [alt]="item.product.name" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex-grow">
+                  <p class="font-body-md text-body-md font-medium text-primary group-hover:underline">{{ item.product.name }}</p>
+                  <p class="font-label-sm text-label-sm text-on-surface-variant">{{ item.product.volume }} | Số lượng:
+                    {{ item.quantity }}</p>
+                  <p class="font-body-md text-body-md font-medium mt-2">{{ formatCurrency(item.price) }}</p>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -176,10 +178,64 @@
             <a routerLink="/"
               class="w-full inline-block text-center py-4 bg-primary text-white font-label-md text-label-md rounded-full hover:bg-primary/90 transition-all active:scale-[0.98]">TIẾP
               TỤC MUA SẮM</a>
+            <button (click)="clickReviewButton(order)"
+              type="button"
+              class="w-full inline-block text-center py-4 border border-primary text-primary font-label-md text-label-md rounded-full hover:bg-primary/5 transition-all active:scale-[0.98] uppercase">ĐÁNH
+              GIÁ</button>
           </div>
         </div>
       </div>
     </div>
   </ng-container>
 
+  <div *ngIf="reviewModalOpen" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 px-4 py-6">
+    <div class="w-full max-w-2xl rounded-2xl bg-surface-container-lowest p-6 shadow-2xl border border-outline-variant">
+      <div class="flex items-start justify-between gap-4 mb-6">
+        <div>
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Đánh giá sản phẩm</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface">Đơn hàng #{{ reviewOrder?.orderId }}</h3>
+        </div>
+        <button type="button" class="rounded-full p-2 text-on-surface-variant hover:bg-surface-container" (click)="closeReviewModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div *ngIf="reviewError" class="mb-4 rounded-lg border border-error/30 bg-error-container/20 px-4 py-3 text-sm text-error">{{ reviewError }}</div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Sản phẩm</label>
+          <select [(ngModel)]="selectedReviewProductId" name="reviewProduct" class="w-full rounded-lg border border-outline-variant bg-transparent px-3 py-3">
+            <option *ngFor="let item of reviewableProducts" [value]="item.productId">{{ item.name }}</option>
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Tiêu đề</label>
+          <input [(ngModel)]="reviewDraft.title" name="reviewTitle" type="text" class="w-full rounded-lg border border-outline-variant bg-transparent px-3 py-3" placeholder="Ví dụ: Sản phẩm rất đáng dùng" />
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Đánh giá</label>
+          <div class="flex items-center gap-2">
+            <button *ngFor="let star of [1,2,3,4,5]" type="button" (click)="selectReviewStar(star)" class="text-primary">
+              <span class="material-symbols-outlined text-[32px]" [style.fontVariationSettings]='star <= reviewDraft.rating ? "\"FILL\" 1" : "\"FILL\" 0"'>star</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Nội dung</label>
+          <textarea [(ngModel)]="reviewDraft.comment" name="reviewComment" rows="4" class="w-full rounded-lg border border-outline-variant bg-transparent px-3 py-3" placeholder="Chia sẻ trải nghiệm của bạn..."></textarea>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-wrap justify-end gap-3">
+        <button type="button" class="rounded-lg border border-outline-variant px-6 py-3 font-label-sm uppercase tracking-widest text-on-surface-variant" (click)="closeReviewModal()">Hủy</button>
+        <button type="button" class="rounded-lg bg-primary px-6 py-3 font-label-sm uppercase tracking-widest text-on-primary" (click)="submitReview()" [disabled]="reviewSubmitting">
+          {{ reviewSubmitting ? 'Đang lưu...' : 'Gửi đánh giá' }}
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
