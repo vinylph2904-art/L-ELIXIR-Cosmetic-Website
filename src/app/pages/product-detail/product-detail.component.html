@@ -10,11 +10,14 @@
   <section class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-section-gap-desktop">
     <div class="space-y-6">
       <div class="relative aspect-square overflow-hidden rounded-xl bg-surface-container">
-        <img [src]="selectedImage" [alt]="product.name" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+        <img [src]="selectedImage" [alt]="product.name"
+          class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
       </div>
 
       <div class="grid grid-cols-4 gap-4">
-        <button class="aspect-square rounded-lg overflow-hidden border-2 border-primary" (click)="selectedImage = image" *ngFor="let image of product.images"   [class.border-primary]="selectedImage === image" [class.border-gray-300]="selectedImage !== image">
+        <button class="aspect-square rounded-lg overflow-hidden border-2 border-primary" (click)="selectedImage = image"
+          *ngFor="let image of product.images" [class.border-primary]="selectedImage === image"
+          [class.border-gray-300]="selectedImage !== image">
           <img [src]="image" [alt]="product.name" class="w-full h-full object-cover">
         </button>
       </div>
@@ -25,40 +28,55 @@
       <h1 class="font-headline-lg text-headline-lg mb-4">{{ product.name }}</h1>
       <div class="flex items-center gap-4 mb-6">
         <div class="flex text-primary">
-          <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
-            <span class="material-symbols-outlined text-[18px]" [style.fontVariationSettings]='star <= product.averageRating ? "\"FILL\" 1" : "\"FILL\" 0"'>star</span>
+          <!-- Sao đầy -->
+          <ng-container *ngFor="let _ of [].constructor(getFullStars(product.averageRating))">
+            <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+          </ng-container>
+          <!-- Nửa sao -->
+          <span *ngIf="hasHalfStar(product.averageRating)"
+            class="material-symbols-outlined text-[18px]">star_half</span>
+          <!-- Sao rỗng -->
+          <ng-container *ngFor="let _ of [].constructor(getEmptyStars(product.averageRating))">
+            <span class="material-symbols-outlined text-[18px]">star</span>
           </ng-container>
         </div>
-        <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary" [routerLink]="['/products', product.productId, 'reviews']">
+        <a class="text-on-surface-variant font-label-md text-label-md hover:text-primary"
+          [routerLink]="['/products', product.productId, 'reviews']">
           {{ product.averageRating }}/5 ({{ product.reviewCount }} đánh giá)
         </a>
       </div>
-      <p class="text-headline-md font-headline-md text-primary mb-8">{{ product.price | currency:'VND':'symbol':'1.0-0' }}</p>
+      <p class="text-headline-md font-headline-md text-primary mb-8">{{ product.price | currency:'VND':'symbol':'1.0-0'
+        }}</p>
       <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed">{{ product.description }}</p>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-        <div><h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Loại da</h4>
+        <div>
+          <h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Loại da</h4>
           <div class="flex flex-wrap gap-2">
-            <span *ngFor="let skinType of product.targetSkinTypes" class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm">{{ skinType }}</span>
+            <span *ngFor="let skinType of product.targetSkinTypes"
+              class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm">{{ skinType }}</span>
           </div>
         </div>
         <div>
           <h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Dung tích</h4>
-          <span class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm">{{ product.volume }}</span>
+          <span class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm">{{ product.volume
+            }}</span>
         </div>
       </div>
 
       <div class="mb-12">
         <h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Vấn đề da</h4>
         <div class="flex flex-wrap gap-2">
-          <span *ngFor="let problem of product.targetSkinProblems" class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm">{{ problem }}</span>
+          <span *ngFor="let problem of product.targetSkinProblems"
+            class="px-3 py-1 bg-surface-container rounded-full font-label-sm text-label-sm">{{ problem }}</span>
         </div>
       </div>
 
       <div class="mb-12">
         <h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Thành phần nổi bật</h4>
         <div class="flex flex-wrap gap-2">
-          <span *ngFor="let ingredient of product.ingredients" class="px-3 py-1 bg-primary-container rounded-full font-label-sm text-label-sm"> {{ ingredient }}</span>
+          <span *ngFor="let ingredient of product.ingredients"
+            class="px-3 py-1 bg-primary-container rounded-full font-label-sm text-label-sm"> {{ ingredient }}</span>
         </div>
       </div>
 
@@ -68,31 +86,20 @@
           <div class="flex flex-col">
             <div class="flex items-center border border-outline rounded-lg px-4 py-3 min-w-[120px] justify-between">
               <!-- Nút - (decrease): Giảm số lượng, chỉ enabled khi > 1 -->
-              <button 
-                (click)="decreaseQuantity()" 
-                [disabled]="selectedQuantity <= 1"
-                class="material-symbols-outlined text-[20px] hover:text-primary disabled:text-outline disabled:hover:text-outline transition-colors" 
+              <button (click)="decreaseQuantity()" [disabled]="selectedQuantity <= 1"
+                class="material-symbols-outlined text-[20px] hover:text-primary disabled:text-outline disabled:hover:text-outline transition-colors"
                 type="button">
                 remove
               </button>
               <!-- Ô nhập số lượng hiện tại (2-way binding với selectedQuantity) -->
-              <input
-                type="number"
-                inputmode="numeric"
-                min="1"
-                [attr.max]="product.stockQuantity > 0 ? product.stockQuantity : 1"
-                step="1"
-                class="w-12 bg-transparent text-center font-label-md text-label-md outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                [ngModel]="selectedQuantity"
-                (ngModelChange)="onQuantityInputChange($event)"
-                (blur)="validateQuantity()"
-                aria-label="Số lượng sản phẩm"
-              />
+              <input type="number" inputmode="numeric" min="1"
+                [attr.max]="product.stockQuantity > 0 ? product.stockQuantity : 1" step="1"
+                class="w-12 bg-transparent text-center font-label-md text-label-md outline-none border-0 focus:outline-none focus:ring-0 focus:border-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                [ngModel]="selectedQuantity" (ngModelChange)="onQuantityInputChange($event)" (blur)="validateQuantity()"
+                (keydown.enter)="onEnterQuantity($event)" aria-label="Số lượng sản phẩm" />
               <!-- Nút + (increase): Tăng số lượng, chỉ enabled khi < stockQuantity -->
-              <button 
-                (click)="increaseQuantity()" 
-                [disabled]="selectedQuantity >= product.stockQuantity"
-                class="material-symbols-outlined text-[20px] hover:text-primary disabled:text-outline disabled:hover:text-outline transition-colors" 
+              <button (click)="increaseQuantity()" [disabled]="selectedQuantity >= product.stockQuantity"
+                class="material-symbols-outlined text-[20px] hover:text-primary disabled:text-outline disabled:hover:text-outline transition-colors"
                 type="button">
                 add
               </button>
@@ -100,16 +107,15 @@
             <p *ngIf="quantityError" class="mt-2 text-sm text-red-500">{{ quantityError }}</p>
           </div>
           <!-- Nút Add to Cart: Gọi addToCart() với selectedQuantity -->
-          <button 
-            (click)="addToCart()" 
-            class="w-full bg-primary text-white py-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity uppercase tracking-widest">
+          <button (click)="addToCart()"
+            style="border: 1px solid #735a36; color: #735a36; background-color: transparent;"
+            class="w-full py-4 rounded-lg font-label-md text-label-md hover:bg-primary-container/10 transition-colors uppercase tracking-widest">
             Thêm vào giỏ hàng
           </button>
         </div>
       </div>
-      <button 
-        (click)="onBuyNow()" 
-        class="w-full border border-primary text-primary py-4 rounded-lg font-label-md text-label-md hover:bg-primary-container/10 transition-colors uppercase tracking-widest">
+      <button (click)="onBuyNow()" style="background-color: #735a36; color: #ffffff;"
+        class="w-full py-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity uppercase tracking-widest">
         Mua ngay
       </button>
     </div>
@@ -204,21 +210,16 @@
       </div>
 
       <div class="lg:max-w-3xl">
-        <h3 class="font-headline-md text-headline-md mb-4">Đánh giá từ khách hàng</h3>
-        <app-review-list
-          [productId]="product.productId"
-          [key]="newReviewAdded ? 'refresh' : 'normal'"
-          [maxItems]="2">
-        </app-review-list>
-
-        <div *ngIf="product.reviewCount > 2" class="mt-6">
-          <a
-            class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:text-primary/80 transition-colors"
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-headline-md text-headline-md">Đánh giá từ khách hàng</h3>
+          <a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:text-primary/80 transition-colors"
             [routerLink]="['/products', product.productId, 'reviews']">
             <span class="material-symbols-outlined text-[18px]">rate_review</span>
-            Xem tất cả ({{ product.reviewCount }} đánh giá)
+            Xem tất cả {{ product.reviewCount }} đánh giá
           </a>
         </div>
+        <app-review-list [productId]="product.productId" [key]="newReviewAdded ? 'refresh' : 'normal'" [maxItems]="2">
+        </app-review-list>
       </div>
     </div>
   </section>

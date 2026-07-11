@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   productPendingDelete: Product | null = null;
   quantityErrors: Record<string, string> = {};
   selectedProductIds: Set<string> = new Set<string>();
+  private _enterPressed = false;
 
   constructor(
     private cartService: CartService,
@@ -116,6 +117,24 @@ export class CartComponent implements OnInit {
 
   getQuantityError(productId: string): string {
     return this.quantityErrors[productId] || '';
+  }
+
+  onBlurQuantity(productId: string, event: FocusEvent): void {
+    if (this._enterPressed) return; // Enter đã xử lý rồi, bỏ qua blur
+    const input = event.target as HTMLInputElement;
+    const value = Number(input.value);
+    this.setQuantity(productId, isNaN(value) || value < 1 ? 1 : value);
+  }
+
+  onEnterQuantity(productId: string, event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = Number(input.value);
+    this._enterPressed = true;
+    this.setQuantity(productId, isNaN(value) || value < 1 ? 1 : value);
+    setTimeout(() => {
+      input.blur();
+      this._enterPressed = false;
+    }, 0);
   }
 
   toggleSelectAll(checked: boolean): void {

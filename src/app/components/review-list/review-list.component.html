@@ -8,11 +8,16 @@
           {{ averageRating }}/5
         </div>
         <div class="flex justify-center text-primary mb-2">
-          <span *ngFor="let star of getStarArray(5); let i = index"
-                class="material-symbols-outlined text-[20px]"
-                [style.fontVariationSettings]='isFilled(star, Math.round(averageRating)) ? "\"FILL\" 1" : "\"FILL\" 0"'>
-            star
-          </span>
+          <!-- Sao đầy -->
+          <ng-container *ngFor="let _ of [].constructor(getFullStars(averageRating))">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+          </ng-container>
+          <!-- Nửa sao -->
+          <span *ngIf="hasHalfStar(averageRating)" class="material-symbols-outlined text-[20px]">star_half</span>
+          <!-- Sao rỗng -->
+          <ng-container *ngFor="let _ of [].constructor(getEmptyStars(averageRating))">
+            <span class="material-symbols-outlined text-[20px]">star</span>
+          </ng-container>
         </div>
         <p class="text-label-sm text-on-surface-variant">{{ totalReviews }} đánh giá</p>
       </div>
@@ -52,11 +57,16 @@
           </p>
         </div>
         <div class="flex text-primary ml-4 flex-shrink-0">
-          <span *ngFor="let star of getStarArray(5); let i = index"
-                class="material-symbols-outlined text-[16px]"
-                [style.fontVariationSettings]='isFilled(star, review.rating) ? "\"FILL\" 1" : "\"FILL\" 0"'>
-            star
-          </span>
+          <!-- Sao đầy -->
+          <ng-container *ngFor="let _ of [].constructor(getFullStars(review.rating))">
+            <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+          </ng-container>
+          <!-- Nửa sao (review.rating thường là integer, nhưng vẫn xử lý cho đủ) -->
+          <span *ngIf="hasHalfStar(review.rating)" class="material-symbols-outlined text-[16px]">star_half</span>
+          <!-- Sao rỗng -->
+          <ng-container *ngFor="let _ of [].constructor(getEmptyStars(review.rating))">
+            <span class="material-symbols-outlined text-[16px]">star</span>
+          </ng-container>
         </div>
       </div>
 

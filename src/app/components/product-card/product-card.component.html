@@ -1,8 +1,8 @@
-<div class="flex h-full cursor-pointer flex-col rounded-xl bg-background p-2.5 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-xl sm:p-4" (click)="goToDetail()">
+<div
+  class="flex h-full cursor-pointer flex-col rounded-xl bg-background p-2.5 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-xl sm:p-4"
+  (click)="goToDetail()">
   <div class="mb-3 aspect-square overflow-hidden rounded-lg bg-surface-container-lowest sm:mb-6">
-    <img
-      [src]="product.images[0]"
-      [alt]="product.name"
+    <img [src]="product.images[0]" [alt]="product.name"
       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
   </div>
 
@@ -10,50 +10,52 @@
 
     <div class="flex justify-between items-center">
 
-      <span class="rounded-full bg-primary-container/20 px-2 py-0.5 text-[8px] font-label-sm uppercase tracking-widest text-primary sm:text-[10px]">
+      <span
+        class="rounded-full bg-primary-container/20 px-2 py-0.5 text-[8px] font-label-sm uppercase tracking-widest text-primary sm:text-[10px]">
         {{ product.categoryName }}
       </span>
 
       <!-- rating -->
     </div>
 
-    <h3 class="min-h-[2.4rem] text-[0.82rem] font-semibold leading-tight text-on-surface line-clamp-2 sm:min-h-[3.5rem] sm:text-base sm:font-display-lg sm:text-headline-md">
-        {{ product.name }}
+    <h3
+      class="min-h-[2.4rem] text-[0.82rem] font-semibold leading-tight text-on-surface line-clamp-2 sm:min-h-[3.5rem] sm:text-base sm:font-display-lg sm:text-headline-md">
+      {{ product.name }}
     </h3>
 
     <div class="flex items-center gap-2 mt-1">
 
-    <div class="flex text-yellow-500">
+      <div class="flex text-yellow-500">
         <ng-container *ngFor="let _ of [].constructor(getFullStars(product.averageRating))">
-        <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">
+          <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">
             star
-        </span>
+          </span>
         </ng-container>
 
-        <span *ngIf="hasHalfStar(product.averageRating)"
-        class="material-symbols-outlined text-[14px]">
-        star_half
+        <span *ngIf="hasHalfStar(product.averageRating)" class="material-symbols-outlined text-[14px]">
+          star_half
         </span>
 
         <ng-container *ngFor="let _ of [].constructor(getEmptyStars(product.averageRating))">
-        <span class="material-symbols-outlined text-[14px] text-gray-300">
+          <span class="material-symbols-outlined text-[14px] text-gray-300">
             star
-        </span>
+          </span>
         </ng-container>
-    </div>
+      </div>
 
-    <span class="text-[10px] text-on-surface-variant sm:text-xs">
+      <span class="text-[10px] text-on-surface-variant sm:text-xs">
         {{ product.averageRating | number:'1.1-1' }}
         ({{ product.reviewCount }})
-    </span>
+      </span>
 
-    </div>    
+    </div>
 
     <p class="font-label-md text-[0.82rem] text-on-surface-variant sm:text-base">
       {{ product.price | number:'1.0-0' }} VNĐ
     </p>
     <div (click)="addToCart($event)">
-        <button class="w-full rounded-lg border border-outline py-1.5 text-[0.8rem] sm:py-3 sm:text-base"> Thêm vào giỏ hàng </button>
+      <button class="w-full rounded-lg border border-outline py-1.5 text-[0.8rem] sm:py-3 sm:text-base"> Thêm vào giỏ
+        hàng </button>
     </div>
-    </div>
+  </div>
 </div>
