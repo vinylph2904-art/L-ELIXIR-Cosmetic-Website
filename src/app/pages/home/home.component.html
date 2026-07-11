@@ -51,55 +51,47 @@
   </div>
 </section>
 
-<section class="py-section-gap-desktop max-w-container-max mx-auto px-gutter">
-  <h2 class="font-display-lg text-headline-lg text-center mb-16">Mua sắm theo Nhu cầu</h2>
-  <div class="flex justify-center gap-gutter pb-8">
-    <div *ngFor="let category of categories" class="flex-none w-48 snap-start group cursor-pointer" [routerLink]="['/products']" [queryParams]="{ category: category.name }">
-      <div class="aspect-square rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-primary transition-all duration-300">
-        <img [src]="category.image" [alt]="category.name" class="w-full h-full object-cover" />
+<section class="py-8 max-w-container-max mx-auto px-gutter sm:py-section-gap-desktop">
+  <h2 class="mb-8 text-center text-[1.5rem] font-display-lg tracking-[0.08em] text-on-surface sm:mb-16 sm:text-headline-lg">Mua sắm theo Nhu cầu</h2>
+  <div class="flex justify-center gap-3 overflow-x-auto pb-3 snap-x snap-mandatory scroll-smooth sm:gap-4 sm:pb-4">
+    <div *ngFor="let category of categories" class="min-w-[110px] max-w-[120px] flex-none snap-start group cursor-pointer sm:min-w-[170px] sm:max-w-[190px]" [routerLink]="['/products']" [queryParams]="{ category: category.name }">
+      <div class="mb-2 aspect-square overflow-hidden rounded-full border-2 border-transparent transition-all duration-300 group-hover:border-primary sm:mb-4">
+        <img [src]="category.image" [alt]="category.name" class="h-full w-full object-cover" />
       </div>
-      <p class="font-label-md text-center uppercase tracking-widest group-hover:text-primary transition-colors">{{ category.name }}</p>
+      <p class="text-center text-[0.72rem] uppercase tracking-widest transition-colors group-hover:text-primary sm:text-label-md">{{ category.name }}</p>
     </div>
   </div>
 </section>
 
-<section class="py-section-gap-desktop bg-surface-container-low/50">
+<section class="bg-surface-container-low/50 py-8 sm:py-section-gap-desktop">
   <div class="max-w-container-max mx-auto px-gutter">
-    <div class="flex justify-between items-end mb-12">
+    <div class="mb-6 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Dành riêng cho bạn</span>
-        <h2 class="font-display-lg text-headline-lg mt-2">Sản phẩm Bán chạy</h2>
+        <h2 class="mt-1 text-[1.5rem] font-display-lg text-on-surface sm:text-headline-lg">Sản phẩm Bán chạy</h2>
       </div>
-      <a routerLink="/products" class="font-label-md text-label-md text-primary hover:underline underline-offset-8">Xem tất cả sản phẩm</a>
+      <a routerLink="/products" class="text-sm text-primary underline-offset-8 hover:underline sm:font-label-md sm:text-label-md">Xem tất cả sản phẩm</a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter items-stretch">
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-gutter items-stretch">
       <app-product-card *ngFor="let product of featuredProducts" [product]="product"></app-product-card>
     </div>
   </div>
 </section>
 
-<section class="py-section-gap-desktop bg-surface-container overflow-hidden">
+<section class="bg-surface-container py-8 overflow-hidden sm:py-section-gap-desktop">
   <div class="max-w-container-max mx-auto px-gutter">
-    <div class="flex justify-between items-end mb-12">
-      <h2 class="font-display-lg text-headline-lg">Bộ sưu tập Mới</h2>
-      <div class="flex gap-4">
-        <button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-          <span class="material-symbols-outlined">arrow_back</span>
-        </button>
-        <button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </button>
-      </div>
+    <div class="mb-6 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="text-[1.5rem] font-display-lg text-on-surface sm:text-headline-lg">Bộ sưu tập Mới</h2>
     </div>
     <div class="flex gap-gutter overflow-x-auto pb-12 hide-scrollbar snap-x">
       <ng-container *ngFor="let collection of collections">
-        <div class="flex-none w-[80vw] md:w-[600px] snap-center">
+        <div class="w-[72vw] flex-none snap-center sm:w-[480px] md:w-[600px]">
           <a [routerLink]="collection.route" class="block relative aspect-[16/9] rounded-xl overflow-hidden group">
             <img [alt]="collection.title" class="w-full h-full object-cover" [src]="collection.image">
-            <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex flex-col justify-end p-8 text-white">
-              <span class="font-label-sm uppercase tracking-widest mb-2">{{ collection.subtitle }}</span>
-              <h3 class="font-display-lg text-headline-lg">{{ collection.title }}</h3>
-              <span class="mt-4 font-label-md uppercase underline underline-offset-8 inline-block">Xem bài viết</span>
+            <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex flex-col justify-end p-5 text-white sm:p-8">
+              <span class="mb-2 text-[0.8rem] font-label-md uppercase tracking-[0.2em] sm:text-sm">{{ collection.subtitle }}</span>
+              <h3 class="text-xl font-display-lg sm:text-headline-lg">{{ collection.title }}</h3>
+              <span class="mt-3 text-[0.8rem] font-label-md uppercase underline underline-offset-8 inline-block sm:mt-4 sm:text-sm">Xem bài viết</span>
             </div>
           </a>
         </div>
@@ -111,8 +103,8 @@
 <section class="py-section-gap-desktop">
   <div class="max-w-container-max mx-auto px-gutter">
     <h2 class="font-display-lg text-headline-lg text-center mb-16">Chia sẻ từ những <i>tín đồ làm đẹp</i></h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-      <div class="p-8 bg-surface-container-low rounded-xl border border-outline/10">
+    <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-3 md:gap-gutter md:overflow-visible md:pb-0">
+      <div class="min-w-[84vw] max-w-[84vw] flex-none snap-start rounded-xl border border-outline/10 bg-surface-container-low p-8 md:min-w-0 md:max-w-none">
         <div class="flex gap-1 text-primary mb-6">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
@@ -131,7 +123,7 @@
           </div>
         </div>
       </div>
-      <div class="p-8 bg-surface-container-low rounded-xl border border-outline/10">
+      <div class="min-w-[84vw] max-w-[84vw] flex-none snap-start rounded-xl border border-outline/10 bg-surface-container-low p-8 md:min-w-0 md:max-w-none">
         <div class="flex gap-1 text-primary mb-6">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
@@ -150,7 +142,7 @@
           </div>
         </div>
       </div>
-      <div class="p-8 bg-surface-container-low rounded-xl border border-outline/10">
+      <div class="min-w-[84vw] max-w-[84vw] flex-none snap-start rounded-xl border border-outline/10 bg-surface-container-low p-8 md:min-w-0 md:max-w-none">
         <div class="flex gap-1 text-primary mb-6">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>

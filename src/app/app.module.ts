@@ -18,7 +18,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { PaymentFailureComponent } from './pages/payment-failure/payment-failure.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { BeautyAssistantComponent } from './beauty-assistant/beauty-assistant.component';
+import { BeautyAssistantComponent } from './components/beauty-assistant/beauty-assistant.component';
 import { ToastContainerComponent } from './components/toast-container/toast-container.component';
 import { ReviewListComponent } from './components/review-list/review-list.component';
 import { ReviewFormComponent } from './components/review-form/review-form.component';
@@ -57,9 +57,9 @@ import { SupportComponent } from './pages/support/support.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    RouterModule,
     BeautyAssistantComponent,
     ToastContainerComponent,
-    RouterModule,
     SupportComponent
   ],
   providers: [],

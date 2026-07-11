@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import mockOrders from './data/mock/orders.mock.json';
-import PRODUCTS from './data/mock-products.json';
-import seedUsers from './data/users.json';
+import mockOrders from './data/mock-data/orders.mock.json';
+import PRODUCTS from './data/mock-data/mock-products.json';
+import seedUsers from './data/mock-data/users.json';
 
 @Component({
   selector: 'app-root',

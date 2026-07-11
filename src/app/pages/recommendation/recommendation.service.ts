@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import PRODUCTS from '../../data/mock-products.json';
+import PRODUCTS from '../../data/mock-data/mock-products.json';
 import { Product } from '../../data/product.model';
 
 interface Ingredient {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Address } from '../data/address.model';
-import seedAddresses from '../data/addresses.json';
+import seedAddresses from '../data/mock-data/addresses.json';
 
 const ADDRESSES_KEY = 'addresses';
 const INITIAL_ADDRESSES = seedAddresses as Address[];

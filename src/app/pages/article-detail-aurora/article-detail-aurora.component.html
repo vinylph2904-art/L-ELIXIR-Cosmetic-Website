@@ -2,16 +2,16 @@
   <header class="relative mt-0 h-[85vh] w-full overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img class="h-full w-full object-cover" [src]="article.image" [alt]="article.title" />
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/90"></div>
     </div>
     <div class="relative z-10 flex h-full flex-col items-center justify-end px-margin-mobile pb-24 text-center">
       <div class="mx-auto max-w-4xl">
-        <span class="mb-6 block font-label-md text-label-md uppercase tracking-[0.3em] text-primary">HÀNH TRÌNH TĨNH LẶNG</span>
-        <h1 class="mb-8 font-display-lg-mobile text-display-lg-mobile text-on-background leading-tight md:font-display-lg md:text-display-lg">
+        <span class="mb-6 block font-label-md text-label-md uppercase tracking-[0.4em] text-[#8a4a1f] font-bold">HÀNH TRÌNH TĨNH LẶNG</span>
+        <h1 class="mb-8 font-display-lg-mobile text-display-lg-mobile text-[#3e220d] leading-tight md:font-display-lg md:text-display-lg font-bold drop-shadow-sm">
           {{ article.title }}
         </h1>
-        <div class="mx-auto mb-8 h-[1px] w-16 bg-primary"></div>
-        <p class="mx-auto max-w-2xl font-body-lg text-body-lg text-secondary">
+        <div class="mx-auto mb-8 h-[1px] w-16 bg-[#8a4a1f]"></div>
+        <p class="mx-auto max-w-2xl font-body-lg text-body-lg text-[#5c3a21] font-medium leading-relaxed">
           {{ article.excerpt }}
         </p>
       </div>
@@ -21,43 +21,53 @@
   <main class="mx-auto max-w-container-max px-margin-mobile py-section-gap-mobile md:px-gutter md:py-section-gap-desktop">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
       <article class="md:col-start-3 md:col-end-11">
+        
         <section class="mb-32">
           <div class="mb-16 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-            <div class="order-2 md:order-1">
-              <h2 class="mb-6 font-headline-lg text-headline-lg text-primary">Hành trình phục hồi dịu nhẹ cùng Aurora</h2>
+            <div class="overflow-hidden rounded-2xl shadow-xl group">
+              <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/Serum/Serum 1.png" alt="Sản phẩm serum Aurora" />
+            </div>
+            <div>
+              <h2 class="mb-6 font-headline-lg text-headline-lg text-[#3e220d] font-bold">Huyết Thanh Tái Định Cấu Trúc & Làm Dịu</h2>
               <p class="mb-6 font-body-md text-body-md leading-relaxed text-secondary">
-                Aurora tập trung vào phục hồi và cân bằng, giúp làn da nhạy cảm trở nên khỏe mạnh hơn từng ngày. Bộ sưu tập kết hợp các bước dưỡng nhẹ nhàng nhưng vẫn đạt hiệu quả sâu.
+                Aurora Serum thế hệ mới đánh dấu một bước tiến vượt bậc trong công nghệ phục hồi sinh học. Sở hữu công thức cải tiến làm dịu cấp tốc, sản phẩm ngay lập tức hạ nhiệt các vùng da kích ứng, chủ động chữa lành các đứt gãy trong cấu trúc biểu bì và củng cố hệ vi sinh cốt lõi của làn da nhạy cảm.
               </p>
               <p class="font-body-md text-body-md leading-relaxed text-secondary">
-                Sử dụng đúng quy trình sẽ giúp làn da giảm kích ứng, tăng độ đàn hồi và duy trì độ ẩm lâu dài.
+                Tinh chất lỏng nhẹ thẩm thấu sâu vượt trội, giải phóng tổ hợp dưỡng chất chuyên sâu giúp nuôi dưỡng da khỏe mạnh, giảm thiểu tình trạng đỏ rát và tăng cường độ đàn hồi rõ rệt sau mỗi lần chạm.
               </p>
-            </div>
-            <div class="order-1 overflow-hidden rounded-2xl shadow-xl group md:order-2">
-              <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/Serum/Serum 2.png" alt="Sản phẩm serum Aurora" />
             </div>
           </div>
         </section>
 
-        <blockquote class="my-24 border-y border-outline-variant py-16 text-center">
-          <span class="mb-6 inline-block text-5xl text-primary-container material-symbols-outlined">format_quote</span>
-          <p class="px-8 font-headline-md text-headline-md italic text-primary md:px-24">
-            "Làn da được phục hồi thực sự khi mỗi bước dưỡng da đều được chọn lọc và sử dụng điều độ."
-          </p>
-        </blockquote>
+        <section class="mb-32">
+          <div class="mb-16 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+            <div class="order-2 md:order-1">
+              <h2 class="mb-6 font-headline-lg text-headline-lg text-[#3e220d] font-bold">Kem Dưỡng Tái Sinh & Phục Hồi Chuyên Sâu</h2>
+              <p class="mb-6 font-body-md text-body-md leading-relaxed text-secondary">
+                Nâng tầm trải nghiệm nuôi dưỡng sâu với Aurora Cream - phiên bản cải tiến mang hiệu năng khóa ẩm đa tầng vượt bậc. Chất kem xốp mịn được thiết kế đo ni đóng giày để hình thành lớp màng chắn sinh học kiên cố, khóa chặt các tinh chất phục hồi và bảo vệ da tối đa trước sự mất nước tự nhiên.
+              </p>
+              <p class="font-body-md text-body-md leading-relaxed text-secondary">
+                Các hoạt chất chống ô nhiễm đô thị mới được bổ sung giúp làm đầy kết cấu da thô ráp, trả lại bề mặt ẩm mượt, căng mướt và tràn đầy sức sống tươi trẻ bền vững.
+              </p>
+            </div>
+            <div class="order-1 overflow-hidden rounded-2xl shadow-xl group md:order-2">
+              <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/Kem dưỡng/1.1.png" alt="Kem dưỡng Aurora" />
+            </div>
+          </div>
+        </section>
 
         <section class="mb-32">
           <div class="mb-16 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
             <div class="overflow-hidden rounded-2xl shadow-xl group">
-              <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/Kem dưỡng/1.2.png" alt="Kem dưỡng Aurora" />
-              <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/KCN/kcn 1.2.jpg" alt="Kem chống nắng Aurora" />
+              <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" src="assets/images/KCN/kcn 1.1.jpg" alt="Kem chống nắng Aurora" />
             </div>
             <div>
-              <h2 class="mb-6 font-headline-lg text-headline-lg text-primary">Giữ vững lớp bảo vệ hàng ngày</h2>
+              <h2 class="mb-6 font-headline-lg text-headline-lg text-[#3e220d] font-bold">Màng Lọc Chống Nắng Quang Phổ Rộng Tối Tân</h2>
               <p class="mb-6 font-body-md text-body-md leading-relaxed text-secondary">
-                Bảo vệ da trước tia UV và các tác động môi trường là bước cuối cùng không thể thiếu. Aurora giúp da vừa ẩm mượt vừa chống oxy hóa trong mọi điều kiện.
+                Khép lại nghi thức phục hồi trọn vẹn bằng lớp khiên bảo vệ quang phổ rộng tối tân. Được nâng cấp mạnh mẽ với các màng lọc UV tiên tiến, sản phẩm phản xạ hoàn hảo các tia UVA/UVB gây hại, đẩy lùi triệt để nguy cơ tăng sắc tố và chặn đứng quá trình lão hóa sớm do ánh nắng mặt trời.
               </p>
               <p class="font-body-md text-body-md leading-relaxed text-secondary">
-                Chọn sản phẩm chống nắng phù hợp, duy trì thói quen dưỡng sáng và phục hồi để làn da luôn mềm mại và tươi trẻ.
+                Kết cấu cải tiến mỏng nhẹ như sương, hoàn toàn dịu lành cho nền da đang phục hồi, duy trì sự thông thoáng tuyệt đối và bảo bọc toàn diện làn da suốt cả ngày dài.
               </p>
             </div>
           </div>

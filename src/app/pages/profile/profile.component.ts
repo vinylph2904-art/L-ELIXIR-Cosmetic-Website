@@ -6,7 +6,7 @@ import { AddressService } from '../../services/address.service';
 import { ReviewService } from '../../services/review.service';
 import { User } from '../../data/user.model';
 import { Order } from '../../data/order.model';
-import PRODUCTS from '../../data/mock-products.json';
+import PRODUCTS from '../../data/mock-data/mock-products.json';
 
 @Component({
   selector: 'app-profile',
