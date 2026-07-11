@@ -35,6 +35,28 @@ export class ProductService {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.products));
   }
 
+  syncAllProductStats(statsByProductId: Map<string, { averageRating: number; reviewCount: number }>): void {
+    this.products = this.products.map(product => {
+      const stats = statsByProductId.get(product.productId);
+
+      if (!stats) {
+        return {
+          ...product,
+          averageRating: 0,
+          reviewCount: 0
+        };
+      }
+
+      return {
+        ...product,
+        averageRating: stats.averageRating,
+        reviewCount: stats.reviewCount
+      };
+    });
+
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.products));
+  }
+
   private loadProducts(): Product[] {
     try {
       const raw = localStorage.getItem(this.STORAGE_KEY);
