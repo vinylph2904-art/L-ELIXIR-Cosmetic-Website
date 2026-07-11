@@ -16,17 +16,19 @@
 
       <div class="grid grid-cols-3 gap-8">
         <div>
-          <h4 class="font-semibold uppercase mb-4 text-primary">
-            Bộ sưu tập mới
+          <h4 class="mb-4">
+            <a routerLink="/collection" class="font-semibold uppercase text-primary hover:underline">
+              Bộ sưu tập mới
+            </a>
           </h4>
           <ul class="space-y-3 text-on-surface-variant">
             <li>
-              <a routerLink="/articles/lumina" class="hover:text-primary">
+              <a routerLink="/articles/lumina" class="hover:text-primary transition-colors cursor-pointer block">
                 Tinh Hoa Dưỡng Sáng Lumina
               </a>
             </li>
             <li>
-              <a routerLink="/articles/aurora" class="hover:text-primary">
+              <a routerLink="/articles/aurora" class="hover:text-primary transition-colors cursor-pointer block">
                 Vẻ Đẹp Rạng Đông Aurora
               </a>
             </li>
@@ -41,7 +43,6 @@
               Hỗ trợ
             </a>
           </h4>
-
           <ul class="space-y-3 text-on-surface-variant">
             <li>
               <a
@@ -51,7 +52,6 @@
                 Giao hàng & Đổi trả
               </a>
             </li>
-
             <li>
               <a
                 routerLink="/support"
@@ -60,7 +60,6 @@
                 Liên hệ
               </a>
             </li>
-
             <li>
               <a
                 routerLink="/support"
@@ -69,7 +68,6 @@
                 Câu hỏi thường gặp
               </a>
             </li>
-
             <li>
               <a
                 routerLink="/profile"
@@ -78,8 +76,8 @@
               </a>
             </li>
           </ul>
-
         </div>
+
         <div>
           <h4 class="mb-4">
             <a routerLink="/about-us" class="font-semibold uppercase text-primary hover:underline">
@@ -111,7 +109,9 @@
         </div>
       </div>
     </div>
+    
     <hr class="my-10 border-outline-variant">
+    
     <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
       <p>© 2024 L'ELIXIR. TẤT CẢ QUYỀN ĐƯỢC BẢO LƯU.</p>
     </div>
