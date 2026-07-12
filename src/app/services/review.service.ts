@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Review } from '../data/review.model';
 import { Order } from '../data/order.model';
 import { ProductService } from './product.service';
-import seedReviews from '../data/review.json';
+import seedReviews from '../data/mock-data/review.json';
 
 /**
  * Review Service - Quản lý đánh giá sản phẩm
