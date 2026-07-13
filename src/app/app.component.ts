@@ -9,7 +9,7 @@ import seedUsers from './data/mock-data/users.json';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = "lelixir-angular";
+  title = "lelixir";
 
   ngOnInit() {
     this.loadMockDataIfNeeded();

@@ -1,7 +1,7 @@
 <div class="min-h-screen flex flex-col md:flex-row overflow-hidden bg-background">
   <section class="hidden md:flex md:w-1/2 relative h-screen bg-secondary-container items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0 scale-105 transition-transform duration-[2000ms] ease-out">
-      <img alt="L'ELIXIR Heritage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj68BcsSuBPQVuDjw-MWJE9BBQ4tj2qEu8R7naUpjNoLYHy-v9PL-h97JK2BJ8PNv27JhL7X_N_6FeToVXeEA3JEal-Yvwdua5yZdZ-i2HEzm4er3e-BvaWHqGsrPXd7131T6McvhJv2yYUDGs0eN_U91SVNMpsbRi6L2LiywRecKgh6QLWFXMv59zsQONTj_n4P7lD-Zt3BgB2QOW0dasTJpGy5pOc39C9mKdDfgZEQz1gUirarNqgSn3mx6XjkEXnwvjCxuY-dg" />
+      <img alt="L'ELIXIR Heritage" class="w-full h-full object-cover" src="assets/images/Banner/LuminaBanner.jpg" />
       <div class="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
     </div>
@@ -76,7 +76,7 @@
             {{ mode === 'login' ? 'Quên mật khẩu?' : 'Quay lại đăng nhập' }}
           </button>
         </div>
-        <button type="submit" class="w-full bg-primary-container text-on-primary-container py-4 font-label-md text-label-md uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-400 ease-in-out shadow-lg">{{ mode === 'login' ? 'Đăng nhập' : 'Đặt lại mật khẩu' }}</button>
+        <button type="submit" class="w-full bg-primary text-white py-4 font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all duration-300 shadow-lg">{{ mode === 'login' ? 'Đăng nhập' : 'Đặt lại mật khẩu' }}</button>
         <p class="text-center font-body-md text-body-md text-on-surface-variant mt-6">Chưa có tài khoản? <a class="text-primary font-semibold hover:underline" routerLink="/signup">Đăng ký ngay</a></p>
         <p class="text-center font-body-md text-body-md text-on-surface-variant mt-2">Hoặc <a class="text-primary font-semibold hover:underline" routerLink="/order-tracking">tra cứu đơn hàng không cần đăng nhập</a></p>
       </form>

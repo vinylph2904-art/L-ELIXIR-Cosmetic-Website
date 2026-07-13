@@ -47,18 +47,16 @@ export class ReviewListComponent implements OnInit, OnChanges {
     this.totalReviews = ratingInfo.count;
   }
 
-  /**
-   * Chuyển đổi số thành mảng sao (để render)
-   */
-  getStarArray(rating: number): number[] {
-    return Array.from({ length: 5 }, (_, i) => i + 1);
+  getFullStars(rating: number): number {
+    return Math.floor(rating);
   }
 
-  /**
-   * Kiểm tra xem sao có được fill không
-   */
-  isFilled(star: number, rating: number): boolean {
-    return star <= rating;
+  hasHalfStar(rating: number): boolean {
+    return rating % 1 >= 0.25;
+  }
+
+  getEmptyStars(rating: number): number {
+    return 5 - Math.floor(rating) - (rating % 1 >= 0.25 ? 1 : 0);
   }
 
   /**

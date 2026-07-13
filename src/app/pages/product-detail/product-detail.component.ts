@@ -153,6 +153,12 @@ export class ProductDetailComponent implements OnInit {
     this.quantityError = '';
   }
 
+  onEnterQuantity(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.onQuantityInputChange(Number(input.value));
+    input.blur();
+  }
+
   /**
    * Thêm sản phẩm vào giỏ hàng với số lượng từ bộ đếm (selectedQuantity).
    * Sau khi thêm thành công, reset selectedQuantity về 1 để chuẩn bị cho lần tiếp theo.
@@ -218,6 +224,18 @@ export class ProductDetailComponent implements OnInit {
     setTimeout(() => {
       this.newReviewAdded = false;
     }, 2000);
+  }
+
+  getFullStars(rating: number): number {
+    return Math.floor(rating);
+  }
+
+  hasHalfStar(rating: number): boolean {
+    return rating % 1 >= 0.25;
+  }
+
+  getEmptyStars(rating: number): number {
+    return 5 - Math.floor(rating) - (rating % 1 >= 0.25 ? 1 : 0);
   }
 
   get productId(): string {

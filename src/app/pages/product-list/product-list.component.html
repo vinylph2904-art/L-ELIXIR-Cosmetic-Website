@@ -137,7 +137,7 @@
         </div>
 
       </ng-container>
-      <div class="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" *ngIf="filteredProducts.length > 0">
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4" *ngIf="filteredProducts.length > 0">
         <app-product-card *ngFor="let product of filteredProducts" [product]="product"></app-product-card>
       </div>      
     </section>

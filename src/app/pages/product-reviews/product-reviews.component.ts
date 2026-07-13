@@ -81,16 +81,20 @@ export class ProductReviewsComponent implements OnInit {
     };
   }
 
-  getStarArray(): number[] {
-    return [1, 2, 3, 4, 5];
+  getFullStars(rating: number): number {
+    return Math.floor(rating);
+  }
+
+  hasHalfStar(rating: number): boolean {
+    return rating % 1 >= 0.25;
+  }
+
+  getEmptyStars(rating: number): number {
+    return 5 - Math.floor(rating) - (rating % 1 >= 0.25 ? 1 : 0);
   }
 
   getPercentage(count: number): string {
     return this.ratingSummary.count > 0 ? `${Math.round((count / this.ratingSummary.count) * 100)}%` : '0%';
-  }
-
-  getStarStyle(star: number, rating: number): string {
-    return star <= rating ? '"FILL" 1' : '"FILL" 0';
   }
 
   isEligibleToReview(): boolean {

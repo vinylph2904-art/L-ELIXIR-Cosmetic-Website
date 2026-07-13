@@ -66,11 +66,11 @@
                       min="1"
                       [attr.max]="item.stockQuantity > 0 ? item.stockQuantity : 1"
                       step="1"
-                      class="w-10 bg-transparent text-center font-label-md text-label-md outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      class="w-10 bg-transparent text-center font-label-md text-label-md outline-none border-0 focus:outline-none focus:ring-0 focus:border-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       [ngModel]="item.quantity || 1"
                       (ngModelChange)="onQuantityInputChange(item.productId, $event)"
-                      (blur)="validateQuantity(item.productId)"
-                      (keydown.enter)="validateQuantity(item.productId)"
+                      (blur)="onBlurQuantity(item.productId, $event)"
+                      (keydown.enter)="onEnterQuantity(item.productId, $event)"
                       aria-label="Số lượng sản phẩm"
                     />
                     <button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-standard" type="button" (click)="changeQuantity(item.productId, 1)">+</button>

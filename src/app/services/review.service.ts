@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Review } from '../data/review.model';
 import { Order } from '../data/order.model';
 import { ProductService } from './product.service';
-import seedReviews from '../data/review.json';
+import seedReviews from '../data/mock-data/review.json';
 
 /**
  * Review Service - Quản lý đánh giá sản phẩm
@@ -39,8 +39,9 @@ export class ReviewService {
 
     if (hasChanged) {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(mergedReviews));
-      this.syncProductStatsFromReviews(mergedReviews);
     }
+
+    this.syncProductStatsFromReviews(mergedReviews);
   }
 
   private getSeedReviews(): Review[] {
@@ -76,11 +77,19 @@ export class ReviewService {
       groupedReviews.set(review.productId, existingReviews);
     });
 
+    const statsByProductId = new Map<string, { averageRating: number; reviewCount: number }>();
+
     groupedReviews.forEach((productReviews, productId) => {
       const sum = productReviews.reduce((acc, review) => acc + review.rating, 0);
       const average = productReviews.length > 0 ? Math.round((sum / productReviews.length) * 10) / 10 : 0;
-      this.productService.syncProductStats(productId, average, productReviews.length);
+
+      statsByProductId.set(productId, {
+        averageRating: average,
+        reviewCount: productReviews.length
+      });
     });
+
+    this.productService.syncAllProductStats(statsByProductId);
   }
 
   /**
