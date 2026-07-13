@@ -29,9 +29,6 @@ export interface Review {
   /** Bình luận chi tiết */
   comment: string;
 
-  /** Mảng URL hình ảnh đi kèm */
-  images: string[];
-
   /** Ngày tạo review (ISO string) */
   createdAt: string;
 }

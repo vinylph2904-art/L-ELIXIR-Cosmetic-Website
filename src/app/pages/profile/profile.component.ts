@@ -404,8 +404,7 @@ export class ProfileComponent implements OnInit {
         orderId: this.reviewOrder.orderId,
         title: this.reviewDraft.title.trim(),
         rating: this.reviewDraft.rating,
-        comment: this.reviewDraft.comment.trim(),
-        images: []
+        comment: this.reviewDraft.comment.trim()
       });
 
       this.reviewSubmitting = false;
