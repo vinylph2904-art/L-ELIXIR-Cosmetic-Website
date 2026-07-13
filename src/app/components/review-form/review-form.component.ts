@@ -171,8 +171,7 @@ export class ReviewFormComponent implements OnInit {
         orderId,
         title: this.reviewForm.get('title')?.value,
         rating: this.reviewForm.get('rating')?.value,
-        comment: this.reviewForm.get('comment')?.value,
-        images: this.reviewForm.get('images')?.value || []
+        comment: this.reviewForm.get('comment')?.value
       });
 
       this.reviewSubmitted.emit(newReview);
