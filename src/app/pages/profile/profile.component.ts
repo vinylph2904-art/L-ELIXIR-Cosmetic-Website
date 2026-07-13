@@ -197,6 +197,26 @@ export class ProfileComponent implements OnInit {
     };
   }
 
+  formatDateOfBirthInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const digits = String(input.value || '').replace(/\D/g, '').slice(0, 8);
+    const parts: string[] = [];
+
+    if (digits.length > 0) {
+      parts.push(digits.slice(0, 2));
+    }
+
+    if (digits.length > 2) {
+      parts.push(digits.slice(2, 4));
+    }
+
+    if (digits.length > 4) {
+      parts.push(digits.slice(4, 8));
+    }
+
+    this.form.dateOfBirth = parts.join('/');
+  }
+
   async saveProfile(): Promise<void> {
     if (!this.user) return;
     this.editError = '';

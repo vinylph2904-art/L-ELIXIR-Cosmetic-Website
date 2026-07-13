@@ -62,12 +62,17 @@ export class SignupComponent {
       errors.email = 'Email đã tồn tại, vui lòng nhập email khác.';
     }
 
-    if (!this.phoneNumber.trim()) {
+    const trimmedPhone = this.phoneNumber.trim();
+
+    if (!trimmedPhone) {
       errors.phoneNumber = 'Số điện thoại không được để trống.';
-    } else if (!this.authService.isValidPhone(this.phoneNumber)) {
-      errors.phoneNumber = 'Số điện thoại phải gồm đúng 10 chữ số.';
-    } else if (await this.authService.phoneExists(this.phoneNumber)) {
-      errors.phoneNumber = 'Số điện thoại đã tồn tại, vui lòng nhập số khác.';
+    } else {
+      const phoneError = this.authService.getPhoneValidationError(trimmedPhone);
+      if (phoneError) {
+        errors.phoneNumber = phoneError;
+      } else if (await this.authService.phoneExists(trimmedPhone)) {
+        errors.phoneNumber = 'Số điện thoại đã tồn tại, vui lòng nhập số khác.';
+      }
     }
 
     if (!this.password) {
