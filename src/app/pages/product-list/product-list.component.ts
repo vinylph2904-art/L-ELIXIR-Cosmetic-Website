@@ -14,6 +14,10 @@ import { ToastService } from '../../services/toast.service';
 export class ProductListComponent implements OnInit {
   allProducts: Product[] = [];
   filteredProducts: Product[] = [];
+  paginatedProducts: Product[] = [];
+  currentPage = 1;
+  itemsPerPage = 8;
+  totalPages = 1;
   searchTerm: string = '';
   selectedCategories: string[] = [];
   selectedSkinTypes: string[] = [];
@@ -53,6 +57,7 @@ export class ProductListComponent implements OnInit {
   this.productService.getProducts().subscribe((data: Product[]) => {
     this.allProducts = data;
     this.filteredProducts = [...data];
+    this.applyFilters();
     this.bestSellingProducts = [...data]
       .sort((a, b) => b.reviewCount - a.reviewCount)
       .slice(0, 3);
@@ -66,18 +71,16 @@ export class ProductListComponent implements OnInit {
         this.applyFilters();
       }
 
-      if (collection) {
-        const keyword = this.normalize(collection);
+    if (collection) {
+      const keyword = this.normalize(collection);
 
-        this.filteredProducts = this.allProducts.filter(product =>
-          this.normalize(product.name).includes(keyword)
-        );
-      }
+      this.filteredProducts = this.allProducts.filter(product =>
+        this.normalize(product.name).includes(keyword)
+      );
 
-      if (category || collection) {
-
-      }
-
+      this.currentPage = 1;
+      this.updatePagination();
+    }
     });
   });
 }
@@ -91,6 +94,23 @@ private normalize(text: string): string {
     .toLowerCase()
     .trim();
 }
+
+  updatePagination(): void {
+    this.totalPages = Math.ceil(this.filteredProducts.length / this.itemsPerPage);
+
+    if (this.totalPages === 0) {
+      this.totalPages = 1;
+    }
+
+    if (this.currentPage > this.totalPages) {
+      this.currentPage = this.totalPages;
+    }
+
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+
+    this.paginatedProducts = this.filteredProducts.slice(start, end);
+  }
 
   applyFilters() {
     let results = [...this.allProducts];
@@ -121,16 +141,6 @@ private normalize(text: string): string {
       );
     }
     switch (this.sortOption) {
-      case 'newest':
-        results.sort((a, b) => {
-          const idA = Number(a.productId);
-          const idB = Number(b.productId);
-          if (!Number.isNaN(idA) && !Number.isNaN(idB)) {
-            return idB - idA;
-          }
-          return b.productId.localeCompare(a.productId);
-        });
-        break;
       case 'reviews':
         results.sort((a, b) => b.reviewCount - a.reviewCount);
         break;
@@ -142,6 +152,8 @@ private normalize(text: string): string {
         break;
     }
     this.filteredProducts = results;
+    this.currentPage = 1;
+    this.updatePagination();
   }
 
   onFilterChange(type: 'category' | 'skin' | 'problem', value: string, event: any) {
@@ -251,5 +263,78 @@ private normalize(text: string): string {
     this.filteredProducts = this.allProducts.filter(product =>
       this.normalize(product.name).includes(this.normalize(keyword))
     );
+
+    this.currentPage = 1;
+    this.updatePagination();
+  }
+
+  goToPage(page: number): void {
+    if (page < 1 || page > this.totalPages) {
+      return;
+    }
+
+    this.currentPage = page;
+    this.updatePagination();
+
+    this.productSection?.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.goToPage(this.currentPage + 1);
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.goToPage(this.currentPage - 1);
+    }
+  }
+
+  get pages(): (number | string)[] {
+    const pages: (number | string)[] = [];
+
+    // <= 5 trang thì hiện hết
+    if (this.totalPages <= 5) {
+      for (let i = 1; i <= this.totalPages; i++) {
+        pages.push(i);
+      }
+      return pages;
+    }
+
+    // Đầu danh sách
+    if (this.currentPage <= 3) {
+      pages.push(1, 2, 3, 4, '...', this.totalPages);
+      return pages;
+    }
+
+    // Cuối danh sách
+    if (this.currentPage >= this.totalPages - 2) {
+      pages.push(
+        1,
+        '...',
+        this.totalPages - 3,
+        this.totalPages - 2,
+        this.totalPages - 1,
+        this.totalPages
+      );
+      return pages;
+    }
+
+    // Ở giữa
+    pages.push(
+      1,
+      '...',
+      this.currentPage - 1,
+      this.currentPage,
+      this.currentPage + 1,
+      '...',
+      this.totalPages
+    );
+
+    return pages;
   }
 }

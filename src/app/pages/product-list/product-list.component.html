@@ -137,9 +137,58 @@
         </div>
 
       </ng-container>
-      <div class="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4" *ngIf="filteredProducts.length > 0">
-        <app-product-card *ngFor="let product of filteredProducts" [product]="product"></app-product-card>
-      </div>      
+      <div
+        class="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4"
+        *ngIf="filteredProducts.length > 0">
+
+          <app-product-card
+            *ngFor="let product of paginatedProducts"
+            [product]="product">
+          </app-product-card>
+
+      </div>
+
+      <div
+        *ngIf="totalPages > 1"
+        class="mt-10 flex justify-center items-center gap-2 flex-wrap">
+
+        <button
+          (click)="previousPage()"
+          [disabled]="currentPage === 1"
+          class="px-4 py-2 border rounded disabled:opacity-40">
+          Trang trước
+        </button>
+
+        <ng-container *ngFor="let page of pages">
+
+          <button
+            *ngIf="page !== '...'; else dots"
+            (click)="goToPage(+page)"
+            class="w-10 h-10 rounded border transition"
+            [class.bg-primary]="page === currentPage"
+            [class.text-white]="page === currentPage">
+
+            {{ page }}
+
+          </button>
+
+          <ng-template #dots>
+            <span class="px-2 text-gray-500">
+              ...
+            </span>
+          </ng-template>
+
+        </ng-container>
+
+        <button
+          (click)="nextPage()"
+          [disabled]="currentPage === totalPages"
+          class="px-4 py-2 border rounded disabled:opacity-40">
+          Trang sau
+        </button>
+
+      </div>
+      
     </section>
  
   </div>
