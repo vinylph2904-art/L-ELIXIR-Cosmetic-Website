@@ -19,7 +19,9 @@ export class ProductListComponent implements OnInit {
   selectedSkinTypes: string[] = [];
   selectedSkinProblems: string[] = [];
   bestSellingProducts: Product[] = [];
-  sortOption: string = '';
+  sortOption: string = 'newest';
+  isFilterDrawerOpen = false;
+  isSortDrawerOpen = false;
   @ViewChild('productSection')
   productSection!: ElementRef;
   currentBanner = 0;
@@ -50,7 +52,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
   this.productService.getProducts().subscribe((data: Product[]) => {
     this.allProducts = data;
-    this.filteredProducts = data;
+    this.filteredProducts = [...data];
     this.bestSellingProducts = [...data]
       .sort((a, b) => b.reviewCount - a.reviewCount)
       .slice(0, 3);
@@ -119,6 +121,16 @@ private normalize(text: string): string {
       );
     }
     switch (this.sortOption) {
+      case 'newest':
+        results.sort((a, b) => {
+          const idA = Number(a.productId);
+          const idB = Number(b.productId);
+          if (!Number.isNaN(idA) && !Number.isNaN(idB)) {
+            return idB - idA;
+          }
+          return b.productId.localeCompare(a.productId);
+        });
+        break;
       case 'reviews':
         results.sort((a, b) => b.reviewCount - a.reviewCount);
         break;
@@ -168,7 +180,7 @@ private normalize(text: string): string {
     this.selectedSkinTypes = [];
     this.selectedSkinProblems = [];
 
-    this.sortOption = '';
+    this.sortOption = 'newest';
     this.applyFilters();
 
     const checkboxes =
@@ -177,6 +189,48 @@ private normalize(text: string): string {
       );
 
     checkboxes.forEach(cb => cb.checked = false);
+    this.closeFilterDrawer();
+  }
+
+  getSortLabel(option: string): string {
+    switch (option) {
+      case 'reviews':
+        return 'Lượt đánh giá';
+      case 'priceAsc':
+        return 'Giá tăng dần';
+      case 'priceDesc':
+        return 'Giá giảm dần';
+      case 'newest':
+      default:
+        return 'Mới nhất';
+    }
+  }
+
+  openFilterDrawer(): void {
+    this.isFilterDrawerOpen = true;
+  }
+
+  closeFilterDrawer(): void {
+    this.isFilterDrawerOpen = false;
+  }
+
+  applyAndCloseFilters(): void {
+    this.applyFilters();
+    this.closeFilterDrawer();
+  }
+
+  openSortDrawer(): void {
+    this.isSortDrawerOpen = true;
+  }
+
+  closeSortDrawer(): void {
+    this.isSortDrawerOpen = false;
+  }
+
+  applySort(option: string): void {
+    this.sortOption = option;
+    this.applyFilters();
+    this.closeSortDrawer();
   }
 
   nextBanner(): void {

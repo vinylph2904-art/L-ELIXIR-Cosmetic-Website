@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../data/user.model';
-import seedUsers from '../data/users.json';
+import seedUsers from '../data/mock-data/users.json';
 
 const USERS_KEY = 'users';
 const SESSION_KEY = 'currentUser';

@@ -1,4 +1,4 @@
-<section class="relative overflow-hidden h-[400px] mb-8">
+<section class="relative mb-8 overflow-hidden h-[280px] sm:h-[340px] md:h-[400px]">
 
   <a [routerLink]="collectionBanners[currentBanner].route" class="absolute inset-0 z-10"></a>
   <div class="absolute inset-0">
@@ -46,9 +46,9 @@
            class="w-full p-4 border border-outline rounded-lg outline-none focus:border-primary">
   </div>
 
-  <div class="product-layout">
+  <div class="product-layout flex flex-col gap-6 md:flex-row md:items-start">
     <!-- Sidebar Bộ lọc -->
-    <aside class="filter-sidebar">
+    <aside class="filter-sidebar hidden w-full md:block md:w-[220px] lg:w-[240px] xl:w-[260px] md:flex-shrink-0">
       <div class="space-y-6">
         <div>
           <h4 class="font-label-md mb-3">Danh mục</h4>
@@ -62,7 +62,7 @@
           <h4 class="font-label-md mb-3">Loại da</h4>
           <div class="space-y-2">
             <label *ngFor="let skin of ['Da dầu', 'Da khô', 'Da hỗn hợp', 'Da nhạy cảm']" class="flex items-center gap-2">
-              <input type="checkbox" (change)="onFilterChange('skin', skin, $event)"> {{skin}}
+              <input type="checkbox" [checked]="selectedSkinTypes.includes(skin)" (change)="onFilterChange('skin', skin, $event)"> {{skin}}
             </label>
           </div>
         </div>
@@ -70,7 +70,7 @@
           <h4 class="font-label-md mb-3">Vấn đề da</h4>
           <div class="space-y-2">
             <label *ngFor="let problem of ['Mụn','Thâm mụn','Thâm nám','Lỗ chân lông to','Bã nhờn nhiều','Da mất nước','Da kích ứng','Nếp nhăn']" class="flex items-center gap-2">
-              <input type="checkbox" (change)="onFilterChange('problem', problem, $event)"> {{ problem }}
+              <input type="checkbox" [checked]="selectedSkinProblems.includes(problem)" (change)="onFilterChange('problem', problem, $event)"> {{ problem }}
             </label>
           </div>
         </div>
@@ -78,22 +78,31 @@
     </aside>
 
     <!-- Danh sách sản phẩm -->
-  <section #productSection id="productSection" class="product-content">
-      <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <span class="text-label-sm text-on-surface-variant">
-          Hiển thị {{ filteredProducts.length }} sản phẩm
-        </span>
-
-        <div>
-          <select
-            [(ngModel)]="sortOption"
-            (change)="applyFilters()"
-            class="w-[180px] px-4 py-2 pr-12 border border-outline rounded-lg bg-white focus:border-primary outline-none">
-            <option value="" hidden selected>Sắp xếp</option>            <option value="reviews">Lượt đánh giá</option>
-            <option value="priceAsc">Giá tăng dần</option>
-            <option value="priceDesc">Giá giảm dần</option>
-          </select>
+  <section #productSection id="productSection" class="product-content w-full min-w-0">
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+          <button type="button" class="inline-flex items-center justify-center rounded-full border border-outline px-4 py-2 text-sm font-medium text-on-surface lg:hidden" (click)="openFilterDrawer()">
+            <span class="material-symbols-outlined mr-2 text-base">tune</span>
+            Bộ lọc
+          </button>
+          <button type="button" class="inline-flex items-center justify-center rounded-full border border-outline px-4 py-2 text-sm font-medium text-on-surface lg:hidden" (click)="openSortDrawer()">
+            <span class="material-symbols-outlined mr-2 text-base">sort</span>
+            {{ getSortLabel(sortOption) }}
+          </button>
+          <span class="text-label-sm text-on-surface-variant">
+            Hiển thị {{ filteredProducts.length }} sản phẩm
+          </span>
         </div>
+
+        <select
+          [(ngModel)]="sortOption"
+          (change)="applyFilters()"
+          class="hidden w-[180px] px-4 py-2 pr-12 border border-outline rounded-lg bg-white focus:border-primary outline-none lg:block">
+          <option value="newest">Mới nhất</option>
+          <option value="reviews">Lượt đánh giá</option>
+          <option value="priceAsc">Giá tăng dần</option>
+          <option value="priceDesc">Giá giảm dần</option>
+        </select>
       </div>
 
       <ng-container *ngIf="filteredProducts.length === 0">
@@ -119,7 +128,7 @@
             Sản phẩm bán chạy
           </h4>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             <app-product-card
               *ngFor="let product of bestSellingProducts"
               [product]="product">
@@ -128,7 +137,7 @@
         </div>
 
       </ng-container>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" *ngIf="filteredProducts.length > 0">
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" *ngIf="filteredProducts.length > 0">
         <app-product-card *ngFor="let product of filteredProducts" [product]="product"></app-product-card>
       </div>      
     </section>
@@ -155,4 +164,81 @@
       </button>
 
     </div>  
+</div>
+
+<div *ngIf="isSortDrawerOpen" class="fixed inset-0 z-[70] flex items-end bg-black/40 lg:hidden">
+  <div class="w-full rounded-t-3xl bg-white p-4 shadow-2xl">
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="text-lg font-semibold text-on-surface">Sắp xếp</h3>
+      <button type="button" class="flex h-9 w-9 items-center justify-center rounded-full hover:bg-surface-container" (click)="closeSortDrawer()" aria-label="Đóng sắp xếp">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="space-y-2">
+      <button type="button" class="flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left" [class.border-primary]="sortOption === 'newest'" [ngClass]="{ 'bg-primary/5': sortOption === 'newest' }" (click)="applySort('newest')">
+        <span>Mới nhất</span>
+        <span *ngIf="sortOption === 'newest'" class="material-symbols-outlined text-primary">check</span>
+      </button>
+      <button type="button" class="flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left" [class.border-primary]="sortOption === 'reviews'" [ngClass]="{ 'bg-primary/5': sortOption === 'reviews' }" (click)="applySort('reviews')">
+        <span>Lượt đánh giá</span>
+        <span *ngIf="sortOption === 'reviews'" class="material-symbols-outlined text-primary">check</span>
+      </button>
+      <button type="button" class="flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left" [class.border-primary]="sortOption === 'priceAsc'" [ngClass]="{ 'bg-primary/5': sortOption === 'priceAsc' }" (click)="applySort('priceAsc')">
+        <span>Giá tăng dần</span>
+        <span *ngIf="sortOption === 'priceAsc'" class="material-symbols-outlined text-primary">check</span>
+      </button>
+      <button type="button" class="flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left" [class.border-primary]="sortOption === 'priceDesc'" [ngClass]="{ 'bg-primary/5': sortOption === 'priceDesc' }" (click)="applySort('priceDesc')">
+        <span>Giá giảm dần</span>
+        <span *ngIf="sortOption === 'priceDesc'" class="material-symbols-outlined text-primary">check</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isFilterDrawerOpen" class="fixed inset-0 z-[60] flex items-end bg-black/40 lg:hidden">
+  <div class="w-full rounded-t-3xl bg-white p-4 shadow-2xl">
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="text-lg font-semibold text-on-surface">Bộ lọc</h3>
+      <button type="button" class="flex h-9 w-9 items-center justify-center rounded-full hover:bg-surface-container" (click)="closeFilterDrawer()" aria-label="Đóng bộ lọc">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="max-h-[60vh] space-y-6 overflow-y-auto pr-1">
+      <div>
+        <h4 class="font-label-md mb-3">Danh mục</h4>
+        <div class="space-y-2">
+          <label *ngFor="let cat of ['Sữa rửa mặt', 'Toner', 'Serum', 'Kem dưỡng', 'Chống nắng']" class="flex items-center gap-2 rounded-lg border border-outline-variant/40 px-3 py-2">
+            <input type="checkbox" [checked]="selectedCategories.includes(cat)" (change)="onFilterChange('category', cat, $event)">{{ cat }}
+          </label>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-label-md mb-3">Loại da</h4>
+        <div class="space-y-2">
+          <label *ngFor="let skin of ['Da dầu', 'Da khô', 'Da hỗn hợp', 'Da nhạy cảm']" class="flex items-center gap-2 rounded-lg border border-outline-variant/40 px-3 py-2">
+            <input type="checkbox" [checked]="selectedSkinTypes.includes(skin)" (change)="onFilterChange('skin', skin, $event)"> {{skin}}
+          </label>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-label-md mb-3">Vấn đề da</h4>
+        <div class="space-y-2">
+          <label *ngFor="let problem of ['Mụn','Thâm mụn','Thâm nám','Lỗ chân lông to','Bã nhờn nhiều','Da mất nước','Da kích ứng','Nếp nhăn']" class="flex items-center gap-2 rounded-lg border border-outline-variant/40 px-3 py-2">
+            <input type="checkbox" [checked]="selectedSkinProblems.includes(problem)" (change)="onFilterChange('problem', problem, $event)"> {{ problem }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 flex gap-3 border-t border-outline-variant pt-4">
+      <button type="button" class="flex-1 rounded-full border border-outline px-4 py-3 text-sm font-medium text-on-surface" (click)="clearFilters()">
+        Xóa bộ lọc
+      </button>
+      <button type="button" class="flex-1 rounded-full bg-primary px-4 py-3 text-sm font-medium text-white" (click)="applyAndCloseFilters()">
+        Áp dụng
+      </button>
+    </div>
+  </div>
 </div>

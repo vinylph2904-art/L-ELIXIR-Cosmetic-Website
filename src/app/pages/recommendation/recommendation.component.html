@@ -148,11 +148,11 @@
   <section class="px-gutter max-w-container-max mx-auto mb-section-gap-desktop overflow-x-auto pb-8 mt-16">
     <h2 class="font-display-lg text-headline-lg text-on-background mb-12 text-center">Lộ trình 5 bước mỗi ngày</h2>
     <!-- Thanh điều hướng các bước (Step Navigation) -->
-    <div class="flex min-w-[800px] justify-between relative mb-12 max-w-4xl mx-auto">
+    <div class="flex flex-col gap-6 sm:flex-row sm:min-w-[800px] sm:justify-between relative mb-12 max-w-4xl mx-auto">
       <div class="absolute top-8 left-0 w-full h-[1px] bg-outline-variant/30 -z-10"></div>
       
       <!-- Bước 1 -->
-      <div (click)="activeStep = 1" class="flex flex-col items-center text-center gap-4 w-1/5 cursor-pointer group">
+      <div (click)="activeStep = 1" class="flex flex-col items-center text-center gap-4 w-full sm:w-1/5 cursor-pointer group">
         <div class="w-16 h-16 rounded-full flex items-center justify-center font-headline-md transition-all duration-300 shadow-md"
              [ngClass]="activeStep === 1 ? 'bg-primary text-white scale-110' : 'bg-surface-bright text-primary border border-primary group-hover:scale-105'">1</div>
         <div>
@@ -162,7 +162,7 @@
       </div>
 
       <!-- Bước 2 -->
-      <div (click)="activeStep = 2" class="flex flex-col items-center text-center gap-4 w-1/5 cursor-pointer group">
+      <div (click)="activeStep = 2" class="flex flex-col items-center text-center gap-4 w-full sm:w-1/5 cursor-pointer group">
         <div class="w-16 h-16 rounded-full flex items-center justify-center font-headline-md transition-all duration-300 shadow-md"
              [ngClass]="activeStep === 2 ? 'bg-primary text-white scale-110' : 'bg-surface-bright text-primary border border-primary group-hover:scale-105'">2</div>
         <div>
@@ -172,7 +172,7 @@
       </div>
 
       <!-- Bước 3 -->
-      <div (click)="activeStep = 3" class="flex flex-col items-center text-center gap-4 w-1/5 cursor-pointer group">
+      <div (click)="activeStep = 3" class="flex flex-col items-center text-center gap-4 w-full sm:w-1/5 cursor-pointer group">
         <div class="w-16 h-16 rounded-full flex items-center justify-center font-headline-md transition-all duration-300 shadow-md"
              [ngClass]="activeStep === 3 ? 'bg-primary text-white scale-110' : 'bg-surface-bright text-primary border border-primary group-hover:scale-105'">3</div>
         <div>
@@ -182,7 +182,7 @@
       </div>
 
       <!-- Bước 4 -->
-      <div (click)="activeStep = 4" class="flex flex-col items-center text-center gap-4 w-1/5 cursor-pointer group">
+      <div (click)="activeStep = 4" class="flex flex-col items-center text-center gap-4 w-full sm:w-1/5 cursor-pointer group">
         <div class="w-16 h-16 rounded-full flex items-center justify-center font-headline-md transition-all duration-300 shadow-md"
              [ngClass]="activeStep === 4 ? 'bg-primary text-white scale-110' : 'bg-surface-bright text-primary border border-primary group-hover:scale-105'">4</div>
         <div>
@@ -192,7 +192,7 @@
       </div>
 
       <!-- Bước 5 -->
-      <div (click)="activeStep = 5" class="flex flex-col items-center text-center gap-4 w-1/5 cursor-pointer group">
+      <div (click)="activeStep = 5" class="flex flex-col items-center text-center gap-4 w-full sm:w-1/5 cursor-pointer group">
         <div class="w-16 h-16 rounded-full flex items-center justify-center font-headline-md transition-all duration-300 shadow-md"
              [ngClass]="activeStep === 5 ? 'bg-primary text-white scale-110' : 'bg-surface-bright text-primary border border-primary group-hover:scale-105'">5</div>
         <div>

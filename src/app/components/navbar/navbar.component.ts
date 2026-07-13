@@ -10,6 +10,8 @@ import { ProductService } from '../../services/product.service';
 })
 export class NavbarComponent implements OnInit {
   mobileMenuOpen = false;
+  mobileHomeDropdownOpen = false;
+  mobileProductsDropdownOpen = false;
   cartCount = 0;
   categories: string[] = [];
 
@@ -31,5 +33,25 @@ export class NavbarComponent implements OnInit {
 
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
+    if (!this.mobileMenuOpen) {
+      this.mobileHomeDropdownOpen = false;
+      this.mobileProductsDropdownOpen = false;
+    }
+  }
+
+  toggleMobileDropdown(type: 'home' | 'products') {
+    if (type === 'home') {
+      this.mobileHomeDropdownOpen = !this.mobileHomeDropdownOpen;
+      this.mobileProductsDropdownOpen = false;
+    } else {
+      this.mobileProductsDropdownOpen = !this.mobileProductsDropdownOpen;
+      this.mobileHomeDropdownOpen = false;
+    }
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen = false;
+    this.mobileHomeDropdownOpen = false;
+    this.mobileProductsDropdownOpen = false;
   }
 }

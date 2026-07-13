@@ -1,23 +1,23 @@
-<div class="bg-background rounded-xl p-4 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col h-full cursor-pointer" (click)="goToDetail()">  
-    <div class="aspect-square rounded-lg overflow-hidden mb-6 bg-surface-container-lowest">
+<div class="flex h-full cursor-pointer flex-col rounded-xl bg-background p-2.5 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-xl sm:p-4" (click)="goToDetail()">
+  <div class="mb-3 aspect-square overflow-hidden rounded-lg bg-surface-container-lowest sm:mb-6">
     <img
       [src]="product.images[0]"
       [alt]="product.name"
       class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
   </div>
 
-  <div class="space-y-2">
+  <div class="space-y-1.5 sm:space-y-2">
 
     <div class="flex justify-between items-center">
 
-      <span class="font-label-sm text-[10px] text-primary bg-primary-container/20 px-2 py-0.5 rounded-full uppercase tracking-widest">
+      <span class="rounded-full bg-primary-container/20 px-2 py-0.5 text-[8px] font-label-sm uppercase tracking-widest text-primary sm:text-[10px]">
         {{ product.categoryName }}
       </span>
 
       <!-- rating -->
     </div>
 
-    <h3 class="font-display-lg text-headline-md leading-tight line-clamp-2 min-h-[3.5rem]">      
+    <h3 class="min-h-[2.4rem] text-[0.82rem] font-semibold leading-tight text-on-surface line-clamp-2 sm:min-h-[3.5rem] sm:text-base sm:font-display-lg sm:text-headline-md">
         {{ product.name }}
     </h3>
 
@@ -42,18 +42,18 @@
         </ng-container>
     </div>
 
-    <span class="text-xs text-on-surface-variant">
+    <span class="text-[10px] text-on-surface-variant sm:text-xs">
         {{ product.averageRating | number:'1.1-1' }}
         ({{ product.reviewCount }})
     </span>
 
     </div>    
 
-    <p class="text-on-surface-variant font-label-md">
+    <p class="font-label-md text-[0.82rem] text-on-surface-variant sm:text-base">
       {{ product.price | number:'1.0-0' }} VNĐ
     </p>
     <div (click)="addToCart($event)">
-        <button class="w-full py-3 border border-outline rounded-lg"> Thêm vào giỏ hàng </button>
+        <button class="w-full rounded-lg border border-outline py-1.5 text-[0.8rem] sm:py-3 sm:text-base"> Thêm vào giỏ hàng </button>
     </div>
     </div>
 </div>

@@ -1,34 +1,49 @@
-<footer class="bg-surface-container-low pt-16 pb-6">
-  <div class="max-w-container-max mx-auto px-gutter">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<footer class="bg-surface-container-low pt-10 pb-6 sm:pt-16">
+  <div class="mx-auto max-w-container-max px-4 sm:px-gutter">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
       <div>
-        <a routerLink="/" class="text-display-lg font-headline-lg text-primary tracking-tight">L'ELIXIR </a>
+        <a routerLink="/" class="logo text-xl font-bold md:font-normal font-headline-lg tracking-tight text-primary sm:text-2xl md:text-display-lg">L'ELIXIR</a>
         <p class="mt-6 text-on-surface-variant leading-relaxed max-w-md">
           Nâng tầm nghệ thuật làm đẹp cá nhân hóa thông qua khoa học và tâm hồn.
           Trải nghiệm sự sang trọng đích thực dành riêng cho làn da bạn.
         </p>
-        <div class="flex items-center gap-5 mt-8 text-2xl">
-          <span class="cursor-pointer hover:text-primary transition">🌐</span>
-          <span class="cursor-pointer hover:text-primary transition">📷</span>
-          <span class="cursor-pointer hover:text-primary transition">▶️</span>
+        <div class="mt-6 flex items-center gap-3">
+          <a href="#" aria-label="Website" class="flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant bg-white text-on-surface-variant transition hover:border-primary hover:text-primary">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="8"></circle>
+              <path d="M4.5 9h15M4.5 15h15M12 4.5c1.8 2 3 4.2 3 7.5s-1.2 5.5-3 7.5c-1.8-2-3-4.2-3-7.5s1.2-5.5 3-7.5Z"></path>
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant bg-white text-on-surface-variant transition hover:border-primary hover:text-primary">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="1"></circle>
+            </svg>
+          </a>
+          <a href="#" aria-label="Video" class="flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant bg-white text-on-surface-variant transition hover:border-primary hover:text-primary">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 6.5v11l8-5.5-8-5.5Z"></path>
+            </svg>
+          </a>
         </div>
       </div>
 
-      <div class="grid grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         <div>
           <h4 class="mb-4">
-            <a routerLink="/collection" class="font-semibold uppercase text-primary hover:underline">
+            <a routerLink="/collection" class="text-sm font-semibold uppercase text-primary hover:underline">
               Bộ sưu tập mới
             </a>
           </h4>
           <ul class="space-y-3 text-on-surface-variant">
             <li>
-              <a routerLink="/articles/lumina" class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/articles/lumina" class="block cursor-pointer text-sm hover:text-primary transition-colors">
                 Tinh Hoa Dưỡng Sáng Lumina
               </a>
             </li>
             <li>
-              <a routerLink="/articles/aurora" class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/articles/aurora" class="block cursor-pointer text-sm hover:text-primary transition-colors">
                 Vẻ Đẹp Rạng Đông Aurora
               </a>
             </li>
@@ -37,41 +52,28 @@
 
         <div>
           <h4 class="mb-4">
-            <a
-              routerLink="/support"
-              class="font-semibold uppercase text-primary hover:underline">
+            <a routerLink="/support" class="text-sm font-semibold uppercase text-primary hover:underline">
               Hỗ trợ
             </a>
           </h4>
           <ul class="space-y-3 text-on-surface-variant">
             <li>
-              <a
-                routerLink="/support"
-                fragment="giao-hang"
-                class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/support" fragment="giao-hang" class="hover:text-primary transition-colors cursor-pointer block text-sm">
                 Giao hàng & Đổi trả
               </a>
             </li>
             <li>
-              <a
-                routerLink="/support"
-                fragment="lien-he"
-                class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/support" fragment="lien-he" class="hover:text-primary transition-colors cursor-pointer block text-sm">
                 Liên hệ
               </a>
             </li>
             <li>
-              <a
-                routerLink="/support"
-                fragment="faq"
-                class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/support" fragment="faq" class="hover:text-primary transition-colors cursor-pointer block text-sm">
                 Câu hỏi thường gặp
               </a>
             </li>
             <li>
-              <a
-                routerLink="/profile"
-                class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/profile" class="hover:text-primary transition-colors cursor-pointer block text-sm">
                 Tài khoản của tôi
               </a>
             </li>
@@ -80,28 +82,28 @@
 
         <div>
           <h4 class="mb-4">
-            <a routerLink="/about-us" class="font-semibold uppercase text-primary hover:underline">
+            <a routerLink="/about-us" class="text-sm font-semibold uppercase text-primary hover:underline">
               Về chúng tôi
             </a>
           </h4>
           <ul class="space-y-3 text-on-surface-variant">
             <li>
-              <a routerLink="/about-us" fragment="cau-chuyen" class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/about-us" fragment="cau-chuyen" class="block cursor-pointer text-sm hover:text-primary transition-colors">
                 Câu chuyện thương hiệu
               </a>
             </li>
             <li>
-              <a routerLink="/about-us" fragment="khoa-hoc-dna" class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/about-us" fragment="khoa-hoc-dna" class="block cursor-pointer text-sm hover:text-primary transition-colors">
                 Khoa học & DNA
               </a>
             </li>
             <li>
-              <a routerLink="/about-us" fragment="phat-trien-ben-vung" class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/about-us" fragment="phat-trien-ben-vung" class="block cursor-pointer text-sm hover:text-primary transition-colors">
                 Phát triển bền vững
               </a>
             </li>
             <li>
-              <a routerLink="/about-us" fragment="co-hoi-nghe-nghiep" class="hover:text-primary transition-colors cursor-pointer block">
+              <a routerLink="/about-us" fragment="co-hoi-nghe-nghiep" class="block cursor-pointer text-sm hover:text-primary transition-colors">
                 Cơ hội nghề nghiệp
               </a>
             </li>
@@ -112,7 +114,7 @@
     
     <hr class="my-10 border-outline-variant">
     
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
+    <div class="flex flex-col items-center justify-between gap-4 text-sm text-on-surface-variant md:flex-row">
       <p>© 2024 L'ELIXIR. TẤT CẢ QUYỀN ĐƯỢC BẢO LƯU.</p>
     </div>
   </div>

@@ -4,20 +4,28 @@
 
 .product-layout {
     display: flex;
-    gap: 2rem;
+    gap: 1.25rem;
+    align-items: flex-start;
 }
 
 .filter-sidebar {
-    width: 320px;
+    width: 220px;
     flex-shrink: 0;
 }
 
 .product-content {
     flex: 1;
+    min-width: 0;
 }
 
-@media (max-width: 1000px) {
-    .filter-sidebar {
-        width: 240px;
+@media (max-width: 1023px) {
+    .product-layout {
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .product-layout {
+        gap: 1rem;
     }
 }

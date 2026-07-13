@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Order, ShippingInfo, OrderItem, PaymentSandboxResponse } from '../data/order.model';
 import { Product } from '../data/product.model';
-import mockOrders from '../data/mock/orders.mock.json';
-import PRODUCTS from '../data/mock-products.json';
-import seedUsers from '../data/users.json';
+import mockOrders from '../data/mock-data/orders.mock.json';
+import PRODUCTS from '../data/mock-data/mock-products.json';
+import seedUsers from '../data/mock-data/users.json';
 import { AuthService } from './auth.service';
 import { throwError } from 'rxjs';
 

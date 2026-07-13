@@ -1,7 +1,7 @@
 <div class="space-y-8">
   <!-- Tóm tắt đánh giá -->
   <div class="bg-surface-container-low rounded-xl p-6">
-    <div class="flex items-center gap-8 flex-col sm:flex-row">
+    <div class="flex flex-col items-center gap-8 sm:flex-row sm:items-center">
       <!-- Điểm trung bình -->
       <div class="flex-shrink-0 text-center">
         <div class="font-headline-lg text-headline-lg text-primary mb-2">
@@ -18,7 +18,7 @@
       </div>
 
       <!-- Thanh tiến độ rating -->
-      <div class="flex-1 space-y-2">
+      <div class="flex-1 w-full space-y-2">
         <div *ngFor="let rating of [5, 4, 3, 2, 1]" class="flex items-center gap-3">
           <span class="text-label-sm text-on-surface-variant w-6">{{ rating }}★</span>
           <div class="flex-1 h-2 bg-surface rounded-full overflow-hidden">

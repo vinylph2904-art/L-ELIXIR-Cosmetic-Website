@@ -9,17 +9,20 @@
 
   <header class="mb-12">
     <h1 class="font-headline-lg text-headline-lg text-primary mb-4">Theo dõi đơn hàng</h1>
-    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Kiểm tra trạng thái đơn hàng và thông tin giao nhận của bạn.</p>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Kiểm tra trạng thái đơn hàng và thông tin
+      giao nhận của bạn.</p>
   </header>
 
-  <section *ngIf="!isLoggedIn" class="bg-surface-container-low rounded-xl p-8 mb-12 border border-outline-variant/30 max-w-xl">
+  <section *ngIf="!isLoggedIn"
+    class="bg-surface-container-low rounded-xl p-8 mb-12 border border-outline-variant/30 max-w-xl">
     <h2 class="font-headline-md text-headline-md text-primary mb-4">Tra cứu đơn hàng</h2>
-    <p class="font-body-md text-body-md text-on-surface-variant mb-6">Nhập mã đơn hàng để xem trạng thái (không cần đăng nhập).</p>
+    <p class="font-body-md text-body-md text-on-surface-variant mb-6">Nhập mã đơn hàng để xem trạng thái (không cần đăng
+      nhập).</p>
     <div class="flex flex-col sm:flex-row gap-3">
       <input [(ngModel)]="searchOrderId" name="searchOrderId" placeholder="VD: ORD-0001"
-             class="flex-grow bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md focus:ring-0" />
+        class="flex-grow bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md focus:ring-0" />
       <button type="button" (click)="searchGuestOrder()"
-              class="px-8 py-3 bg-primary text-white font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition">
+        class="px-8 py-3 bg-primary text-white font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition">
         Tra cứu
       </button>
     </div>
@@ -30,7 +33,8 @@
     <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-6">
       <div>
         <h2 class="font-headline-md text-headline-md text-primary">Đơn hàng của tôi ({{ myOrders.length }})</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant">Chọn một đơn để xem chi tiết trạng thái giao nhận.</p>
+        <p class="font-body-md text-body-md text-on-surface-variant">Chọn một đơn để xem chi tiết trạng thái giao nhận.
+        </p>
       </div>
     </div>
 
@@ -38,10 +42,11 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" *ngIf="myOrders.length > 0">
       <button type="button" *ngFor="let o of myOrders" (click)="selectOrder(o)"
-              class="text-left bg-surface-container-lowest border rounded-xl p-5 transition hover:border-primary"
-              [class.border-primary]="selectedOrder?.orderId === o.orderId"
-              [class.border-outline-variant]="selectedOrder?.orderId !== o.orderId">
-        <p class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap font-mono tabular-nums">#{{ o.orderId }}</p>
+        class="text-left bg-surface-container-lowest border rounded-xl p-5 transition hover:border-primary"
+        [class.border-primary]="selectedOrder?.orderId === o.orderId"
+        [class.border-outline-variant]="selectedOrder?.orderId !== o.orderId">
+        <p class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap font-mono tabular-nums">#{{
+          o.orderId }}</p>
         <p class="font-body-md font-bold text-primary">{{ formatCurrency(o.totalAmount) }}</p>
         <span class="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-primary-container text-on-primary-container">
           {{ getStatusLabel(o.orderStatus) }}
@@ -51,7 +56,8 @@
   </section>
 
   <ng-container *ngIf="selectedOrder as order">
-    <div class="bg-surface-container-lowest rounded-xl p-8 mb-12 luxury-shadow border border-outline-variant/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div
+      class="bg-surface-container-lowest rounded-xl p-8 mb-12 luxury-shadow border border-outline-variant/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full md:w-auto">
         <div>
           <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">MÃ ĐƠN HÀNG</p>
@@ -67,7 +73,8 @@
         </div>
       </div>
       <div class="bg-primary-container px-6 py-3 rounded-full">
-        <span class="font-label-md text-label-md text-on-primary-container">{{ getStatusLabel(order.orderStatus) }}</span>
+        <span class="font-label-md text-label-md text-on-primary-container">{{ getStatusLabel(order.orderStatus)
+          }}</span>
       </div>
     </div>
 
@@ -90,7 +97,8 @@
               </div>
               <div class="sm:col-span-2">
                 <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">ĐỊA CHỈ NHẬN HÀNG</p>
-                <p class="font-body-md text-body-md leading-relaxed">{{ order.shippingInfo.address }}, {{ order.shippingInfo.district }}, {{ order.shippingInfo.city }}</p>
+                <p class="font-body-md text-body-md leading-relaxed">{{ order.shippingInfo.address }}, {{
+                  order.shippingInfo.district }}, {{ order.shippingInfo.city }}</p>
               </div>
               <div>
                 <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">ĐƠN VỊ VẬN CHUYỂN</p>
@@ -98,7 +106,8 @@
               </div>
               <div>
                 <p class="font-label-sm text-label-sm text-on-surface-variant mb-1">DỰ KIẾN GIAO HÀNG</p>
-                <p class="font-body-md text-body-md text-primary font-bold">{{ order.createdAt | date:'dd/MM/yyyy' }}</p>
+                <p class="font-body-md text-body-md text-primary font-bold">{{ order.createdAt | date:'dd/MM/yyyy' }}
+                </p>
               </div>
             </div>
           </div>
@@ -109,15 +118,17 @@
             <span class="material-symbols-outlined">history</span>
             Lịch sử vận chuyển
           </h2>
-          <div class="relative pl-8 space-y-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant">
+          <div
+            class="relative pl-8 space-y-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant">
             <div class="relative" *ngFor="let item of getShipmentHistory(order)">
               <div class="absolute -left-[28px] top-1.5 w-4 h-4 rounded-full"
-                   [class.bg-primary]="item.state === 'current'"
-                   [class.bg-outline-variant]="item.state === 'done'"
-                   [ngClass]="item.state === 'current' ? 'ring-4 ring-primary/20' : ''"></div>
-              <div class="flex flex-col sm:flex-row sm:justify-between items-start" [class.opacity-70]="item.state === 'done'">
+                [class.bg-primary]="item.state === 'current'" [class.bg-outline-variant]="item.state === 'done'"
+                [ngClass]="item.state === 'current' ? 'ring-4 ring-primary/20' : ''"></div>
+              <div class="flex flex-col sm:flex-row sm:justify-between items-start"
+                [class.opacity-70]="item.state === 'done'">
                 <div>
-                  <p class="font-body-md text-body-md" [class.font-bold]="item.state === 'current'" [class.text-primary]="item.state === 'current'">{{ item.title }}</p>
+                  <p class="font-body-md text-body-md" [class.font-bold]="item.state === 'current'"
+                    [class.text-primary]="item.state === 'current'">{{ item.title }}</p>
                   <p class="font-body-sm text-body-sm text-on-surface-variant">{{ item.description }}</p>
                 </div>
                 <p class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">{{ item.time }}</p>
@@ -132,16 +143,19 @@
           <h2 class="font-headline-md text-headline-md text-primary mb-8">Tóm tắt đơn hàng</h2>
           <div class="space-y-6 mb-8 pb-8 border-b border-outline-variant/50">
             <div *ngFor="let item of order.items" class="flex gap-4">
-              <div class="w-20 h-24 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
-                <img [src]="item.product.images[0] || 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80'"
-                     [alt]="item.product.name"
-                     class="w-full h-full object-cover" />
-              </div>
-              <div class="flex-grow">
-                <p class="font-body-md text-body-md font-medium text-primary">{{ item.product.name }}</p>
-                <p class="font-label-sm text-label-sm text-on-surface-variant">{{ item.product.volume }} | Qty: {{ item.quantity }}</p>
-                <p class="font-body-md text-body-md font-medium mt-2">{{ formatCurrency(item.price) }}</p>
-              </div>
+              <a [routerLink]="['/products', item.product.productId]" class="flex gap-4 hover:opacity-80 transition cursor-pointer group decoration-none w-full text-left">
+                <div class="w-20 h-24 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+                  <img
+                    [src]="getProductImage(item)"
+                    [alt]="item.product.name" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex-grow">
+                  <p class="font-body-md text-body-md font-medium text-primary group-hover:underline">{{ item.product.name }}</p>
+                  <p class="font-label-sm text-label-sm text-on-surface-variant">{{ item.product.volume }} | Số lượng:
+                    {{ item.quantity }}</p>
+                  <p class="font-body-md text-body-md font-medium mt-2">{{ formatCurrency(item.price) }}</p>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -161,11 +175,67 @@
           </div>
 
           <div class="flex flex-col gap-4">
-            <a routerLink="/" class="w-full inline-block text-center py-4 bg-primary text-white font-label-md text-label-md rounded-full hover:bg-primary/90 transition-all active:scale-[0.98]">TIẾP TỤC MUA SẮM</a>
+            <a routerLink="/"
+              class="w-full inline-block text-center py-4 bg-primary text-white font-label-md text-label-md rounded-full hover:bg-primary/90 transition-all active:scale-[0.98]">TIẾP
+              TỤC MUA SẮM</a>
+            <button (click)="clickReviewButton(order)"
+              type="button"
+              class="w-full inline-block text-center py-4 border border-primary text-primary font-label-md text-label-md rounded-full hover:bg-primary/5 transition-all active:scale-[0.98] uppercase">ĐÁNH
+              GIÁ</button>
           </div>
         </div>
       </div>
     </div>
   </ng-container>
 
+  <div *ngIf="reviewModalOpen" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 px-4 py-6">
+    <div class="w-full max-w-2xl rounded-2xl bg-surface-container-lowest p-6 shadow-2xl border border-outline-variant">
+      <div class="flex items-start justify-between gap-4 mb-6">
+        <div>
+          <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Đánh giá sản phẩm</p>
+          <h3 class="font-headline-md text-headline-md text-on-surface">Đơn hàng #{{ reviewOrder?.orderId }}</h3>
+        </div>
+        <button type="button" class="rounded-full p-2 text-on-surface-variant hover:bg-surface-container" (click)="closeReviewModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div *ngIf="reviewError" class="mb-4 rounded-lg border border-error/30 bg-error-container/20 px-4 py-3 text-sm text-error">{{ reviewError }}</div>
+
+      <div class="space-y-5">
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Sản phẩm</label>
+          <select [(ngModel)]="selectedReviewProductId" name="reviewProduct" class="w-full rounded-lg border border-outline-variant bg-transparent px-3 py-3">
+            <option *ngFor="let item of reviewableProducts" [value]="item.productId">{{ item.name }}</option>
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Tiêu đề</label>
+          <input [(ngModel)]="reviewDraft.title" name="reviewTitle" type="text" class="w-full rounded-lg border border-outline-variant bg-transparent px-3 py-3" placeholder="Ví dụ: Sản phẩm rất đáng dùng" />
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Đánh giá</label>
+          <div class="flex items-center gap-2">
+            <button *ngFor="let star of [1,2,3,4,5]" type="button" (click)="selectReviewStar(star)" class="text-primary">
+              <span class="material-symbols-outlined text-[32px]" [style.fontVariationSettings]='star <= reviewDraft.rating ? "\"FILL\" 1" : "\"FILL\" 0"'>star</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Nội dung</label>
+          <textarea [(ngModel)]="reviewDraft.comment" name="reviewComment" rows="4" class="w-full rounded-lg border border-outline-variant bg-transparent px-3 py-3" placeholder="Chia sẻ trải nghiệm của bạn..."></textarea>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-wrap justify-end gap-3">
+        <button type="button" class="rounded-lg border border-outline-variant px-6 py-3 font-label-sm uppercase tracking-widest text-on-surface-variant" (click)="closeReviewModal()">Hủy</button>
+        <button type="button" class="rounded-lg bg-primary px-6 py-3 font-label-sm uppercase tracking-widest text-on-primary" (click)="submitReview()" [disabled]="reviewSubmitting">
+          {{ reviewSubmitting ? 'Đang lưu...' : 'Gửi đánh giá' }}
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

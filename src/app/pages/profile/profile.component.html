@@ -86,18 +86,14 @@
       </aside>
 
       <div class="lg:col-span-8 space-y-10">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
             <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Đơn hàng</p>
             <p class="font-headline-lg text-headline-lg font-bold text-primary">{{ orders.length }}</p>
           </div>
           <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
-            <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Yêu thích</p>
-            <p class="font-headline-lg text-headline-lg font-bold text-primary">—</p>
-          </div>
-          <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
             <p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Đánh giá</p>
-            <p class="font-headline-lg text-headline-lg font-bold text-primary">—</p>
+            <p class="font-headline-lg text-headline-lg font-bold text-primary">{{ reviewsCount }}</p>
           </div>
         </div>
 
