@@ -91,9 +91,6 @@
           </div>
           <h4 class="font-bold mb-2">{{ review.title }}</h4>
           <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">{{ review.comment }}</p>
-          <div *ngIf="review.images?.length" class="flex flex-wrap gap-3 mb-4">
-            <img *ngFor="let image of review.images" [src]="image" [alt]="review.title" class="h-24 w-24 object-cover rounded-lg border border-outline-variant/20">
-          </div>
         </div>
       </div>
 
