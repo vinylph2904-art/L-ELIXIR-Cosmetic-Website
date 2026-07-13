@@ -207,7 +207,14 @@ onCityChange() {
     }
   }
 
+  private getShippingInfoStorageKey(): string {
+    return this.currentUserId ? `shippingInfo_user_${this.currentUserId}` : 'shippingInfo_guest';
+  }
+
   private resetShippingInfo(): void {
+    const previousStorageKey = this.getShippingInfoStorageKey();
+    sessionStorage.removeItem(previousStorageKey);
+
     this.shippingInfo = { 
       fullName: '', 
       phone: '', 
@@ -222,19 +229,23 @@ onCityChange() {
   }
 
   private saveShippingInfoToSession(): void {
-  sessionStorage.setItem('shippingInfo', JSON.stringify(this.shippingInfo));
-}
+    sessionStorage.setItem(this.getShippingInfoStorageKey(), JSON.stringify(this.shippingInfo));
+  }
 
-private loadShippingInfoFromSession(): void {
-  const saved = sessionStorage.getItem('shippingInfo');
-  if (saved) {
-    try {
-      this.shippingInfo = JSON.parse(saved);
-    } catch {
-      sessionStorage.removeItem('shippingInfo');
+  private loadShippingInfoFromSession(): void {
+    const storageKey = this.getShippingInfoStorageKey();
+    const saved = sessionStorage.getItem(storageKey);
+    if (saved) {
+      try {
+        this.shippingInfo = {
+          ...this.shippingInfo,
+          ...JSON.parse(saved)
+        };
+      } catch {
+        sessionStorage.removeItem(storageKey);
+      }
     }
   }
-}
 
   toggleAuthMode(useAccount: boolean) {
     console.log('[PaymentComponent] toggleAuthMode:', useAccount);
@@ -283,9 +294,15 @@ private loadShippingInfoFromSession(): void {
       this.errorMessage = 'Vui lòng nhập họ và tên.';
       return false;
     }
-    if (!phone?.trim() || !/^(0\d{9,10}|\+84\d{9,10})$/
-.test(normalizedPhone)) {
-      this.errorMessage = 'Số điện thoại phải gồm 10 chữ số.';
+
+    if (!phone?.trim()) {
+      this.errorMessage = 'Vui lòng nhập số điện thoại.';
+      return false;
+    }
+
+    const phoneError = this.authService.getPhoneValidationError(normalizedPhone);
+    if (phoneError) {
+      this.errorMessage = phoneError;
       return false;
     }
     if (!email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -402,7 +419,7 @@ private loadShippingInfoFromSession(): void {
 
   public simulateSuccess = () => {
     if (!this.currentOrder) return;
-    sessionStorage.removeItem('shippingInfo');
+    sessionStorage.removeItem(this.getShippingInfoStorageKey());
     const txId = `TX${Date.now()}`;
     this.orderService.confirmPaymentSuccess(this.currentOrder.orderId, txId).pipe(takeUntil(this.destroy$)).subscribe({
       next: (order) => {

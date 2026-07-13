@@ -54,8 +54,34 @@ export class AuthService {
     return /[A-Za-zÀ-ÿ]/.test(trimmed) && !/^\d+$/.test(trimmed);
   }
 
+  private normalizePhone(phone: string): string {
+    return String(phone ?? '').trim().replace(/\s+/g, '');
+  }
+
+  getPhoneValidationError(phone: string): string | null {
+    const normalized = this.normalizePhone(phone);
+
+    if (!normalized) {
+      return 'Số điện thoại không được để trống.';
+    }
+
+    if (!/^\d+$/.test(normalized)) {
+      return 'Số điện thoại không hợp lệ (không phải số, không bắt đầu bằng số 0).';
+    }
+
+    if (normalized.length !== 10) {
+      return 'Số điện thoại phải đủ 10 chữ số.';
+    }
+
+    if (!normalized.startsWith('0')) {
+      return 'Số điện thoại không hợp lệ (không phải số, không bắt đầu bằng số 0).';
+    }
+
+    return null;
+  }
+
   isValidPhone(phone: string): boolean {
-    return /^\d{10}$/.test(phone.trim());
+    return this.getPhoneValidationError(phone) === null;
   }
 
   async emailExists(email: string): Promise<boolean> {
@@ -75,8 +101,9 @@ export class AuthService {
       return { success: false, message: 'Email không đúng định dạng.' };
     }
 
-    if (!this.isValidPhone(data.phoneNumber)) {
-      return { success: false, message: 'Số điện thoại phải gồm đúng 10 chữ số.' };
+    const phoneError = this.getPhoneValidationError(data.phoneNumber);
+    if (phoneError) {
+      return { success: false, message: phoneError };
     }
 
     const users = this.getUsers();

@@ -61,13 +61,6 @@
               </div>
               <span class="material-symbols-outlined text-outline">chevron_right</span>
             </button>
-            <button type="button" class="w-full flex items-center justify-between p-5 hover:bg-surface-container transition-colors group" (click)="startManageAddress()">
-              <div class="flex items-center gap-4">
-                <span class="material-symbols-outlined text-outline group-hover:text-primary">location_on</span>
-                <span class="font-body-md">Quản lý địa chỉ</span>
-              </div>
-              <span class="material-symbols-outlined text-outline">chevron_right</span>
-            </button>
             <a routerLink="/order-tracking" class="flex items-center justify-between p-5 hover:bg-surface-container transition-colors group">
               <div class="flex items-center gap-4">
                 <span class="material-symbols-outlined text-outline group-hover:text-primary">local_shipping</span>
@@ -146,7 +139,16 @@
               </div>
               <div class="space-y-1">
                 <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Ngày sinh</label>
-                <input [(ngModel)]="form.dateOfBirth" name="dateOfBirth" type="text" class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0" placeholder="dd/mm/yyyy" />
+                <input
+                  [(ngModel)]="form.dateOfBirth"
+                  name="dateOfBirth"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="10"
+                  (input)="formatDateOfBirthInput($event)"
+                  class="w-full bg-transparent border border-outline-variant rounded-lg py-3 px-3 font-body-md text-body-md focus:ring-0"
+                  placeholder="dd/mm/yyyy"
+                />
               </div>
               <div class="space-y-1">
                 <label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Giới tính</label>
