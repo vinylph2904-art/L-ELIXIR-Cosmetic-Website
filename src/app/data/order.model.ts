@@ -47,15 +47,7 @@ export interface Order {
   createdAtStr?: string;
 }
 
-export interface PaymentSandboxRequest {
-  orderId: string;
-  amount: number;
-  currency: string;
-  description: string;
-  returnUrl: string;
-}
-
-export interface PaymentSandboxResponse {
+export interface PaymentResponse {
   success: boolean;
   transactionId?: string;
   message: string;
