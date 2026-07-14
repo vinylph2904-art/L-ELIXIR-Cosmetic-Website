@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Order, ShippingInfo, OrderItem, PaymentSandboxResponse } from '../data/order.model';
+import { Order, ShippingInfo, OrderItem, PaymentResponse } from '../data/order.model';
 import { Product } from '../data/product.model';
 import mockOrders from '../data/mock-data/orders.mock.json';
 import PRODUCTS from '../data/mock-data/mock-products.json';
@@ -22,7 +22,6 @@ export class OrderService {
   };
 
   // API endpoints (simulation)
-  private readonly API_BASE = 'https://api.sandbox.lelixir.vn';
   private readonly ORDER_SEQUENCE_KEY = 'lelixir_order_sequence';
 
   constructor(private http: HttpClient, private authService: AuthService) {
@@ -143,19 +142,11 @@ export class OrderService {
   }
 
   /**
-   * UC09: Redirect to sandbox payment gateway
-   * Bước 5: Hệ thống tự động chuyển hướng giao diện sang cổng Sandbox
+   * UC09: Xử lý thanh toán
+   * Bước 5: Hệ thống xử lý thanh toán
    */
-  initiatePayment(order: Order): Observable<PaymentSandboxResponse> {
-    const paymentRequest = {
-      orderId: order.orderId,
-      amount: order.total,
-      currency: 'VND',
-      description: `Thanh toán đơn hàng ${order.orderId}`,
-      returnUrl: `${window.location.origin}/payment-result`
-    };
-
-    // Simulate payment initiation.
+  initiatePayment(order: Order): Observable<PaymentResponse> {
+    // Xử lý thanh toán COD
     // For COD we immediately return a success redirect to payment-success page.
     if (order.paymentMethod === 'cod') {
       return new Observable(observer => {
@@ -170,7 +161,7 @@ export class OrderService {
       });
     }
 
-    // For online payment methods we no longer redirect to an external sandbox.
+    // Thanh toán online được mô phỏng ngay trong hệ thống.
     // Instead, the app will simulate the payment flow in-app (success/failure).
     return new Observable(observer => {
       setTimeout(() => {
@@ -313,24 +304,6 @@ export class OrderService {
     const timestamp = Date.now();
     const random = Math.floor(Math.random() * 100000);
     return `GUEST${timestamp}${random}`;
-  }
-
-  /**
-   * Build sandbox payment URL (simulation)
-   * In real scenario, this would be actual payment gateway URL
-   */
-  private buildSandboxPaymentUrl(order: Order): string {
-    const params = new URLSearchParams({
-      orderId: order.orderId,
-      amount: order.total.toString(),
-      currency: 'VND',
-      method: order.paymentMethod,
-      timestamp: Date.now().toString()
-    });
-
-    // Simulate sandbox gateway URL
-    // In real implementation: use actual payment provider URL
-    return `/payment-sandbox?${params.toString()}`;
   }
 
   /**
