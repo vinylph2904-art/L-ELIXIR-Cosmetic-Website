@@ -3,7 +3,7 @@
   <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
     <div>
       <h2 class="text-xl font-bold text-on-surface tracking-tight">Quản lý Sản phẩm  </h2>
-      <p class="text-xs text-on-surface-variant">Quản lý kho hàng, giá niêm yết, thêm mới & xóa mềm (Soft-delete) sản phẩm.</p>
+      <p class="text-xs text-on-surface-variant">Quản lý kho hàng, giá niêm yết, thêm mới & xóa mềm sản phẩm.</p>
     </div>
 
     <button type="button" (click)="openAddModal()"
@@ -38,9 +38,9 @@
       <select [(ngModel)]="stockFilter" (change)="applyFilters()"
         class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
         <option value="all">Tất cả trạng thái</option>
-        <option value="active">Đang bán (Active)</option>
-        <option value="low">⚠️ Tồn kho thấp (&lt; 10)</option>
-        <option value="deleted">🗑️ Đã xóa mềm (Soft-deleted)</option>
+        <option value="active">Đang bán </option>
+        <option value="low">Tồn kho thấp </option>
+        <option value="deleted">Đã xóa mềm </option>
       </select>
     </div>
   </div>
@@ -55,7 +55,7 @@
             <th class="py-3.5 px-4">Mã SP</th>
             <th class="py-3.5 px-4">Danh mục</th>
             <th class="py-3.5 px-4">Giá bán</th>
-            <th class="py-3.5 px-4">Tồn kho (stockQuantity)</th>
+            <th class="py-3.5 px-4">Tồn kho </th>
             <th class="py-3.5 px-4">Trạng thái</th>
             <th class="py-3.5 px-4 text-right">Thao tác</th>
           </tr>
@@ -108,7 +108,7 @@
               </span>
               <span *ngIf="prod.isDeleted" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gray-200 text-gray-700 border border-gray-300">
                 <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
-                Tạm ngưng (Xóa mềm)
+                Tạm ngưng 
               </span>
             </td>
 
@@ -193,7 +193,7 @@
 
         <!-- Stock Quantity -->
         <div>
-          <label class="block font-medium text-on-surface mb-1">Số lượng tồn kho (stockQuantity) *</label>
+          <label class="block font-medium text-on-surface mb-1">Số lượng tồn kho *</label>
           <input type="number" [(ngModel)]="editingProduct.stockQuantity" min="0" step="1"
             class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface" />
         </div>
@@ -216,7 +216,7 @@
 
         <!-- Image Upload Section -->
         <div class="sm:col-span-2 space-y-2 p-3 rounded-xl bg-surface-container-low/50 border border-outline-variant/30">
-          <label class="block font-medium text-on-surface">Hình ảnh sản phẩm (Upload ảnh hoặc Nhập URL)</label>
+          <label class="block font-medium text-on-surface">Hình ảnh sản phẩm </label>
           
           <div class="flex items-center gap-4">
             <img [src]="imageInput || 'assets/images/SRM/SP01.1.png'" alt="Preview" class="w-16 h-16 rounded-lg object-cover border border-outline-variant" />
@@ -232,7 +232,7 @@
 
         <!-- Target Skin Types -->
         <div class="sm:col-span-2">
-          <label class="block font-medium text-on-surface mb-1">Loại da phù hợp (phân cách bằng dấu phẩy)</label>
+          <label class="block font-medium text-on-surface mb-1">Loại da phù hợp </label>
           <input type="text" [(ngModel)]="targetSkinTypesInput"
             class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
             placeholder="Da dầu, Da khô, Da hỗn hợp, Da nhạy cảm" />

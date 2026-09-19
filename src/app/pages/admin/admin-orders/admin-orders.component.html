@@ -32,17 +32,17 @@
       <select [(ngModel)]="statusFilter" (change)="applyFilters()"
         class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
         <option value="all">Tất cả trạng thái</option>
-        <option value="Pending">Chờ xử lý (Pending)</option>
-        <option value="Processing">Đang chuẩn bị (Processing)</option>
-        <option value="Shipping">Đang giao (Shipping)</option>
-        <option value="Completed">Hoàn tất (Completed)</option>
-        <option value="Cancelled">Đã hủy (Cancelled)</option>
+        <option value="Pending">Chờ xử lý </option>
+        <option value="Processing">Đang chuẩn bị </option>
+        <option value="Shipping">Đang giao </option>
+        <option value="Completed">Hoàn tất </option>
+        <option value="Cancelled">Đã hủy</option>
       </select>
 
       <select [(ngModel)]="cancelFilter" (change)="applyFilters()"
         class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
         <option value="all">Tất cả yêu cầu</option>
-        <option value="requested">🚨 Cần duyệt hủy đơn</option>
+        <option value="requested"> Cần duyệt hủy đơn</option>
       </select>
     </div>
   </div>
