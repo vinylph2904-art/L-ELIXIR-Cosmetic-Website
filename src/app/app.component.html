@@ -1,7 +1,15 @@
-<app-navbar></app-navbar>
-<app-toast-container></app-toast-container>
-<main class="pt-20 min-h-[calc(100vh-5rem)]">
+<ng-container *ngIf="!isAdminRoute()">
+  <app-navbar></app-navbar>
+  <app-toast-container></app-toast-container>
+  <main class="pt-20 min-h-[calc(100vh-5rem)]">
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer></app-footer>
+  <app-beauty-assistant></app-beauty-assistant>
+</ng-container>
+
+<ng-container *ngIf="isAdminRoute()">
+  <app-toast-container></app-toast-container>
   <router-outlet></router-outlet>
-</main>
-<app-footer></app-footer>
-<app-beauty-assistant></app-beauty-assistant>
+</ng-container>
+

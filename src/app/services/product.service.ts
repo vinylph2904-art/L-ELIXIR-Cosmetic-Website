@@ -15,8 +15,57 @@ export class ProductService {
     this.products = this.loadProducts();
   }
 
-  getProducts(): Observable<Product[]> {
-    return of(this.products);
+  getProducts(includeDeleted: boolean = false): Observable<Product[]> {
+    if (includeDeleted) {
+      return of([...this.products]);
+    }
+    return of(this.products.filter(p => !p.isDeleted));
+  }
+
+  getAllProductsAdmin(): Observable<Product[]> {
+    return of([...this.products]);
+  }
+
+  addProduct(product: Product): Observable<Product> {
+    const newProduct: Product = {
+      ...product,
+      productId: product.productId || `SP${(this.products.length + 1).toString().padStart(2, '0')}`,
+      averageRating: product.averageRating || 5.0,
+      reviewCount: product.reviewCount || 0,
+      isDeleted: false
+    };
+
+    this.products = [newProduct, ...this.products];
+    this.saveProducts();
+    return of(newProduct);
+  }
+
+  updateProduct(updatedProduct: Product): Observable<Product> {
+    this.products = this.products.map(p => p.productId === updatedProduct.productId ? { ...p, ...updatedProduct } : p);
+    this.saveProducts();
+    return of(updatedProduct);
+  }
+
+  softDeleteProduct(productId: string): Observable<boolean> {
+    this.products = this.products.map(p => p.productId === productId ? { ...p, isDeleted: true } : p);
+    this.saveProducts();
+    return of(true);
+  }
+
+  restoreProduct(productId: string): Observable<boolean> {
+    this.products = this.products.map(p => p.productId === productId ? { ...p, isDeleted: false } : p);
+    this.saveProducts();
+    return of(true);
+  }
+
+  deleteProduct(productId: string): Observable<boolean> {
+    this.products = this.products.filter(p => p.productId !== productId);
+    this.saveProducts();
+    return of(true);
+  }
+
+  private saveProducts(): void {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.products));
   }
 
   syncProductStats(productId: string, averageRating: number, reviewCount: number): void {

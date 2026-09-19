@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
@@ -22,6 +22,13 @@ import { CollectionComponent } from './pages/collection/collection.component';
 import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 import { ArticleDetailLuminaComponent } from './pages/article-detail-lumina/article-detail-lumina.component';
 import { ArticleDetailAuroraComponent } from './pages/article-detail-aurora/article-detail-aurora.component';
+import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
+import { AdminLayoutComponent } from './pages/admin/admin-layout/admin-layout.component';
+import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { AdminProductsComponent } from './pages/admin/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './pages/admin/admin-orders/admin-orders.component';
+import { AdminUsersComponent } from './pages/admin/admin-users/admin-users.component';
+import { adminGuard, adminGuestGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,6 +51,21 @@ const routes: Routes = [
   { path: 'articles/lumina', component: ArticleDetailLuminaComponent },
   { path: 'articles/aurora', component: ArticleDetailAuroraComponent },
   { path: 'articles/:id', component: ArticleDetailComponent},
+
+  // BACK-OFFICE ADMIN ROUTES (FR21, FR26, FR22, FR23, FR25)
+  { path: 'admin/login', component: AdminLoginComponent, canActivate: [adminGuestGuard] },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    canActivate: [adminGuard],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'products', component: AdminProductsComponent },
+      { path: 'orders', component: AdminOrdersComponent },
+      { path: 'users', component: AdminUsersComponent }
+    ]
+  },
 
   { path: '**', redirectTo: '' } // Luôn để dòng này ở cuối cùng
 ];

@@ -10,15 +10,28 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   showPassword = false;
   mode: 'login' | 'reset' = 'login';
+  
+  // Login fields
   email = '';
   password = '';
+
+  // Reset Password via OTP fields
+  resetStep: 1 | 2 | 3 = 1;
+  resetIdentifier = '';
+  resetOtp = '';
+  demoOtpHit = '';
   newPassword = '';
   confirmPassword = '';
+  otpCountdown = 60;
+  private timerInterval: any = null;
+
   errorMessage = '';
   successMessage = '';
   fieldErrors = {
     email: '',
     password: '',
+    resetIdentifier: '',
+    resetOtp: '',
     newPassword: '',
     confirmPassword: ''
   };
@@ -31,83 +44,93 @@ export class LoginComponent {
 
   switchToReset() {
     this.mode = 'reset';
-    this.errorMessage = '';
-    this.successMessage = '';
-    this.password = '';
+    this.resetStep = 1;
+    this.resetIdentifier = this.email || '';
+    this.resetOtp = '';
+    this.demoOtpHit = '';
     this.newPassword = '';
     this.confirmPassword = '';
-    this.fieldErrors = {
-      email: '',
-      password: '',
-      newPassword: '',
-      confirmPassword: ''
-    };
+    this.clearErrors();
   }
 
   switchToLogin() {
     this.mode = 'login';
+    this.clearErrors();
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+  }
+
+  clearErrors() {
     this.errorMessage = '';
     this.successMessage = '';
-    this.password = '';
-    this.newPassword = '';
-    this.confirmPassword = '';
     this.fieldErrors = {
       email: '',
       password: '',
+      resetIdentifier: '',
+      resetOtp: '',
       newPassword: '',
       confirmPassword: ''
     };
   }
 
-  async onSubmit() {
-    this.errorMessage = '';
-    this.successMessage = '';
-    this.fieldErrors = {
-      email: '',
-      password: '',
-      newPassword: '',
-      confirmPassword: ''
-    };
+  // --- Step 1: Request OTP ---
+  onRequestOtp() {
+    this.clearErrors();
+    const id = this.resetIdentifier.trim();
+    if (!id) {
+      this.fieldErrors.resetIdentifier = 'Vui lòng nhập Email hoặc Số điện thoại.';
+      return;
+    }
 
-    if (this.mode === 'login') {
-      if (!this.email.trim()) {
-        this.fieldErrors.email = 'Email không được để trống.';
-        return;
-      }
+    const res = this.authService.requestPasswordResetOtp(id);
+    if (res.success) {
+      this.demoOtpHit = res.otp || '123456';
+      this.successMessage = res.message;
+      this.resetStep = 2;
+      this.startOtpTimer();
+    } else {
+      this.errorMessage = res.message;
+    }
+  }
 
-      if (!this.authService.isValidEmail(this.email.trim())) {
-        this.fieldErrors.email = 'Email sai định dạng.';
-        return;
-      }
+  // --- Step 2: Verify OTP ---
+  onVerifyOtp() {
+    this.clearErrors();
+    if (!this.resetOtp.trim()) {
+      this.fieldErrors.resetOtp = 'Vui lòng nhập mã OTP 6 chữ số.';
+      return;
+    }
 
-      if (!this.password.trim()) {
-        this.fieldErrors.password = 'Mật khẩu không được để trống.';
-        return;
-      }
+    const res = this.authService.verifyResetOtp(this.resetIdentifier.trim(), this.resetOtp.trim());
+    if (res.success) {
+      this.resetStep = 3;
+      this.successMessage = 'Xác thực OTP thành công. Vui lòng thiết lập mật khẩu mới.';
+    } else {
+      this.fieldErrors.resetOtp = res.message;
+    }
+  }
 
-      const result = await this.authService.login(this.email.trim(), this.password);
-      if (result.success) {
-        this.successMessage = result.message;
-        setTimeout(() => this.router.navigate(['/']), 1000);
-      } else if (result.message.includes('Tài khoản')) {
-        this.fieldErrors.email = 'Email chưa tồn tại, vui lòng đăng ký.';
-      } else if (result.message.includes('Mật khẩu')) {
-        this.fieldErrors.password = 'Mật khẩu nhập không đúng.';
+  startOtpTimer() {
+    this.otpCountdown = 60;
+    if (this.timerInterval) clearInterval(this.timerInterval);
+    this.timerInterval = setInterval(() => {
+      if (this.otpCountdown > 0) {
+        this.otpCountdown--;
       } else {
-        this.errorMessage = result.message;
+        clearInterval(this.timerInterval);
       }
-      return;
-    }
+    }, 1000);
+  }
 
-    if (!this.email.trim()) {
-      this.fieldErrors.email = 'Email không được để trống.';
-      return;
-    }
+  resendOtp() {
+    if (this.otpCountdown > 0) return;
+    this.onRequestOtp();
+  }
 
-    if (!this.authService.isValidEmail(this.email.trim())) {
-      this.fieldErrors.email = 'Email sai định dạng.';
-      return;
-    }
+  // --- Step 3: Confirm new password ---
+  async onConfirmNewPassword() {
+    this.clearErrors();
 
     if (!this.newPassword.trim()) {
       this.fieldErrors.newPassword = 'Mật khẩu mới không được để trống.';
@@ -129,18 +152,51 @@ export class LoginComponent {
       return;
     }
 
-    const verifyEmail = await this.authService.emailExists(this.email.trim());
-    if (!verifyEmail) {
-      this.fieldErrors.email = 'Email chưa tồn tại, vui lòng đăng ký.';
-      return;
-    }
+    const res = await this.authService.confirmPasswordResetWithOtp(
+      this.resetIdentifier.trim(),
+      this.resetOtp.trim(),
+      this.newPassword.trim()
+    );
 
-    const result = await this.authService.resetPassword(this.email.trim(), this.newPassword);
-    if (result.success) {
-      this.successMessage = result.message;
-      setTimeout(() => this.switchToLogin(), 1600);
+    if (res.success) {
+      this.successMessage = res.message;
+      setTimeout(() => this.switchToLogin(), 1800);
     } else {
-      this.errorMessage = result.message;
+      this.errorMessage = res.message;
+    }
+  }
+
+  async onSubmit() {
+    this.clearErrors();
+
+    if (this.mode === 'login') {
+      if (!this.email.trim()) {
+        this.fieldErrors.email = 'Email không được để trống.';
+        return;
+      }
+
+      if (!this.authService.isValidEmail(this.email.trim())) {
+        this.fieldErrors.email = 'Email sai định dạng.';
+        return;
+      }
+
+      if (!this.password.trim()) {
+        this.fieldErrors.password = 'Mật khẩu không được để trống.';
+        return;
+      }
+
+      const result = await this.authService.login(this.email.trim(), this.password);
+      if (result.success) {
+        this.successMessage = result.message;
+        setTimeout(() => this.router.navigate(['/']), 800);
+      } else if (result.message.includes('Tài khoản không tồn tại')) {
+        this.fieldErrors.email = 'Email chưa tồn tại, vui lòng đăng ký.';
+      } else if (result.message.includes('Mật khẩu không đúng')) {
+        this.fieldErrors.password = 'Mật khẩu nhập không đúng.';
+      } else {
+        this.errorMessage = result.message;
+      }
+      return;
     }
   }
 }

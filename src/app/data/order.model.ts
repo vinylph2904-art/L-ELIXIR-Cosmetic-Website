@@ -38,13 +38,17 @@ export interface Order {
     transactionId?: string;
     paidAt?: Date;
   };
-  // Compatibility / legacy fields used by older components
   userId?: string | null;
   guestName?: string;
+  guestPhone?: string; // 👈 Đã bổ sung field này để sửa triệt để Lỗi TS2339
   guestEmail?: string;
   totalAmount?: number;
   orderStatus: 'Pending' | 'Processing' | 'Shipping' | 'Completed' | 'Cancelled';
   createdAtStr?: string;
+  cancelReason?: string;
+  cancelStatus?: 'none' | 'pending' | 'approved' | 'rejected';
+  cancelRejectReason?: string;
+  cancelRequestedAt?: string;
 }
 
 export interface PaymentResponse {

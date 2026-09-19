@@ -156,6 +156,23 @@ export class CartService {
   }
 
   /**
+   * Cập nhật biến thể (dung tích, mùi hương) ngay tại dòng sản phẩm trong giỏ hàng (FR08)
+   */
+  updateItemVariant(productId: string, volume: string, scent: string): void {
+    this.cartItems = this.cartItems.map(item => {
+      if (item.productId === productId) {
+        return {
+          ...item,
+          selectedVolume: volume,
+          selectedScent: scent
+        };
+      }
+      return item;
+    });
+    this.saveCart();
+  }
+
+  /**
    * Xóa toàn bộ giỏ hàng - được gọi sau khi Thành viên 4 (Checkout) xác nhận
    * thanh toán thành công, theo đúng lưu ý đồng bộ trong Yêu_cầu.pdf:
    * "Thành viên 4 gọi hàm của Thành viên 3 để XÓA TRỐNG GIỎ HÀNG".

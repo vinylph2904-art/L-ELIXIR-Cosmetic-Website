@@ -1,0 +1,257 @@
+<div class="space-y-8">
+  <!-- Top bar: Period Filter & Export CSV Button -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-xl font-bold text-on-surface tracking-tight">Tổng quan & Báo cáo Analytics </h2>
+      <p class="text-xs text-on-surface-variant">Số liệu thời gian thực được đồng bộ từ toàn bộ hệ thống đơn hàng & khách hàng.</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <!-- Period selector -->
+      <div class="flex items-center bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-1 shadow-2xs">
+        <button type="button" (click)="selectedPeriod = 'today'; onPeriodChange()"
+          [class.bg-primary]="selectedPeriod === 'today'" [class.text-white]="selectedPeriod === 'today'"
+          class="px-3 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:text-primary transition">Hôm nay</button>
+        <button type="button" (click)="selectedPeriod = '7d'; onPeriodChange()"
+          [class.bg-primary]="selectedPeriod === '7d'" [class.text-white]="selectedPeriod === '7d'"
+          class="px-3 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:text-primary transition">7 ngày qua</button>
+        <button type="button" (click)="selectedPeriod = '30d'; onPeriodChange()"
+          [class.bg-primary]="selectedPeriod === '30d'" [class.text-white]="selectedPeriod === '30d'"
+          class="px-3 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:text-primary transition">Tháng này</button>
+        <button type="button" (click)="selectedPeriod = 'year'; onPeriodChange()"
+          [class.bg-primary]="selectedPeriod === 'year'" [class.text-white]="selectedPeriod === 'year'"
+          class="px-3 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:text-primary transition">Năm nay</button>
+      </div>
+
+      <!-- Export CSV Button -->
+      <button type="button" (click)="exportCSV()"
+        class="inline-flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-primary text-primary font-semibold text-xs rounded-xl hover:bg-primary hover:text-white transition shadow-2xs">
+        <span class="material-symbols-outlined text-[18px]">download</span>
+        Export CSV
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI Cards Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <!-- Card 1: Revenue -->
+    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-2xs flex items-center justify-between">
+      <div>
+        <span class="text-xs font-medium text-on-surface-variant uppercase tracking-wider">Tổng Doanh thu</span>
+        <h3 class="text-xl font-bold text-on-surface mt-1.5">{{ formatCurrency(totalRevenue) }}</h3>
+        <div class="flex items-center gap-1 text-[11px] text-emerald-600 font-semibold mt-1">
+          <span class="material-symbols-outlined text-[14px]">trending_up</span>
+          <span>+14.2% so với kỳ trước</span>
+        </div>
+      </div>
+      <div class="w-12 h-12 rounded-xl bg-amber-50 text-primary flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">payments</span>
+      </div>
+    </div>
+
+    <!-- Card 2: Total Orders -->
+    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-2xs flex items-center justify-between">
+      <div>
+        <span class="text-xs font-medium text-on-surface-variant uppercase tracking-wider">Tổng Đơn hàng</span>
+        <h3 class="text-xl font-bold text-on-surface mt-1.5">{{ totalOrdersCount }} đơn</h3>
+        <div class="flex items-center gap-1 text-[11px] text-on-surface-variant mt-1">
+          <span class="text-emerald-600 font-medium">{{ completedOrdersCount }} đơn</span> đã hoàn tất
+        </div>
+      </div>
+      <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
+      </div>
+    </div>
+
+    <!-- Card 3: Users -->
+    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-2xs flex items-center justify-between">
+      <div>
+        <span class="text-xs font-medium text-on-surface-variant uppercase tracking-wider">Người dùng hệ thống</span>
+        <h3 class="text-xl font-bold text-on-surface mt-1.5">{{ usersCount }} tài khoản</h3>
+        <div class="flex items-center gap-1 text-[11px] text-emerald-600 font-semibold mt-1">
+          <span class="material-symbols-outlined text-[14px]">person_add</span>
+          <span>Đang hoạt động tích cực</span>
+        </div>
+      </div>
+      <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">group</span>
+      </div>
+    </div>
+
+    <!-- Card 4: AOV -->
+    <div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-2xs flex items-center justify-between">
+      <div>
+        <span class="text-xs font-medium text-on-surface-variant uppercase tracking-wider">Giá trị đơn TB (AOV)</span>
+        <h3 class="text-xl font-bold text-on-surface mt-1.5">{{ formatCurrency(averageOrderValue) }}</h3>
+        <div class="flex items-center gap-1 text-[11px] text-on-surface-variant mt-1">
+          <span>Doanh thu / Tổng đơn</span>
+        </div>
+      </div>
+      <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">price_check</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Line Chart: Revenue Trend -->
+    <div class="lg:col-span-2 bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-2xs">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h4 class="text-sm font-bold text-on-surface tracking-tight">Biểu đồ Xu hướng Doanh thu (Line Chart)</h4>
+          <p class="text-[11px] text-on-surface-variant">Phân tích dòng tiền theo chu kỳ được chọn</p>
+        </div>
+        <span class="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
+          {{ selectedPeriod === 'today' ? 'Theo giờ' : 'Theo mốc thời gian' }}
+        </span>
+      </div>
+
+      <!-- SVG Line Chart with Gradient -->
+      <div class="relative w-full h-[220px] bg-surface-container-low/30 rounded-xl overflow-hidden border border-outline-variant/20 p-2">
+        <svg class="w-full h-full" viewBox="0 0 600 220" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="revenueGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c8a97e" stop-opacity="0.45" />
+              <stop offset="100%" stop-color="#c8a97e" stop-opacity="0.0" />
+            </linearGradient>
+          </defs>
+
+          <!-- Grid horizontal lines -->
+          <line x1="30" y1="50" x2="570" y2="50" stroke="#e4e2e1" stroke-dasharray="4" />
+          <line x1="30" y1="110" x2="570" y2="110" stroke="#e4e2e1" stroke-dasharray="4" />
+          <line x1="30" y1="170" x2="570" y2="170" stroke="#e4e2e1" stroke-dasharray="4" />
+
+          <!-- Filled Area Under Curve -->
+          <path *ngIf="revenueSvgArea" [attr.d]="revenueSvgArea" fill="url(#revenueGrad)" />
+
+          <!-- Smooth Line -->
+          <path *ngIf="revenueSvgPath" [attr.d]="revenueSvgPath" fill="none" stroke="#735a36" stroke-width="3" stroke-linecap="round" />
+
+          <!-- Interactive Data Points -->
+          <g *ngFor="let pt of revenuePoints">
+            <circle [attr.cx]="pt.x" [attr.cy]="pt.y" r="4" fill="#ffffff" stroke="#735a36" stroke-width="2.5"
+              class="cursor-pointer transition-all hover:scale-150"
+              (mouseenter)="hoveredPoint = pt" (mouseleave)="hoveredPoint = null" />
+          </g>
+        </svg>
+
+        <!-- Hover Tooltip -->
+        <div *ngIf="hoveredPoint"
+          class="absolute z-10 px-3 py-1.5 rounded-lg bg-inverse-surface text-inverse-on-surface text-[11px] shadow-lg pointer-events-none transform -translate-x-1/2 -translate-y-full"
+          [style.left.px]="(hoveredPoint.x / 600) * 100 + '%'"
+          [style.top.px]="hoveredPoint.y - 10">
+          <div class="font-bold">{{ hoveredPoint.dateLabel }}</div>
+          <div>{{ formatCurrency(hoveredPoint.amount) }}</div>
+        </div>
+      </div>
+
+      <!-- X-Axis Labels -->
+      <div class="flex justify-between px-6 pt-2 text-[11px] text-outline font-medium">
+        <span *ngFor="let pt of revenuePoints">{{ pt.dateLabel }}</span>
+      </div>
+    </div>
+
+    <!-- Donut Chart: Order Status Distribution -->
+    <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-2xs flex flex-col justify-between">
+      <div>
+        <h4 class="text-sm font-bold text-on-surface tracking-tight mb-1">Phân bổ Đơn hàng </h4>
+        <p class="text-[11px] text-on-surface-variant mb-4">Tỷ lệ đơn theo trạng thái xử lý</p>
+
+        <!-- Visual Bar / Donut representation -->
+        <div class="space-y-3">
+          <div *ngFor="let dist of statusDistributions">
+            <div class="flex justify-between text-xs mb-1">
+              <span class="font-medium text-on-surface flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full" [style.backgroundColor]="dist.color"></span>
+                {{ dist.label }}
+              </span>
+              <span class="font-semibold text-on-surface">{{ dist.count }} đơn ({{ dist.percent }}%)</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-500" [style.width.%]="dist.percent" [style.backgroundColor]="dist.color"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-outline-variant/30 text-[11px] text-outline flex items-center justify-between">
+        <span>Tổng số đơn xử lý:</span>
+        <span class="font-bold text-on-surface">{{ totalOrdersCount }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Grid: Top Selling Products & Recent Orders -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Top Selling Products -->
+    <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-2xs">
+      <div class="flex items-center justify-between mb-4">
+        <h4 class="text-sm font-bold text-on-surface tracking-tight">Top Sản phẩm Bán chạy nhất</h4>
+        <a routerLink="/admin/products" class="text-xs text-primary hover:underline font-medium">Xem tất cả</a>
+      </div>
+
+      <div class="space-y-3.5">
+        <div *ngFor="let item of topSellingProducts; let i = index"
+          class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low/50 border border-outline-variant/20 hover:border-primary/40 transition">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center">
+              {{ i + 1 }}
+            </span>
+            <img [src]="item.product.images[0]" [alt]="item.product.name" class="w-10 h-10 rounded-lg object-cover bg-surface-container" />
+            <div>
+              <p class="text-xs font-bold text-on-surface line-clamp-1">{{ item.product.name }}</p>
+              <p class="text-[11px] text-outline">{{ item.product.categoryName }} • Đã bán: {{ item.soldQuantity }}</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-bold text-primary">{{ formatCurrency(item.revenue) }}</span>
+          </div>
+        </div>
+
+        <div *ngIf="topSellingProducts.length === 0" class="py-8 text-center text-xs text-outline">
+          Chưa có dữ liệu sản phẩm bán ra.
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-2xs">
+      <div class="flex items-center justify-between mb-4">
+        <h4 class="text-sm font-bold text-on-surface tracking-tight">Đơn hàng Mới nhất</h4>
+        <a routerLink="/admin/orders" class="text-xs text-primary hover:underline font-medium">Quản lý đơn</a>
+      </div>
+
+      <div class="space-y-3">
+        <div *ngFor="let order of recentOrders"
+          class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low/50 border border-outline-variant/20">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-primary font-mono">{{ order.orderId }}</span>
+              <span [ngClass]="{
+                'bg-amber-100 text-amber-800': order.orderStatus === 'Pending',
+                'bg-blue-100 text-blue-800': order.orderStatus === 'Processing',
+                'bg-purple-100 text-purple-800': order.orderStatus === 'Shipping',
+                'bg-emerald-100 text-emerald-800': order.orderStatus === 'Completed',
+                'bg-red-100 text-red-800': order.orderStatus === 'Cancelled'
+              }" class="px-2 py-0.5 rounded-full text-[10px] font-semibold">
+                {{ order.orderStatus }}
+              </span>
+            </div>
+            <p class="text-xs text-on-surface mt-0.5">{{ order.shippingInfo.fullName || order.guestName || 'Khách vãng lai' }}</p>
+          </div>
+
+          <div class="text-right">
+            <p class="text-xs font-bold text-on-surface">{{ formatCurrency(order.total || order.totalAmount || 0) }}</p>
+          </div>
+          <p class="text-[10px] text-outline">{{ order.paymentMethod.toUpperCase() }}</p>
+        </div>
+
+        <div *ngIf="recentOrders.length === 0" class="py-8 text-center text-xs text-outline">
+          Chưa có đơn hàng phát sinh.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

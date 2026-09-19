@@ -4,9 +4,11 @@ export interface User {
   password: string;
   fullName: string;
   phoneNumber: string;
-  role: 'customer';
-  dateOfBirth?: string;   // dd/mm/yyyy
+  role: 'admin' | 'staff' | 'audit' | 'customer';
+  status?: 'active' | 'locked';
+  dateOfBirth?: string;   
   gender?: 'Nam' | 'Nữ' | 'Khác';
   avatarUrl?: string;
   createdAt?: string;
 }
+

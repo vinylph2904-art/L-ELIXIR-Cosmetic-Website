@@ -16,4 +16,7 @@ export interface Product {
   averageRating: number;
   reviewCount: number;
   collection?: string;
+  isDeleted?: boolean;
+  selectedVolume?: string;
+  selectedScent?: string;
 }

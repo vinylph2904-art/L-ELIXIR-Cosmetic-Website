@@ -46,6 +46,27 @@ export class OrderTrackingComponent implements OnInit {
   reviewError = '';
   reviewSubmitting = false;
 
+  // FR13: Guest OTP Verification Modal
+  isGuestOtpModalOpen = false;
+  pendingGuestOrder: Order | null = null;
+  guestOtpInput = '';
+  guestMaskedPhone = '';
+  demoGuestOtp = '123456';
+  guestOtpError = '';
+
+  // FR13: Order Cancellation Request Modal
+  isCancelModalOpen = false;
+  cancelReasonPreset = 'Đổi ý không còn nhu cầu mua';
+  cancelReasonDetail = '';
+  cancelPresets = [
+    'Đổi ý không còn nhu cầu mua',
+    'Muốn thay đổi sản phẩm / biến thể khác',
+    'Thời gian giao hàng dự kiến quá lâu',
+    'Tìm thấy sản phẩm giá tốt hơn ở nơi khác',
+    'Sai thông tin địa chỉ hoặc số điện thoại',
+    'Lý do khác'
+  ];
+
   private readonly STEP_LABELS = [
     { label: 'Đã đặt hàng', icon: 'check' },
     { label: 'Đã xác nhận', icon: 'check' },
@@ -99,6 +120,7 @@ export class OrderTrackingComponent implements OnInit {
     this.buildTrackingSteps(order);
   }
 
+  // FR13: Guest order search with OTP protection
   searchGuestOrder(): void {
     this.searchError = '';
     this.searchedOrder = null;
@@ -114,8 +136,78 @@ export class OrderTrackingComponent implements OnInit {
       return;
     }
 
-    this.searchedOrder = found;
-    this.selectOrder(found);
+    // Require OTP authentication for Guest to protect privacy (FR13)
+    this.pendingGuestOrder = found;
+    const phone = found.shippingInfo?.phone || found.guestPhone || '0901234567';
+    this.guestMaskedPhone = phone.replace(/(\d{3})\d{4}(\d{3})/, '$1****$2');
+    this.guestOtpInput = '';
+    this.guestOtpError = '';
+    this.isGuestOtpModalOpen = true;
+  }
+
+  confirmGuestOtp(): void {
+    this.guestOtpError = '';
+    if (!this.guestOtpInput.trim()) {
+      this.guestOtpError = 'Vui lòng nhập mã OTP 6 chữ số.';
+      return;
+    }
+
+    if (this.guestOtpInput.trim() !== this.demoGuestOtp) {
+      this.guestOtpError = 'Mã OTP không chính xác. Vui lòng nhập mã thử nghiệm 123456.';
+      return;
+    }
+
+    // OTP Verified!
+    this.isGuestOtpModalOpen = false;
+    this.searchedOrder = this.pendingGuestOrder;
+    if (this.pendingGuestOrder) {
+      this.selectOrder(this.pendingGuestOrder);
+    }
+    this.toastService.success('Xác thực OTP thành công! Thông tin đơn hàng đã được hiển thị.');
+  }
+
+  closeGuestOtpModal(): void {
+    this.isGuestOtpModalOpen = false;
+    this.pendingGuestOrder = null;
+  }
+
+  // FR13: Cancellation Request Modal
+  canRequestCancel(order?: Order | null): boolean {
+    if (!order) return false;
+    // Allow cancellation request if order is Pending or Processing and no pending/approved cancel
+    return (order.orderStatus === 'Pending' || order.orderStatus === 'Processing') &&
+           order.cancelStatus !== 'pending' &&
+           order.cancelStatus !== 'approved';
+  }
+
+  openCancelModal(): void {
+    if (!this.selectedOrder) return;
+    this.cancelReasonPreset = 'Đổi ý không còn nhu cầu mua';
+    this.cancelReasonDetail = '';
+    this.isCancelModalOpen = true;
+  }
+
+  closeCancelModal(): void {
+    this.isCancelModalOpen = false;
+    this.cancelReasonDetail = '';
+  }
+
+  submitCancelRequest(): void {
+    if (!this.selectedOrder) return;
+
+    const fullReason = this.cancelReasonDetail.trim()
+      ? `${this.cancelReasonPreset} (${this.cancelReasonDetail.trim()})`
+      : this.cancelReasonPreset;
+
+    const success = this.orderService.requestOrderCancellation(this.selectedOrder.orderId, fullReason);
+    if (success) {
+      this.selectedOrder.cancelStatus = 'pending';
+      this.selectedOrder.cancelReason = fullReason;
+      this.toastService.success('Yêu cầu hủy đơn đã được gửi thành công! Bộ phận quản trị sẽ sớm phê duyệt.');
+      this.closeCancelModal();
+    } else {
+      this.toastService.error('Không thể gửi yêu cầu hủy đơn lúc này.');
+    }
   }
 
   private buildTrackingSteps(order: Order): void {

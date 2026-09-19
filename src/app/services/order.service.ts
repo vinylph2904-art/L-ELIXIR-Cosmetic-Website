@@ -702,4 +702,62 @@ export class OrderService {
     };
     return map[status] ?? 0;
   }
+
+  // --- ADMIN & CANCELLATION EXTENSIONS ---
+  getAllOrders(): Order[] {
+    return this.readStoredOrders();
+  }
+
+  updateOrderStatus(orderId: string, status: Order['orderStatus']): boolean {
+    const orders = this.readStoredOrders();
+    const idx = orders.findIndex(o => String(o.orderId).toLowerCase() === String(orderId).toLowerCase());
+    if (idx === -1) return false;
+
+    orders[idx].orderStatus = status;
+    orders[idx].status = this.normalizeOrderState(status);
+    orders[idx].updatedAt = new Date();
+    this.writeStoredOrders(orders);
+    return true;
+  }
+
+  requestOrderCancellation(orderId: string, reason: string): boolean {
+    const orders = this.readStoredOrders();
+    const idx = orders.findIndex(o => String(o.orderId).toLowerCase() === String(orderId).toLowerCase());
+    if (idx === -1) return false;
+
+    orders[idx].cancelStatus = 'pending';
+    orders[idx].cancelReason = reason;
+    orders[idx].cancelRequestedAt = new Date().toISOString();
+    orders[idx].updatedAt = new Date();
+    this.writeStoredOrders(orders);
+    return true;
+  }
+
+  approveCancellation(orderId: string, adminNote?: string): boolean {
+    const orders = this.readStoredOrders();
+    const idx = orders.findIndex(o => String(o.orderId).toLowerCase() === String(orderId).toLowerCase());
+    if (idx === -1) return false;
+
+    orders[idx].orderStatus = 'Cancelled';
+    orders[idx].status = 'cancelled';
+    orders[idx].cancelStatus = 'approved';
+    if (adminNote) {
+      orders[idx].cancelRejectReason = adminNote; // Record note
+    }
+    orders[idx].updatedAt = new Date();
+    this.writeStoredOrders(orders);
+    return true;
+  }
+
+  rejectCancellation(orderId: string, adminNote: string): boolean {
+    const orders = this.readStoredOrders();
+    const idx = orders.findIndex(o => String(o.orderId).toLowerCase() === String(orderId).toLowerCase());
+    if (idx === -1) return false;
+
+    orders[idx].cancelStatus = 'rejected';
+    orders[idx].cancelRejectReason = adminNote;
+    orders[idx].updatedAt = new Date();
+    this.writeStoredOrders(orders);
+    return true;
+  }
 }

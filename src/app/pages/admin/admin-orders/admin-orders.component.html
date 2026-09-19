@@ -1,0 +1,332 @@
+<div class="space-y-6 font-sans">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-xl font-bold text-on-surface tracking-tight">Quản lý Đơn hàng & Duyệt Hủy đơn </h2>
+      <p class="text-xs text-on-surface-variant">Theo dõi tiến độ, nhãn trạng thái màu và xử lý yêu cầu hủy đơn / hoàn tiền kèm lý do.</p>
+    </div>
+
+    <!-- Cancellation request alert banner badge -->
+    <div class="flex items-center gap-2">
+      <span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold">
+        <span class="material-symbols-outlined text-[16px] text-amber-600">notifications_active</span>
+        <span>Tổng số đơn: {{ orders.length }}</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Filters & Search -->
+  <div class="bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/30 shadow-2xs flex flex-col md:flex-row gap-3 items-center justify-between">
+    <!-- Search Box -->
+    <div class="relative w-full md:w-80">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+        <span class="material-symbols-outlined text-[18px]">search</span>
+      </span>
+      <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="applyFilters()"
+        class="w-full pl-9 pr-3 py-2 text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+        placeholder="Tìm theo mã đơn, tên khách, số điện thoại..." />
+    </div>
+
+    <!-- Status Filters -->
+    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+      <select [(ngModel)]="statusFilter" (change)="applyFilters()"
+        class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
+        <option value="all">Tất cả trạng thái</option>
+        <option value="Pending">Chờ xử lý (Pending)</option>
+        <option value="Processing">Đang chuẩn bị (Processing)</option>
+        <option value="Shipping">Đang giao (Shipping)</option>
+        <option value="Completed">Hoàn tất (Completed)</option>
+        <option value="Cancelled">Đã hủy (Cancelled)</option>
+      </select>
+
+      <select [(ngModel)]="cancelFilter" (change)="applyFilters()"
+        class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
+        <option value="all">Tất cả yêu cầu</option>
+        <option value="requested">🚨 Cần duyệt hủy đơn</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-2xs overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs text-on-surface">
+        <thead class="bg-surface-container-low/70 border-b border-outline-variant/30 text-[11px] font-semibold text-outline uppercase tracking-wider">
+          <tr>
+            <th class="py-3.5 px-4">Mã Đơn Hàng</th>
+            <th class="py-3.5 px-4">Khách Hàng</th>
+            <th class="py-3.5 px-4">Ngày Đặt</th>
+            <th class="py-3.5 px-4">Tổng Tiền</th>
+            <th class="py-3.5 px-4">Thanh Toán</th>
+            <th class="py-3.5 px-4">Trạng Thái Đơn</th>
+            <th class="py-3.5 px-4">Yêu Cầu Hủy</th>
+            <th class="py-3.5 px-4 text-right">Thao Tác</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant/20">
+          <tr *ngFor="let order of filteredOrders" class="hover:bg-surface-container-low/40 transition">
+            <!-- Order ID -->
+            <td class="py-3 px-4 font-mono font-bold text-primary">
+              {{ order.orderId }}
+            </td>
+
+            <!-- Customer -->
+            <td class="py-3 px-4">
+              <div class="font-semibold text-on-surface">
+                {{ order.shippingInfo.fullName || order.guestName || 'Khách vãng lai' }}
+              </div>
+              <div class="text-[10px] text-outline">
+                {{ order.shippingInfo.phone || order.guestPhone || '' }}
+              </div>
+            </td>
+
+            <!-- Created At -->
+            <td class="py-3 px-4 text-on-surface-variant text-[11px]">
+              {{ formatDate(order.createdAt) }}
+            </td>
+
+            <!-- Total Amount -->
+            <td class="py-3 px-4 font-bold text-on-surface">
+              {{ formatCurrency(order.total || order.totalAmount || 0) }}
+            </td>
+
+            <!-- Payment Method -->
+            <td class="py-3 px-4 text-[11px] uppercase font-mono text-outline">
+              {{ order.paymentMethod || 'COD' }}
+            </td>
+
+            <!-- Order Status Badge -->
+            <td class="py-3 px-4">
+              <span [ngClass]="getStatusBadgeClass(order.orderStatus)"
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border">
+                <span class="w-1.5 h-1.5 rounded-full" [ngClass]="{
+                  'bg-amber-500': order.orderStatus === 'Pending',
+                  'bg-blue-500': order.orderStatus === 'Processing',
+                  'bg-purple-500': order.orderStatus === 'Shipping',
+                  'bg-emerald-500': order.orderStatus === 'Completed',
+                  'bg-red-500': order.orderStatus === 'Cancelled'
+                }"></span>
+                {{ order.orderStatus }}
+              </span>
+            </td>
+
+            <!-- Cancellation Status Badge -->
+            <td class="py-3 px-4">
+              <span *ngIf="order.cancelStatus === 'pending'"
+                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-red-100 text-red-800 border border-red-300 animate-pulse">
+                <span class="material-symbols-outlined text-[13px]">warning</span>
+                Yêu cầu hủy đơn
+              </span>
+              <span *ngIf="order.cancelStatus === 'approved'"
+                class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-gray-100 text-gray-700">
+                Đã duyệt hủy
+              </span>
+              <span *ngIf="order.cancelStatus === 'rejected'"
+                class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-50 text-amber-800">
+                Đã từ chối hủy
+              </span>
+              <span *ngIf="!order.cancelStatus || order.cancelStatus === 'none'" class="text-outline text-[11px]">
+                -
+              </span>
+            </td>
+
+            <!-- Actions -->
+            <td class="py-3 px-4 text-right space-x-1">
+              <button type="button" (click)="openDetailModal(order)"
+                class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-primary hover:bg-primary/10 transition">
+                <span class="material-symbols-outlined text-[16px]">visibility</span>
+                Chi tiết
+              </button>
+
+              <!-- Quick approval buttons if cancel is pending -->
+              <ng-container *ngIf="order.cancelStatus === 'pending'">
+                <button type="button" (click)="approveCancellation(order)" title="Duyệt yêu cầu hủy"
+                  class="p-1 rounded-lg text-emerald-600 hover:bg-emerald-50 transition">
+                  <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                </button>
+                <button type="button" (click)="openRejectModal(order)" title="Từ chối yêu cầu hủy"
+                  class="p-1 rounded-lg text-red-600 hover:bg-red-50 transition">
+                  <span class="material-symbols-outlined text-[18px]">cancel</span>
+                </button>
+              </ng-container>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredOrders.length === 0">
+            <td colspan="8" class="py-12 text-center text-outline">
+              Không tìm thấy đơn hàng nào phù hợp.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Order Detail Modal -->
+  <div *ngIf="isDetailModalOpen && selectedOrder" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl border border-outline-variant/40 space-y-6 max-h-[90vh] overflow-y-auto">
+      
+      <!-- Modal Header -->
+      <div class="flex justify-between items-center pb-4 border-b border-outline-variant/30">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <h3 class="text-lg font-bold text-on-surface">Đơn hàng #{{ selectedOrder.orderId }}</h3>
+            <span [ngClass]="getStatusBadgeClass(selectedOrder.orderStatus)" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold border">
+              {{ selectedOrder.orderStatus }}
+            </span>
+          </div>
+          <p class="text-xs text-outline mt-0.5">Đặt lúc: {{ formatDate(selectedOrder.createdAt) }}</p>
+        </div>
+
+        <button type="button" (click)="closeDetailModal()" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Cancellation Alert Box inside Modal -->
+      <div *ngIf="selectedOrder.cancelStatus === 'pending'"
+        class="p-4 rounded-xl bg-red-50 border border-red-200 text-red-900 space-y-2">
+        <div class="flex items-center gap-2 font-bold text-xs">
+          <span class="material-symbols-outlined text-[18px] text-red-600">warning</span>
+          <span>Khách hàng đã gửi YÊU CẦU HỦY ĐƠN / HOÀN TIỀN</span>
+        </div>
+        <p class="text-xs pl-6">
+          <span class="font-medium text-red-700">Lý do hủy từ khách:</span>
+          "{{ selectedOrder.cancelReason || 'Không cung cấp lý do cụ thể' }}"
+        </p>
+        <div class="flex items-center gap-3 pt-2 pl-6">
+          <button type="button" (click)="approveCancellation(selectedOrder)"
+            class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">check</span>
+            Phê duyệt Hủy đơn
+          </button>
+          <button type="button" (click)="openRejectModal(selectedOrder)"
+            class="px-3 py-1.5 rounded-lg bg-red-600 text-white text-xs font-semibold hover:bg-red-700 transition flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+            Từ chối kèm lý do
+          </button>
+        </div>
+      </div>
+
+      <!-- Previous Reject / Approve Notes -->
+      <div *ngIf="selectedOrder.cancelStatus === 'rejected'"
+        class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs">
+        <span class="font-bold">Đã từ chối hủy:</span> Lý do từ chối: "{{ selectedOrder.cancelRejectReason || 'Không đáp ứng điều kiện hủy đơn' }}"
+      </div>
+
+      <!-- Grid: Shipping Info & Status Change -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs">
+        <!-- Shipping Info -->
+        <div class="p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/30 space-y-2">
+          <h4 class="font-bold text-on-surface uppercase tracking-wider text-[11px]">Thông tin giao hàng</h4>
+          <p><span class="font-medium text-outline">Người nhận:</span> {{ selectedOrder.shippingInfo.fullName || selectedOrder.guestName }}</p>
+          <p><span class="font-medium text-outline">Số điện thoại:</span> {{ selectedOrder.shippingInfo.phone || selectedOrder.guestPhone }}</p>
+          <p><span class="font-medium text-outline">Địa chỉ:</span> {{ selectedOrder.shippingInfo.address }}, {{ selectedOrder.shippingInfo.district }}, {{ selectedOrder.shippingInfo.city }}</p>
+          <p><span class="font-medium text-outline">Địa chỉ:</span> {{ selectedOrder.shippingInfo.address }}, {{ selectedOrder.shippingInfo.district }}, {{ selectedOrder.shippingInfo.city }}</p>
+          <p *ngIf="selectedOrder.shippingInfo.note"><span class="font-medium text-outline">Ghi chú:</span> {{ selectedOrder.shippingInfo.note }}</p>
+        </div>
+
+        <!-- Payment & Status Control -->
+        <div class="p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/30 space-y-3">
+          <h4 class="font-bold text-on-surface uppercase tracking-wider text-[11px]">Cập nhật trạng thái</h4>
+          <div class="space-y-1.5">
+            <label class="block text-outline">Chuyển trạng thái đơn hàng:</label>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" (click)="changeOrderStatus('Pending')"
+                [class.ring-2]="selectedOrder.orderStatus === 'Pending'"
+                class="px-2.5 py-1.5 rounded-lg bg-amber-100 text-amber-900 font-semibold text-center hover:bg-amber-200 transition">
+                Chờ xử lý
+              </button>
+              <button type="button" (click)="changeOrderStatus('Processing')"
+                [class.ring-2]="selectedOrder.orderStatus === 'Processing'"
+                class="px-2.5 py-1.5 rounded-lg bg-blue-100 text-blue-900 font-semibold text-center hover:bg-blue-200 transition">
+                Chuẩn bị
+              </button>
+              <button type="button" (click)="changeOrderStatus('Shipping')"
+                [class.ring-2]="selectedOrder.orderStatus === 'Shipping'"
+                class="px-2.5 py-1.5 rounded-lg bg-purple-100 text-purple-900 font-semibold text-center hover:bg-purple-200 transition">
+                Đang giao
+              </button>
+              <button type="button" (click)="changeOrderStatus('Completed')"
+                [class.ring-2]="selectedOrder.orderStatus === 'Completed'"
+                class="px-2.5 py-1.5 rounded-lg bg-emerald-100 text-emerald-900 font-semibold text-center hover:bg-emerald-200 transition">
+                Hoàn tất
+              </button>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-outline-variant/30">
+            <span class="text-outline">Phương thức:</span> <span class="font-bold uppercase font-mono">{{ selectedOrder.paymentMethod }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Items List -->
+      <div class="space-y-3">
+        <h4 class="font-bold text-on-surface uppercase tracking-wider text-[11px]">Sản phẩm trong đơn</h4>
+        <div class="border border-outline-variant/30 rounded-xl overflow-hidden divide-y divide-outline-variant/20">
+          <div *ngFor="let item of selectedOrder.items" class="p-3 flex items-center justify-between text-xs hover:bg-surface-container-low/30">
+            <div class="flex items-center gap-3">
+              <img [src]="item.product.images[0] || 'assets/images/SRM/SP01.1.png'" [alt]="item.product.name" class="w-12 h-12 rounded-lg object-cover bg-surface-container" />
+              <div>
+                <p class="font-bold text-on-surface">{{ item.product.name || 'Sản phẩm' }}</p>
+                <p class="text-[11px] text-outline">Đơn giá: {{ formatCurrency(item.price) }} • SL: {{ item.quantity }}</p>
+              </div>
+            </div>
+            <div class="font-bold text-on-surface">
+              {{ formatCurrency(item.price * item.quantity) }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Total Breakdown -->
+        <div class="text-right space-y-1 pt-2 text-xs">
+          <p><span class="text-outline">Tạm tính:</span> <span class="font-semibold">{{ formatCurrency(selectedOrder.subtotal) }}</span></p>
+          <p><span class="text-outline">Phí giao hàng:</span> <span class="font-semibold">{{ formatCurrency(selectedOrder.shippingFee) }}</span></p>
+          <p *ngIf="selectedOrder.discount"><span class="text-outline">Giảm giá:</span> <span class="text-red-600 font-semibold">-{{ formatCurrency(selectedOrder.discount) }}</span></p>
+          <p class="text-sm font-bold text-primary pt-1 border-t border-outline-variant/30">
+            <span>Tổng thanh toán:</span> {{ formatCurrency(selectedOrder.total || selectedOrder.totalAmount || 0) }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="pt-4 border-t border-outline-variant/30 flex justify-end">
+        <button type="button" (click)="closeDetailModal()"
+          class="px-5 py-2 bg-surface-container text-on-surface font-semibold text-xs rounded-xl hover:bg-surface-container-high transition">
+          Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reject Reason Modal -->
+  <div *ngIf="isRejectModalOpen" class="fixed inset-0 z-60 overflow-y-auto bg-black/60 flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-md w-full p-6 shadow-2xl border border-outline-variant/40 space-y-4">
+      <div class="flex justify-between items-center pb-2 border-b border-outline-variant/30">
+        <h3 class="text-sm font-bold text-on-surface">Từ chối Yêu cầu Hủy đơn #{{ selectedOrder?.orderId }}</h3>
+        <button type="button" (click)="closeRejectModal()" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-2 text-xs">
+        <label class="block font-medium text-on-surface">Nhập lý do từ chối gửi tới khách hàng *</label>
+        <textarea rows="3" [(ngModel)]="rejectReasonInput"
+          class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+          placeholder="Ví dụ: Kiện hàng đã được giao cho đơn vị vận chuyển và đang trên đường phát, không thể hủy ngay lúc này..."></textarea>
+      </div>
+
+      <div class="pt-3 border-t border-outline-variant/30 flex justify-end gap-2 text-xs">
+        <button type="button" (click)="closeRejectModal()"
+          class="px-4 py-2 border border-outline-variant/50 font-semibold rounded-xl text-on-surface hover:bg-surface-container transition">
+          Hủy bỏ
+        </button>
+        <button type="button" (click)="confirmRejectCancellation()"
+          class="px-4 py-2 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition">
+          Xác nhận từ chối
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

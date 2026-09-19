@@ -1,0 +1,280 @@
+<div class="space-y-6 font-sans">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-xl font-bold text-on-surface tracking-tight">Quản lý Sản phẩm  </h2>
+      <p class="text-xs text-on-surface-variant">Quản lý kho hàng, giá niêm yết, thêm mới & xóa mềm (Soft-delete) sản phẩm.</p>
+    </div>
+
+    <button type="button" (click)="openAddModal()"
+      class="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white font-semibold text-xs rounded-xl hover:bg-primary-600 transition shadow-2xs">
+      <span class="material-symbols-outlined text-[18px]">add_circle</span>
+      Thêm sản phẩm mới
+    </button>
+  </div>
+
+  <!-- Search & Filters Bar -->
+  <div class="bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/30 shadow-2xs flex flex-col md:flex-row gap-3 items-center justify-between">
+    <!-- Search Box -->
+    <div class="relative w-full md:w-80">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+        <span class="material-symbols-outlined text-[18px]">search</span>
+      </span>
+      <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="applyFilters()"
+        class="w-full pl-9 pr-3 py-2 text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-on-surface"
+        placeholder="Tìm theo tên, mã SP hoặc danh mục..." />
+    </div>
+
+    <!-- Filters Group -->
+    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+      <!-- Category Filter -->
+      <select [(ngModel)]="selectedCategory" (change)="applyFilters()"
+        class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
+        <option value="">Tất cả danh mục</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+
+      <!-- Stock & Status Filter -->
+      <select [(ngModel)]="stockFilter" (change)="applyFilters()"
+        class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
+        <option value="all">Tất cả trạng thái</option>
+        <option value="active">Đang bán (Active)</option>
+        <option value="low">⚠️ Tồn kho thấp (&lt; 10)</option>
+        <option value="deleted">🗑️ Đã xóa mềm (Soft-deleted)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Products Table -->
+  <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-2xs overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs text-on-surface">
+        <thead class="bg-surface-container-low/70 border-b border-outline-variant/30 text-[11px] font-semibold text-outline uppercase tracking-wider">
+          <tr>
+            <th class="py-3.5 px-4">Sản phẩm</th>
+            <th class="py-3.5 px-4">Mã SP</th>
+            <th class="py-3.5 px-4">Danh mục</th>
+            <th class="py-3.5 px-4">Giá bán</th>
+            <th class="py-3.5 px-4">Tồn kho (stockQuantity)</th>
+            <th class="py-3.5 px-4">Trạng thái</th>
+            <th class="py-3.5 px-4 text-right">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant/20">
+          <tr *ngFor="let prod of filteredProducts" class="hover:bg-surface-container-low/40 transition">
+            <!-- Product info -->
+            <td class="py-3 px-4 flex items-center gap-3">
+              <img [src]="prod.images[0]" [alt]="prod.name" class="w-11 h-11 rounded-lg object-cover bg-surface-container flex-shrink-0" />
+              <div>
+                <span class="font-bold text-on-surface line-clamp-1">{{ prod.name }}</span>
+                <span class="text-[10px] text-outline">{{ prod.volume }} • {{ prod.brand }}</span>
+              </div>
+            </td>
+
+            <!-- SKU -->
+            <td class="py-3 px-4 font-mono font-semibold text-primary">
+              {{ prod.productId }}
+            </td>
+
+            <!-- Category -->
+            <td class="py-3 px-4 text-on-surface-variant font-medium">
+              {{ prod.categoryName }}
+            </td>
+
+            <!-- Price -->
+            <td class="py-3 px-4 font-bold text-on-surface">
+              {{ formatCurrency(prod.price) }}
+            </td>
+
+            <!-- Stock quantity -->
+            <td class="py-3 px-4">
+              <span [ngClass]="{
+                'text-red-600 font-bold bg-red-50 border-red-200': prod.stockQuantity === 0,
+                'text-amber-600 font-bold bg-amber-50 border-amber-200': prod.stockQuantity > 0 && prod.stockQuantity < 10,
+                'text-emerald-700 font-semibold bg-emerald-50 border-emerald-200': prod.stockQuantity >= 10
+              }" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] border">
+                <span class="material-symbols-outlined text-[13px]">
+                  {{ prod.stockQuantity < 10 ? 'warning' : 'inventory' }}
+                </span>
+                {{ prod.stockQuantity }} cái
+              </span>
+            </td>
+
+            <!-- Status (Active / Deleted) -->
+            <td class="py-3 px-4">
+              <span *ngIf="!prod.isDeleted" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                Đang bán
+              </span>
+              <span *ngIf="prod.isDeleted" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gray-200 text-gray-700 border border-gray-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-gray-500"></span>
+                Tạm ngưng (Xóa mềm)
+              </span>
+            </td>
+
+            <!-- Actions -->
+            <td class="py-3 px-4 text-right space-x-1">
+              <!-- Edit button -->
+              <button type="button" (click)="openEditModal(prod)" title="Chỉnh sửa sản phẩm"
+                class="p-1.5 rounded-lg text-primary hover:bg-primary/10 transition">
+                <span class="material-symbols-outlined text-[18px]">edit</span>
+              </button>
+
+              <!-- Soft delete / Restore button -->
+              <button type="button" (click)="toggleSoftDelete(prod)"
+                [title]="prod.isDeleted ? 'Khôi phục sản phẩm' : 'Xóa mềm sản phẩm'"
+                [ngClass]="prod.isDeleted ? 'text-emerald-600 hover:bg-emerald-50' : 'text-amber-600 hover:bg-amber-50'"
+                class="p-1.5 rounded-lg transition">
+                <span class="material-symbols-outlined text-[18px]">{{ prod.isDeleted ? 'restore_from_trash' : 'visibility_off' }}</span>
+              </button>
+
+              <!-- Hard delete button -->
+              <button type="button" (click)="hardDeleteProduct(prod)" title="Xóa vĩnh viễn"
+                class="p-1.5 rounded-lg text-red-600 hover:bg-red-50 transition">
+                <span class="material-symbols-outlined text-[18px]">delete</span>
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredProducts.length === 0">
+            <td colspan="7" class="py-12 text-center text-outline">
+              Không tìm thấy sản phẩm phù hợp với bộ lọc.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Product Modal (Add & Edit) -->
+  <div *ngIf="isModalOpen" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-outline-variant/40 space-y-5 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center pb-3 border-b border-outline-variant/30">
+        <h3 class="text-base font-bold text-on-surface">
+          {{ isEditMode ? 'Chỉnh sửa sản phẩm (' + editingProduct.productId + ')' : 'Thêm sản phẩm mới' }}
+        </h3>
+        <button type="button" (click)="closeModal()" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <!-- Name -->
+        <div class="sm:col-span-2">
+          <label class="block font-medium text-on-surface mb-1">Tên sản phẩm *</label>
+          <input type="text" [(ngModel)]="editingProduct.name" required
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="Ví dụ: Tinh Chất Phục Hồi Lumina Serum" />
+        </div>
+
+        <!-- SKU (Product ID) -->
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Mã sản phẩm (SKU)</label>
+          <input type="text" [(ngModel)]="editingProduct.productId" [disabled]="isEditMode"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface disabled:opacity-60"
+            placeholder="Tự sinh nếu để trống (vd: SP51)" />
+        </div>
+
+        <!-- Category -->
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Danh mục *</label>
+          <select [(ngModel)]="editingProduct.categoryName"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface">
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          </select>
+        </div>
+
+        <!-- Price -->
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Giá bán (VNĐ) *</label>
+          <input type="number" [(ngModel)]="editingProduct.price" min="0" step="10000"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface" />
+        </div>
+
+        <!-- Stock Quantity -->
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Số lượng tồn kho (stockQuantity) *</label>
+          <input type="number" [(ngModel)]="editingProduct.stockQuantity" min="0" step="1"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface" />
+        </div>
+
+        <!-- Volume -->
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Dung tích</label>
+          <input type="text" [(ngModel)]="editingProduct.volume"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="150ml, 50ml..." />
+        </div>
+
+        <!-- Routine Step -->
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Bước trong chu trình</label>
+          <input type="text" [(ngModel)]="editingProduct.routineStep"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="Bước 1, Bước 2, Bước 3..." />
+        </div>
+
+        <!-- Image Upload Section -->
+        <div class="sm:col-span-2 space-y-2 p-3 rounded-xl bg-surface-container-low/50 border border-outline-variant/30">
+          <label class="block font-medium text-on-surface">Hình ảnh sản phẩm (Upload ảnh hoặc Nhập URL)</label>
+          
+          <div class="flex items-center gap-4">
+            <img [src]="imageInput || 'assets/images/SRM/SP01.1.png'" alt="Preview" class="w-16 h-16 rounded-lg object-cover border border-outline-variant" />
+            <div class="flex-1 space-y-2">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*"
+                class="block w-full text-xs text-outline file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20" />
+              <input type="text" [(ngModel)]="imageInput"
+                class="w-full px-3 py-1.5 bg-surface-container-lowest border border-outline-variant/40 rounded-lg text-xs"
+                placeholder="Hoặc dán URL ảnh trực tiếp tại đây..." />
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Skin Types -->
+        <div class="sm:col-span-2">
+          <label class="block font-medium text-on-surface mb-1">Loại da phù hợp (phân cách bằng dấu phẩy)</label>
+          <input type="text" [(ngModel)]="targetSkinTypesInput"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="Da dầu, Da khô, Da hỗn hợp, Da nhạy cảm" />
+        </div>
+
+        <!-- Target Skin Problems -->
+        <div class="sm:col-span-2">
+          <label class="block font-medium text-on-surface mb-1">Vấn đề da giải quyết (phân cách bằng dấu phẩy)</label>
+          <input type="text" [(ngModel)]="targetSkinProblemsInput"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="Mụn, Thâm nám, Lão hóa, Thiếu ẩm" />
+        </div>
+
+        <!-- Ingredients -->
+        <div class="sm:col-span-2">
+          <label class="block font-medium text-on-surface mb-1">Thành phần hoạt chất (phân cách bằng dấu phẩy)</label>
+          <input type="text" [(ngModel)]="ingredientsInput"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="Salicylic Acid (BHA), Ceramide, Niacinamide, B5..." />
+        </div>
+
+        <!-- Description -->
+        <div class="sm:col-span-2">
+          <label class="block font-medium text-on-surface mb-1">Mô tả sản phẩm</label>
+          <textarea rows="3" [(ngModel)]="editingProduct.description"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="Mô tả công dụng và điểm độc đáo của sản phẩm..."></textarea>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-4 border-t border-outline-variant/30 flex justify-end gap-3">
+        <button type="button" (click)="closeModal()"
+          class="px-4 py-2 border border-outline-variant/50 text-xs font-semibold rounded-xl text-on-surface hover:bg-surface-container transition">
+          Hủy bỏ
+        </button>
+        <button type="button" (click)="saveProduct()"
+          class="px-5 py-2 bg-primary text-white text-xs font-semibold rounded-xl hover:bg-primary-600 transition shadow-2xs">
+          {{ isEditMode ? 'Lưu thay đổi' : 'Tạo sản phẩm' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

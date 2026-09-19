@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import mockOrders from './data/mock-data/orders.mock.json';
 import PRODUCTS from './data/mock-data/mock-products.json';
 import seedUsers from './data/mock-data/users.json';
@@ -10,6 +11,12 @@ import seedUsers from './data/mock-data/users.json';
 })
 export class AppComponent implements OnInit {
   title = "lelixir";
+
+  constructor(public router: Router) {}
+
+  isAdminRoute(): boolean {
+    return this.router.url.startsWith('/admin');
+  }
 
   ngOnInit() {
     this.loadMockDataIfNeeded();

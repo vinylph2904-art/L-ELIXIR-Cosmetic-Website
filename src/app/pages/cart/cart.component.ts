@@ -16,11 +16,40 @@ export class CartComponent implements OnInit {
   selectedProductIds: Set<string> = new Set<string>();
   private _enterPressed = false;
 
+  // FR08: Inline Variant Changing
+  activeVariantProductId: string | null = null;
+  tempVolume = '150ml';
+  tempScent = 'Không mùi (Fragrance-Free)';
+  availableVolumes = ['50ml', '100ml', '150ml', '200ml'];
+  availableScents = [
+    'Không mùi (Fragrance-Free)',
+    'Trà xanh dịu mát',
+    'Thảo mộc thanh khiết',
+    'Hoa hồng Pháp'
+  ];
+
   constructor(
     private cartService: CartService,
     private toastService: ToastService,
     private router: Router
   ) {}
+
+  openVariantSelector(item: Product): void {
+    this.activeVariantProductId = item.productId;
+    this.tempVolume = item.selectedVolume || item.volume || '150ml';
+    this.tempScent = item.selectedScent || 'Không mùi (Fragrance-Free)';
+  }
+
+  closeVariantSelector(): void {
+    this.activeVariantProductId = null;
+  }
+
+  saveVariantChange(item: Product): void {
+    this.cartService.updateItemVariant(item.productId, this.tempVolume, this.tempScent);
+    this.refreshCart();
+    this.activeVariantProductId = null;
+    this.toastService.success(`Đã cập nhật phân loại: ${this.tempVolume}, ${this.tempScent}`);
+  }
 
   ngOnInit(): void {
     this.refreshCart();
