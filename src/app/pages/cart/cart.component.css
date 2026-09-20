@@ -1,0 +1,7 @@
+:host {
+  display: block;
+}
+
+.transition-standard {
+  transition: all 400ms ease-in-out;
+}

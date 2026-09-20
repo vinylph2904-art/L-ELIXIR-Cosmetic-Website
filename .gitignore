@@ -25,3 +25,5 @@ Thumbs.db
 # Build/cache
 coverage/
 
+# Environment
+src/environments/*.local.ts

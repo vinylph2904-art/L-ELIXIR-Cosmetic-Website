@@ -1,0 +1,110 @@
+<main class="bg-background text-on-background min-h-screen flex overflow-hidden">
+  <section class="hidden lg:flex lg:w-1/2 relative flex-col justify-end p-section-gap-desktop overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img alt="L'ELIXIR Premium Skincare" class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000" src="assets/images/Other/Trang đăng nhập .png" />
+      <div class="absolute inset-0 luxury-gradient"></div>
+    </div>
+    <div class="relative z-10 text-white max-w-lg">
+      <h1 class="font-display-lg text-display-lg mb-6 leading-tight">Bắt đầu hành trình chăm sóc da của bạn</h1>
+      <p class="font-body-lg text-body-lg text-white/80">Tạo tài khoản để nhận trải nghiệm mua sắm và tư vấn cá nhân hóa từ các chuyên gia hàng đầu của L'ELIXIR.</p>
+      <div class="mt-12 flex gap-8">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-fixed">verified_user</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-white/90">Sản phẩm chính hãng</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary-fixed">auto_awesome</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-white/90">Tư vấn chuyên sâu</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full lg:w-1/2 flex flex-col bg-surface overflow-y-auto">
+    <div class="max-w-[540px] w-full mx-auto px-margin-mobile lg:px-gutter py-12 flex flex-col min-h-full">
+      <div class="mb-12 text-center lg:text-left">
+        <h2 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter mb-8 block">L'ELIXIR</h2>
+        <h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Đăng ký tài khoản</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Tạo tài khoản mới chỉ trong vài bước đơn giản.</p>
+      </div>
+
+      <form class="space-y-6 flex-grow" (ngSubmit)="onSubmit($event)">
+        <p *ngIf="successMessage" class="font-body-sm text-body-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3">{{ successMessage }}</p>
+        <div class="space-y-1">
+          <label class="font-label-sm text-label-sm uppercase text-outline">Họ và tên</label>
+          <input [(ngModel)]="fullName" name="fullName" class="w-full bg-transparent border rounded-lg py-3 px-3 focus:ring-0 transition-all font-body-md text-body-md placeholder:text-outline-variant/60" [class.border-red-400]="fieldErrors.fullName" [class.border-outline-variant]="!fieldErrors.fullName" placeholder="Nguyễn Văn A" type="text" />
+          <p *ngIf="fieldErrors.fullName" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.fullName }}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-1">
+            <label class="font-label-sm text-label-sm uppercase text-outline">Email</label>
+            <input [(ngModel)]="email" name="email" class="w-full bg-transparent border rounded-lg py-3 px-3 focus:ring-0 transition-all font-body-md text-body-md" [class.border-red-400]="fieldErrors.email" [class.border-outline-variant]="!fieldErrors.email" placeholder="example@email.com" type="email" />
+            <p *ngIf="fieldErrors.email" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.email }}</p>
+          </div>
+          <div class="space-y-1">
+            <label class="font-label-sm text-label-sm uppercase text-outline">Số điện thoại</label>
+            <input [(ngModel)]="phoneNumber" name="phoneNumber" class="w-full bg-transparent border rounded-lg py-3 px-3 focus:ring-0 transition-all font-body-md text-body-md" [class.border-red-400]="fieldErrors.phoneNumber" [class.border-outline-variant]="!fieldErrors.phoneNumber" placeholder="0901234567" type="tel" />
+            <p *ngIf="fieldErrors.phoneNumber" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.phoneNumber }}</p>
+          </div>
+        </div>
+        <div class="space-y-1">
+          <label class="font-label-sm text-label-sm uppercase text-outline">Mật khẩu</label>
+          <div class="relative">
+            <input [(ngModel)]="password" name="password" [type]="showPassword ? 'text' : 'password'" class="w-full bg-transparent border rounded-lg py-3 px-3 pr-10 focus:ring-0 transition-all font-body-md text-body-md" [class.border-red-400]="fieldErrors.password" [class.border-outline-variant]="!fieldErrors.password" placeholder="••••••••" />
+            <button class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-outline hover:text-primary transition-colors" type="button" (click)="togglePassword()">
+              <span class="material-symbols-outlined leading-none">{{ showPassword ? 'visibility' : 'visibility_off' }}</span>
+            </button>
+          </div>
+          <p *ngIf="fieldErrors.password" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.password }}</p>
+        </div>
+        <div class="space-y-1">
+          <label class="font-label-sm text-label-sm uppercase text-outline">Xác nhận mật khẩu</label>
+          <div class="relative">
+            <input [(ngModel)]="confirmPassword" name="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" class="w-full bg-transparent border rounded-lg py-3 px-3 pr-10 focus:ring-0 transition-all font-body-md text-body-md" [class.border-red-400]="fieldErrors.confirmPassword" [class.border-outline-variant]="!fieldErrors.confirmPassword" placeholder="••••••••" />
+            <button class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-outline hover:text-primary transition-colors" type="button" (click)="toggleConfirmPassword()">
+              <span class="material-symbols-outlined leading-none">{{ showConfirmPassword ? 'visibility' : 'visibility_off' }}</span>
+            </button>
+          </div>
+          <p *ngIf="fieldErrors.confirmPassword" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.confirmPassword }}</p>
+        </div>
+        <div class="space-y-1">
+          <div class="flex items-start gap-3 py-2">
+            <input [(ngModel)]="agreeTerms" name="agreeTerms" class="mt-1 rounded-sm border-outline text-primary focus:ring-primary ring-offset-2" id="terms" type="checkbox" />
+            <label class="font-body-md text-label-md text-on-surface-variant cursor-pointer" for="terms">
+              Tôi đồng ý với <a class="text-primary hover:underline transition-all" href="#">Điều khoản sử dụng</a> và <a class="text-primary hover:underline transition-all" href="#">Chính sách bảo mật</a>.
+            </label>
+          </div>
+          <p *ngIf="fieldErrors.agreeTerms" class="text-red-600 font-body-sm text-body-sm">{{ fieldErrors.agreeTerms }}</p>
+        </div>
+        <button class="w-full bg-primary text-white py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all duration-300 active:scale-[0.98] shadow-sm">Đăng ký</button>
+      </form>
+
+      <div class="mt-8 text-center">
+        <p class="font-body-md text-body-md text-on-surface-variant">Đã có tài khoản? <a class="text-primary font-bold hover:underline" routerLink="/login">Đăng nhập ngay</a></p>
+      </div>
+      <div class="mt-16 pt-12 border-t border-outline-variant/30 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+        <div class="space-y-2">
+          <div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-primary">history</span>
+          </div>
+          <h4 class="font-label-sm text-label-sm uppercase text-on-surface">Lịch sử</h4>
+          <p class="text-[11px] leading-relaxed text-outline">Lưu trữ mọi giao dịch</p>
+        </div>
+        <div class="space-y-2">
+          <div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-primary">local_shipping</span>
+          </div>
+          <h4 class="font-label-sm text-label-sm uppercase text-on-surface">Theo dõi</h4>
+          <p class="text-[11px] leading-relaxed text-outline">Cập nhật đơn hàng 24/7</p>
+        </div>
+        <div class="space-y-2">
+          <div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto">
+            <span class="material-symbols-outlined text-primary">brush</span>
+          </div>
+          <h4 class="font-label-sm text-label-sm uppercase text-on-surface">Gợi ý</h4>
+          <p class="text-[11px] leading-relaxed text-outline">Cá nhân hóa theo làn da</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

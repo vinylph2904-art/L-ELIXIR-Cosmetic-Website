@@ -1,0 +1,73 @@
+<main class="pt-20 pb-20 bg-[linear-gradient(180deg,#fcf8f3_0%,#ffffff_100%)]">
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter pt-section-gap-mobile md:pt-section-gap-desktop pb-16">
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary text-center mb-8">Tạp chí L'ELIXIR</h1>
+    <!-- Category Tabs -->
+    <div class="flex flex-wrap justify-center gap-4 md:gap-12 border-b border-outline-variant pb-4">
+      <button class="font-label-md text-label-md text-primary border-b-2 border-primary pb-4 -mb-[18px] transition-all">Tất cả bài viết</button>
+      <button class="font-label-md text-label-md text-secondary hover:text-primary transition-colors pb-4 -mb-[18px]">Khoa học làn da</button>
+      <button class="font-label-md text-label-md text-secondary hover:text-primary transition-colors pb-4 -mb-[18px]">Routine làm đẹp</button>
+      <button class="font-label-md text-label-md text-secondary hover:text-primary transition-colors pb-4 -mb-[18px]">Lối sống thượng lưu</button>
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mb-section-gap-mobile md:mb-section-gap-desktop">
+    <div class="relative group overflow-hidden rounded-xl aspect-[16/9] md:aspect-[21/9]">
+      <img alt="Featured Skincare Ritual" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="assets/images/Banner/AuroraBanner.jpg" />
+      <div class="absolute bottom-0 left-0 p-8 md:p-16 max-w-3xl">
+        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-[#3e220d] mb-5 font-bold drop-shadow-sm leading-tight">
+          Nghi thức buổi sáng cho làn da pha lê
+        </h2>
+        
+        <p class="font-body-lg text-[#5c3a21] mb-8 hidden md:block font-medium max-w-2xl leading-relaxed">
+          Khám phá bí quyết đánh thức vẻ đẹp rạng rỡ từ bên trong thông qua những bước chăm sóc da tinh tế vào ban mai, nơi sự tĩnh lặng gặp gỡ sự thuần khiết.
+        </p>
+        
+        <a class="inline-flex items-center gap-3 bg-[#5a3213] hover:bg-[#3e220d] text-white font-label-md text-label-md px-6 py-3 rounded-full transition-all duration-300 group/link shadow-md hover:shadow-lg cursor-pointer" href="#">
+          <span class="font-semibold text-white">Đọc thêm</span>
+          <span class="material-symbols-outlined text-white text-[18px] transition-transform group-hover/link:translate-x-1.5">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Grid -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mb-section-gap-mobile md:mb-section-gap-desktop">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <ng-container *ngFor="let article of articles">
+        <article class="hover-lift flex flex-col h-full group">
+          <div class="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-surface-container">
+            <img alt="{{ article.title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" [src]="article.image" />
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-primary font-label-sm text-label-sm rounded-full">{{ article.tag }}</span>
+            </div>
+          </div>
+          <div class="flex-grow">
+            <p class="font-label-sm text-label-sm text-secondary mb-3">THÁNG 6, 2024</p>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4 group-hover:text-primary transition-colors">{{ article.title }}</h3>
+            <p class="font-body-md text-on-surface-variant line-clamp-3 mb-6">{{ article.description }}</p>
+          </div>
+          <a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:gap-3 transition-all" [routerLink]="article.route">
+            Đọc thêm <span class="material-symbols-outlined" style="font-size: 18px;">north_east</span>
+          </a>
+        </article>
+      </ng-container>
+
+      <ng-container *ngFor="let placeholder of hiddenSlots">
+        <div class="invisible md:block h-full w-full" aria-hidden="true"></div>
+      </ng-container>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="bg-surface-container-low py-section-gap-mobile md:py-section-gap-desktop">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center">
+      <span class="font-label-sm text-label-sm text-primary tracking-[0.2em] mb-4 block">SUBSCRIBE</span>
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-8">Nhận những tin tức mới nhất từ L'ELIXIR</h2>
+      <div class="max-w-xl mx-auto flex flex-col md:flex-row gap-4">
+        <input class="flex-grow bg-transparent border-0 border-b border-outline text-on-surface-variant py-4 focus:ring-0 focus:border-primary transition-all" placeholder="Địa chỉ email của bạn" type="email"/>
+        <button class="bg-primary text-on-primary px-10 py-4 font-label-md text-label-md tracking-wider hover:bg-on-primary-fixed-variant transition-colors">ĐĂNG KÝ</button>
+      </div>
+    </div>
+  </section>
+</main>
