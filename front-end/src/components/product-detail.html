@@ -1,0 +1,16 @@
+<!-- components/product-detail.html -->
+<main class="product-detail max-w-container-max mx-auto px-gutter py-12">
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="gallery">
+      <img id="pd-main-image" src="{{img}}" alt="{{title}}" class="w-full object-cover">
+    </div>
+    <div class="info">
+      <h1 class="text-headline-lg">{{title}}</h1>
+      <div class="price">{{price}}</div>
+      <p class="mt-4">{{description}}</p>
+      <div class="mt-6">
+        <a href="../checkout/cart.html" class="btn">Thêm vào giỏ hàng</a>
+      </div>
+    </div>
+  </div>
+</main>

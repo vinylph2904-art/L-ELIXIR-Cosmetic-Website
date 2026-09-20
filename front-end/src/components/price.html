@@ -1,0 +1,6 @@
+<!-- components/price.html -->
+<span class="price">{{formattedPrice}}</span>
+<script>
+// Example helper: format a number to VND
+function formatVND(n){return new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND'}).format(n)}
+</script>

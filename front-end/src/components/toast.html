@@ -1,0 +1,9 @@
+<!-- components/toast.html -->
+<div id="toasts" class="fixed top-4 right-4 flex flex-col gap-2"></div>
+<script>
+function toast(msg, timeout=3000){
+  const el=document.createElement('div'); el.className='toast p-3 bg-black text-white rounded'; el.textContent=msg;
+  document.getElementById('toasts').appendChild(el);
+  setTimeout(()=>el.remove(), timeout);
+}
+</script>

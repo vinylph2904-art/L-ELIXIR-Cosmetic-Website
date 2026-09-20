@@ -1,0 +1,55 @@
+<!-- components/navbar.html -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-sm border-b border-outline-variant">
+  <div class="max-w-container-max mx-auto px-gutter py-3 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <button id="nav-toggle" class="md:hidden p-2 rounded hover:bg-surface-container transition">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+      <a class="logo text-display-lg font-headline-lg text-primary tracking-tight" href="../home/home.html">L'ELIXIR</a>
+    </div>
+
+    <nav id="nav-menu" class="hidden md:flex items-center gap-8">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="../home/home.html">Trang chủ</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="../product/product_list.html">Sản phẩm</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="../skin_analysis/survey_form.html">Khảo sát da</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="../account/profile.html">Quy trình của bạn</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a class="hidden md:inline-flex items-center p-2 rounded hover:bg-surface-container transition" href="../product/product_list.html" aria-label="Tìm kiếm">🔍</a>
+      <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition" href="../auth/login.html" aria-label="Tài khoản">👤</a>
+      <a class="inline-flex items-center p-2 rounded hover:bg-surface-container transition relative" href="../checkout/cart.html" aria-label="Giỏ hàng">
+        👜
+        <span id="cart-count" class="ml-1 text-sm bg-primary text-white rounded-full px-2">0</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile menu (sliding) -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-outline-variant">
+    <div class="px-gutter py-4 flex flex-col gap-3">
+      <a class="py-2 px-2 rounded hover:bg-surface-container" href="../home/home.html">Trang chủ</a>
+      <a class="py-2 px-2 rounded hover:bg-surface-container" href="../product/product_list.html">Sản phẩm</a>
+      <a class="py-2 px-2 rounded hover:bg-surface-container" href="../skin_analysis/survey_form.html">Khảo sát da</a>
+      <a class="py-2 px-2 rounded hover:bg-surface-container" href="../account/profile.html">Quy trình của bạn</a>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    (function(){
+      const toggle = document.getElementById('nav-toggle');
+      const mobile = document.getElementById('mobile-menu');
+      toggle?.addEventListener('click', ()=>{
+        if(!mobile) return;
+        mobile.classList.toggle('hidden');
+      });
+      // cart count from localStorage (if available)
+      try{
+        const count = localStorage.getItem('cart_count');
+        if(count && document.getElementById('cart-count')) document.getElementById('cart-count').textContent = count;
+      }catch(e){/* ignore */}
+    })();
+  </script>
+</nav>
+<!-- Usage: include this partial where header is needed -->

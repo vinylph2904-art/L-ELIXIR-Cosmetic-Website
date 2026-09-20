@@ -1,0 +1,192 @@
+<div class="space-y-6 font-sans">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-xl font-bold text-on-surface tracking-tight">Quản lý Người dùng & Phân quyền  </h2>
+      <p class="text-xs text-on-surface-variant">Phân quyền vai trò (Admin, Staff, Audit, Customer) và kiểm soát trạng thái khóa/mở khóa tài khoản.</p>
+    </div>
+
+    <button type="button" (click)="openAddUserModal()"
+      class="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-white font-semibold text-xs rounded-xl hover:bg-primary-600 transition shadow-2xs">
+      <span class="material-symbols-outlined text-[18px]">person_add</span>
+      Tạo tài khoản mới
+    </button>
+  </div>
+
+  <!-- Search & Filter Bar -->
+  <div class="bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/30 shadow-2xs flex flex-col md:flex-row gap-3 items-center justify-between">
+    <!-- Search Box -->
+    <div class="relative w-full md:w-80">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+        <span class="material-symbols-outlined text-[18px]">search</span>
+      </span>
+      <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="applyFilters()"
+        class="w-full pl-9 pr-3 py-2 text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+        placeholder="Tìm theo tên, email, SĐT, ID..." />
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+      <select [(ngModel)]="roleFilter" (change)="applyFilters()"
+        class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
+        <option value="all">Tất cả vai trò</option>
+        <option value="admin">Admin</option>
+        <option value="staff">Staff</option>
+        <option value="audit">Audit</option>
+        <option value="customer">Customer</option>
+      </select>
+
+      <select [(ngModel)]="statusFilter" (change)="applyFilters()"
+        class="text-xs bg-surface-container-low border border-outline-variant/40 rounded-xl px-3 py-2 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary">
+        <option value="all">Tất cả trạng thái</option>
+        <option value="active">Đang hoạt động </option>
+        <option value="locked">Đã bị khóa </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Users Table -->
+  <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-2xs overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs text-on-surface">
+        <thead class="bg-surface-container-low/70 border-b border-outline-variant/30 text-[11px] font-semibold text-outline uppercase tracking-wider">
+          <tr>
+            <th class="py-3.5 px-4">Tài khoản</th>
+            <th class="py-3.5 px-4">Số điện thoại</th>
+            <th class="py-3.5 px-4">Ngày tạo</th>
+            <th class="py-3.5 px-4">Phân quyền Vai trò </th>
+            <th class="py-3.5 px-4">Trạng thái</th>
+            <th class="py-3.5 px-4 text-right">Khóa / Mở khóa</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant/20">
+          <tr *ngFor="let u of filteredUsers" class="hover:bg-surface-container-low/40 transition">
+            <!-- User info -->
+            <td class="py-3 px-4 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center flex-shrink-0">
+                {{ u.fullName.charAt(0).toUpperCase() || 'U' }}
+              </div>
+              <div>
+                <p class="font-bold text-on-surface">{{ u.fullName }}</p>
+                <p class="text-[11px] text-outline font-mono">{{ u.email }}</p>
+              </div>
+            </td>
+
+            <!-- Phone -->
+            <td class="py-3 px-4 font-mono text-on-surface-variant">
+              {{ u.phoneNumber || '-' }}
+            </td>
+
+            <!-- Created At -->
+            <td class="py-3 px-4 text-outline text-[11px]">
+              {{ formatDate(u.createdAt) }}
+            </td>
+
+            <!-- Role Dropdown -->
+            <td class="py-3 px-4">
+              <select [ngModel]="u.role" (ngModelChange)="onRoleChange(u, $event)"
+                [ngClass]="getRoleBadgeClass(u.role)"
+                class="text-xs font-bold px-2.5 py-1 rounded-lg border focus:outline-none focus:ring-1 focus:ring-primary uppercase tracking-wider cursor-pointer">
+                <option *ngFor="let r of availableRoles" [value]="r.value">{{ r.label }}</option>
+              </select>
+            </td>
+
+            <!-- Status -->
+            <td class="py-3 px-4">
+              <span *ngIf="u.status !== 'locked'"
+                class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                Hoạt động
+              </span>
+              <span *ngIf="u.status === 'locked'"
+                class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-red-100 text-red-800 border border-red-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+                Đã bị khóa
+              </span>
+            </td>
+
+            <!-- Lock / Unlock Action -->
+            <td class="py-3 px-4 text-right">
+              <button type="button" (click)="toggleLockUser(u)"
+                [ngClass]="u.status === 'locked' ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-300' : 'bg-red-50 text-red-700 hover:bg-red-100 border-red-300'"
+                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold border transition">
+                <span class="material-symbols-outlined text-[16px]">
+                  {{ u.status === 'locked' ? 'lock_open' : 'lock' }}
+                </span>
+                <span>{{ u.status === 'locked' ? 'Mở khóa' : 'Khóa tài khoản' }}</span>
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredUsers.length === 0">
+            <td colspan="6" class="py-12 text-center text-outline">
+              Không tìm thấy tài khoản người dùng phù hợp.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add User Modal -->
+  <div *ngIf="isAddModalOpen" class="fixed inset-0 z-50 overflow-y-auto bg-black/60 flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-md w-full p-6 shadow-2xl border border-outline-variant/40 space-y-4">
+      <div class="flex justify-between items-center pb-2 border-b border-outline-variant/30">
+        <h3 class="text-sm font-bold text-on-surface">Tạo tài khoản mới</h3>
+        <button type="button" (click)="closeAddUserModal()" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Họ và tên *</label>
+          <input type="text" [(ngModel)]="newUser.fullName" required
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="Nguyễn Văn A" />
+        </div>
+
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Email *</label>
+          <input type="email" [(ngModel)]="newUser.email" required
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="user@lelixir.vn" />
+        </div>
+
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Số điện thoại</label>
+          <input type="text" [(ngModel)]="newUser.phoneNumber"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="0901234567" />
+        </div>
+
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Mật khẩu ban đầu *</label>
+          <input type="password" [(ngModel)]="newUser.password" required
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface"
+            placeholder="••••••••" />
+        </div>
+
+        <div>
+          <label class="block font-medium text-on-surface mb-1">Vai trò phân quyền *</label>
+          <select [(ngModel)]="newUser.role"
+            class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary text-on-surface">
+            <option *ngFor="let r of availableRoles" [value]="r.value">{{ r.label }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-outline-variant/30 flex justify-end gap-2 text-xs">
+        <button type="button" (click)="closeAddUserModal()"
+          class="px-4 py-2 border border-outline-variant/50 font-semibold rounded-xl text-on-surface hover:bg-surface-container transition">
+          Hủy bỏ
+        </button>
+        <button type="button" (click)="saveNewUser()"
+          class="px-4 py-2 bg-primary text-white font-semibold rounded-xl hover:bg-primary-600 transition">
+          Lưu tài khoản
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đánh giá từ khách hàng | L'ELIXIR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-primary-fixed": "#281800",
+                "tertiary-fixed-dim": "#d4c4b1",
+                "primary-fixed": "#ffddb0",
+                "primary": "#735a36",
+                "surface-bright": "#fcf9f8",
+                "on-primary-fixed-variant": "#594320",
+                "surface-container": "#f0eded",
+                "on-background": "#1b1c1c",
+                "inverse-primary": "#e2c195",
+                "surface-variant": "#e4e2e1",
+                "on-tertiary-fixed": "#221a0e",
+                "on-error": "#ffffff",
+                "on-secondary-fixed": "#1c1c18",
+                "tertiary": "#685d4d",
+                "tertiary-fixed": "#f0e0cc",
+                "surface-container-lowest": "#ffffff",
+                "outline": "#7f766a",
+                "on-tertiary-fixed-variant": "#504536",
+                "error-container": "#ffdad6",
+                "surface-container-low": "#f6f3f2",
+                "error": "#ba1a1a",
+                "on-tertiary-container": "#4a4031",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#e4e2e1",
+                "surface-dim": "#dcd9d9",
+                "on-tertiary": "#ffffff",
+                "outline-variant": "#d1c5b7",
+                "on-error-container": "#93000a",
+                "secondary": "#605e5a",
+                "surface": "#fcf9f8",
+                "primary-container": "#c8a97e",
+                "on-secondary-fixed-variant": "#484743",
+                "on-surface": "#1b1c1c",
+                "secondary-container": "#e6e2dc",
+                "on-surface-variant": "#4e453b",
+                "surface-tint": "#735a36",
+                "surface-container-high": "#eae7e7",
+                "on-secondary-container": "#666460",
+                "background": "#fcf9f8",
+                "tertiary-container": "#baac99",
+                "primary-fixed-dim": "#e2c195",
+                "secondary-fixed-dim": "#c9c6c0",
+                "inverse-surface": "#303030",
+                "on-primary": "#ffffff",
+                "on-primary-container": "#533e1c",
+                "inverse-on-surface": "#f3f0f0",
+                "secondary-fixed": "#e6e2dc"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "20px",
+                "base": "8px",
+                "section-gap-mobile": "64px",
+                "container-max": "1280px",
+                "section-gap-desktop": "120px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "headline-lg": ["Playfair Display"],
+                "body-lg": ["Inter"],
+                "display-lg": ["Playfair Display"],
+                "display-lg-mobile": ["Playfair Display"],
+                "headline-lg-mobile": ["Playfair Display"],
+                "headline-md": ["Playfair Display"],
+                "body-md": ["Inter"]
+            },
+            "fontSize": {
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fcf9f8; color: #1b1c1c; }
+        .masonry { column-count: 2; column-gap: 24px; }
+        @media (min-width: 768px) { .masonry { column-count: 3; } }
+        .premium-shadow { box-shadow: 0 30px 60px -12px rgba(45, 45, 45, 0.08); }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md text-on-background">
+<!-- Navbar include -->
+<div data-include="../../components/navbar.html"></div>
+<!-- Breadcrumb -->
+<div class="max-w-container-max mx-auto px-gutter py-6">
+<nav class="flex text-label-sm font-label-sm uppercase text-on-surface-variant/60">
+<a class="hover:text-primary" href="../home/home.html">Trang chủ</a>
+<span class="mx-2">/</span>
+<span class="text-on-surface-variant">Đánh giá sản phẩm</span>
+</nav>
+</div>
+<!-- Page Hero -->
+<header class="relative w-full h-[400px] flex items-center justify-center overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover opacity-20" data-alt="A serene and luxurious abstract background featuring soft, flowing fabric in warm ivory and beige tones. The lighting is diffused and ethereal, creating a sense of ultimate calm and premium space. Elegant shadows play across the textures, embodying the brand's 'Luxury of Space' philosophy in a high-end editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF740EwM6-2dxjR1cfX_Cy1S2VDq-ONhnuNKZ-tI1dBN9GJbDR5ZjIg_vHBOg0CaiaDKEnP1ouwftx1_k6T8VSlWkY_o-xiHLkxIK_EIMIg--IXakMTB-7s0w9j0xAIhxS6YbbNBmcxUh9FjZDp2toaAOc57HgaYOF8Y1upDPpmQwWpWQXznk_UCVpEMagxAxay47J5GeT0Nl4AIfduZlDqKRAfH_peZ8qR07yHQIsWDvAz9VyCtvgNkiP-zLeRmCUCbpgq0bvw-4"/>
+<div class="relative z-10 text-center px-gutter">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-primary mb-4">Đánh giá từ khách hàng</h1>
+<p class="text-body-lg font-body-lg text-secondary max-w-2xl mx-auto">Khám phá những trải nghiệm thực tế và hành trình tìm lại vẻ đẹp thuần khiết cùng cộng đồng L'ELIXIR.</p>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter -mt-20 relative z-20 space-y-section-gap-desktop pb-section-gap-desktop">
+<!-- Product Overview & Summary -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Product Card -->
+<div class="lg:col-span-5 bg-surface-container-low rounded-xl p-8 premium-shadow flex flex-col md:flex-row gap-8 items-center border border-outline-variant/20">
+<div class="w-40 h-40 bg-white rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of a premium amber glass serum bottle with a minimalist gold dropper. The product 'L'ELIXIR Advanced Repair Serum' is displayed on a clean white stone pedestal against a soft beige background. Soft, warm natural light creates gentle shadows, emphasizing the product's luxurious texture and expensive aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD84PUPPWlGhdY1q6zP9UsyuqEhgXVscEusuF3clsO9b4eDqCq6f8lYtybu0Ey6Uh3Hq6C1RHRZ3WHf4XC-30b7EdBfS0LK3Q-fST82zZV6x08mCcFrAxU9CvvALwMAES3XsQ8mA_oQlRRAPEguY3MURgMX7jBsmu4PSUzeepLnFkB7wr5cfFrkynibTWlKg5Z2ZbcEZODJdOZwJxtWm-73jpW3KJLWv0_Cds6k4uL9IvGdg4S9Qqxio0ZAoudMmhob0QlFzbx9oh4"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-2">Advanced Repair Serum</h2>
+<p class="text-label-md font-label-md text-secondary mb-4">30ml | Tinh chất phục hồi chuyên sâu</p>
+<div class="text-headline-md font-headline-md text-primary mb-4">1.299.000 VNĐ</div>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-all uppercase tracking-widest">Mua ngay</button>
+</div>
+</div>
+<!-- Analytics Card -->
+<div class="lg:col-span-7 bg-white rounded-xl p-8 premium-shadow border border-outline-variant/20">
+<div class="flex flex-col md:flex-row items-center gap-10">
+<div class="text-center">
+<div class="text-display-lg font-display-lg text-primary">4.8</div>
+<div class="flex justify-center text-primary-container mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<p class="text-label-sm font-label-sm text-secondary uppercase">268 Đánh giá</p>
+</div>
+<div class="flex-grow w-full space-y-3">
+<!-- Rating Bars -->
+<div class="flex items-center gap-4">
+<span class="text-label-sm font-label-sm text-on-surface w-4">5</span>
+<div class="flex-grow h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[82%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-secondary w-8">82%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-label-sm font-label-sm text-on-surface w-4">4</span>
+<div class="flex-grow h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[12%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-secondary w-8">12%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-label-sm font-label-sm text-on-surface w-4">3</span>
+<div class="flex-grow h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[4%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-secondary w-8">4%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-label-sm font-label-sm text-on-surface w-4">2</span>
+<div class="flex-grow h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[1%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-secondary w-8">1%</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-label-sm font-label-sm text-on-surface w-4">1</span>
+<div class="flex-grow h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[1%]"></div>
+</div>
+<span class="text-label-sm font-label-sm text-secondary w-8">1%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Photos Gallery -->
+<section>
+<div class="flex justify-between items-end mb-10">
+<div class="masonry">
+<div class="mb-6 break-inside-avoid overflow-hidden rounded-xl">
+<img class="w-full hover:scale-105 transition-transform duration-700" data-alt="Close-up of a person's glowing skin texture after using luxury skincare. High-key lighting, soft focus background, emphasis on healthy and hydrated skin luminosity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuRwpnJWz7w5gikpDquP26Z9L1DCEIaG1MAZUOy59eQlsSODyP8NYugCsDGtCKrejQW5RPyEmfM8AZ1g_YWlcBum_jvFob8I2IEeyL9mpyRhKEgRPwapAEPdpQ8RfAmtefw1G832XdOSXQx5ADaVtZ6xeo49-vYCA6kHVTyR3V8pR-L9WGM2dBOVM8zvf8gSFG5Ke7YpLruDKjQKeef-rkrwNN4c6J-e7Km2_oLH5lzUgk7mLi2Y1h1Jb7gzPEn_Pnz0OlWsz9R08"/>
+</div>
+<div class="mb-6 break-inside-avoid overflow-hidden rounded-xl">
+<img class="w-full hover:scale-105 transition-transform duration-700" data-alt="Luxury skincare setup on a marble bathroom vanity. Artistic arrangement of a serum bottle next to a white flower and soft linen towel. Golden hour natural light pouring through a window." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrSuDtJ5sm_wANS8N1lVVWyO2lUhTI0vCs0CeydXYy1y8w1gAn2LbISgfYjPrcZNjVj8epbVVo0CPLE5PXO3_gIn1htSSA5YPNtXucCeEbLIy-TbCmQ-YT0B74PZFYOhe0USi_SMtpcIElLWXHLgdkenKuwhk3QItBFoQagrAtRsce3cm6GH-xQsU4hIe9rywTSZvBswnwrrnlXQbz1LzUg2gzi2BEx5W35j_k5ROOxO7fRQJLgwKkKbAxQHJyqOt-CMOwm5ME_9w"/>
+</div>
+<div class="mb-6 break-inside-avoid overflow-hidden rounded-xl">
+<img class="w-full hover:scale-105 transition-transform duration-700" data-alt="Macro photography of liquid serum drops on a clear glass surface. Prismatic light reflections and clean aesthetic. Representing the purity and concentration of the ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP9qBiEOijckTs_w1SsWoRDySK7iSIRFI7u3AnRd2LrmJ23AMnGyaoERbvL5_UKQiBhiXnpWe0tSTXHIuWP6WwCepcgkfZcek3urlCo7nPjWB07uvdiTmisdqtkiyr3JkX0zaxNYprFQoQh0Fib76-z-LFWs9Q-xZCTfudx-l7STAzTL4B3rqN-SBFluJ_B9tLsvZdTTSx2zs0Ywoa93EBTCIPS97R61Eaxmpg0D1QaLyyH1pp0KqlwqjKVsg0SQKyQGTaxJ67Xtc"/>
+</div>
+<div class="mb-6 break-inside-avoid overflow-hidden rounded-xl">
+<img class="w-full hover:scale-105 transition-transform duration-700" data-alt="Before and after split screen showing visible improvement in skin tone and texture. Professional, high-quality skincare photography with realistic results in soft studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAid9aZT84F7JljtOVELPAcbxWF-hR-0QCVXtuwkRUO5jqGSgZekiSw4OPIQmyNLtHfDWXljHP45aLffKzARenbU9vgHUQuxO--yAEHiTvRiVMTP-Qt_RWgG44HrJm2uxeS8Tj9E31r7KqnDBnFEtG_OGIdiOMcpsdnc0yEsKYogIW_DO0jLAQRQwPXC6xEe-9mpXxQfHB6hHp-fdCmjxxguRUigTA3O-eY72OSAjeVPUxAdjmcoSO__J9zsRcDNIz9F5mYLt8e8Hc"/>
+</div>
+</div>
+</section>
+<!-- Reviews Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Review List & Filters -->
+<div class="lg:col-span-8 space-y-8">
+<div class="flex flex-wrap items-center justify-between gap-4 border-b border-surface-variant pb-6">
+<div class="flex gap-6">
+<button class="text-label-md font-label-md text-primary border-b-2 border-primary pb-2">Tất cả (268)</button>
+<button class="text-label-md font-label-md text-secondary hover:text-primary transition-colors pb-2">Có hình ảnh (42)</button>
+</div>
+<div class="flex gap-4">
+<select class="bg-transparent border-none text-label-md font-label-md text-on-surface focus:ring-0 cursor-pointer">
+<option>Mới nhất</option>
+<option>Hữu ích nhất</option>
+<option>Xếp hạng cao</option>
+</select>
+<select class="bg-transparent border-none text-label-md font-label-md text-on-surface focus:ring-0 cursor-pointer">
+<option>Tất cả sao</option>
+<option>5 sao</option>
+<option>4 sao</option>
+</select>
+</div>
+</div>
+<!-- Review Cards -->
+<div class="space-y-6">
+<!-- Card 1 -->
+<div class="bg-white p-8 rounded-xl border border-outline-variant/20 premium-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-primary font-bold">NA</div>
+<div>
+<div class="text-label-md font-label-md text-on-surface">Nguyễn Minh Anh</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-green-600" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-label-sm text-green-600 uppercase tracking-widest">Khách hàng đã mua hàng</span>
+</div>
+</div>
+</div>
+<div class="text-label-sm font-label-sm text-secondary">24/10/2023</div>
+</div>
+<div class="flex text-primary-container mb-4">
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+<h4 class="font-bold mb-2">Kết quả vượt mong đợi</h4>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
+                            Tôi đã sử dụng sản phẩm khoảng 3 tuần và cảm nhận da mềm hơn, giảm dầu đáng kể. Kết cấu serum thấm rất nhanh, không gây bết dính. Một sản phẩm đáng đầu tư cho chu trình dưỡng da hàng ngày.
+                        </p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 text-label-sm font-label-sm text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+<span>Hữu ích (12)</span>
+</button>
+<button class="flex items-center gap-2 text-label-sm font-label-sm text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">reply</span>
+<span>Phản hồi</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-8 rounded-xl border border-outline-variant/20 premium-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold">TH</div>
+<div>
+<div class="text-label-md font-label-md text-on-surface">Trần Thu Hà</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-green-600" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[10px] font-label-sm text-green-600 uppercase tracking-widest">Khách hàng đã mua hàng</span>
+</div>
+</div>
+</div>
+<div class="text-label-sm font-label-sm text-secondary">15/10/2023</div>
+</div>
+<div class="flex text-primary-container mb-4">
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+<h4 class="font-bold mb-2">Trải nghiệm tuyệt vời</h4>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
+                            Mùi hương của sản phẩm rất nhẹ nhàng và quý phái. Sau một tuần, vết thâm mụn của tôi đã mờ hẳn. Sẽ tiếp tục ủng hộ L'ELIXIR.
+                        </p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 text-label-sm font-label-sm text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+<span>Hữu ích (8)</span>
+</button>
+<button class="flex items-center gap-2 text-label-sm font-label-sm text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">reply</span>
+<span>Phản hồi</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Write Review Form -->
+<aside class="lg:col-span-4">
+<div class="bg-surface-container-low rounded-xl p-8 sticky top-32 border border-outline-variant/20">
+<h3 class="text-headline-md font-headline-md text-on-surface mb-6">Viết đánh giá</h3>
+<form class="space-y-6">
+<div>
+<label class="text-label-sm font-label-sm text-on-surface uppercase block mb-3">Xếp hạng của bạn</label>
+<div class="flex gap-2 text-primary-container">
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">star</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">star</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">star</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">star</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform">star</span>
+</div>
+</div>
+<div>
+<label class="text-label-sm font-label-sm text-on-surface uppercase block mb-3">Tiêu đề</label>
+<input class="w-full bg-white border-none border-b border-outline rounded-t-lg py-3 focus:ring-0 placeholder:text-outline-variant" placeholder="Tóm tắt trải nghiệm của bạn" type="text"/>
+</div>
+<div>
+<label class="text-label-sm font-label-sm text-on-surface uppercase block mb-3">Nội dung đánh giá</label>
+<textarea class="w-full bg-white border-none border-b border-outline rounded-t-lg py-3 focus:ring-0 placeholder:text-outline-variant resize-none" placeholder="Chia sẻ chi tiết về sản phẩm..." rows="4"></textarea>
+</div>
+<div>
+<button class="w-full flex items-center justify-center gap-2 py-4 border-2 border-dashed border-outline-variant rounded-lg text-secondary hover:border-primary hover:text-primary transition-all group" type="button">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">photo_camera</span>
+<span class="text-label-md font-label-md">Thêm ảnh thực tế</span>
+</button>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-label-md text-label-md uppercase tracking-widest hover:opacity-90 shadow-lg shadow-primary/20">Gửi đánh giá</button>
+</form>
+<!-- Community Badges -->
+<div class="mt-10 pt-8 border-t border-outline-variant/30 space-y-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-full">verified</span>
+<div>
+<div class="text-label-md font-label-md text-on-surface">Đánh giá xác thực</div>
+<div class="text-[11px] text-secondary">Tất cả đánh giá đều từ người dùng thật.</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-full">visibility</span>
+<div>
+<div class="text-label-md font-label-md text-on-surface">Minh bạch</div>
+<div class="text-[11px] text-secondary">Chúng tôi không can thiệp vào nội dung đánh giá.</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-full">groups</span>
+<div>
+<div class="text-label-md font-label-md text-on-surface">Cộng đồng chuyên sâu</div>
+<div class="text-[11px] text-secondary">Nơi chia sẻ kiến thức làm đẹp khoa học.</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Related Products -->
+<section>
+<div class="text-center mb-16">
+<h3 class="text-headline-lg font-headline-lg text-on-surface mb-2">Đề cử dành cho bạn</h3>
+<p class="text-body-md font-body-md text-secondary">Hoàn thiện chu trình dưỡng da cùng L'ELIXIR.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-tertiary-fixed mb-4 aspect-[4/5]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Luxury facial oil bottle in a golden-hour setting, placed elegantly on a rustic wooden surface with soft highlights. High-end product photography featuring warm tones and refined composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCva6308hqdodYwvo06HsZXvb4iLi6vo_Rz3_wI-IOrezr9jpkzABpFUj8IhNi3Ie8dQmjbS6-500Z5FM6Gr0hFxy9MQadtcdys5uNvbYsUIS7qTo55wxEQhVjrxKZ1qITPLl7xqNTdT0oQ5WbMF3QgiM1hNv3SzHXbt4h8s16-ybe2a7EacIm539OFT0Hr8nTktwfPphb9yddqU0P1pxtPzn9Fk5P9tzl2gHQgCzopnO22W_VPXW4sUwdLFfjjEHHsza-9xXcOLXM"/>
+</div>
+<div class="text-center">
+<h4 class="text-label-md font-label-md text-on-surface mb-1">Restorative Face Oil</h4>
+<p class="text-label-sm font-label-sm text-secondary mb-2">1.850.000 VNĐ</p>
+<div class="flex justify-center text-primary-container scale-75">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-tertiary-fixed mb-4 aspect-[4/5]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Sleek white night cream jar on a soft beige silk fabric backdrop. The scene is illuminated with cool, moonlight-inspired lighting, emphasizing the smooth texture of the cream and the premium glass jar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2GTbr7u9tan4GajSJUIWkM2qGWM2x8xOy33xJfGazXTtpZx3T2-Kv_BmJkKVy5YQsgbGLTiKwOJX-U6eKrZC2Zv3_KGiEKiHM3Ee-dpy4dSHU2td-Nq0zymBA80UtPcPbas2W6RX9y-bkngBTz-mOk9JaTxOHvd2ib1MiJ9nabQNINLi3BWyJQ0zFTRruOHKlF2x3cS3X70P8iC7cuPjBZHRX6LT2QsnpR8Q6eumosmPDrYFkYOyMIoV3VcQF8h2F1s1bkhhVDCs"/>
+</div>
+<div class="text-center">
+<h4 class="text-label-md font-label-md text-on-surface mb-1">Night Renewal Cream</h4>
+<p class="text-label-sm font-label-sm text-secondary mb-2">2.100.000 VNĐ</p>
+<div class="flex justify-center text-primary-container scale-75">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-tertiary-fixed mb-4 aspect-[4/5]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Clear glass bottle of cleansing water infused with floating botanical petals. Bright, high-key lighting creates a fresh and organic feel. Set against a pristine white background with soft water ripples." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvkZ6PsqQ4XA_eCLSLpQ1z-NqXVFdPY7QHfS2xHpvEzxb_IQlZRnMGqSz_kOQegtWYkUPPPvM1vItRz9gifckYLWkNkPXJ3qPVpHYZ2dwEhICTxjO4SUUbvANoY0irQCSyZ8NdMEQmbW0L49Rb3aSWiZkr_cEJFo87mnKEjhUek4VlxmNokOTpq5rApEtUMbLy845FHeJ5lWUTbd1BO8rm3_pocMCrjRhsP8m3Gyr3RM-Mk5z52JXB117BoLqA7SELOW_jypUa4QU"/>
+</div>
+<div class="text-center">
+<h4 class="text-label-md font-label-md text-on-surface mb-1">Botanical Cleanser</h4>
+<p class="text-label-sm font-label-sm text-secondary mb-2">950.000 VNĐ</p>
+<div class="flex justify-center text-primary-container scale-75">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-tertiary-fixed mb-4 aspect-[4/5]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Luxury eye cream container with a gold lid, sitting on a crystal-clear ice block. Creative product photography highlighting the cooling effect of the product. Crisp lighting and blue-white palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQpe8rYjmRDcFALOaw0broUwKJ9q2d5PU-nAUkjftk1fMGcD4lcwRsjmXczRdNYlzFVOYTNkEguQEYMzwAeCBvwLADSROWTUehChYk4_11OftcfR8ydo5ylBPPtZzmGJeA1uDkgNRF1OZk25zD4CZNPU-YKAWf55NN7jBo24SgwRVe_RQ9GM3u00yj8MmO7viuyC-vV1-mWzeB3oyzBQVgAs_5YxCkGMLn3Q9m4vrfjEMyFHk6lwpLd7oBu-G0EfqRRjwZFsJlbTE"/>
+</div>
+<div class="text-center">
+<h4 class="text-label-md font-label-md text-on-surface mb-1">Lifting Eye Contour</h4>
+<p class="text-label-sm font-label-sm text-secondary mb-2">1.450.000 VNĐ</p>
+<div class="flex justify-center text-primary-container scale-75">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/30">
+<div class="w-full py-section-gap-desktop px-gutter max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-1">
+<div class="text-headline-md font-headline-md text-primary mb-6">L'ELIXIR</div>
+<p class="text-body-md font-body-md text-on-surface-variant">Trải nghiệm sự tinh khiết và sang trọng trong từng giọt tinh chất. Nghệ thuật chăm sóc da từ thiên nhiên và khoa học.</p>
+</div>
+<div>
+<h5 class="text-label-md font-label-md text-on-surface uppercase mb-6">Chính sách</h5>
+<ul class="space-y-4">
+<li><a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a></li>
+<li><a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-label-md font-label-md text-on-surface uppercase mb-6">Hỗ trợ</h5>
+<ul class="space-y-4">
+<li><a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Store Locator</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-label-md font-label-md text-on-surface uppercase mb-6">Newsletter</h5>
+<p class="text-label-sm font-label-sm text-secondary mb-4">Đăng ký để nhận ưu đãi đặc biệt.</p>
+<div class="flex border-b border-primary py-2">
+<input class="bg-transparent border-none w-full focus:ring-0 placeholder:text-outline-variant" placeholder="Email của bạn" type="email"/>
+<button class="text-primary"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter py-10 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-label-sm font-label-sm text-secondary">© 2024 L'ELIXIR. THE LUXURY OF SPACE.</div>
+<div class="flex gap-6">
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">brand_family</span></a>
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('premium-shadow', 'bg-white/95');
+            } else {
+                nav.classList.remove('premium-shadow', 'bg-white/95');
+            }
+        });
+
+        // Simple star rating selection logic
+        const stars = document.querySelectorAll('.cursor-pointer.material-symbols-outlined');
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                stars.forEach((s, i) => {
+                    if (i <= index) {
+                        s.style.fontVariationSettings = "'FILL' 1";
+                    } else {
+                        s.style.fontVariationSettings = "'FILL' 0";
+                    }
+                });
+            });
+        });
+    </script>
+
+<script src="../../core/include-partials.js"></script>
+</body></html>

@@ -1,0 +1,166 @@
+<section class="max-w-container-max mx-auto px-gutter py-section-gap-mobile md:py-section-gap-desktop">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+    <div class="space-y-8">
+      <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em]">Vẻ đẹp Khoa học</span>
+      <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">Khám phá quy trình dưỡng da <br>
+        <i class="font-normal italic">hoàn hảo dành riêng cho bạn</i>
+      </h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Những công thức tinh túy được thiết kế riêng cho làn da bạn. Trải nghiệm đỉnh cao của sự cá nhân hóa thông qua công nghệ chẩn đoán tiên tiến.</p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-4">
+        <a routerLink="/survey" class="px-10 py-4 bg-primary text-white font-label-md text-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition-all active:scale-95 inline-flex items-center justify-center">
+          Bắt đầu khảo sát da
+        </a>
+        <a routerLink="/products" class="px-10 py-4 border border-on-surface text-on-surface font-label-md text-label-md uppercase tracking-widest rounded-lg hover:bg-surface-container-low transition-all active:scale-95 inline-flex items-center justify-center">
+          Mua sắm sản phẩm
+        </a>
+      </div>
+    </div>
+    <div class="relative group">
+      <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low">
+        <img alt="Luxury Skincare Bottles" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" src="assets/images/Banner/AuroraBanner.jpg">
+      </div>
+      <div class="absolute -bottom-8 -left-8 hidden lg:block p-8 bg-surface-container shadow-xl rounded-xl max-w-xs animate-pulse-slow">
+        <p class="italic font-display-lg text-headline-md text-primary">"Tương lai của làm đẹp chính là cá nhân hóa."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-surface-container-low py-16">
+  <div class="max-w-container-max mx-auto px-gutter grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="flex flex-col items-center text-center space-y-3">
+      <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+      <h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Sản phẩm chính hãng</h3>
+      <p class="text-sm text-on-surface-variant">Chiết xuất hữu cơ thuần khiết</p>
+    </div>
+    <div class="flex flex-col items-center text-center space-y-3">
+      <span class="material-symbols-outlined text-primary text-3xl">person_search</span>
+      <h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Cá nhân hóa</h3>
+      <p class="text-sm text-on-surface-variant">Dành riêng cho DNA của bạn</p>
+    </div>
+    <div class="flex flex-col items-center text-center space-y-3">
+      <span class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+      <h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Giao hàng hỏa tốc</h3>
+      <p class="text-sm text-on-surface-variant">Vận chuyển toàn cầu trong 48 giờ</p>
+    </div>
+    <div class="flex flex-col items-center text-center space-y-3">
+      <span class="material-symbols-outlined text-primary text-3xl">assignment_return</span>
+      <h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Đổi trả dễ dàng</h3>
+      <p class="text-sm text-on-surface-variant">Dùng thử trong vòng 30 ngày</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-8 max-w-container-max mx-auto px-gutter sm:py-section-gap-desktop">
+  <h2 class="mb-8 text-center text-[1.5rem] font-display-lg tracking-[0.08em] text-on-surface sm:mb-16 sm:text-headline-lg">Mua sắm theo nhu cầu</h2>
+  <div class="flex justify-center gap-3 overflow-x-auto pb-3 snap-x snap-mandatory scroll-smooth sm:gap-4 sm:pb-4">
+    <div *ngFor="let category of categories" class="min-w-[110px] max-w-[120px] flex-none snap-start group cursor-pointer sm:min-w-[170px] sm:max-w-[190px]" [routerLink]="['/products']" [queryParams]="{ category: category.name }">
+      <div class="mb-2 aspect-square overflow-hidden rounded-full border-2 border-transparent transition-all duration-300 group-hover:border-primary sm:mb-4">
+        <img [src]="category.image" [alt]="category.name" class="h-full w-full object-cover" />
+      </div>
+      <p class="text-center text-[0.72rem] uppercase tracking-widest transition-colors group-hover:text-primary sm:text-label-md">{{ category.name }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-surface-container-low/50 py-8 sm:py-section-gap-desktop">
+  <div class="max-w-container-max mx-auto px-gutter">
+    <div class="mb-6 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Dành riêng cho bạn</span>
+        <h2 class="mt-1 text-[1.5rem] font-display-lg text-on-surface sm:text-headline-lg">Sản phẩm bán chạy</h2>
+      </div>
+      <a routerLink="/products" class="text-sm text-primary underline-offset-8 hover:underline sm:font-label-md sm:text-label-md">Xem tất cả sản phẩm</a>
+    </div>
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-gutter items-stretch">
+      <app-product-card *ngFor="let product of featuredProducts" [product]="product"></app-product-card>
+    </div>
+  </div>
+</section>
+
+<section class="bg-surface-container py-8 overflow-hidden sm:py-section-gap-desktop">
+  <div class="max-w-container-max mx-auto px-gutter">
+    <div class="mb-6 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="text-[1.5rem] font-display-lg text-on-surface sm:text-headline-lg">Bộ sưu tập Mới</h2>
+    </div>
+    <div class="flex gap-gutter overflow-x-auto pb-12 hide-scrollbar snap-x">
+      <ng-container *ngFor="let collection of collections">
+        <div class="w-[72vw] flex-none snap-center sm:w-[480px] md:w-[600px]">
+          <a [routerLink]="collection.route" class="block relative aspect-[16/9] rounded-xl overflow-hidden group">
+            <img [alt]="collection.title" class="w-full h-full object-cover" [src]="collection.image">
+            <div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex flex-col justify-end p-5 text-white sm:p-8">
+              <span class="mb-2 text-[0.8rem] font-label-md uppercase tracking-[0.2em] sm:text-sm">{{ collection.subtitle }}</span>
+              <h3 class="text-xl font-display-lg sm:text-headline-lg">{{ collection.title }}</h3>
+              <span class="mt-3 text-[0.8rem] font-label-md uppercase underline underline-offset-8 inline-block sm:mt-4 sm:text-sm">Xem bài viết</span>
+            </div>
+          </a>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<section class="py-section-gap-desktop">
+  <div class="max-w-container-max mx-auto px-gutter">
+    <h2 class="font-display-lg text-headline-lg text-center mb-16">Chia sẻ từ những <i>tín đồ làm đẹp</i></h2>
+    <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-3 md:gap-gutter md:overflow-visible md:pb-0">
+      <div class="min-w-[84vw] max-w-[84vw] flex-none snap-start rounded-xl border border-outline/10 bg-surface-container-low p-8 md:min-w-0 md:max-w-none">
+        <div class="flex gap-1 text-primary mb-6">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <p class="italic text-on-surface-variant font-body-lg mb-8 leading-relaxed">"Khảo sát cá nhân hóa đã thay đổi tất cả. Cuối cùng tôi cũng có một quy trình giải quyết được sự nhạy cảm và những thay đổi theo mùa của mình."</p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-dim">
+            <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACSOzYNI4DNQyC0F5JhpCON38TKnwMF5_N9GpW96xNl1nelXrdvfEfCtncFFmUSf2RVVbpfnulyLN1AVet60xktsLkK08NsJZsMn25zTZLy-NnoRofZVNPMrUm2_q7qukKiUFfrlzh0Ust_TWQJPy_Cy303bmmEzNM4GE7L9o-tQ4OnTc8D4zKLTRfkH1lvwtnDaYoeFBr8u6n6Z1P1rwHzugJKGoNZczz55Nm2OwQmxGAkiA--L-dSbqjOZSfRMiUwofTXhBGeXs">
+          </div>
+          <div>
+            <p class="font-label-md uppercase tracking-widest">Elena Vance</p>
+            <p class="text-xs text-on-surface-variant">Paris, Pháp</p>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-[84vw] max-w-[84vw] flex-none snap-start rounded-xl border border-outline/10 bg-surface-container-low p-8 md:min-w-0 md:max-w-none">
+        <div class="flex gap-1 text-primary mb-6">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <p class="italic text-on-surface-variant font-body-lg mb-8 leading-relaxed">"Sự sang trọng thuần khiết trong từng giọt tinh chất. Kem Nocturnal Recovery là sản phẩm duy nhất làm giảm nếp nhăn của tôi rõ rệt chỉ sau vài tuần."</p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-dim">
+            <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvJy6oXR84WNYR007pNAXfdTohjHFc4oK7KFpYH3FNQSWib9cy2tmWuF6ciee8Tln31_jn4wHkq3rPh6GmALwQjBdHoT4P6GdUYBcxpdaWJD_ADXoK2IvFeytATmUG569O_h6UdaPGmNHFL5UzYB4SDq3zqRSJIz4WEPqmMsPJqEUU6nEzK2OC1pFmaPVtx8_-vArh9eM041zzB7Y_dA0miyNDX-NDV7m7TRBGGvWz6cl9NIGZttBuDmJceZHjjc4zPHhb_5P_2ck">
+          </div>
+          <div>
+            <p class="font-label-md uppercase tracking-widest">Sophia Chen</p>
+            <p class="text-xs text-on-surface-variant">New York, Hoa Kỳ</p>
+          </div>
+        </div>
+      </div>
+      <div class="min-w-[84vw] max-w-[84vw] flex-none snap-start rounded-xl border border-outline/10 bg-surface-container-low p-8 md:min-w-0 md:max-w-none">
+        <div class="flex gap-1 text-primary mb-6">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <p class="italic text-on-surface-variant font-body-lg mb-8 leading-relaxed">"Kết cấu sản phẩm thật tuyệt vời. Nó mang lại cảm giác như một nghi thức làm đẹp hơn là một quy trình thông thường. L'ELIXIR thực sự ở một đẳng cấp khác."</p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-dim">
+            <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFuRrXc_LPU-Pzuw1rUDWgpgrd6pJV7WqwLk6I-2EbVeGwjtq_p9Ev9H8tX_MAru1II-j3ekGlc7Bz4KGMDzbndsgiQ2HcYgzHnkx7qvVrSW9J3lAW__29_4xU_EpSe8yvckjA0_Y2evhtMa8wm-S_GPveRAupjFra18pzSrMhoRXbyBvKW21Pt7k--n5M1N55etffvhCvf5y5wqJjqeiK_Rk4GR7YHRk3ZNcbLJ8Fkjk2MSSAjrSNCmCQfor3bcYK85JnT4A18nU">
+          </div>
+          <div>
+            <p class="font-label-md uppercase tracking-widest">Marcus Thorne</p>
+            <p class="text-xs text-on-surface-variant">London, Anh</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>L'ELIXIR | Đăng ký tài khoản</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fcf9f8",
+                    "surface-container-low": "#f6f3f2",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#e2c195",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#4a4031",
+                    "on-primary-fixed-variant": "#594320",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1b1c1c",
+                    "primary-fixed-dim": "#e2c195",
+                    "tertiary-container": "#baac99",
+                    "surface-container-high": "#eae7e7",
+                    "tertiary-fixed": "#f0e0cc",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#d4c4b1",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#533e1c",
+                    "on-surface-variant": "#4e453b",
+                    "primary": "#735a36",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f3f0f0",
+                    "surface-tint": "#735a36",
+                    "surface": "#fcf9f8",
+                    "on-tertiary-fixed": "#221a0e",
+                    "primary-fixed": "#ffddb0",
+                    "outline-variant": "#d1c5b7",
+                    "outline": "#7f766a",
+                    "on-secondary-fixed-variant": "#484743",
+                    "on-secondary-container": "#666460",
+                    "on-surface": "#1b1c1c",
+                    "inverse-surface": "#303030",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#e6e2dc",
+                    "secondary": "#605e5a",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "primary-container": "#c8a97e",
+                    "on-secondary-fixed": "#1c1c18",
+                    "secondary-fixed": "#e6e2dc",
+                    "surface-container": "#f0eded",
+                    "on-tertiary-fixed-variant": "#504536",
+                    "surface-dim": "#dcd9d9",
+                    "background": "#fcf9f8",
+                    "tertiary": "#685d4d",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#281800",
+                    "surface-variant": "#e4e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "base": "8px",
+                    "container-max": "1280px",
+                    "section-gap-mobile": "64px",
+                    "gutter": "24px",
+                    "section-gap-desktop": "120px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .luxury-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+        }
+        input:focus {
+            outline: none;
+            border-color: #c8a97e !important;
+            box-shadow: 0 1px 0 0 #c8a97e !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<div data-include="../../components/navbar.html"></div>
+<main class="flex min-h-screen overflow-hidden">
+<!-- Visual Section (Left) -->
+<section class="hidden lg:flex lg:w-1/2 relative flex-col justify-end p-section-gap-desktop overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="L'ELIXIR Premium Skincare" class="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000" data-alt="A high-end luxury skincare product bottle, such as a gold-capped serum, resting on a smooth, warm beige marble surface. The lighting is soft and cinematic, highlighting the glass texture and the golden liquid inside. The background is a minimalist, ethereal space with soft shadows and a warm ivory color palette, evoking a sense of calm and premium quality. The overall aesthetic is editorial and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsijOOOFKkd3JKWVRH8KdKnN-O-pJhf6GFDuQ4J74_gbRnBS4NqOPyOzKKsAMDqf_LDZylBmmm5_avQC2j-xTnkesVnmPv1R3isVrCYAD8UveeSp3-FHDiaEtqE8X5I0WCtOtfogmcIxTT3BO2iFRwuohf2d35mu90YHYHS0ZLcDXk80obXrBTazKH0URy7fizas9bGDxYEjyv4GeFFfdeXyY8WCPhMXW--zTGyB961mJHT9v85eI1gAnBDomOzDH5TmRSkIAgpJQ"/>
+<div class="absolute inset-0 luxury-gradient"></div>
+</div>
+<div class="relative z-10 text-white max-w-lg">
+<h1 class="font-display-lg text-display-lg mb-6 leading-tight">
+                    Bắt đầu hành trình chăm sóc da của bạn
+                </h1>
+<p class="font-body-lg text-body-lg text-white/80">
+                    Tạo tài khoản để nhận trải nghiệm mua sắm và tư vấn cá nhân hóa từ các chuyên gia hàng đầu của L'ELIXIR.
+                </p>
+<div class="mt-12 flex gap-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed">verified_user</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-white/90">Sản phẩm chính hãng</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed">auto_awesome</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-white/90">Tư vấn chuyên sâu</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Register Form Section (Right) -->
+<section class="w-full lg:w-1/2 flex flex-col bg-surface overflow-y-auto">
+<div class="max-w-[540px] w-full mx-auto px-margin-mobile lg:px-gutter py-12 flex flex-col min-h-full">
+<!-- Logo & Header -->
+<div class="mb-12 text-center lg:text-left">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter mb-8 block">L'ELIXIR</h2>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Đăng ký tài khoản</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Tạo tài khoản mới chỉ trong vài bước đơn giản.</p>
+</div>
+<!-- Registration Form -->
+<form class="space-y-6 flex-grow" onsubmit="return false;">
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase text-outline">Họ và tên</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md placeholder:text-outline-variant/60" placeholder="Nguyễn Văn A" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase text-outline">Email</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="example@email.com" type="email"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase text-outline">Số điện thoại</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" placeholder="090 123 4567" type="tel"/>
+</div>
+</div>
+<div class="space-y-1 relative">
+<label class="font-label-sm text-label-sm uppercase text-outline">Mật khẩu</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-0 bottom-3 text-outline hover:text-primary transition-colors" onclick="togglePass('password')" type="button">
+<span class="material-symbols-outlined" id="password_icon">visibility_off</span>
+</button>
+</div>
+<div class="space-y-1 relative">
+<label class="font-label-sm text-label-sm uppercase text-outline">Xác nhận mật khẩu</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 transition-all font-body-md text-body-md" id="confirm_password" placeholder="••••••••" type="password"/>
+<button class="absolute right-0 bottom-3 text-outline hover:text-primary transition-colors" onclick="togglePass('confirm_password')" type="button">
+<span class="material-symbols-outlined" id="confirm_password_icon">visibility_off</span>
+</button>
+</div>
+<div class="flex items-start gap-3 py-2">
+<input class="mt-1 rounded-sm border-outline text-primary focus:ring-primary ring-offset-2" id="terms" type="checkbox"/>
+<label class="font-body-md text-label-md text-on-surface-variant cursor-pointer" for="terms">
+                            Tôi đồng ý với <a class="text-primary hover:underline transition-all" href="#">Điều khoản sử dụng</a> và <a class="text-primary hover:underline transition-all" href="#">Chính sách bảo mật</a>.
+                        </label>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-300 active:scale-[0.98] shadow-sm">
+                        Đăng ký
+                    </button>
+</form>
+<!-- Social Register -->
+<div class="mt-10">
+<div class="relative flex items-center justify-center mb-8">
+<div class="border-t border-outline-variant w-full absolute"></div>
+<span class="bg-surface px-4 text-outline font-label-sm text-label-sm relative z-10">HOẶC TIẾP TỤC VỚI</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 border border-outline-variant py-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+<svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="font-label-md text-label-md">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 border border-outline-variant py-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+<svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="#1877F2" viewbox="0 0 24 24">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+</svg>
+<span class="font-label-md text-label-md">Facebook</span>
+</button>
+</div>
+</div>
+<div class="mt-8 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Đã có tài khoản? <a class="text-primary font-bold hover:underline" href="login.html">Đăng nhập ngay</a>
+</p>
+</div>
+<!-- Benefits Section -->
+<div class="mt-16 pt-12 border-t border-outline-variant/30 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+<div class="space-y-2 group">
+<div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto group-hover:bg-primary-container transition-colors duration-500">
+<span class="material-symbols-outlined text-primary">history</span>
+</div>
+<h4 class="font-label-sm text-label-sm uppercase text-on-surface">Lịch sử</h4>
+<p class="text-[11px] leading-relaxed text-outline">Lưu trữ mọi giao dịch</p>
+</div>
+<div class="space-y-2 group">
+<div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto group-hover:bg-primary-container transition-colors duration-500">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+<h4 class="font-label-sm text-label-sm uppercase text-on-surface">Theo dõi</h4>
+<p class="text-[11px] leading-relaxed text-outline">Cập nhật đơn hàng 24/7</p>
+</div>
+<div class="space-y-2 group">
+<div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center mx-auto group-hover:bg-primary-container transition-colors duration-500">
+<span class="material-symbols-outlined text-primary">brush</span>
+</div>
+<h4 class="font-label-sm text-label-sm uppercase text-on-surface">Gợi ý</h4>
+<p class="text-[11px] leading-relaxed text-outline">Cá nhân hóa theo làn da</p>
+</div>
+</div>
+<!-- Footer Mini -->
+<footer class="mt-auto pt-16 pb-8 text-center space-y-4">
+<div class="flex justify-center items-center gap-6 text-outline font-label-sm text-[10px] uppercase tracking-[0.2em]">
+<a class="hover:text-primary transition-colors" href="#">Chính sách</a>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<a class="hover:text-primary transition-colors" href="#">Điều khoản</a>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<a class="hover:text-primary transition-colors" href="#">Hỗ trợ</a>
+</div>
+<p class="text-[10px] text-outline-variant uppercase tracking-widest">© 2024 L'ELIXIR LUXURY SKINCARE. ALL RIGHTS RESERVED.</p>
+</footer>
+</div>
+</section>
+</main>
+<script>
+        function togglePass(id) {
+            const input = document.getElementById(id);
+            const icon = document.getElementById(id + '_icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerText = 'visibility';
+            } else {
+                input.type = 'password';
+                icon.innerText = 'visibility_off';
+            }
+        }
+
+        // Atmospheric Micro-interaction
+        document.addEventListener('mousemove', (e) => {
+            const visualSection = document.querySelector('section:first-child img');
+            if(visualSection) {
+                const x = (window.innerWidth - e.pageX * 2) / 100;
+                const y = (window.innerHeight - e.pageY * 2) / 100;
+                visualSection.style.transform = `translateX(${x}px) translateY(${y}px) scale(1.05)`;
+            }
+        });
+    </script>
+<script src="../../core/include-partials.js"></script>
+</body></html>

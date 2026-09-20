@@ -1,0 +1,10 @@
+<!-- components/modal.html -->
+<div id="modal" class="modal fixed inset-0 hidden items-center justify-center bg-black/50">
+  <div class="modal-panel bg-white rounded p-6 max-w-lg w-full">
+    <button id="modal-close">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+<script>function showModal(html){document.getElementById('modal-body').innerHTML=html;document.getElementById('modal').classList.remove('hidden');}
+function hideModal(){document.getElementById('modal').classList.add('hidden');}
+</script>

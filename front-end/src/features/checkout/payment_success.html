@@ -1,0 +1,406 @@
+<!DOCTYPE html><html class="light" lang="vi" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>L'ELIXIR | Đặt Hàng Thành Công</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Playfair+Display:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .luxury-shadow {
+            box-shadow: 0 20px 50px rgba(45, 45, 45, 0.05);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f6f3f2",
+                        "on-secondary-container": "#666460",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#baac99",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary-fixed-dim": "#d4c4b1",
+                        "surface-tint": "#735a36",
+                        "outline-variant": "#d1c5b7",
+                        "primary-fixed": "#ffddb0",
+                        "tertiary": "#685d4d",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#605e5a",
+                        "on-primary-container": "#533e1c",
+                        "surface-container-highest": "#e4e2e1",
+                        "tertiary-fixed": "#f0e0cc",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#e6e2dc",
+                        "surface-variant": "#e4e2e1",
+                        "inverse-on-surface": "#f3f0f0",
+                        "primary-fixed-dim": "#e2c195",
+                        "on-error": "#ffffff",
+                        "primary-container": "#c8a97e",
+                        "surface-dim": "#dcd9d9",
+                        "inverse-primary": "#e2c195",
+                        "surface-container-high": "#eae7e7",
+                        "surface": "#fcf9f8",
+                        "error": "#ba1a1a",
+                        "surface-container": "#f0eded",
+                        "secondary-fixed": "#e6e2dc",
+                        "primary": "#735a36",
+                        "outline": "#7f766a",
+                        "on-tertiary-container": "#4a4031",
+                        "on-background": "#1b1c1c",
+                        "on-surface-variant": "#4e453b",
+                        "background": "#fcf9f8",
+                        "secondary-fixed-dim": "#c9c6c0",
+                        "on-surface": "#1b1c1c",
+                        "on-primary-fixed-variant": "#594320",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#221a0e",
+                        "on-secondary-fixed-variant": "#484743",
+                        "on-secondary-fixed": "#1c1c18",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#504536",
+                        "on-primary-fixed": "#281800"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "section-gap-desktop": "120px",
+                        "section-gap-mobile": "64px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Playfair Display"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container/30">
+<!-- Header (Shared Component) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter flex justify-between items-center h-20">
+<div class="flex items-center gap-12">
+<a class="font-display-lg text-headline-md tracking-[0.2em] text-primary uppercase" href="#">L'ELIXIR</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-secondary font-label-md hover:text-primary transition-colors duration-400" href="#">Collections</a>
+<a class="text-secondary font-label-md hover:text-primary transition-colors duration-400" href="#">Rituals</a>
+<a class="text-secondary font-label-md hover:text-primary transition-colors duration-400" href="#">About</a>
+<a class="text-secondary font-label-md hover:text-primary transition-colors duration-400" href="#">Sustainability</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">person</button>
+<div class="relative">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">shopping_bag</button>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-section-gap-desktop">
+<!-- Breadcrumb & Progress -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-outline-variant pb-8">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-label-sm uppercase text-on-surface-variant">
+<a class="hover:text-primary" href="#">Trang chủ</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Giỏ hàng</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Thanh toán</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Hoàn tất</span>
+</nav>
+<!-- Progress Indicator -->
+
+</div>
+</div>
+<!-- Hero Success Section -->
+<section class="max-w-4xl mx-auto px-margin-mobile text-center pt-section-gap-mobile pb-16 fade-in" style="animation-delay: 0s;">
+<div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary-container/20 text-primary mb-8 animate-bounce">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'wght' 200;">check_circle</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-4">Đặt hàng thành công!</h1>
+<p class="font-body-lg text-on-surface-variant max-w-xl mx-auto mb-10 leading-relaxed">
+                Cảm ơn bạn đã lựa chọn L'ELIXIR. Đơn hàng của bạn đã được ghi nhận và đang được chuẩn bị để giao đến bạn.
+            </p>
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="/" class="inline-block bg-primary text-white rounded-lg py-3 px-6">Về trang chủ</a>
+                <a href="/order-tracking" class="inline-block border rounded-lg py-3 px-6">Xem đơn hàng</a>
+            </div>
+            <div class="inline-flex flex-wrap justify-center gap-x-12 gap-y-4 p-6 bg-surface-container-low rounded-xl luxury-shadow border border-white/50">
+<div class="text-left">
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Mã đơn hàng</p>
+<p class="font-headline-md text-primary">#LX202500128</p>
+</div>
+<div class="w-[1px] bg-outline-variant hidden md:block"></div>
+<div class="text-left">
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Ngày đặt</p>
+<p class="font-headline-md text-on-surface">24/06/2025</p>
+</div>
+</div>
+</section>
+<!-- Order Details Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Column: Order Information & Status -->
+<div class="lg:col-span-7 space-y-10">
+<!-- Info Card -->
+<div class="bg-surface-container-lowest p-8 rounded-xl luxury-shadow border border-surface-container-high transition-all duration-500 hover:shadow-xl">
+<h2 class="font-headline-md text-on-surface mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">info</span>
+                        Thông tin đơn hàng
+                    </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Trạng thái</p>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 text-primary font-label-md">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    Đang xử lý
+                                </div>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Phương thức thanh toán</p>
+<p class="text-body-md font-medium">Chuyển khoản ngân hàng</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Phương thức giao hàng</p>
+<p class="text-body-md font-medium">Giao hàng tiêu chuẩn</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase mb-1">Thời gian dự kiến</p>
+<p class="text-body-md font-medium">3 - 5 ngày làm việc</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Card -->
+<div class="bg-surface-container-lowest p-8 rounded-xl luxury-shadow border border-surface-container-high">
+<h2 class="font-headline-md text-on-surface mb-10 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+                        Trạng thái đơn hàng
+                    </h2>
+<div class="relative pl-8 space-y-12">
+<div class="absolute left-[11px] top-0 bottom-0 w-[1px] bg-outline-variant"></div>
+<!-- Timeline Item: Active -->
+<div class="relative flex items-start gap-6">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-primary border-4 border-primary-container flex items-center justify-center z-10 shadow-lg">
+<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<div>
+<h3 class="text-body-lg font-bold text-primary">Đơn hàng đã xác nhận</h3>
+<p class="text-label-sm text-on-surface-variant">24/06/2025 - 14:30</p>
+</div>
+</div>
+<!-- Timeline Item: Inactive -->
+<div class="relative flex items-start gap-6">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-surface-container border-4 border-surface flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<div>
+<h3 class="text-body-lg font-medium text-on-surface-variant">Đang chuẩn bị hàng</h3>
+<p class="text-label-sm text-outline">Đang chờ xử lý</p>
+</div>
+</div>
+<!-- Timeline Item: Inactive -->
+<div class="relative flex items-start gap-6">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-surface-container border-4 border-surface flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<div>
+<h3 class="text-body-lg font-medium text-on-surface-variant">Đang giao hàng</h3>
+<p class="text-label-sm text-outline">Chưa bắt đầu</p>
+</div>
+</div>
+<!-- Timeline Item: Inactive -->
+<div class="relative flex items-start gap-6">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-surface-container border-4 border-surface flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<div>
+<h3 class="text-body-lg font-medium text-on-surface-variant">Hoàn tất giao hàng</h3>
+<p class="text-label-sm text-outline">Chưa bắt đầu</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Order Summary -->
+<aside class="lg:col-span-5">
+<div class="bg-secondary-container/30 p-8 rounded-xl border border-secondary-container sticky top-28">
+<h2 class="font-headline-md text-on-surface mb-8">Tóm tắt đơn hàng</h2>
+<!-- Product List -->
+<div class="space-y-6 mb-10">
+<div class="flex gap-4">
+<div class="w-20 h-20 bg-surface rounded-lg overflow-hidden flex-shrink-0 border border-outline-variant/30">
+<img alt="Advanced Repair Serum" class="w-full h-full object-cover" data-alt="A high-end product photography shot of the L'ELIXIR Advanced Repair Serum bottle. The bottle is made of frosted amber glass with a gold cap, placed on a warm ivory stone surface with soft shadows and elegant side lighting. The aesthetic is luxurious, minimal, and clean, reflecting premium skincare branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE98t201HpjWbXvaJm9buWC86h57ETmt7f5Eu_toJN2tLun35RgFvZbOGxFfxKzWUOZeKEtK-TvEniOdc9ZRFd9OYzGmrXpU5QNs_MuABM75WndWmLNo8PBb85b33mHk34YcD3k6KZc33OVL-uoMPnArXi7-iZYaGALaEVJ_FCqaDi1ihSBprlNhSOT9TOWua7eLhtzD61buRd3Hho-WiRAj6LtjzjGY9cM3R-ljkr2hK-7GYJaatGFkH8exucsm4OD03NqScvJYU">
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="text-body-md font-semibold text-on-surface">Advanced Repair Serum</h4>
+<p class="text-label-sm text-on-surface-variant">Số lượng: 1</p>
+<p class="text-body-md text-primary font-medium">1.280.000 VNĐ</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-20 h-20 bg-surface rounded-lg overflow-hidden flex-shrink-0 border border-outline-variant/30">
+<img alt="Night Cream" class="w-full h-full object-cover" data-alt="Luxurious L'ELIXIR Night Cream jar with a heavy glass base and gold metallic lid. The product sits in a bright, airy setting with gentle morning light. The composition uses plenty of white space and soft focus in the background to emphasize purity and high-quality ingredients. Neutral beige and gold tones dominate the palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiPBuqHkOM-zAY5NBxlIqkxW_bzvs1Tspj2KkJvZxXd35rSA8KDQvwBi5wp66luICGCUqYlZ_QfjB_nKuPm4sjalZc5n7MZOb_hYDI6Wz5vaWR79EioRiAHBvsEZp6efUOmcTDsvnuAyQYHh-ox9rGnS3bseYmtR-kMiUnPmcHu2Vbl8g3dzSOO8T73QnnmXkI9NU3rYemHRMHrgu38IOoOkvDKCbQDKkuWJFNFPpY3fDzLrJx8csZ9D-DkcVjRpo9RQa_mwUnHm0">
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="text-body-md font-semibold text-on-surface">Night Cream</h4>
+<p class="text-label-sm text-on-surface-variant">Số lượng: 1</p>
+<p class="text-body-md text-primary font-medium">750.000 VNĐ</p>
+</div>
+</div>
+</div>
+<!-- Totals -->
+<div class="space-y-4 pt-6 border-t border-outline-variant">
+<div class="flex justify-between items-center text-body-md">
+<span class="text-on-surface-variant">Tạm tính</span>
+<span class="text-on-surface">2.030.000 VNĐ</span>
+</div>
+<div class="flex justify-between items-center text-body-md">
+<span class="text-on-surface-variant">Phí vận chuyển</span>
+<span class="text-on-surface">30.000 VNĐ</span>
+</div>
+<div class="flex justify-between items-center pt-4 mt-4 border-t border-primary-container/30">
+<span class="font-headline-md text-on-surface">Tổng cộng</span>
+<span class="font-headline-md text-primary">2.060.000 VNĐ</span>
+</div>
+</div>
+</div>
+</aside>
+</section>
+<!-- Action Buttons -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-16 flex flex-col sm:flex-row gap-6 justify-center">
+<a class="inline-flex items-center justify-center px-12 py-5 bg-primary text-white font-label-md uppercase tracking-widest rounded-full hover:bg-on-primary-fixed-variant transition-all duration-300 shadow-lg hover:shadow-primary/20 transform hover:-translate-y-1" href="#">
+                Theo dõi đơn hàng
+            </a>
+<a class="inline-flex items-center justify-center px-12 py-5 border border-primary text-primary font-label-md uppercase tracking-widest rounded-full hover:bg-primary-container/10 transition-all duration-300 transform hover:-translate-y-1" href="#">
+                Tiếp tục mua sắm
+            </a>
+</section>
+<!-- Trust Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-section-gap-desktop grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex flex-col items-center text-center p-6 bg-surface-container-low rounded-xl border border-white">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">verified</span>
+<h5 class="text-label-md font-bold text-on-surface mb-2">Sản phẩm chính hãng</h5>
+<p class="text-label-sm text-on-surface-variant">Cam kết 100% nguồn gốc tinh túy từ thiên nhiên.</p>
+</div>
+<div class="flex flex-col items-center text-center p-6 bg-surface-container-low rounded-xl border border-white">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">support_agent</span>
+<h5 class="text-label-md font-bold text-on-surface mb-2">Hỗ trợ 24/7</h5>
+<p class="text-label-sm text-on-surface-variant">Luôn đồng hành cùng hành trình làm đẹp của bạn.</p>
+</div>
+<div class="flex flex-col items-center text-center p-6 bg-surface-container-low rounded-xl border border-white">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">security</span>
+<h5 class="text-label-md font-bold text-on-surface mb-2">Bảo vệ dữ liệu</h5>
+<p class="text-label-sm text-on-surface-variant">Thông tin cá nhân của bạn được bảo mật tuyệt đối.</p>
+</div>
+<div class="flex flex-col items-center text-center p-6 bg-surface-container-low rounded-xl border border-white">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">shapes</span>
+<h5 class="text-label-md font-bold text-on-surface mb-2">Giao hàng an toàn</h5>
+<p class="text-label-sm text-on-surface-variant">Đóng gói kỹ lưỡng và vận chuyển chuyên nghiệp.</p>
+</div>
+</section>
+<!-- Thank You Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-section-gap-desktop text-center bg-secondary-container/20 py-20 rounded-[2rem]">
+<h2 class="font-display-lg text-headline-lg text-primary mb-6 italic">Gửi trao tâm tình cùng L'ELIXIR</h2>
+<p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto italic leading-relaxed">
+                "Chúng tôi tin rằng vẻ đẹp thật sự đến từ sự cân bằng và thuần khiết. Hy vọng L'ELIXIR sẽ là người bạn đồng hành tin cậy trên con đường đánh thức vẻ đẹp tiềm ẩn của bạn."
+            </p>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-highest">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-gap-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-1">
+<div class="font-display-lg text-headline-md text-primary mb-8 tracking-widest uppercase">L'ELIXIR</div>
+<p class="text-on-surface-variant font-body-md mb-8">Nâng tầm nghệ thuật chăm sóc sắc đẹp bằng những tinh chất quý hiếm nhất từ thiên nhiên.</p>
+</div>
+<div>
+<h6 class="text-on-surface font-label-md uppercase mb-6 tracking-wider">Khám phá</h6>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">The Gold Collection</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">The Ivory Mist</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Rituals</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Heritage</a></li>
+</ul>
+</div>
+<div>
+<h6 class="text-on-surface font-label-md uppercase mb-6 tracking-wider">Hỗ trợ</h6>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Support</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Shipping &amp; Returns</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Sustainability</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h6 class="text-on-surface font-label-md uppercase mb-6 tracking-wider">Newsletter</h6>
+<p class="text-on-surface-variant font-body-md mb-4">Đăng ký để nhận những thông tin ưu đãi sớm nhất.</p>
+<div class="flex border-b border-outline py-2">
+<input class="bg-transparent border-none focus:ring-0 w-full placeholder:text-outline font-label-md" placeholder="Email của bạn" type="email">
+<button class="material-symbols-outlined text-primary">arrow_forward</button>
+</div>
+<div class="flex gap-4 mt-8">
+<a class="w-10 h-10 flex items-center justify-center border border-outline rounded-full hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="w-10 h-10 flex items-center justify-center border border-outline rounded-full hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 border-t border-outline-variant text-center">
+<p class="text-label-sm text-on-surface-variant">© 2024 L'ELIXIR. All rights reserved. Crafted for the discerning.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Smooth scroll anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đăng nhập | L'ELIXIR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#e2c195",
+                    "inverse-surface": "#303030",
+                    "surface": "#fcf9f8",
+                    "secondary-container": "#e6e2dc",
+                    "background": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dcd9d9",
+                    "on-tertiary-fixed": "#221a0e",
+                    "surface-container-low": "#f6f3f2",
+                    "outline-variant": "#d1c5b7",
+                    "inverse-primary": "#e2c195",
+                    "tertiary-fixed": "#f0e0cc",
+                    "outline": "#7f766a",
+                    "on-tertiary-container": "#4a4031",
+                    "on-surface": "#1b1c1c",
+                    "tertiary": "#685d4d",
+                    "on-surface-variant": "#4e453b",
+                    "inverse-on-surface": "#f3f0f0",
+                    "primary-container": "#c8a97e",
+                    "surface-container": "#f0eded",
+                    "on-primary-container": "#533e1c",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#484743",
+                    "on-primary-fixed-variant": "#594320",
+                    "tertiary-fixed-dim": "#d4c4b1",
+                    "surface-container-highest": "#e4e2e1",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#e6e2dc",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#baac99",
+                    "on-secondary-container": "#666460",
+                    "surface-tint": "#735a36",
+                    "on-background": "#1b1c1c",
+                    "on-tertiary-fixed-variant": "#504536",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-primary-fixed": "#281800",
+                    "surface-bright": "#fcf9f8",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-container-high": "#eae7e7",
+                    "primary-fixed": "#ffddb0",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary": "#605e5a",
+                    "primary": "#735a36"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "section-gap-desktop": "120px",
+                    "margin-mobile": "20px",
+                    "base": "8px",
+                    "section-gap-mobile": "64px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fcf9f8; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .luxury-shadow {
+            box-shadow: 0px 30px 60px rgba(45, 45, 45, 0.05);
+        }
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        input:focus {
+            outline: none;
+            border-bottom-color: #735a36 !important;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<div data-include="../../components/navbar.html"></div>
+<main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- LEFT SECTION: Brand Storytelling -->
+<section class="hidden md:flex md:w-1/2 relative h-screen bg-secondary-container items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0 scale-105 hover:scale-100 transition-transform duration-[2000ms] ease-out">
+<img alt="L'ELIXIR Heritage" class="w-full h-full object-cover" data-alt="A high-end luxury cosmetic presentation featuring premium serum glass bottles and elegant gold-capped toner containers arranged on a warm ivory stone surface. The lighting is soft, cinematic, and diffuse, highlighting the tactile textures of the products and creating deep, gentle shadows. The color palette consists of sophisticated beige, champagne gold, and soft nudes, reflecting an atmosphere of purity and prestigious skincare. The composition is balanced and minimalist, evoking a sense of calm authority and timeless beauty." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj68BcsSuBPQVuDjw-MWJE9BBQ4tj2qEu8R7naUpjNoLYHy-v9PL-h97JK2BJ8PNv27JhL7X_N_6FeToVXeEA3JEal-Yvwdua5yZdZ-i2HEzm4er3e-BvaWHqGsrPXd7131T6McvhJv2yYUDGs0eN_U91SVNMpsbRi6L2LiywRecKgh6QLWFXMv59zsQONTj_n4P7lD-Zt3BgB2QOW0dasTJpGy5pOc39C9mKdDfgZEQz1gUirarNqgSn3mx6XjkEXnwvjCxuY-dg"/>
+<div class="absolute inset-0 bg-black/20 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 p-12 max-w-xl text-white fade-in">
+<h1 class="font-headline-lg text-headline-lg mb-4">Chào mừng trở lại</h1>
+<p class="font-body-lg text-body-lg opacity-90 leading-relaxed">
+                    Đăng nhập để tiếp tục hành trình chăm sóc da cá nhân hóa của bạn. Trải nghiệm tinh túy từ thiên nhiên kết hợp cùng công nghệ tiên tiến.
+                </p>
+<div class="mt-8 flex gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim">verified</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Organic Certified</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim">award_star</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Dermatology Tested</span>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT SECTION: Login Form -->
+<section class="w-full md:w-1/2 flex flex-col bg-surface px-6 py-12 md:px-gutter md:py-8 justify-center items-center">
+<div class="w-full max-w-[440px] flex flex-col">
+<!-- Brand Anchor -->
+<div class="mb-12 text-center md:text-left">
+<span class="font-headline-md text-headline-md tracking-widest text-primary uppercase block mb-8">L'ELIXIR</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Đăng nhập</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Truy cập tài khoản để mua sắm và quản lý đơn hàng.</p>
+</div>
+<!-- Form Section -->
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<div class="flex flex-col space-y-2">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Email</label>
+<input class="bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-body-md focus:ring-0 transition-all duration-300" placeholder="Nhập email của bạn" type="email"/>
+</div>
+<div class="flex flex-col space-y-2 relative">
+<label class="font-label-sm text-label-sm uppercase text-on-surface-variant">Mật khẩu</label>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 pr-10 font-body-md text-body-md focus:ring-0 transition-all duration-300" id="password-input" placeholder="Nhập mật khẩu" type="password"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="password-icon">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<label class="flex items-center space-x-2 cursor-pointer group">
+<input class="w-4 h-4 border-outline-variant text-primary focus:ring-primary-container rounded-sm transition-all" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-primary transition-colors">Ghi nhớ đăng nhập</span>
+</label>
+<a class="font-label-md text-label-md text-primary hover:underline transition-all" href="#">Quên mật khẩu?</a>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-4 font-label-md text-label-md uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-400 ease-in-out luxury-shadow">
+                        Đăng nhập
+                    </button>
+<!-- Social Login -->
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink mx-4 font-label-sm text-label-sm text-on-surface-variant uppercase">Hoặc</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 border border-outline-variant py-3 font-label-md text-label-md hover:bg-secondary-container transition-colors">
+<svg class="w-5 h-5" viewbox="0 0 24 24"><path d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.2,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,4.72C19,4.72 16.56,2 12.1,2C6.42,2 2.03,6.8 2.03,12C2.03,17.05 6.16,22 12.25,22C17.6,22 21.5,18.33 21.5,12.91C21.5,11.76 21.35,11.1 21.35,11.1V11.1Z" fill="currentColor"></path></svg>
+                            Google
+                        </button>
+<button class="flex items-center justify-center gap-2 border border-outline-variant py-3 font-label-md text-label-md hover:bg-secondary-container transition-colors">
+<svg class="w-5 h-5" viewbox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02c0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.21c0-2.51 1.49-3.89 3.78-3.89c1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02Z" fill="currentColor"></path></svg>
+                            Facebook
+                        </button>
+</div>
+<p class="text-center font-body-md text-body-md text-on-surface-variant">
+                        Chưa có tài khoản? <a class="text-primary font-semibold hover:underline" href="signup.html">Đăng ký ngay</a>
+</p>
+</form>
+<!-- Trust Indicators -->
+<div class="mt-12 pt-8 border-t border-outline-variant grid grid-cols-1 gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Bảo mật thông tin tuyệt đối</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">encrypted</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Mua sắm an toàn &amp; mã hóa SSL</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_awesome</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Đề xuất sản phẩm cá nhân hóa</span>
+</div>
+</div>
+<!-- Footer Mini -->
+<footer class="mt-16 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
+<a class="font-label-sm text-label-sm uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Chính sách bảo mật</a>
+<a class="font-label-sm text-label-sm uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Điều khoản sử dụng</a>
+<a class="font-label-sm text-label-sm uppercase text-on-surface-variant hover:text-primary transition-colors" href="#">Liên hệ hỗ trợ</a>
+</footer>
+</div>
+</section>
+</main>
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password-input');
+            const passwordIcon = document.getElementById('password-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.innerText = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.innerText = 'visibility';
+            }
+        }
+
+        // Add slow float effect to image on mouse move
+        const imageSection = document.querySelector('.overflow-hidden img');
+        if (imageSection) {
+            window.addEventListener('mousemove', (e) => {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.005;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.005;
+                imageSection.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+            });
+        }
+    </script>
+    <script src="../../core/include-partials.js"></script>
+</body></html>

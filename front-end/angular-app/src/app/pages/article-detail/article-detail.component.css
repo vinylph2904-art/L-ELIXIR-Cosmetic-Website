@@ -1,0 +1,53 @@
+.article-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 2rem 0 1rem;
+}
+
+.article-content h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.article-content p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.article-content ul {
+  padding-left: 1.25rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+.article-content strong {
+  color: #111827;
+}
+
+.article-content blockquote {
+  border-left: 3px solid #d8b392;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #8a4a1f;
+}
+
+.luxury-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #8a4a1f;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}

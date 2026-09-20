@@ -1,0 +1,439 @@
+<!DOCTYPE html><html class="light" lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>L'ELIXIR | Tài khoản của tôi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#594320",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#baac99",
+                    "inverse-primary": "#e2c195",
+                    "inverse-surface": "#303030",
+                    "secondary-fixed-dim": "#c9c6c0",
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dcd9d9",
+                    "secondary": "#605e5a",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f6f3f2",
+                    "on-primary-fixed": "#281800",
+                    "on-primary-container": "#533e1c",
+                    "on-tertiary-fixed-variant": "#504536",
+                    "surface-container-highest": "#e4e2e1",
+                    "outline": "#7f766a",
+                    "surface": "#fcf9f8",
+                    "tertiary-fixed": "#f0e0cc",
+                    "primary-container": "#c8a97e",
+                    "surface-tint": "#735a36",
+                    "inverse-on-surface": "#f3f0f0",
+                    "surface-variant": "#e4e2e1",
+                    "surface-container-high": "#eae7e7",
+                    "on-surface-variant": "#4e453b",
+                    "secondary-container": "#e6e2dc",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#d1c5b7",
+                    "background": "#fcf9f8",
+                    "surface-bright": "#fcf9f8",
+                    "primary": "#735a36",
+                    "on-secondary-container": "#666460",
+                    "on-background": "#1b1c1c",
+                    "tertiary-fixed-dim": "#d4c4b1",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#e6e2dc",
+                    "primary-fixed-dim": "#e2c195",
+                    "on-tertiary-container": "#4a4031",
+                    "tertiary": "#685d4d",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#f0eded",
+                    "on-tertiary-fixed": "#221a0e",
+                    "on-surface": "#1b1c1c",
+                    "on-secondary-fixed": "#1c1c18",
+                    "primary-fixed": "#ffddb0",
+                    "on-secondary-fixed-variant": "#484743"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "section-gap-mobile": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "section-gap-desktop": "120px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .luxury-blur {
+            backdrop-filter: blur(8px);
+            background: rgba(252, 249, 248, 0.85);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #F5F1EB 0%, #E8D8C4 100%);
+        }
+        body {
+            background-color: #fcf9f8;
+            color: #1b1c1c;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- Navbar include -->
+<div data-include="../../components/navbar.html"></div>
+<main class="pt-20">
+<main class="pt-20">
+<!-- Breadcrumb -->
+<div class="max-w-container-max mx-auto px-gutter py-6">
+<nav class="flex items-center gap-2 text-label-sm uppercase tracking-widest text-outline">
+<a class="hover:text-primary transition-colors" href="#">Trang chủ</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-on-surface">Tài khoản của tôi</span>
+</nav>
+</div>
+<!-- Page Hero -->
+<section class="relative h-[400px] flex items-center overflow-hidden transition-all duration-700 opacity-100 translate-y-0">
+<div class="absolute inset-0 z-0">
+<img alt="Luxury Background" class="w-full h-full object-cover opacity-30" data-alt="A high-end, minimalist aesthetic background featuring soft, flowing fabric in warm ivory and beige tones. The lighting is ethereal and diffused, creating a serene and premium atmosphere that emphasizes the luxury of space. Gentle shadows and highlights dance across the textured surface, evoking a sense of calm and sophistication typical of a high-end skincare brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf6L8PVZ7PN0KDzXMc8pq2VkYINUGaXiNgZTaQrTO7luDfG_NIbd5moQKCEqV830s94aODfBcM0SBR0DXt5VU5xrONXrnn3D3bRC8rstKBIYQpRWRYmtvlpOT206TaZntBexbKd2vQIzV-rVzwbQS_ID6Th_3CosQQCF6lXaGnuKbH9-iesFCgyOwNatrQB0gWZklIdz-pM3YOfAiqyO92S96Gl0yKQvs0SJdjf6Hrq1Qj4WajA4HgiChDP0Y60uLq9qEsTWI059I">
+</div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+<div class="relative z-10 max-w-container-max mx-auto px-gutter w-full">
+<div class="max-w-2xl">
+<h1 class="font-display-lg text-display-lg mb-4 text-primary">Tài khoản của tôi</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Quản lý thông tin cá nhân, đơn hàng và hành trình chăm sóc da của bạn. L'ELIXIR đồng hành cùng bạn trên con đường tìm thấy vẻ đẹp thuần khiết nhất.
+                    </p>
+</div>
+</div>
+</section>
+<div class="max-w-container-max mx-auto px-gutter -mt-20 relative z-20 pb-section-gap-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Profile Overview & Navigation -->
+<aside class="lg:col-span-4 space-y-8">
+<!-- Profile Overview Card -->
+<div class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-outline-variant flex flex-col items-center text-center transition-all duration-700 opacity-100 translate-y-0">
+<div class="relative mb-6">
+<div class="w-32 h-32 rounded-full overflow-hidden border-2 border-primary-container p-1">
+<img alt="Portrait of a sophisticated and elegant Vietnamese woman for a luxury skincare brand profile picture" class="w-full h-full object-cover rounded-full" data-alt="A professional portrait of a modern, sophisticated man with a friendly expression. He is wearing a clean, minimalist linen shirt in a neutral beige tone. The background is a soft, out-of-focus interior with warm, natural lighting that complements the luxury aesthetic of the L'ELIXIR brand. The image is crisp, bright, and exudes elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJdArCP7BALW5gh09n3LrCgzjIfkqBmnx0gJ97idj6dhQYwsyWSa1lQbTvNV6QERvPFbDyZTSuiCS2-S584UFO5z-bpoWRi5D7-0vd35H-lDri4xH_PIUYAAt0zlqBC8188Z-Jqqc_olJTZWi7-hFnf1SaZfGXNBW33ZvfHoGv2IFpfGwWwZY54f7zfSfBJZhtQas78X7Ul37lYAoORRDJStH3lxpOXVn08oIrJj71a0wyiBKKO6-8PX-j2cCpSwNCzFRNMOhhSnY">
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary p-2 rounded-full shadow-lg hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Nguyễn Văn A</h2>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-6">Thành viên từ năm 2025</p>
+<div class="w-full space-y-3 mb-8">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-body-md">nguyenvana@example.com</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined">call</span>
+<span class="font-body-md">090 123 4567</span>
+</div>
+</div>
+<button class="w-full py-4 px-6 border border-primary text-primary font-label-md uppercase tracking-widest rounded-lg hover:bg-primary hover:text-on-primary transition-all duration-300">
+                            Chỉnh sửa thông tin
+                        </button>
+</div>
+<!-- Account Settings -->
+<nav class="bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant overflow-hidden">
+<div class="p-6 border-b border-outline-variant bg-surface-container-low">
+<h3 class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Cài đặt tài khoản</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<a class="flex items-center justify-between p-5 hover:bg-surface-container transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary">lock_reset</span>
+<span class="font-body-md">Đổi mật khẩu</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-5 hover:bg-surface-container transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary">location_on</span>
+<span class="font-body-md">Quản lý địa chỉ</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-5 hover:bg-surface-container transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline group-hover:text-primary">notifications</span>
+<span class="font-body-md">Cài đặt thông báo</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-5 text-error hover:bg-error-container/20 transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md font-medium">Đăng xuất</span>
+</div>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Right Column: Dashboard & Main Content -->
+<div class="lg:col-span-8 space-y-10">
+<!-- Account Dashboard Stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Đơn hàng</p>
+<p class="font-headline-lg text-headline-lg font-bold text-primary">05</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Khảo sát da</p>
+<p class="font-headline-lg text-headline-lg font-bold text-primary">02</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Yêu thích</p>
+<p class="font-headline-lg text-headline-lg font-bold text-primary">12</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant text-center transition-transform hover:-translate-y-1">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-outline mb-2">Đánh giá</p>
+<p class="font-headline-lg text-headline-lg font-bold text-primary">08</p>
+</div>
+</div>
+<!-- Personal Information -->
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-outline-variant transition-all duration-700 opacity-100 translate-y-0">
+<h3 class="font-headline-md text-headline-md mb-8 pb-4 border-b border-outline-variant">Thông tin cá nhân</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Họ và tên</label>
+<p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">Nguyễn Văn A</p>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Email</label>
+<p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">nguyenvana@example.com</p>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Số điện thoại</label>
+<p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">090 123 4567</p>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Ngày sinh</label>
+<p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">15 / 05 / 1990</p>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Giới tính</label>
+<p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">Nam</p>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Địa chỉ</label>
+<p class="font-body-md p-3 border-b border-outline-variant/30 text-on-surface">123 Đường Luxury, Quận 1, TP. HCM</p>
+</div>
+</div>
+<div class="mt-10 flex justify-end">
+<button class="bg-primary text-on-primary py-4 px-10 font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition-opacity">
+                                Cập nhật thông tin
+                            </button>
+</div>
+</section>
+<!-- Beauty Journey Banner -->
+<div class="relative overflow-hidden rounded-lg bg-primary-container text-on-primary-container p-10 flex flex-col md:flex-row items-center justify-between gap-8 group">
+<div class="relative z-10 max-w-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] mb-4 block">Personalized Care</span>
+<h3 class="font-display-lg text-[32px] leading-tight mb-4">Hành trình chăm sóc da của bạn</h3>
+<p class="font-body-md opacity-90 mb-6">Theo dõi sự cải thiện của làn da qua từng giai đoạn và nhận phác đồ chăm sóc chuyên biệt từ chuyên gia L'ELIXIR.</p>
+<button class="bg-surface text-primary py-3 px-8 font-label-sm uppercase tracking-widest rounded-full hover:shadow-xl transition-all">Khám phá ngay</button>
+</div>
+<div class="relative w-48 h-48 flex-shrink-0 group-hover:scale-110 transition-transform duration-700">
+<div class="absolute inset-0 bg-surface rounded-full opacity-20 blur-2xl"></div>
+<span class="material-symbols-outlined text-[120px] opacity-40">spa</span>
+</div>
+</div>
+<!-- Order History -->
+<section class="transition-all duration-700 opacity-100 translate-y-0">
+<div class="flex justify-between items-end mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Đơn hàng gần đây</h3>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-primary border-b border-primary hover:opacity-70" href="#">Xem tất cả</a>
+</div>
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden">
+<div class="p-6 flex flex-wrap items-center justify-between gap-6 hover:bg-surface transition-colors">
+<div class="flex items-center gap-6">
+<div class="bg-secondary-container w-16 h-16 rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-primary">2.060.000 VNĐ</p>
+<p class="text-label-sm text-outline">Hình thức: Chuyển khoản</p>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-tertiary-fixed text-on-tertiary-container rounded-full">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+<span class="text-label-sm uppercase tracking-widest font-semibold">Đang giao hàng</span>
+</div>
+<button class="py-3 px-6 border border-outline text-on-surface-variant font-label-sm uppercase tracking-widest rounded-lg hover:bg-on-surface hover:text-surface transition-all">
+                                    Xem chi tiết
+                                </button>
+</div>
+</div>
+</section>
+<!-- Skin Analysis & Recommended -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Skin Analysis Card -->
+<div class="bg-surface-container-lowest p-8 rounded-lg border border-outline-variant flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-headline-md text-headline-md">Kết quả khảo sát da</h3>
+<span class="text-label-sm text-outline">18/06/2025</span>
+</div>
+<div class="flex-grow space-y-4 mb-8">
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container-high rounded text-label-sm font-medium">Da dầu</span>
+<span class="px-3 py-1 bg-surface-container-high rounded text-label-sm font-medium">Mụn</span>
+<span class="px-3 py-1 bg-surface-container-high rounded text-label-sm font-medium">Thâm sau mụn</span>
+</div>
+<p class="font-body-md text-on-surface-variant italic">"Mục tiêu: Giảm mụn, Làm sáng da &amp; phục hồi hàng rào bảo vệ da."</p>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-label-md uppercase tracking-widest rounded-lg hover:opacity-90 transition-opacity">
+                                Xem kết quả gợi ý
+                            </button>
+</div>
+<!-- Mini Recommended List -->
+<div class="bg-surface-container-lowest p-8 rounded-lg border border-outline-variant">
+<h3 class="font-headline-md text-headline-md mb-6">Dành riêng cho bạn</h3>
+<div class="space-y-6">
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-20 h-20 bg-secondary-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Serum" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A minimalist product shot of a premium serum bottle with a glass dropper. The bottle is made of frosted amber glass with a clean, white label featuring elegant typography. It sits on a smooth, beige stone surface under soft, high-key lighting. The overall mood is medical-grade yet luxurious, characteristic of L'ELIXIR's skincare line." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE9pXT2syWJwU4b0n-YnNshgz-UapNxcsX8xMR_Dr4nhHSP6skxDQ-CiYTkyQ2Ro5cDQRuAFUhHh3X7sMuWXUUTHkLjxUdnkh7Br4ticTnNpgLWNMnms6gUtqQK3tEd0c8jTtNFj8jv7ZfPcOo4YUn6I8lBkfw5SNzzRnu6wBPYBfbh7f9x2Mceb-JWnXyUzewOw36o1uNtWksFDe-brWakWHkpWMoAyv5wgVhZYgT6dV1vyfAPvmx99G6IE6jf228Yiv68zJjATw">
+</div>
+<div>
+<h4 class="font-label-md font-bold mb-1 group-hover:text-primary transition-colors">Serum Niacinamide 10%</h4>
+<p class="text-primary font-medium">1.250.000 VNĐ</p>
+</div>
+</div>
+<div class="flex items-center gap-4 group cursor-pointer">
+<div class="w-20 h-20 bg-secondary-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Cream" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A high-end skincare cream jar in a heavy, dark-tinted glass container with a minimalist metallic lid. The jar is placed against a soft-focus background of botanical elements, suggesting organic purity. Soft shadows and a warm color palette of nudes and gold highlight the luxurious texture of the packaging." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpBzHL0UUYMKvGowbYEwDaQo5-eZ3fNcXCMhARvl74UL_yxlTAiVukwXEKmBfwAFmDiwTJC2lP3z7bVITHuV7R92uDic5qtaNiGkDdJ0Kwj3TD-jjsLIe24oVyHFpSgKUTfiGGJBXsse4_5UjgHSYnVStchFSpYHtaggxkAd6MsbR6PwNzSSqkJj0PK8bD3CCe5PC8geL1aT_tj1c74hjwg1TyYOaRZexsOBYbSL71gHR_t8BEBEWPxQIFIIDMi7BNJMrMjy3aCZY">
+</div>
+<div>
+<h4 class="font-label-md font-bold mb-1 group-hover:text-primary transition-colors">Ceramide Repair Cream</h4>
+<p class="text-primary font-medium">1.890.000 VNĐ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-secondary-container dark:bg-inverse-surface w-full mt-section-gap-desktop">
+<div class="max-w-container-max mx-auto px-gutter py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="md:col-span-1">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">L'ELIXIR</h2>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                    Nâng tầm trải nghiệm chăm sóc da qua sự kết hợp hoàn hảo giữa khoa học hiện đại và tinh túy từ thiên nhiên.
+                </p>
+</div>
+<div>
+<h4 class="font-label-md uppercase tracking-widest text-on-surface mb-6">Hỗ trợ</h4>
+<ul class="space-y-4">
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Vận chuyển &amp; Trả hàng</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Liên hệ</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">FAQs</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md uppercase tracking-widest text-on-surface mb-6">Pháp lý</h4>
+<ul class="space-y-4">
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Chính sách bảo mật</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Điều khoản sử dụng</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md uppercase tracking-widest text-on-surface mb-6">Kết nối</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+</a>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter py-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-label-sm text-outline">© 2024 L'ELIXIR. The Luxury of Space.</p>
+<div class="flex gap-6">
+<span class="font-label-sm text-outline uppercase tracking-widest">Vietnam</span>
+<span class="font-label-sm text-outline uppercase tracking-widest">English</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for header
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 50) {
+                header.classList.add('shadow-md', 'h-16');
+                header.classList.remove('h-20');
+            } else {
+                header.classList.remove('shadow-md', 'h-16');
+                header.classList.add('h-20');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Simple animation trigger for stats
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section, aside > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+            observer.observe(el);
+        });
+    </script>
+
+
+<script src="../../core/include-partials.js"></script>
+</body></html>

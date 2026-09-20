@@ -1,0 +1,8 @@
+<!-- components/accordion.html -->
+<div class="accordion">
+  <button class="accordion-toggle">Q: Mua hàng như thế nào?</button>
+  <div class="accordion-panel hidden">A: Thêm sản phẩm vào giỏ và thanh toán.</div>
+</div>
+<script>
+document.addEventListener('click',e=>{if(e.target.matches('.accordion-toggle')){e.target.nextElementSibling.classList.toggle('hidden')}})
+</script>

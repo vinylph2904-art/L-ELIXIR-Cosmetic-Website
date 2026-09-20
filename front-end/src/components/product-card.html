@@ -1,0 +1,16 @@
+<!-- components/product-card.html -->
+<article class="product-card rounded-xl overflow-hidden shadow" data-id="{{id}}">
+  <a href="../product/product_detail.html?slug={{slug}}" class="block image-wrap">
+    <img src="{{img}}" alt="{{title}}" class="w-full h-60 object-cover">
+  </a>
+  <div class="p-4">
+    <div class="meta text-sm text-primary">{{category}}</div>
+    <h3 class="title"><a href="../product/product_detail.html?slug={{slug}}">{{title}}</a></h3>
+    <div class="price">{{price}}</div>
+    <div class="mt-3 flex gap-2">
+      <a href="../checkout/cart.html" class="btn-add">Mua ngay</a>
+      <a href="../product/product_detail.html?slug={{slug}}" class="btn-view">Xem</a>
+    </div>
+  </div>
+</article>
+<!-- Replace {{...}} with your template engine or string replace -->

@@ -1,0 +1,13 @@
+<!-- components/cart-item.html -->
+<div class="cart-item flex items-center gap-3 p-3 border-b">
+  <img src="{{img}}" class="w-14 h-14 object-cover" alt="">
+  <div class="flex-1">
+    <div class="text-sm">{{title}}</div>
+    <div class="text-xs text-outline">{{price}}</div>
+  </div>
+  <div class="qty">
+    <button class="qty-decrease">-</button>
+    <span class="qty-value">{{qty}}</span>
+    <button class="qty-increase">+</button>
+  </div>
+</div>

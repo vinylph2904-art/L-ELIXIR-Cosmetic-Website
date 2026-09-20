@@ -1,0 +1,88 @@
+<div class="assistant-shell" [class.expanded]="isExpanded">
+  
+  <button
+    *ngIf="!isExpanded"
+    class="assistant-toggle"
+    type="button"
+    aria-label="Mở Beauty Assistant"
+    (click)="toggleExpanded()"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <path d="M12 3.5c1.7 0 3.2 1.1 3.7 2.7l.4 1.2a1 1 0 0 0 .9.6h1.3c1 0 1.8.8 1.8 1.8v1.6c0 1-.8 1.8-1.8 1.8h-1.3a1 1 0 0 0-.9.6l-.4 1.2c-.5 1.6-2 2.7-3.7 2.7s-3.2-1.1-3.7-2.7l-.4-1.2a1 1 0 0 0-.9-.6H5.8A1.8 1.8 0 0 1 4 10.8V9.2c0-1 .8-1.8 1.8-1.8h1.3a1 1 0 0 0 .9-.6l.4-1.2c.5-1.6 2-2.7 3.7-2.7Z" />
+      <path d="M9 14.5c1 .7 2.2 1 3.5 1s2.5-.3 3.5-1" stroke-linecap="round" />
+    </svg>
+  </button>
+
+  <div class="assistant-box" *ngIf="isExpanded">
+    
+    <div class="assistant-header">
+      <div class="assistant-title">Beauty Assistant</div>
+      <button
+        class="assistant-close"
+        type="button"
+        aria-label="Đóng"
+        (click)="toggleExpanded()"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="assistant-body">
+      
+      <div class="assistant-messages">
+        
+        <div *ngIf="showSessionPrompt" class="session-prompt">
+          <p>Hệ thống nhận thấy bạn có một phiên tư vấn đang diễn ra trước đó.</p>
+          <div class="session-actions">
+            <button type="button" class="btn-resume" (click)="resumeSession()">Tiếp tục hội thoại</button>
+            <button type="button" class="btn-restart" (click)="startFreshChat()">Tạo cuộc hội thoại mới</button>
+          </div>
+        </div>
+
+        <div *ngIf="!showSessionPrompt" class="messages-flow">
+          <div
+            *ngFor="let message of messages"
+            class="message-item"
+            [ngClass]="{ 'message-user': message.sender === 'user', 'message-bot': message.sender === 'bot' }"
+          >
+            <div class="message-text">
+              <p style="white-space: pre-line; margin: 0;">{{ message.text }}</p>
+              
+              <div *ngIf="message.isLink" class="link-container">
+                <a [routerLink]="message.linkUrl" (click)="toggleExpanded()" class="assistant-hyperlink">
+                  Khám phá bộ sưu tập ngay →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="currentOptions.length > 0 && !showSessionPrompt" class="assistant-options-area">
+        <button 
+          *ngFor="let opt of currentOptions" 
+          type="button" 
+          class="option-btn" 
+          (click)="selectOption(opt)"
+        >
+          {{ opt.text }}
+        </button>
+      </div>
+
+      <form *ngIf="!showSessionPrompt" class="assistant-form" (ngSubmit)="sendMessage()">
+        <input
+          type="text"
+          name="assistantInput"
+          [(ngModel)]="inputValue"
+          placeholder="Hỏi thêm về da khô, nhạy cảm, đổi trả, freeship..."
+          autocomplete="off"
+        />
+        <button type="submit" [disabled]="!inputValue.trim()">Gửi</button>
+      </form>
+
+    </div>
+  </div>
+</div>

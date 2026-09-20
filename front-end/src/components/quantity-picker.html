@@ -1,0 +1,16 @@
+<!-- components/quantity-picker.html -->
+<div class="quantity-picker inline-flex items-center gap-2">
+  <button class="decrease">-</button>
+  <input type="number" class="qty-input" value="1" min="1">
+  <button class="increase">+</button>
+</div>
+<script>
+document.addEventListener('click', (e)=>{
+  if(e.target.matches('.quantity-picker .increase')){
+    const input=e.target.parentElement.querySelector('.qty-input'); input.value=Number(input.value)+1;
+  }
+  if(e.target.matches('.quantity-picker .decrease')){
+    const input=e.target.parentElement.querySelector('.qty-input'); input.value=Math.max(1,Number(input.value)-1);
+  }
+});
+</script>
